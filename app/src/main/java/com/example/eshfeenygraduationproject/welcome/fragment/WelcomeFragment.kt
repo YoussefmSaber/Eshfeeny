@@ -23,14 +23,11 @@ class WelcomeFragment : Fragment() {
         binding = FragmentWelcomeBinding.inflate(inflater)
 
         binding.loginButton.setOnClickListener{
-            TODO("connect with login page")
             Navigation.findNavController(it).navigate(R.id.action_welcomeFragment_to_login)
         }
 
         binding.signupButton.setOnClickListener {
-            TODO("connect with signup page")
             Navigation.findNavController(it).navigate(R.id.action_welcomeFragment_to_signupFragment)
-
         }
 
         binding.asGuest.setOnClickListener {
