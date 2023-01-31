@@ -34,7 +34,5 @@ class ViewPagerAdapter(private val onBoardingList: List<OnBoarding>) :
     }
 
     //  returns the number of the items in the onboarding list
-    override fun getItemCount(): Int {
-        return onBoardingList.size
-    }
+    override fun getItemCount() = onBoardingList.size
 }

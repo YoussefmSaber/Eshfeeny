@@ -1,13 +1,10 @@
 package com.example.eshfeenygraduationproject.onBoarding.fragment
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentOnBoardingBinding
@@ -17,7 +14,6 @@ import com.example.eshfeenygraduationproject.onBoarding.viewPagerAdapter.ViewPag
 
 class OnBoardingFragment : Fragment() {
 
-
     //  Binding adapter for the onBoarding page
     private lateinit var binding: FragmentOnBoardingBinding
 
@@ -26,6 +22,8 @@ class OnBoardingFragment : Fragment() {
 
     //  Object to change values and check for the viewPager position
     private val pager2Callback = object:ViewPager2.OnPageChangeCallback(){
+
+        //  function that called when a page is visible
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
 
