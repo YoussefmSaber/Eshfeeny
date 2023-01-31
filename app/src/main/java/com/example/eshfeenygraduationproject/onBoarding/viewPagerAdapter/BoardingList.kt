@@ -6,8 +6,8 @@ import com.example.eshfeenygraduationproject.R
 object BoardingList {
 
     val onBoardingList = listOf(
-        OnBoarding(R.drawable.ic_launcher_background, R.string.text1),
-        OnBoarding(R.drawable.ic_launcher_background, R.string.text2),
-        OnBoarding(R.drawable.ic_launcher_background, R.string.text3)
+        OnBoarding(R.drawable.img, R.string.text1),
+        OnBoarding(R.drawable.img_1, R.string.text2),
+        OnBoarding(R.drawable.img_2, R.string.text3)
     )
 }

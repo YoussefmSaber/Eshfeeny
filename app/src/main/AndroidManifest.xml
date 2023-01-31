@@ -9,7 +9,7 @@
         android:icon="@drawable/vector"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EshfeenyGraduationProject"
+        android:theme="@style/splashScreenTheme"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
