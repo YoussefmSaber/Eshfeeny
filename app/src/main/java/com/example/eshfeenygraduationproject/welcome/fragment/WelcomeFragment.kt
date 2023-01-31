@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentWelcomeBinding
 
 
@@ -22,10 +24,13 @@ class WelcomeFragment : Fragment() {
 
         binding.loginButton.setOnClickListener{
             TODO("connect with login page")
+            Navigation.findNavController(it).navigate(R.id.action_welcomeFragment_to_login)
         }
 
         binding.signupButton.setOnClickListener {
             TODO("connect with signup page")
+            Navigation.findNavController(it).navigate(R.id.action_welcomeFragment_to_signupFragment)
+
         }
 
         binding.asGuest.setOnClickListener {

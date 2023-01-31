@@ -38,6 +38,12 @@
     <string name="singup">إنشاء حساب</string>
     <string name="as_guest">تصفح كضيف</string>
     <string name="application_logo">Application Logo</string>
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="password">كلمه المرور</string>
+    <string name="required">مطلوب</string>
+    <string name="txtUnderline1"><u>سجل دخول</u></string>
+    <string name="txtForgetPass"><u>هل نسيت كلمة السر؟</u></string>
+    <string name="txtUnderline2"><u>انشئ حساب</u></string>
 
 </resources>
