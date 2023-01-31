@@ -28,6 +28,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildFeatures{
+        dataBinding true
+        viewBinding true
+    }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -47,6 +53,10 @@ dependencies {
 
     //  The dot indicator in the onboarding screen
     implementation 'com.tbuonomo:dotsindicator:4.3'
+
+    //  Recycler View
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.recyclerview:recyclerview-selection:1.1.0'
 
     //  Circle Image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'

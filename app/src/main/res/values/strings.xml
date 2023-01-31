@@ -1,3 +1,43 @@
 <resources>
-    <string name="app_name">Eshfeeny Graduation Project</string>
+    <string name="app_name">Eshfeeny</string>
+
+    <!--    OnBoarding Page Text    -->
+
+    <string name="next">التالي</string>
+    <string name="skip">تخطي</string>
+
+    <string name="text1">
+        يمكن للمستخدم البحث عن الدواء الذى يريده و كذلك
+        يمكن ان يحصل على الدواء من خلال ادخال صورة
+        الروشتة و يمكن ان يبحث عن اي منتج اخر يريده
+        مثل منتجات العناية بالبشرة و منتجات العناية بالشعر
+        و غيرها من المنتجات.
+    </string>
+
+    <string name="text2">
+        يمكن للمستخدم شراء او الاستعلام  الدواء او المنتج
+        الذى يريده من اقرب صيدلية منه و التى يتوافر فيها كل
+        الدواء او كل المنتجات التى يريدها او الدواء اللى
+        الروشتة كله.
+    </string>
+
+    <string name="text3">
+        يمكن للمستخدم الدفع كاش عند استلام المنتج او الدواء
+        الذى تم طلبه كما يتمتع المستخدم بكثير من المميزات
+        عند استخدامه للابليكشن و منها حساب السعرارات الحرارية
+        لاحتياج الشخص اليومى و غيرها من المميزات التى
+    تتيح للمستخدم.
+    </string>
+    <string name="start">إبدأ</string>
+
+
+    <!--    Welcome Page Text     -->
+
+    <string name="welcome_text">مرحبا بك في تطبيق إشفيني</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="singup">إنشاء حساب</string>
+    <string name="as_guest">تصفح كضيف</string>
+    <string name="application_logo">Application Logo</string>
+
+
 </resources>
