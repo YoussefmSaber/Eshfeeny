@@ -127,6 +127,7 @@
             android:shadowRadius="60"
             android:text="@string/sign_up"
             android:textAlignment="center"
+            android:textColor="#FFFFFF"
             android:textSize="18sp"
             app:cornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
