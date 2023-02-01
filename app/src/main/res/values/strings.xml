@@ -49,7 +49,6 @@
     <string name="txtUnderline2"><u>انشئ حساب</u></string>
     <string name="have_account">لديك حساب بالفعل؟</string>
     <string name="sign_up">تسجيل الدخول</string>
-    <string name="passwordText">كلمة المرور</string>
     <string name="Email">البريد الالكتروني</string>
     <string name="signUP">قم بتسجيل الدخول</string>
 
@@ -59,7 +58,6 @@
     <string name="welcomeMsg">مرحبا بك في تطبيق أشفيني</string>
     <string name="createAcc">إنشاء حساب</string>
     <string name="userName">اسم المستخدم</string>
-    <string name="email">البريد الالكتروني</string>
     <string name="pass">كلمة المرور</string>
     <string name="confPass">تأكيد كلمة المرور</string>
     <string name="conf">تأكيد</string>
