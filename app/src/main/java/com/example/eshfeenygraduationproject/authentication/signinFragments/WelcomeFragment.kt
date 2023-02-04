@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.authentication.fragment
+package com.example.eshfeenygraduationproject.authentication.signinFragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

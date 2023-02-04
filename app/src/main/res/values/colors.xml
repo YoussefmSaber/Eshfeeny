@@ -11,6 +11,7 @@
 
     <!--    Colors we will use    -->
     <color name="blue_main">#0583F2</color>
+    <color name="light_blue">#e1eeff</color>
     <color name="orange_main">#F89D1C</color>
     <color name="text_main">#1F1F1F</color>
     <color name="text_sec">#868484</color>

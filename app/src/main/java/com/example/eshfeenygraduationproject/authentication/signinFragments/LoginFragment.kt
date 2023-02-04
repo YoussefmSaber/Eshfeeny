@@ -1,18 +1,10 @@
-package com.example.eshfeenygraduationproject.authentication.fragment
+package com.example.eshfeenygraduationproject.authentication.signinFragments
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.InputType
-import android.text.TextWatcher
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
-import android.view.View.*
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.eshfeenygraduationproject.R

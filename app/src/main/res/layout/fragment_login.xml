@@ -116,17 +116,21 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/confirmButtonSignin"
-            android:layout_width="349dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="76dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/button_edit"
+            android:backgroundTint="@color/blue_main"
             android:fontFamily="@font/cairo_semibold"
+            android:padding="10dp"
+            android:shadowColor="@color/black"
+            android:shadowDy="20.0"
             android:text="@string/sign_up"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="18sp"
+            app:cornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />

@@ -39,7 +39,7 @@
     <string name="as_guest">تصفح كضيف</string>
 
 
-    <!--    Login Page Text-->
+    <!--    Login Page Text     -->
 
     <string name="application_logo">Application Logo</string>
     <string name="password">كلمه المرور</string>
@@ -52,7 +52,7 @@
     <string name="Email">البريد الالكتروني</string>
     <string name="signUP">قم بتسجيل الدخول</string>
 
-    <!--    Signup Page Text-->
+    <!--    Signup Page Text    -->
 
     <string name="welcome">مرحبا بك في تطبيق أشفيني</string>
     <string name="welcomeMsg">مرحبا بك في تطبيق أشفيني</string>
@@ -62,5 +62,11 @@
     <string name="confPass">تأكيد كلمة المرور</string>
     <string name="conf">تأكيد</string>
     <string name="haveAcc">لديك حساب بالفعل؟</string>
+
+    <!-- Alarm Page Text        -->
+    
+    <string name="medcin_alarm">منبة الدواء</string>
+    <string name="this_day_no_medicine">هذا اليوم لا يحتوي على أي تنبيهات</string>
+    <string name="dont_miss_take_medcin">لا تفوت جرعتك و أبدا فى أضافة تنبيهات</string>
 
 </resources>

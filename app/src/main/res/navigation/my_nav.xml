@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.example.eshfeenygraduationproject.authentication.fragment.WelcomeFragment"
+        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.eshfeenygraduationproject.authentication.fragment.LoginFragment"
+        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.example.eshfeenygraduationproject.authentication.fragment.SignupFragment"
+        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.SignupFragment"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" >
         <action
