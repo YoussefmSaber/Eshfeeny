@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.onBoarding.viewPagerAdapter
+package com.example.eshfeenygraduationproject.authentication.onBoarding.viewPagerAdapter
 
 import com.example.eshfeenygraduationproject.R
 

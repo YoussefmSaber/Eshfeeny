@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.onBoarding.viewPagerAdapter
+package com.example.eshfeenygraduationproject.authentication.onBoarding.viewPagerAdapter
 
 //  data class to initialize the onboarding data in the view pager
 data class OnBoarding(

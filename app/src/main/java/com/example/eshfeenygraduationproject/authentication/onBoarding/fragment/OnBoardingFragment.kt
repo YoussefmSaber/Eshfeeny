@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.onBoarding.fragment
+package com.example.eshfeenygraduationproject.authentication.onBoarding.fragment
 
 import android.os.Bundle
 import android.view.*
@@ -8,8 +8,8 @@ import androidx.navigation.Navigation
 import androidx.viewpager2.widget.ViewPager2
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentOnBoardingBinding
-import com.example.eshfeenygraduationproject.onBoarding.viewPagerAdapter.BoardingList
-import com.example.eshfeenygraduationproject.onBoarding.viewPagerAdapter.ViewPagerAdapter
+import com.example.eshfeenygraduationproject.authentication.onBoarding.viewPagerAdapter.BoardingList
+import com.example.eshfeenygraduationproject.authentication.onBoarding.viewPagerAdapter.ViewPagerAdapter
 
 
 class OnBoardingFragment : Fragment() {

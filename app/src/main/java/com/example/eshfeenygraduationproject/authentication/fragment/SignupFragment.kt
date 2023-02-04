@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.welcome.fragment
+package com.example.eshfeenygraduationproject.authentication.fragment
 
 import android.os.Bundle
 import android.view.Gravity
