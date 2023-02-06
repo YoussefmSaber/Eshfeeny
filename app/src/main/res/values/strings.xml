@@ -68,5 +68,12 @@
     <string name="medcin_alarm">منبة الدواء</string>
     <string name="this_day_no_medicine">هذا اليوم لا يحتوي على أي تنبيهات</string>
     <string name="dont_miss_take_medcin">لا تفوت جرعتك و أبدا فى أضافة تنبيهات</string>
+    <string name="blue_circle">Blue Circle</string>
+    <string name="temp">9:16 م</string>
+    <string name="background">background</string>
+    <string name="tempmed">بنادول</string>
+    <string name="temprep">2 لكل مرة</string>
+    <string name="check_marker_to_see_if_the_user_taken_the_medicine_or_not">check marker to see if the user taken the medicine or not</string>
+    <string name="floating_action_button">Floating Action button</string>
 
 </resources>

@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".eshfeeny.AlarmFragment">
+    tools:context=".eshfeeny.alarm.fragment.AlarmFragment">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/materialTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/cairo_semibold"
         android:text="@string/pass"
         android:textColor="@color/black"
@@ -32,12 +32,11 @@
         app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView2"
+        android:id="@+id/MonthTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="16sp"
         android:fontFamily="@font/cairo_medium"
-        android:text="فبراير, 2023"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,9 +49,9 @@
         android:layout_width="29dp"
         android:layout_height="29dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="24sp"
         android:src="@drawable/calendar_icon"
-        app:layout_constraintEnd_toStartOf="@+id/materialTextView2"
+        app:layout_constraintEnd_toStartOf="@+id/MonthTextView"
         app:layout_constraintHorizontal_bias="0.012"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
@@ -61,21 +60,24 @@
         android:id="@+id/calendarDaySelectRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialTextView2"
         android:layoutDirection="rtl"
         android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MonthTextView"
+        tools:listitem="@layout/day_item_view"/>
 
     <LinearLayout
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarDaySelectRV">
+        app:layout_constraintTop_toBottomOf="@+id/calendarDaySelectRV"
+        app:layout_constraintVertical_bias="0.3">
 
         <ImageView
             android:layout_width="94sp"
@@ -88,17 +90,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/cairo_medium"
-            android:textColor="@color/black"
             android:text="@string/this_day_no_medicine"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dont_miss_take_medcin"
             android:layout_gravity="center"
             android:fontFamily="@font/cairo_regular"
-            android:textSize="14sp"/>
+            android:text="@string/dont_miss_take_medcin"
+            android:textSize="14sp" />
 
     </LinearLayout>
 
@@ -112,14 +114,18 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue_main"
+        android:layout_marginStart="24sp"
+        android:layout_marginBottom="24sp"
+        android:clickable="true"
+        android:contentDescription="@string/floating_action_button"
+        android:focusable="true"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/blue_main"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
+        app:tint="@android:color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

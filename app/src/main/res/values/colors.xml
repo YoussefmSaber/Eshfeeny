@@ -10,11 +10,14 @@
     <color name="white">#FDFDFF</color>
 
     <!--    Colors we will use    -->
-    <color name="blue_main">#0583F2</color>
-    <color name="light_blue">#e1eeff</color>
-    <color name="orange_main">#F89D1C</color>
-    <color name="text_main">#1F1F1F</color>
-    <color name="text_sec">#868484</color>
     <color name="rectangle_color">#ECECEC</color>
+    <color name="light_blue">#e1eeff</color>
+    <color name="days_border">#CECECE</color>
+    <color name="text_sec">#868484</color>
+    <color name="days_color">#4D4D4D</color>
     <color name="bottom_rectangle_color">#40868484</color>
+    <color name="text_main">#1F1F1F</color>
+    <color name="red_text">#EB1D36</color>
+    <color name="blue_main">#0583F2</color>
+    <color name="orange_main">#F89D1C</color>
 </resources>
