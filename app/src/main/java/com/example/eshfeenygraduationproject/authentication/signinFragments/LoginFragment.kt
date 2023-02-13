@@ -1,20 +1,16 @@
 package com.example.eshfeenygraduationproject.authentication.signinFragments
 
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentLoginBinding
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import com.google.android.material.textfield.*
 
 
 class LoginFragment : Fragment() {
-    private lateinit var binding: FragmentLoginBinding
+    private var binding: FragmentLoginBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,19 +19,31 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(inflater)
 
-        binding.passwordSignup.hint = getString(R.string.pass)
-        binding.nameSignin.hint = getString(R.string.Email)
+        binding?.passwordSignup?.hint = getString(R.string.pass)
+        binding?.nameSignin?.hint = getString(R.string.Email)
 
-        setHint(binding.nameSignin)
-        setHint(binding.passwordSignup, binding.PasswordSignup)
-
-        binding.createInSignin.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_loginFragmen_to_signupFragment)
+        binding?.nameSignin?.let {
+            setHint(it)
         }
-        return binding.root
+        binding?.passwordSignup?.let {
+            binding?.PasswordSignup?.let { it1 ->
+                setHint(it, it1)
+            }
+        }
+
+        binding?.createInSignin?.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.Login2Signup)
+        }
+        return binding?.root
     }
 
-    fun setHint(view: TextInputEditText, parent: TextInputLayout) {
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
+
+
+    private fun setHint(view: TextInputEditText, parent: TextInputLayout) {
         view.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 parent.setEndIconMode(TextInputLayout.END_ICON_PASSWORD_TOGGLE)
@@ -51,7 +59,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    fun setHint(view: TextInputEditText) {
+    private fun setHint(view: TextInputEditText) {
         view.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 view.hint = ""
@@ -64,5 +72,4 @@ class LoginFragment : Fragment() {
             }
         }
     }
-
 }

@@ -1,8 +1,8 @@
 package com.example.eshfeenygraduationproject.authentication.onBoarding.viewPagerAdapter
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.view.*
 import androidx.recyclerview.widget.RecyclerView
+import com.example.eshfeenygraduationproject.authentication.util.OnBoarding
 import com.example.eshfeenygraduationproject.databinding.SliderFragmentBinding
 
 //  an adapter class to set the elements to viewpager automatically

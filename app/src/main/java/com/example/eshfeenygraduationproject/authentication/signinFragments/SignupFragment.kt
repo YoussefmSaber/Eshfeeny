@@ -1,20 +1,16 @@
 package com.example.eshfeenygraduationproject.authentication.signinFragments
 
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentSignupBinding
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import com.google.android.material.textfield.*
 
 
 class SignupFragment : Fragment() {
-    private lateinit var binding: FragmentSignupBinding
+    private var binding: FragmentSignupBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,29 +18,52 @@ class SignupFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSignupBinding.inflate(inflater)
 
-        setHint(binding.nameSignup, R.string.userName)
-        setHint(binding.emailSignup, R.string.Email)
-        setHint(binding.passwordSignup, binding.PasswordSignup, R.string.pass)
-        setHint(binding.confirmPassSignup, binding.ConfirmPassSignup, R.string.confPass)
-
-        binding.createInSignup.setOnClickListener{
-            //action from signup to login
-            Navigation.findNavController(it).navigate(R.id.action_signupFragment_to_loginFragmen)
+        binding?.nameSignup?.let {
+            setHint(it, R.string.userName)
         }
-        return binding.root
+        binding?.emailSignup?.let {
+            setHint(it, R.string.Email)
+        }
+        binding?.passwordSignup?.let {
+            binding?.PasswordSignup?.let { it1 ->
+                setHint(
+                    it,
+                    it1, R.string.pass
+                )
+            }
+        }
+        binding?.confirmPassSignup?.let {
+            binding?.ConfirmPassSignup?.let { it1 ->
+                setHint(
+                    it,
+                    it1, R.string.confPass
+                )
+            }
+        }
+
+        binding?.createInSignup?.setOnClickListener {
+            //action from signup to login
+            Navigation.findNavController(it).navigate(R.id.Signup2Login)
+        }
+        return binding?.root
     }
 
-    fun setHint(view: TextInputEditText, parent: TextInputLayout, string: Int) {
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
+
+    private fun setHint(view: TextInputEditText, parent: TextInputLayout, string: Int) {
 
         view.hint = getString(string)
 
         view.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
-                parent.setEndIconMode(TextInputLayout.END_ICON_PASSWORD_TOGGLE)
+                parent.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
                 view.hint = ""
                 (v as TextInputEditText).gravity = Gravity.LEFT
             } else {
-                parent.setEndIconMode(TextInputLayout.END_ICON_NONE)
+                parent.endIconMode = TextInputLayout.END_ICON_NONE
                 if (view.text?.isEmpty() == true) {
                     view.hint = getString(string)
                     (v as TextInputEditText).gravity = Gravity.RIGHT
@@ -53,7 +72,7 @@ class SignupFragment : Fragment() {
         }
     }
 
-    fun setHint(view: TextInputEditText, string: Int) {
+    private fun setHint(view: TextInputEditText, string: Int) {
 
         view.hint = getString(string)
 

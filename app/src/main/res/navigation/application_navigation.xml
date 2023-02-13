@@ -9,5 +9,18 @@
         android:id="@+id/alarmFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment.AlarmFragment"
         android:label="fragment_alarm"
-        tools:layout="@layout/fragment_alarm" />
+        tools:layout="@layout/fragment_alarm" >
+        <action
+            android:id="@+id/AlarmFragment2SetAlarm"
+            app:destination="@id/setAlarmFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/setAlarmFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment.SetAlarmFragment"
+        android:label="fragment_set_alarm"
+        tools:layout="@layout/fragment_set_alarm" >
+        <action
+            android:id="@+id/SetAlarm2AlarmFragment"
+            app:destination="@id/alarmFragment" />
+    </fragment>
 </navigation>

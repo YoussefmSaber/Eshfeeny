@@ -64,7 +64,7 @@
     <string name="haveAcc">لديك حساب بالفعل؟</string>
 
     <!-- Alarm Page Text        -->
-    
+
     <string name="medcin_alarm">منبة الدواء</string>
     <string name="this_day_no_medicine">هذا اليوم لا يحتوي على أي تنبيهات</string>
     <string name="dont_miss_take_medcin">لا تفوت جرعتك و أبدا فى أضافة تنبيهات</string>
@@ -76,4 +76,15 @@
     <string name="check_marker_to_see_if_the_user_taken_the_medicine_or_not">check marker to see if the user taken the medicine or not</string>
     <string name="floating_action_button">Floating Action button</string>
 
+
+    <string name="TimesInDay">عدد المرات خلال اليوم</string>
+    <string name="numberOfBills">العدد لكل مره</string>
+    <string name="back_to_alarm_page">Back to alarm page</string>
+    <string name="repitation">التكرار</string>
+    <string name="JustToday">اليوم الحالي فقط</string>
+    <string name="medicenName">إسم الدواء</string>
+    <string name="notes">ملحوظات</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="chooseTime">إختار</string>
 </resources>

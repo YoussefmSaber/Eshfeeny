@@ -11,7 +11,7 @@
         android:label="fragment_on_boarding"
         tools:layout="@layout/fragment_on_boarding" >
         <action
-            android:id="@+id/action_onBoardingFragment_to_welcomeFragment"
+            android:id="@+id/OnBoarding2WelcomeFragment"
             app:destination="@id/welcomeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -24,7 +24,7 @@
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
-            android:id="@+id/action_welcomeFragment_to_login"
+            android:id="@+id/Welcome2Login"
             app:destination="@id/loginFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -32,7 +32,7 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/welcomeFragment" />
         <action
-            android:id="@+id/action_welcomeFragment_to_signupFragment"
+            android:id="@+id/Welcome2Signup"
             app:destination="@id/signupFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -46,7 +46,7 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragmen_to_signupFragment"
+            android:id="@+id/Login2Signup"
             app:destination="@id/signupFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -60,7 +60,7 @@
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" >
         <action
-            android:id="@+id/action_signupFragment_to_loginFragmen"
+            android:id="@+id/Signup2Login"
             app:destination="@id/loginFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"

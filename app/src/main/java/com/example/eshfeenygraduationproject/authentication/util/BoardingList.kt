@@ -1,10 +1,10 @@
-package com.example.eshfeenygraduationproject.authentication.onBoarding.viewPagerAdapter
+package com.example.eshfeenygraduationproject.authentication.util
 
 import com.example.eshfeenygraduationproject.R
 
-//  object that creating the elements in the viewpager
-object BoardingList {
 
+object BoardingList {
+    //  variable that contain the elements in the viewpager
     val onBoardingList = listOf(
         OnBoarding(R.drawable.img, R.string.text1),
         OnBoarding(R.drawable.img_1, R.string.text2),

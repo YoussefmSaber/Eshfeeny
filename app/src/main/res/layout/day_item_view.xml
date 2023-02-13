@@ -8,8 +8,9 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/dayCardView"
         android:layout_width="62dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="12dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

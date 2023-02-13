@@ -1,7 +1,8 @@
-package com.example.eshfeenygraduationproject.eshfeeny.Util
+package com.example.eshfeenygraduationproject.eshfeeny.util
 
 import com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment.AlarmFragment
 
+// Data Class to store the days in a format
 data class Days(
     val dayNumber: String,
     val dayName: String,
@@ -9,7 +10,3 @@ data class Days(
     val yearNumber: String,
     val dayID: String
 )
-
-object DaysList {
-    val daysList = AlarmFragment.getNextDays(2000)
-}
