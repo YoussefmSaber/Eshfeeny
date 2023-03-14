@@ -11,9 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.DialogFragment
 import androidx.navigation.Navigation
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentSetAlarmBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
 import com.google.android.material.textfield.TextInputEditText
 import java.util.*
@@ -53,6 +55,11 @@ class SetAlarmFragment : Fragment() {
 
         // showing the bottom sheet to set the alarm when press on the chip
         binding?.newAlarmChip?.setOnClickListener {
+//            val dialog = BottomSheetDialog(requireContext())
+//
+//            val view = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_time_picker, null)
+//            dialog.setContentView(view)
+//            dialog.show()
             showTimePicker()
         }
 
@@ -82,7 +89,7 @@ class SetAlarmFragment : Fragment() {
     // a function to show the timePicker bottom sheet
     private fun showTimePicker() {
         val timePickerFragment = TimePickerFragment()
-        timePickerFragment.show(childFragmentManager, "timePicker")
+        timePickerFragment.show(childFragmentManager, "TimePickerFragment")
     }
 
     // a function that set that pass the time to the chip while creating it

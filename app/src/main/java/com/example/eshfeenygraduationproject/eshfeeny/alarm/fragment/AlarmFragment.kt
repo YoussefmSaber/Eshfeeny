@@ -49,7 +49,7 @@ class AlarmFragment : Fragment() {
         fun getNextDays(days: Int): List<Days> {
             // getting an instance of the calender
             val calendar = Calendar.getInstance()
-            // creating a formate for the dayID cause every day is diffrent from the other
+            // creating a format for the dayID cause every day is different from the other
             val formatDayID = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             // getting the day number
             val formatDayNumber = SimpleDateFormat("dd", Locale.getDefault())

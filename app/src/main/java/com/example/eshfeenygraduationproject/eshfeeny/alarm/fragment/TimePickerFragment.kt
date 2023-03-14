@@ -35,12 +35,10 @@ class TimePickerFragment : BottomSheetDialogFragment() {
 
             // getting an instance of the calender to get the hour and minute
             val selectedTime = Calendar.getInstance()
-            if (hour != null) {
+            if (hour != null)
                 selectedTime.set(Calendar.HOUR_OF_DAY, hour)
-            }
-            if (minute != null) {
+            if (minute != null)
                 selectedTime.set(Calendar.MINUTE, minute)
-            }
             // Format the selected time in the desired format (hour:minute am/pm)
             val timeFormat = SimpleDateFormat("h:mm a")
             val formattedTime = timeFormat.format(selectedTime.time)
