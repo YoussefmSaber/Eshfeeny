@@ -7,6 +7,7 @@
 		<li>Rooms for database management</li>
 		<li>Retrofit for REST API integration</li>
 		<li>MVVM architecture</li>
+		<li>Onion architecture</li>
 		<li>XML for UI design</li>
 		<li>Google Maps for location-based services</li>
 		<li>Computer vision and AI for image recognition</li>
