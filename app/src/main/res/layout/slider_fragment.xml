@@ -19,13 +19,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/text3"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:fontFamily="@font/cairo_regular"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/text3"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgPlaceholder"
-        app:layout_constraintVertical_bias="0.045"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"/>
+        app:layout_constraintVertical_bias="0.045" />
 </androidx.constraintlayout.widget.ConstraintLayout>

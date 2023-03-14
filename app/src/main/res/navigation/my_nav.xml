@@ -7,41 +7,65 @@
 
     <fragment
         android:id="@+id/onBoardingFragment"
-        android:name="com.example.eshfeenygraduationproject.onBoarding.fragment.OnBoardingFragment"
+        android:name="com.example.eshfeenygraduationproject.authentication.onBoarding.fragment.OnBoardingFragment"
         android:label="fragment_on_boarding"
         tools:layout="@layout/fragment_on_boarding" >
         <action
-            android:id="@+id/action_onBoardingFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
+            android:id="@+id/OnBoarding2WelcomeFragment"
+            app:destination="@id/welcomeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/onBoardingFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.example.eshfeenygraduationproject.welcome.fragment.WelcomeFragment"
+        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
-            android:id="@+id/action_welcomeFragment_to_login"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/Welcome2Login"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/welcomeFragment" />
         <action
-            android:id="@+id/action_welcomeFragment_to_signupFragment"
-            app:destination="@id/signupFragment" />
+            android:id="@+id/Welcome2Signup"
+            app:destination="@id/signupFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.eshfeenygraduationproject.welcome.fragment.LoginFragment"
+        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragmen_to_signupFragment"
-            app:destination="@id/signupFragment" />
+            android:id="@+id/Login2Signup"
+            app:destination="@id/signupFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.example.eshfeenygraduationproject.welcome.fragment.SignupFragment"
+        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.SignupFragment"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" >
         <action
-            android:id="@+id/action_signupFragment_to_loginFragmen"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/Signup2Login"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/welcomeFragment" />
     </fragment>
 </navigation>

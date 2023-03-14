@@ -18,4 +18,8 @@
         <item name="android:windowBackground">@drawable/splash_image</item>
         <item name="android:statusBarColor">@color/white</item>
     </style>
+
+    <style name="MyBottomSheetDialog" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet</item>
+    </style>
 </resources>

@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".onBoarding.fragment.OnBoardingFragment">
+        tools:context=".authentication.onBoarding.fragment.OnBoardingFragment">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPagerOnboarding"
@@ -51,13 +51,18 @@
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:layout_margin="16dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
             android:backgroundTint="@color/blue_main"
             android:fontFamily="@font/cairo_regular"
+            android:padding="10dp"
+            android:shadowColor="@color/black"
+            android:shadowDy="20.0"
             android:text="@string/next"
+            android:textAlignment="center"
             android:textColor="@color/white"
+            android:textSize="18sp"
             app:cornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

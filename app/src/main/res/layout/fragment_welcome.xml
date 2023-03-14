@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".welcome.fragment.WelcomeFragment">
+        tools:context=".authentication.signinFragments.WelcomeFragment">
 
         <ImageView
             android:id="@+id/application_logo"
@@ -41,6 +41,9 @@
             android:layout_marginEnd="16sp"
             android:backgroundTint="@color/blue_main"
             android:fontFamily="@font/cairo_regular"
+            android:padding="10dp"
+            android:shadowColor="@color/black"
+            android:shadowDy="20.0"
             android:text="@string/login"
             android:textColor="@color/white"
             android:textSize="18sp"
@@ -58,6 +61,9 @@
             android:layout_marginRight="16dp"
             android:backgroundTint="@color/blue_main"
             android:fontFamily="@font/cairo_regular"
+            android:padding="10dp"
+            android:shadowColor="@color/black"
+            android:shadowDy="20.0"
             android:text="@string/singup"
             android:textColor="@color/white"
             android:textSize="18sp"

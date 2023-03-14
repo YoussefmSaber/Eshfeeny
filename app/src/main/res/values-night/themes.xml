@@ -13,4 +13,22 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="NoAppTheme" parent="android:style/Theme.Material">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@null</item>
+        <item name="colorPrimaryVariant">@null</item>
+        <item name="colorOnPrimary">@null</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@null</item>
+        <item name="colorSecondaryVariant">@null</item>
+        <item name="colorOnSecondary">@null</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="MyBottomSheetDialog" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet</item>
+    </style>
 </resources>
