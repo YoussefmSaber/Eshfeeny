@@ -44,7 +44,7 @@ dependencies {
     def nav_version = "2.5.3"
 
     implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
@@ -55,19 +55,22 @@ dependencies {
     implementation 'com.tbuonomo:dotsindicator:4.3'
 
     //  Recycler View
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.recyclerview:recyclerview:1.3.0'
     implementation 'androidx.recyclerview:recyclerview-selection:1.1.0'
 
     //  Circle Image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //  ViewModel
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0'
 
     //  Navigation
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    implementation project(path: ':data')
+    implementation project(path: ':domain')
 }
