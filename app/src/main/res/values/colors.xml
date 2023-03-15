@@ -20,4 +20,6 @@
     <color name="red_text">#EB1D36</color>
     <color name="blue_main">#0583F2</color>
     <color name="orange_main">#F89D1C</color>
+    <color name="light_blue1">#0597F2</color>
+    <color name="light_grey">#4D4D4D</color>
 </resources>
