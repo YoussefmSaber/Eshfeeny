@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:title="الرئيسية"
+        android:icon="@drawable/home_icon"
+        />
+    <item
+        android:id="@+id/cartFragment"
+        android:title="العربة"
+        android:icon="@drawable/cart_icon"
+        />
+    <item
+        android:id="@+id/gpsFragment"
+        android:title="اقرب صيدلية"
+        android:icon="@drawable/__icon__location_pin_"
+        />
+    <item
+        android:id="@+id/favoriteFragment"
+        android:title="المفضلة"
+        android:icon="@drawable/favorite_icon"
+        />
+    <item
+        android:id="@+id/moreFragment"
+        android:title="المزيد"
+        android:icon="@drawable/more_icon"
+        />
+</menu>
