@@ -4,12 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C5C5C5"
-    android:layoutDirection="ltr"
-    android:outlineProvider="none"
-    android:textDirection="rtl"
-    app:circularflow_radiusInDP="30dp"
-    app:layout_constraintCircleRadius="30dp"
+    android:background="#FFFFFF"
     tools:context=".eshfeeny.home.HomeFragment">
 
 
@@ -18,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="154dp"
         android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/SearchId"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +31,6 @@
 
     <SearchView
         android:id="@+id/SearchId"
-        style="@android:style/Widget.Material.Light.SearchView"
         android:layout_width="356dp"
         android:layout_height="49dp"
         android:layout_marginTop="16dp"
@@ -47,21 +42,90 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" >
-
-    </SearchView>
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:queryBackground="@null" />
 
     <ImageView
         android:id="@+id/computer_vesion_imageView_id"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="40dp"
         android:layout_marginTop="70dp"
+        android:layout_marginEnd="12dp"
         android:clickable="true"
         android:src="@drawable/camera_logo"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/SearchId"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/company_id_phorto_home"
+                android:layout_width="419dp"
+                android:layout_height="134dp"
+                android:layout_marginTop="169dp"
+                android:background="#FFFFFF"
+                android:backgroundTint="#FFFFFF"
+                android:clickable="true"
+                android:src="@drawable/insurance_company_logo_home"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/cairo_semibold"
+                android:text="سهلنا الطلب عليك"
+                android:textColor="#1F1F1F"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/company_id_phorto_home" />
+
+            <ImageView
+                android:id="@+id/add_rpshta_photo_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/add_roshtaaa"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:src="@drawable/search_for_medicine_home"
+                app:layout_constraintStart_toEndOf="@+id/add_rpshta_photo_id"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/cairo_semibold"
+                android:text="تصفح الأقسام"
+                android:textColor="#1F1F1F"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_rpshta_photo_id" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
