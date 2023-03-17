@@ -10,8 +10,8 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPagerOnboarding"
-            android:layout_width="409dp"
-            android:layout_height="566dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -21,17 +21,20 @@
             android:id="@+id/springDotsIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24sp"
             app:dampingRatio="0.5"
             app:dotsColor="@color/blue_main"
-            app:dotsCornerRadius="8dp"
-            app:dotsSize="16dp"
-            app:dotsSpacing="4dp"
+            app:dotsCornerRadius="8sp"
+            app:dotsSize="16sp"
+            app:dotsSpacing="4sp"
             app:dotsStrokeColor="@color/blue_main"
-            app:dotsStrokeWidth="1.5dp"
+            app:dotsStrokeWidth="1.5sp"
             app:dotsWidthFactor="2.5"
+            app:layout_constraintBottom_toTopOf="@id/button2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewPagerOnboarding"
+            app:layout_constraintVertical_chainStyle="packed"
             app:progressMode="true"
             app:selectedDotColor="@color/blue_main" />
 
@@ -64,9 +67,11 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             app:cornerRadius="10dp"
+            app:layout_constraintBottom_toTopOf="@id/textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/springDotsIndicator" />
+            app:layout_constraintTop_toBottomOf="@+id/springDotsIndicator"
+            app:layout_constraintVertical_chainStyle="packed" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

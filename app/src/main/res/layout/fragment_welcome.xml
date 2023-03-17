@@ -37,28 +37,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16sp"
-            android:layout_marginTop="100sp"
+            android:layout_marginTop="80sp"
             android:layout_marginEnd="16sp"
             android:backgroundTint="@color/blue_main"
             android:fontFamily="@font/cairo_regular"
-            android:padding="10dp"
+            android:padding="10sp"
             android:shadowColor="@color/black"
             android:shadowDy="20.0"
             android:text="@string/login"
             android:textColor="@color/white"
             android:textSize="18sp"
-            app:cornerRadius="10dp"
+            app:cornerRadius="10sp"
+            app:layout_constraintBottom_toTopOf="@id/signup_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welcome_message" />
+            app:layout_constraintTop_toBottomOf="@+id/welcome_message"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signup_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16sp"
+            android:layout_marginTop="16sp"
+            android:layout_marginRight="16sp"
             android:backgroundTint="@color/blue_main"
             android:fontFamily="@font/cairo_regular"
             android:padding="10dp"
@@ -67,7 +69,8 @@
             android:text="@string/singup"
             android:textColor="@color/white"
             android:textSize="18sp"
-            app:cornerRadius="10dp"
+            app:cornerRadius="10sp"
+            app:layout_constraintBottom_toTopOf="@id/as_guest"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_button" />
@@ -76,15 +79,16 @@
             android:id="@+id/as_guest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="16sp"
             android:fontFamily="@font/cairo_regular"
             android:text="@string/as_guest"
             android:textColor="@color/text_sec"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16sp"
             app:layout_constraintTop_toBottomOf="@+id/signup_button"
-            app:layout_constraintVertical_bias="0.51" />
+            app:layout_constraintVertical_bias="0.50" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
