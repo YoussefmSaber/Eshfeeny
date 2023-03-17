@@ -7,8 +7,8 @@
         style="@style/NoAppTheme"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Signing"
-        android:background="@color/app_background">
+        android:background="@color/app_background"
+        tools:context=".Signing">
 
         <TextView
             android:id="@+id/welcomeSignUp"
@@ -66,16 +66,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="36sp"
-            android:layout_marginEnd="36sp"
             android:layout_marginTop="32sp"
+            android:layout_marginEnd="36sp"
             android:layoutDirection="rtl"
+            app:boxCornerRadiusBottomEnd="10sp"
+            app:boxCornerRadiusBottomStart="10sp"
+            app:boxCornerRadiusTopEnd="10sp"
+            app:boxCornerRadiusTopStart="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:boxCornerRadiusBottomStart="10sp"
-            app:boxCornerRadiusBottomEnd="10sp"
-            app:boxCornerRadiusTopEnd="10sp"
-            app:boxCornerRadiusTopStart="10sp">
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/nameSignin"
@@ -87,21 +87,21 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/PasswordSignup"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16sp"
             android:layout_marginStart="36sp"
+            android:layout_marginTop="16sp"
             android:layout_marginEnd="36sp"
             android:layoutDirection="rtl"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:boxCornerRadiusBottomEnd="10sp"
+            app:boxCornerRadiusBottomStart="10sp"
+            app:boxCornerRadiusTopEnd="10sp"
+            app:boxCornerRadiusTopStart="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-            app:passwordToggleEnabled="true"
-            app:boxCornerRadiusBottomStart="10sp"
-            app:boxCornerRadiusBottomEnd="10sp"
-            app:boxCornerRadiusTopEnd="10sp"
-            app:boxCornerRadiusTopStart="10sp">
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordSignup"
@@ -146,19 +146,82 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="100sp"
+            android:layout_height="1dp"
+            android:layout_marginTop="24sp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textView9"
+            app:layout_constraintTop_toBottomOf="@id/confirmButtonSignin" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:fontFamily="@font/cairo_regular"
+            android:text="أو باستخدام"
+            app:layout_constraintEnd_toStartOf="@id/divider4"
+            app:layout_constraintStart_toEndOf="@id/divider5"
+            app:layout_constraintTop_toBottomOf="@id/confirmButtonSignin" />
+
+        <View
+            android:id="@+id/divider5"
+            android:layout_width="100sp"
+            android:layout_height="1sp"
+            android:layout_marginTop="24sp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toStartOf="@id/textView9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/confirmButtonSignin" />
+
+        <ImageView
+            android:id="@+id/google_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24sp"
+            app:layout_constraintEnd_toStartOf="@id/facebook_login"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider5"
+            app:srcCompat="@drawable/google_icon" />
+
+        <ImageView
+            android:id="@+id/facebook_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16sp"
+            android:layout_marginTop="24sp"
+            app:layout_constraintEnd_toStartOf="@id/apple_login"
+            app:layout_constraintStart_toEndOf="@+id/google_login"
+            app:layout_constraintTop_toBottomOf="@+id/divider5"
+            app:srcCompat="@drawable/facebook_icon" />
+
+        <ImageView
+            android:id="@+id/apple_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16sp"
+            android:layout_marginTop="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/facebook_login"
+            app:layout_constraintTop_toBottomOf="@+id/divider5"
+            app:srcCompat="@drawable/apple_icon" />
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16sp"
-            android:layout_marginEnd="84sp"
             android:fontFamily="@font/cairo_semibold"
             android:text="@string/have_account"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/createInSignin"
-            app:layout_constraintTop_toBottomOf="@+id/confirmButtonSignin" />
+            app:layout_constraintTop_toBottomOf="@+id/apple_login" />
 
         <TextView
             android:id="@+id/createInSignin"
@@ -168,9 +231,10 @@
             android:text="@string/txtUnderline2"
             android:textColor="@color/blue_main"
             android:textSize="14sp"
+            android:layout_marginEnd="8sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.35"
+            app:layout_constraintEnd_toStartOf="@id/textView"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
