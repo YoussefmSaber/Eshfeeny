@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:backgroundTint="#FFFFFF">
 
     <FrameLayout
         android:id="@+id/flFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/appNavHostFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -26,6 +29,7 @@
             app:navGraph="@navigation/application_navigation" />
 
     </FrameLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="421dp"
@@ -38,7 +42,7 @@
         android:layoutDirection="rtl"
         android:paddingStart="7dp"
         android:paddingEnd="7dp"
-        app:backgroundTint="#FDFDFF"
+        app:backgroundTint="#FFFFFF"
 
         app:circularflow_radiusInDP="20dp"
         app:compatShadowEnabled="true"
