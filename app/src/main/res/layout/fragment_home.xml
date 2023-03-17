@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#F7FFFFFF"
     tools:context=".eshfeeny.home.HomeFragment">
 
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/view1"
         android:layout_width="wrap_content"
-        android:layout_height="154dp"
+        android:layout_height="130dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/SearchId"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -58,24 +57,23 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ScrollView
-        android:id="@+id/scrollViewId"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view1">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/company_id_phorto_home"
                 android:layout_width="419dp"
                 android:layout_height="150dp"
-                android:layout_marginTop="169dp"
+                android:layout_marginTop="280dp"
                 android:background="#FFFFFF"
                 android:backgroundTint="#FFFFFF"
                 android:clickable="true"
@@ -179,15 +177,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="60dp"
+                android:contentDescription="TODO"
                 android:src="@drawable/montgat_el_rgaal"
                 app:layout_constraintEnd_toStartOf="@+id/imageView10"
-                app:layout_constraintTop_toTopOf="@+id/imageView10"
-                android:contentDescription="TODO" />
+                app:layout_constraintTop_toTopOf="@+id/imageView10" />
 
             <View
                 android:id="@+id/view2"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="80dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
