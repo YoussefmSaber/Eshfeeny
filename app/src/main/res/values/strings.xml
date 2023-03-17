@@ -62,6 +62,7 @@
     <string name="confPass">تأكيد كلمة المرور</string>
     <string name="conf">تأكيد</string>
     <string name="haveAcc">لديك حساب بالفعل؟</string>
+    <string name="signIN">تسجيل الدخول</string>
 
     <!-- Alarm Page Text        -->
 
