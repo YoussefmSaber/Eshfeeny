@@ -28,24 +28,12 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(inflater)
 
-        binding?.passwordSignup?.hint = getString(R.string.pass)
-        binding?.nameSignin?.hint = getString(R.string.Email)
-
         val repository = UserRepoImpl()
         val viewModelFactory = LoginViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
 
-        binding?.nameSignin?.let {
-            setHint(it)
-        }
-        binding?.passwordSignup?.let {
-            binding?.PasswordSignup?.let { it1 ->
-                setHint(it, it1)
-            }
-        }
-
         binding?.confirmButtonSignin?.setOnClickListener {
-            var userData: VerifyLoginResponse = VerifyLoginResponse(
+            var userData = VerifyLoginResponse(
                 binding?.nameSignin?.text.toString(),
                 binding?.passwordSignup?.text.toString()
             )
@@ -70,35 +58,5 @@ class LoginFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
-    }
-
-    private fun setHint(view: TextInputEditText, parent: TextInputLayout) {
-        view.setOnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                parent.setEndIconMode(TextInputLayout.END_ICON_PASSWORD_TOGGLE)
-                view.hint = ""
-                (v as TextInputEditText).gravity = Gravity.LEFT
-            } else {
-                parent.setEndIconMode(TextInputLayout.END_ICON_NONE)
-                if (view.text?.isEmpty() == true) {
-                    view.hint = getString(R.string.pass)
-                    (v as TextInputEditText).gravity = Gravity.RIGHT
-                }
-            }
-        }
-    }
-
-    private fun setHint(view: TextInputEditText) {
-        view.setOnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                view.hint = ""
-                (v as TextInputEditText).gravity = Gravity.LEFT
-            } else {
-                if (view.text?.isEmpty() == true) {
-                    view.hint = getString(R.string.Email)
-                    (v as TextInputEditText).gravity = Gravity.RIGHT
-                }
-            }
-        }
     }
 }

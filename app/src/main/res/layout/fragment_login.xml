@@ -7,14 +7,15 @@
         style="@style/NoAppTheme"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Signin">
+        tools:context=".Signing"
+        android:background="@color/app_background">
 
         <TextView
             android:id="@+id/welcomeSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="27dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginTop="27sp"
+            android:layout_marginBottom="50sp"
             android:fontFamily="@font/cairo_semibold"
             android:text="@string/welcome"
             android:textColor="@color/black"
@@ -26,16 +27,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:lineHeight="50dp" />
+            app:lineHeight="50sp" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="43dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="264dp"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="63dp"
-            android:layout_marginBottom="50dp"
+            android:layout_width="43sp"
+            android:layout_height="33sp"
+            android:layout_marginStart="264sp"
+            android:layout_marginTop="27sp"
+            android:layout_marginEnd="63sp"
+            android:layout_marginBottom="50sp"
             android:contentDescription="@string/application_logo"
             android:src="@drawable/vector"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -47,10 +48,10 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="171dp"
-            android:layout_height="46dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="171sp"
+            android:layout_height="46sp"
+            android:layout_marginTop="40sp"
+            android:layout_marginEnd="16sp"
             android:fontFamily="@font/cairo_semibold"
             android:text="@string/signUP"
             android:textColor="@color/black"
@@ -61,54 +62,64 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/custom_edit_parent"
+            android:layout_marginStart="36sp"
+            android:layout_marginEnd="36sp"
+            android:layout_marginTop="32sp"
+            android:layoutDirection="rtl"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:boxCornerRadiusBottomStart="10sp"
+            app:boxCornerRadiusBottomEnd="10sp"
+            app:boxCornerRadiusTopEnd="10sp"
+            app:boxCornerRadiusTopStart="10sp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/nameSignin"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_edit"
                 android:fontFamily="@font/cairo_regular"
-                android:textSize="14sp" />
+                android:hint="@string/Email" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/PasswordSignup"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/custom_edit_parent"
+            android:layout_marginTop="16sp"
+            android:layout_marginStart="36sp"
+            android:layout_marginEnd="36sp"
+            android:layoutDirection="rtl"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+            app:passwordToggleEnabled="true"
+            app:boxCornerRadiusBottomStart="10sp"
+            app:boxCornerRadiusBottomEnd="10sp"
+            app:boxCornerRadiusTopEnd="10sp"
+            app:boxCornerRadiusTopStart="10sp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordSignup"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_edit"
                 android:cursorVisible="true"
                 android:fontFamily="@font/cairo_regular"
-                android:gravity="right"
+                android:hint="@string/password"
                 android:inputType="textPassword"
-                android:shadowColor="@color/blue_main"
-                android:textSize="14sp" />
+                android:shadowColor="@color/blue_main" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="28sp"
+            android:layout_marginTop="16sp"
             android:fontFamily="@font/cairo_semibold"
             android:text="@string/txtForgetPass"
             app:layout_constraintStart_toStartOf="parent"
@@ -118,19 +129,19 @@
             android:id="@+id/confirmButtonSignin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="76dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16sp"
+            android:layout_marginTop="36sp"
+            android:layout_marginEnd="16sp"
             android:backgroundTint="@color/blue_main"
             android:fontFamily="@font/cairo_semibold"
-            android:padding="10dp"
+            android:padding="10sp"
             android:shadowColor="@color/black"
             android:shadowDy="20.0"
             android:text="@string/sign_up"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="18sp"
-            app:cornerRadius="10dp"
+            app:cornerRadius="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -139,8 +150,8 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="84dp"
+            android:layout_marginTop="16sp"
+            android:layout_marginEnd="84sp"
             android:fontFamily="@font/cairo_semibold"
             android:text="@string/have_account"
             android:textColor="@color/black"
