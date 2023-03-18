@@ -65,10 +65,13 @@
             android:layout_marginStart="16sp"
             android:layout_marginTop="8sp"
             android:layout_marginEnd="16sp"
+            android:hint="@string/enter_user_name"
             app:boxCornerRadiusBottomEnd="10sp"
             app:boxCornerRadiusBottomStart="10sp"
             app:boxCornerRadiusTopEnd="10sp"
             app:boxCornerRadiusTopStart="10sp"
+            app:errorEnabled="true"
+            app:layout_constraintBottom_toTopOf="@+id/emailSignupLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -78,22 +81,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_regular"
-                android:hint="@string/enter_user_name"
                 tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout2"
+            android:id="@+id/emailSignupLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16sp"
-            android:layout_marginTop="16sp"
             android:layout_marginEnd="16sp"
+            android:hint="@string/Email"
             app:boxCornerRadiusBottomEnd="10sp"
+            android:layoutDirection="rtl"
             app:boxCornerRadiusBottomStart="10sp"
             app:boxCornerRadiusTopEnd="10sp"
             app:boxCornerRadiusTopStart="10sp"
+            app:layout_constraintBottom_toTopOf="@+id/PasswordSignup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userNameLayout"
@@ -103,8 +107,7 @@
                 android:id="@+id/emailSignup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_regular"
-                android:hint="@string/Email" />
+                android:fontFamily="@font/cairo_regular" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -113,16 +116,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16sp"
-            android:layout_marginTop="16sp"
             android:layout_marginEnd="16sp"
+            android:hint="@string/password"
             android:layoutDirection="rtl"
             app:boxCornerRadiusBottomEnd="10sp"
             app:boxCornerRadiusBottomStart="10sp"
             app:boxCornerRadiusTopEnd="10sp"
             app:boxCornerRadiusTopStart="10sp"
+            app:errorEnabled="true"
+            app:layout_constraintBottom_toTopOf="@+id/ConfirmPassSignup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/emailSignupLayout"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -130,7 +135,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_regular"
-                android:hint="@string/password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -140,11 +144,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16sp"
-            android:layout_marginTop="16sp"
             android:layout_marginEnd="16sp"
+            android:hint="@string/confPass"
             android:layoutDirection="rtl"
             app:boxCornerRadiusBottomEnd="10sp"
             app:boxCornerRadiusBottomStart="10sp"
+            app:errorEnabled="true"
             app:boxCornerRadiusTopEnd="10sp"
             app:boxCornerRadiusTopStart="10sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -158,7 +163,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/cairo_regular"
-                android:hint="@string/confPass"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -167,7 +171,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16sp"
-            android:layout_marginTop="32sp"
             android:layout_marginEnd="16sp"
             android:backgroundTint="@color/blue_main"
             android:fontFamily="@font/cairo_semibold"

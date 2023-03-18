@@ -63,6 +63,8 @@
     <string name="conf">تأكيد</string>
     <string name="haveAcc">لديك حساب بالفعل؟</string>
     <string name="signIN">تسجيل الدخول</string>
+    <string name="passwordNotMatch">كلمات المرور ليست متطابقه</string>
+    <string name="emailAlreadyUsed">الإيميل مستخدم من قبل</string>
 
     <!-- Alarm Page Text        -->
 

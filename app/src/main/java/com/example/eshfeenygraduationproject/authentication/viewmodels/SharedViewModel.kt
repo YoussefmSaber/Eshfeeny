@@ -1,19 +1,21 @@
 package com.example.eshfeenygraduationproject.authentication.viewmodels
 
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.UserRepoImpl
-import com.example.domain.entity.CheckEmailResponse
-import com.example.domain.entity.UserResponse
-import com.example.domain.entity.VerifyLoginResponse
+import com.example.domain.entity.*
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class LoginViewModel(private val repository: UserRepoImpl): ViewModel() {
+class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
 
     val verifyUserLogin: MutableLiveData<Response<UserResponse>?> = MutableLiveData()
     val checkEmailResponse: MutableLiveData<CheckEmailResponse> = MutableLiveData()
+    val createUserResponse: MutableLiveData<Response<NewUserResponse>> = MutableLiveData()
+    var emailAlreadyExists: String = ""
 
     fun checkEmail(email: String) {
         viewModelScope.launch {
@@ -31,6 +33,15 @@ class LoginViewModel(private val repository: UserRepoImpl): ViewModel() {
                 verifyUserLogin.value = response
             else
                 verifyUserLogin.value = null
+        }
+    }
+
+    fun createNewUser(
+        newUser: CreateUser
+    ) {
+        viewModelScope.launch {
+            val response = repository.createNewUser(newUser)
+            createUserResponse.value = response
         }
     }
 }

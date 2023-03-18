@@ -1,8 +1,6 @@
 package com.example.data.remote
 
-import com.example.domain.entity.CheckEmailResponse
-import com.example.domain.entity.UserResponse
-import com.example.domain.entity.VerifyLoginResponse
+import com.example.domain.entity.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -22,4 +20,10 @@ interface UserDataApiService {
         @Body
         verifyLoginResponse: VerifyLoginResponse
     ): Response<UserResponse>
+
+    @POST("users/")
+    suspend fun createNewUser(
+        @Body
+        newUser: CreateUser
+    ): Response<NewUserResponse>
 }

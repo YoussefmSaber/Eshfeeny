@@ -11,15 +11,13 @@ import androidx.navigation.Navigation
 import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.VerifyLoginResponse
 import com.example.eshfeenygraduationproject.R
-import com.example.eshfeenygraduationproject.authentication.viewmodels.LoginViewModel
-import com.example.eshfeenygraduationproject.authentication.viewmodels.LoginViewModelFactory
+import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModelFactory
+import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
 import com.example.eshfeenygraduationproject.databinding.FragmentLoginBinding
-import com.google.android.material.textfield.*
-
 
 class LoginFragment : Fragment() {
     private var binding: FragmentLoginBinding? = null
-    private lateinit var viewModel: LoginViewModel
+    private lateinit var viewModel: SharedViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,11 +27,11 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(inflater)
 
         val repository = UserRepoImpl()
-        val viewModelFactory = LoginViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
+        val viewModelFactory = SharedViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, viewModelFactory)[SharedViewModel::class.java]
 
         binding?.confirmButtonSignin?.setOnClickListener {
-            var userData = VerifyLoginResponse(
+            val userData = VerifyLoginResponse(
                 binding?.nameSignin?.text.toString(),
                 binding?.passwordSignup?.text.toString()
             )
