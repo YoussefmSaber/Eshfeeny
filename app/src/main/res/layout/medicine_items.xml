@@ -35,9 +35,9 @@
 
         <ImageView
             android:id="@+id/img_medicine_id"
-            android:layout_width="88dp"
-            android:layout_height="88dp"
-            android:layout_marginStart="32dp"
+            android:layout_width="100dp"
+            android:layout_height="92dp"
+            android:layout_marginStart="27dp"
             android:layout_marginTop="40dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView12"
@@ -61,7 +61,7 @@
             android:id="@+id/price_medicine_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:fontFamily="@font/cairo_semibold"
             android:text="TextView"
             android:textColor="#0583F2"
