@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/onBoardingFragment">
+    app:startDestination="@id/verifyFragment">
 
     <fragment
         android:id="@+id/onBoardingFragment"
@@ -53,6 +53,9 @@
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_verifyFragment"
+            app:destination="@id/verifyFragment" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
@@ -67,5 +70,13 @@
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_signupFragment_to_verifyFragment"
+            app:destination="@id/verifyFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/verifyFragment"
+        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.VerifyFragment"
+        android:label="fragment_verify"
+        tools:layout="@layout/fragment_verify" />
 </navigation>

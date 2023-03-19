@@ -50,4 +50,10 @@ class UserRepoImpl {
             )
         }
     }
+
+    suspend fun verifySignup(
+        email: String
+    ): String =
+        UserRetrofitInstance.userApi.verifySignup(email)
+
 }

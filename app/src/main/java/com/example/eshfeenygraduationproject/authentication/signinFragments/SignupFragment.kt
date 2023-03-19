@@ -48,7 +48,6 @@ class SignupFragment : Fragment() {
 
                     if (it.errorBody()?.string()!! == "Email Already Exists") {
                         binding!!.emailSignupLayout.error = getString(R.string.emailAlreadyUsed)
-                        Log.i("response", viewModel.emailAlreadyExists + "Fragment")
                     } else {
                         Toast.makeText(
                             requireContext(),

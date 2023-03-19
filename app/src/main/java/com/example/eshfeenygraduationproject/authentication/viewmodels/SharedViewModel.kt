@@ -2,6 +2,7 @@ package com.example.eshfeenygraduationproject.authentication.viewmodels
 
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,17 +13,14 @@ import retrofit2.Response
 
 class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
 
-    val verifyUserLogin: MutableLiveData<Response<UserResponse>?> = MutableLiveData()
-    val checkEmailResponse: MutableLiveData<CheckEmailResponse> = MutableLiveData()
-    val createUserResponse: MutableLiveData<Response<NewUserResponse>> = MutableLiveData()
-    var emailAlreadyExists: String = ""
+    private val _verifyUserLogin: MutableLiveData<Response<UserResponse>?> = MutableLiveData()
+    val verifyUserLogin: LiveData<Response<UserResponse>?>
+        get() = _verifyUserLogin
 
-    fun checkEmail(email: String) {
-        viewModelScope.launch {
-            val response = repository.checkEmail(email)
-            checkEmailResponse.value = response
-        }
-    }
+    private val _createUserResponse: MutableLiveData<Response<NewUserResponse>> = MutableLiveData()
+    val createUserResponse: LiveData<Response<NewUserResponse>>
+        get() = _createUserResponse
+
 
     fun verifyLogin(
         userData: VerifyLoginResponse
@@ -30,9 +28,9 @@ class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
         viewModelScope.launch {
             val response = repository.verifyLogin(userData)
             if (response.isSuccessful)
-                verifyUserLogin.value = response
+                _verifyUserLogin.value = response
             else
-                verifyUserLogin.value = null
+                _verifyUserLogin.value = null
         }
     }
 
@@ -41,7 +39,15 @@ class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
     ) {
         viewModelScope.launch {
             val response = repository.createNewUser(newUser)
-            createUserResponse.value = response
+            _createUserResponse.value = response
+        }
+    }
+
+    fun verifySignup(
+        email: String
+    ) {
+        viewModelScope.launch {
+            // TODO: Implement this function
         }
     }
 }

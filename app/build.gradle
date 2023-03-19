@@ -81,6 +81,12 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0'
 
+    // OTP View
+    implementation 'com.github.KevinSchildhorn:OTPView:0.2.5'
+    implementation 'com.github.mukeshsolanki.android-otpview-pinview:otpview:3.1.0'
+    implementation 'com.github.aabhasr1:OtpView:v1.1.2'
+    implementation 'io.github.chaosleung:pinview:1.4.4'
+
 
     implementation project(path: ':data')
     implementation project(path: ':domain')

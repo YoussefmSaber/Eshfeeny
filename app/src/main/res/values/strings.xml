@@ -54,7 +54,6 @@
 
     <!--    Signup Page Text    -->
 
-    <string name="welcome">مرحبا بك في تطبيق أشفيني</string>
     <string name="welcomeMsg">مرحبا بك في تطبيق أشفيني</string>
     <string name="createAcc">إنشاء حساب</string>
     <string name="userName">اسم المستخدم</string>
@@ -62,6 +61,7 @@
     <string name="confPass">تأكيد كلمة المرور</string>
     <string name="conf">تأكيد</string>
     <string name="haveAcc">لديك حساب بالفعل؟</string>
+    <string name="enter_user_name">أدخل إسم المستخدم</string>
     <string name="signIN">تسجيل الدخول</string>
     <string name="passwordNotMatch">كلمات المرور ليست متطابقه</string>
     <string name="emailAlreadyUsed">الإيميل مستخدم من قبل</string>
@@ -78,8 +78,6 @@
     <string name="temprep">2 لكل مرة</string>
     <string name="check_marker_to_see_if_the_user_taken_the_medicine_or_not">check marker to see if the user taken the medicine or not</string>
     <string name="floating_action_button">Floating Action button</string>
-
-
     <string name="TimesInDay">عدد المرات خلال اليوم</string>
     <string name="numberOfBills">العدد لكل مره</string>
     <string name="back_to_alarm_page">Back to alarm page</string>
@@ -87,8 +85,16 @@
     <string name="JustToday">اليوم الحالي فقط</string>
     <string name="medicenName">إسم الدواء</string>
     <string name="notes">ملحوظات</string>
+
+    <!--    OTP Page Text-->
+    <string name="enter_otp">ادخل رمز التحقق</string>
+    <string name="otp_send">تم إرسال رمز مكون من 4 أرقام إلى بريدك الإلكتروني</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="chooseTime">إختار</string>
-    <string name="enter_user_name">أدخل إسم المستخدم</string>
+    <string name="otp">رمز تأكيد الايميل</string>
+    <string name="resendOtp">إعادة إرسال الرمز</string>
+    <string name="checkOtp">تحقق</string>
+
 </resources>

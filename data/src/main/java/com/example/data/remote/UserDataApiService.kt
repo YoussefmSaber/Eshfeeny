@@ -26,4 +26,10 @@ interface UserDataApiService {
         @Body
         newUser: CreateUser
     ): Response<NewUserResponse>
+
+    @GET("email/{email}")
+    suspend fun verifySignup(
+        @Path("email")
+        email: String
+    ): String
 }
