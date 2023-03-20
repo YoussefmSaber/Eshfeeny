@@ -3,13 +3,11 @@ package com.example.eshfeenygraduationproject.authentication.signinFragments
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.data.repository.UserRepoImpl
-import com.example.domain.entity.CreateUser
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModelFactory
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
@@ -30,30 +28,34 @@ class SignupFragment : Fragment() {
         val viewModelFactory = SharedViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory)[SharedViewModel::class.java]
 
-        binding?.confirmButtonSignup?.setOnClickListener {
-            val password = binding!!.passwordSignup.text.toString()
-            val confPassword = binding!!.confirmPassSignup.text.toString()
-            val email = binding!!.emailSignup.text.toString()
-            val name = binding!!.nameSignup.text.toString()
+        binding?.confirmButtonSignup?.setOnClickListener { button ->
+            val password = binding?.passwordSignup?.text.toString()
+            val confPassword = binding?.confirmPassSignup?.text.toString()
+            val email = binding?.emailSignup?.text.toString()
+            val name = binding?.nameSignup?.text.toString()
 
             if (password != confPassword) {
-                binding!!.PasswordSignup.error = getString(R.string.passwordNotMatch)
-                binding!!.ConfirmPassSignup.error = getString(R.string.passwordNotMatch)
-            } else {
-                val newUser = CreateUser(
-                    email, name, password
-                )
-                viewModel.createNewUser(newUser)
-                viewModel.createUserResponse.observe(viewLifecycleOwner, Observer {
 
-                    if (it.errorBody()?.string()!! == "Email Already Exists") {
-                        binding!!.emailSignupLayout.error = getString(R.string.emailAlreadyUsed)
+                binding?.passwordSignup?.error = getString(R.string.passwordNotMatch)
+                binding?.confirmPassSignup?.error = getString(R.string.passwordNotMatch)
+
+            } else {
+                viewModel.checkEmailExist(email)
+                viewModel.emailFound.observe(viewLifecycleOwner, Observer { emailFound ->
+                    if (emailFound.body() != null) {
+                        binding?.emailSignupLayout?.error = getString(R.string.emailAlreadyUsed)
                     } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Your account is created",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        val bundle = Bundle()
+
+                        bundle.putString("newUserName", name)
+                        bundle.putString("newUserEmail", email)
+                        bundle.putString("newUserPassword", password)
+
+                        val verifyFragment = VerifyFragment()
+                        verifyFragment.arguments = bundle
+
+                        viewModel.verifyNewUser(email)
+                        Navigation.findNavController(button).navigate(R.id.action_signupFragment_to_verifyFragment)
                     }
                 })
             }

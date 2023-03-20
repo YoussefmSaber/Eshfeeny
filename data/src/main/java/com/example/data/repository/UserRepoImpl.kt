@@ -1,8 +1,11 @@
 package com.example.data.repository
 
+import android.annotation.SuppressLint
 import android.util.Log
 import com.example.data.remote.apis.UserRetrofitInstance
 import com.example.domain.entity.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
@@ -14,8 +17,19 @@ class UserRepoImpl {
     // used when the user forget his password
     suspend fun checkEmail(
         email: String
-    ): CheckEmailResponse =
-        UserRetrofitInstance.userApi.checkEmail(email)
+    ): Response<CheckEmailResponse> {
+        return try {
+            UserRetrofitInstance.userApi.checkEmail(email)
+        } catch (e: Exception) {
+            Response.error(
+                400,
+                ResponseBody.create(
+                    "application/json".toMediaTypeOrNull(),
+                    "Email Found"
+                )
+            )
+        }
+    }
 
     // used for login
     suspend fun verifyLogin(
@@ -36,24 +50,22 @@ class UserRepoImpl {
 
     suspend fun createNewUser(
         newUser: CreateUser
-    ): Response<NewUserResponse> {
-        return try {
-            UserRetrofitInstance.userApi.createNewUser(newUser)
-        } catch (e: Exception) {
-            val errorBody = "Email Already Exists"
-            Response.error(
-                400,
-                ResponseBody.create(
-                    "application/json".toMediaTypeOrNull(),
-                    errorBody
-                )
-            )
-        }
-    }
+    ): Response<NewUserResponse> =
+        UserRetrofitInstance.userApi.createNewUser(newUser)
 
+
+    @SuppressLint("LongLogTag")
     suspend fun verifySignup(
         email: String
-    ): String =
-        UserRetrofitInstance.userApi.verifySignup(email)
-
+    ): VerifyCodeResponse {
+        return withContext(Dispatchers.IO){
+            try {
+                val code = UserRetrofitInstance.userApi.verifySignup(email)
+                Log.i("(UserRepoImpl)Verify code: ", code.toString())
+                code
+            } catch (e: Exception) {
+                VerifyCodeResponse("Error")
+            }
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.data.remote
 
 import com.example.domain.entity.*
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -13,7 +14,7 @@ interface UserDataApiService {
     @GET("users/checkEmail/{email}")
     suspend fun checkEmail(
         @Path("email")
-        email: String): CheckEmailResponse
+        email: String): Response<CheckEmailResponse>
 
     @POST("users/verify")
     suspend fun verifyLogin(
@@ -31,5 +32,5 @@ interface UserDataApiService {
     suspend fun verifySignup(
         @Path("email")
         email: String
-    ): String
+    ): VerifyCodeResponse
 }

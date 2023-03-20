@@ -1,7 +1,6 @@
 package com.example.eshfeenygraduationproject.authentication.viewmodels
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,8 +17,18 @@ class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
         get() = _verifyUserLogin
 
     private val _createUserResponse: MutableLiveData<Response<NewUserResponse>> = MutableLiveData()
-    val createUserResponse: LiveData<Response<NewUserResponse>>
-        get() = _createUserResponse
+
+    private val _verifyNewAccountResponse: MutableLiveData<VerifyCodeResponse> = MutableLiveData()
+    val verifyNewAccountResponse: LiveData<VerifyCodeResponse>
+        get() = _verifyNewAccountResponse
+
+    val _emailFound: MutableLiveData<Response<CheckEmailResponse>> = MutableLiveData()
+    val emailFound: LiveData<Response<CheckEmailResponse>>
+        get() = _emailFound
+
+    private val _areBothSame: MutableLiveData<Boolean> = MutableLiveData()
+    val areBothSame: LiveData<Boolean>
+        get() = _areBothSame
 
 
     fun verifyLogin(
@@ -34,6 +43,13 @@ class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
         }
     }
 
+    fun checkEmailExist(email: String) {
+        viewModelScope.launch {
+            val response = repository.checkEmail(email)
+            _emailFound.value = response
+        }
+    }
+
     fun createNewUser(
         newUser: CreateUser
     ) {
@@ -43,11 +59,21 @@ class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
         }
     }
 
-    fun verifySignup(
-        email: String
+    fun verifyNewUser(email: String) {
+        viewModelScope.launch {
+            val response = repository.verifySignup(email)
+            _verifyNewAccountResponse.value = response
+        }
+    }
+
+    fun areCodesTheSame(
+        inputCode: String
     ) {
         viewModelScope.launch {
-            // TODO: Implement this function
+            val same = inputCode == _verifyNewAccountResponse.value?.code
+            _areBothSame.value = same
+            Log.i("areCodesTheSame: ", _verifyNewAccountResponse.value?.code.toString())
+            Log.i("Verify code: ", _areBothSame.value.toString())
         }
     }
 }
