@@ -11,13 +11,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object MedicineRetrofitInstance {
-    private val moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
-        .build()
+//    private val moshi = Moshi.Builder()
+//        .add(KotlinJsonAdapterFactory())
+//        .build()
     private val medicineRetrofit by lazy {
         Retrofit.Builder()
-            .baseUrl("https://rickandmortyapi.com/api/")
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .baseUrl("https://eshfeeny.onrender.com/products/category/")
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 

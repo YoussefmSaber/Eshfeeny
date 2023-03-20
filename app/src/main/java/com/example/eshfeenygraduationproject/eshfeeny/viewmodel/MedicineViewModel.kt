@@ -7,17 +7,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.MedicineRepoImpl
-import com.example.domain.entity.CategoryResponseItem
-import com.example.domain.entity.CharacterResponse
+import com.example.domain.entity.CategoryResponse
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 
 class MedicineViewModel(
    private val repoImpl: MedicineRepoImpl
 ):ViewModel() {
-    private val _categories = MutableLiveData<CharacterResponse>()
-    val categories: MutableLiveData<CharacterResponse>
+    private val _categories = MutableLiveData<CategoryResponse>()
+    val categories: LiveData<CategoryResponse>
     get() = _categories
 
 
