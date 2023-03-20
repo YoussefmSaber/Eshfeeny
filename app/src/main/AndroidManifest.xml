@@ -22,7 +22,7 @@
         android:theme="@style/splashScreenTheme"
         tools:targetApi="31">
         <activity
-            android:name=".authentication.AuthenticationActivity"
+            android:name=".eshfeeny.EshfeenyActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".eshfeeny.EshfeenyActivity" />
+        <activity android:name=".authentication.AuthenticationActivity" />
 
 
     </application>

@@ -48,6 +48,10 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0'
-
+    // Moshi
+    implementation "com.squareup.moshi:moshi:1.14.0"
+    implementation "com.squareup.retrofit2:converter-moshi:2.6.0"
+    implementation "com.squareup.moshi:moshi-kotlin:1.14.0"
     implementation project(path:':domain')
+
 }
