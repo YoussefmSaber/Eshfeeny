@@ -26,8 +26,9 @@ class MedicineAdapter() : ListAdapter<CategoryResponseItem, MedicineAdapter.View
 
     class ViewHolder(private val itemBinding: MedicineItemsBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(category: CategoryResponseItem) {
-            itemBinding.medicineNameIdTv.text = category.name
-            Glide.with(itemBinding.root.context).load(category.image).into(itemBinding.imgVMedicineId)
+            itemBinding.medicineNameIdTv.text = category.nameAr
+            // TODO: Change the Image to be the index [0] image[0]
+            Glide.with(itemBinding.root.context).load(category.images).into(itemBinding.imgVMedicineId)
             Log.i("ViewHolder sh8aal",toString())
         }
     }
@@ -37,7 +38,7 @@ class MedicineAdapter() : ListAdapter<CategoryResponseItem, MedicineAdapter.View
             oldItem: CategoryResponseItem,
             newItem: CategoryResponseItem
         ): Boolean {
-            return oldItem.name == newItem.name
+            return oldItem._id == newItem._id
         }
 
         override fun areContentsTheSame(
