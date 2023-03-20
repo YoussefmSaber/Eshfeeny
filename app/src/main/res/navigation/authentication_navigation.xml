@@ -78,5 +78,16 @@
         android:id="@+id/verifyFragment"
         android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.VerifyFragment"
         android:label="fragment_verify"
-        tools:layout="@layout/fragment_verify" />
+        tools:layout="@layout/fragment_verify" >
+        <argument
+            android:name="newUserName"
+            app:argType="string" />
+        <argument
+            android:name="newUserEmail"
+            app:argType="string" />
+        <argument
+            android:name="newUserPassword"
+            app:argType="string" />
+    </fragment>
+
 </navigation>

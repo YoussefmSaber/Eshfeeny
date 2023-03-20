@@ -8,13 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.CreateUser
+import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModelFactory
 import com.example.eshfeenygraduationproject.databinding.FragmentVerifyBinding
 
 class VerifyFragment : Fragment() {
+
+    val args: VerifyFragmentArgs by navArgs()
 
     private var binding: FragmentVerifyBinding? = null
     private lateinit var viewModel: SharedViewModel
@@ -28,6 +32,14 @@ class VerifyFragment : Fragment() {
         val repository = UserRepoImpl()
         val viewModelFactory = SharedViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory)[SharedViewModel::class.java]
+        val newUser = CreateUser(
+            args.newUserName,
+            args.newUserEmail,
+            args.newUserPassword
+        )
+
+        Log.i("user data: ", "verify Fragment: $newUser")
+        viewModel.verifyNewUser(newUser.email)
 
         binding?.otpCheckButton?.setOnClickListener {
             Log.i("Verify code: ", "Clicked")
@@ -36,8 +48,7 @@ class VerifyFragment : Fragment() {
 
             val inputCode = binding?.otpView?.text.toString()
             val receivedCodeType = receivedCode?.javaClass
-            val inputCodeType = inputCode?.javaClass
-
+            val inputCodeType = inputCode.javaClass
 
             viewModel.areCodesTheSame(inputCode)
             viewModel.areBothSame.observe(viewLifecycleOwner){
@@ -61,14 +72,17 @@ class VerifyFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                     Log.i("Verify", "you have been verified")
-                    val newUser = CreateUser(
-                        name = arguments?.getString("newUserName")!!,
-                        email = arguments?.getString("newUserEmail")!!,
-                        password = arguments?.getString("newUserPassword")!!
-                    )
+
                     viewModel.createNewUser(newUser)
+                } else {
+                    binding?.otpView?.setLineColor(getResources().getColor(R.color.red_text))
+                    binding?.otpView?.error = "الرمز الذي قمت بادخاله خاطئ. برجاء المحاولة مره اخري"
                 }
             }
+        }
+
+        binding?.resendOtpButton?.setOnClickListener {
+            viewModel.verifyNewUser(newUser.email)
         }
 
         return binding?.root

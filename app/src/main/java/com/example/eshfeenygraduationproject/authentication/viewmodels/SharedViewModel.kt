@@ -72,8 +72,6 @@ class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
         viewModelScope.launch {
             val same = inputCode == _verifyNewAccountResponse.value?.code
             _areBothSame.value = same
-            Log.i("areCodesTheSame: ", _verifyNewAccountResponse.value?.code.toString())
-            Log.i("Verify code: ", _areBothSame.value.toString())
         }
     }
 }

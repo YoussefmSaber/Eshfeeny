@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.data.repository.UserRepoImpl
@@ -41,23 +40,15 @@ class SignupFragment : Fragment() {
 
             } else {
                 viewModel.checkEmailExist(email)
-                viewModel.emailFound.observe(viewLifecycleOwner, Observer { emailFound ->
+                viewModel.emailFound.observe(viewLifecycleOwner){ emailFound ->
                     if (emailFound.body() != null) {
                         binding?.emailSignupLayout?.error = getString(R.string.emailAlreadyUsed)
                     } else {
-                        val bundle = Bundle()
 
-                        bundle.putString("newUserName", name)
-                        bundle.putString("newUserEmail", email)
-                        bundle.putString("newUserPassword", password)
-
-                        val verifyFragment = VerifyFragment()
-                        verifyFragment.arguments = bundle
-
-                        viewModel.verifyNewUser(email)
-                        Navigation.findNavController(button).navigate(R.id.action_signupFragment_to_verifyFragment)
+                        val action = SignupFragmentDirections.actionSignupFragmentToVerifyFragment(name, email, password)
+                        Navigation.findNavController(button).navigate(action)
                     }
-                })
+                }
             }
         }
 
