@@ -199,7 +199,7 @@
                 android:layout_width="86dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="17dp"
+                android:layout_marginTop="15dp"
                 android:clickable="true"
                 android:src="@drawable/show_all_icon"
                 app:layout_constraintStart_toStartOf="parent"
@@ -222,13 +222,89 @@
                 tools:listitem="@layout/medicine_items"
                 android:layoutDirection="rtl"
                 />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/cairo_semibold"
+                android:text="لصحة أفضل"
+                android:textColor="#1F1F1F"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView6"
+                app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv" />
+
+            <ImageView
+                android:id="@+id/select_all_for_better_health_id"
+                android:layout_width="86dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="9dp"
+                android:clickable="true"
+                android:src="@drawable/show_all_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv"
+                tools:ignore="SpeakableTextPresentCheck" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/medicine_id_rv2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView8"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/medicine_items"
+                android:layoutDirection="rtl"/>
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/cairo_semibold"
+                android:text="بديل للسكر"
+                android:textColor="#1F1F1F"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView6"
+                app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv2" />
+
+            <ImageView
+                android:id="@+id/select_all_alternative_to_sugar_id"
+                android:layout_width="86dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="9dp"
+                android:clickable="true"
+                android:src="@drawable/show_all_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv2"
+                tools:ignore="SpeakableTextPresentCheck" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/medicine_id_rv3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView9"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/medicine_items"
+                android:layoutDirection="rtl"/>
             <View
                 android:id="@+id/view"
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/medicine_id_rv" />
-
+                app:layout_constraintTop_toBottomOf="@id/medicine_id_rv3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
