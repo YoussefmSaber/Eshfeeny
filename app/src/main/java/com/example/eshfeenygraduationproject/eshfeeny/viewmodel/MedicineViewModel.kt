@@ -19,18 +19,41 @@ class MedicineViewModel(
     get() = _categories
 
 
-    fun getMedicine(){
+    fun getMedicineForEmsaak(){
         viewModelScope.launch {
             try {
-                val response = repoImpl.getMedicineFromRemote()
+                val response = repoImpl.getMedicineFromRemoteForEmsaak()
                 _categories.value = response
                 Log.i("mvvm sh8aal",toString())
             }catch (e:Exception){
                 // handle error
-                Log.e(TAG, "Error fetching urls", e)
+                Log.e(TAG, "Error fetching urls Emsaak", e)
             }
-
         }
-
     }
+    fun getMedicineForKo7aa(){
+        viewModelScope.launch {
+            try {
+                val response = repoImpl.getMedicineFromRemoteForKo7aa()
+                _categories.value = response
+                Log.i("mvvm sh8aal",toString())
+            }catch (e:Exception){
+                // handle error
+                Log.e(TAG, "Error fetching urls Ko7aa", e)
+            }
+        }
+    }
+    fun getMedicineForM8aas(){
+        viewModelScope.launch {
+            try {
+                val response = repoImpl.getMedicineFromRemoteForM8aas()
+                _categories.value = response
+                Log.i("mvvm sh8aal",toString())
+            }catch (e:Exception){
+                // handle error
+                Log.e(TAG, "Error fetching urls M8ass", e)
+            }
+        }
+    }
+
 }

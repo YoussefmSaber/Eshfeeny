@@ -1,5 +1,6 @@
 package com.example.eshfeenygraduationproject.eshfeeny.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -19,6 +20,7 @@ class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
 
+    @SuppressLint("LongLogTag")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,9 +32,24 @@ class HomeFragment : Fragment() {
         val viewModelFactory = MedicineViewModelFactory(repo)
 
         medicineViewModel = ViewModelProvider(this,viewModelFactory)[MedicineViewModel::class.java]
-        medicineViewModel.getMedicine()
+        //call recycler view for امساك
+        medicineViewModel.getMedicineForEmsaak()
         medicineViewModel.categories.observe(viewLifecycleOwner){category ->
             binding?.medicineIdRv?.adapter = adapter
+            adapter.submitList(category)
+            Log.i("Home Frgament sh8aal for Emsaak",category.toString())
+        }
+        //call recycler view for كحه
+        medicineViewModel.getMedicineForKo7aa()
+        medicineViewModel.categories.observe(viewLifecycleOwner){category ->
+            binding?.medicineIdRv2?.adapter = adapter
+            adapter.submitList(category)
+            Log.i("Home Frgament sh8aal for ko7aa",category.toString())
+        }
+        //call recycler view for مغص
+        medicineViewModel.getMedicineForM8aas()
+        medicineViewModel.categories.observe(viewLifecycleOwner){category ->
+            binding?.medicineIdRv3?.adapter = adapter
             adapter.submitList(category)
             Log.i("Home Frgament sh8aal",category.toString())
         }

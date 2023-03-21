@@ -27,6 +27,7 @@ class MedicineAdapter() : ListAdapter<CategoryResponseItem, MedicineAdapter.View
     class ViewHolder(private val itemBinding: MedicineItemsBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(category: CategoryResponseItem) {
             itemBinding.medicineNameIdTv.text = category.nameAr
+            itemBinding.priceMedicineIdTv.text = "${category.price.toInt().toString()} جنيه  "
             // TODO: Change the Image to be the index [0] image[0]
             Glide.with(itemBinding.root.context).load(category.images).into(itemBinding.imgVMedicineId)
             Log.i("ViewHolder sh8aal",toString())
