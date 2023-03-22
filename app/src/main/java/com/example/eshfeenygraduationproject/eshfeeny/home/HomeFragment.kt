@@ -58,5 +58,7 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding?.medicineIdRv?.adapter = null
+        binding?.medicineIdRv2?.adapter = null
+        binding?.medicineIdRv3?.adapter = null
     }
 }
