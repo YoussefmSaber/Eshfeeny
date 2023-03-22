@@ -8,53 +8,7 @@
     tools:context=".eshfeeny.home.HomeFragment">
 
 
-    <View
-        android:id="@+id/view1"
-        android:layout_width="wrap_content"
-        android:layout_height="130dp"
-        android:background="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/logo_eshfeeny"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <SearchView
-        android:id="@+id/SearchId"
-        android:layout_width="356dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/custom_edit1"
-        android:layoutDirection="rtl"
-        android:queryHint="ما الذى تبحث عنه ؟"
-        android:searchIcon="@drawable/__icon__search_"
-        android:textDirection="rtl"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5"
-        app:queryBackground="@null" />
-
-    <ImageView
-        android:id="@+id/computer_vesion_imageView_id"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="70dp"
-        android:clickable="true"
-        android:src="@drawable/camera_logo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -62,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view1">
+       >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -71,9 +25,9 @@
 
             <ImageView
                 android:id="@+id/company_id_phorto_home"
-                android:layout_width="419dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="280dp"
+                android:layout_width="419sp"
+                android:layout_height="150sp"
+                android:layout_marginTop="180sp"
                 android:background="#FFFFFF"
                 android:backgroundTint="#FFFFFF"
                 android:clickable="true"
