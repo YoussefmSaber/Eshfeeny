@@ -8,53 +8,7 @@
     tools:context=".eshfeeny.home.HomeFragment">
 
 
-    <View
-        android:id="@+id/view1"
-        android:layout_width="wrap_content"
-        android:layout_height="130dp"
-        android:background="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/logo_eshfeeny"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <SearchView
-        android:id="@+id/SearchId"
-        android:layout_width="356dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/custom_edit1"
-        android:layoutDirection="rtl"
-        android:queryHint="ما الذى تبحث عنه ؟"
-        android:searchIcon="@drawable/__icon__search_"
-        android:textDirection="rtl"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5"
-        app:queryBackground="@null" />
-
-    <ImageView
-        android:id="@+id/computer_vesion_imageView_id"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="70dp"
-        android:clickable="true"
-        android:src="@drawable/camera_logo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -62,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view1">
+       >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -71,9 +25,9 @@
 
             <ImageView
                 android:id="@+id/company_id_phorto_home"
-                android:layout_width="419dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="280dp"
+                android:layout_width="419sp"
+                android:layout_height="150sp"
+                android:layout_marginTop="180sp"
                 android:background="#FFFFFF"
                 android:backgroundTint="#FFFFFF"
                 android:clickable="true"
@@ -199,7 +153,7 @@
                 android:layout_width="86dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="12dp"
                 android:clickable="true"
                 android:src="@drawable/show_all_icon"
                 app:layout_constraintStart_toStartOf="parent"
@@ -240,7 +194,7 @@
                 android:layout_width="86dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="9dp"
+                android:layout_marginTop="7dp"
                 android:clickable="true"
                 android:src="@drawable/show_all_icon"
                 app:layout_constraintStart_toStartOf="parent"
@@ -278,7 +232,7 @@
                 android:layout_width="86dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="9dp"
+                android:layout_marginTop="7dp"
                 android:clickable="true"
                 android:src="@drawable/show_all_icon"
                 app:layout_constraintStart_toStartOf="parent"
@@ -299,12 +253,92 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/medicine_items"
                 android:layoutDirection="rtl"/>
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/cairo_semibold"
+                android:text = "تصفح الماركات"
+                android:textColor="#1F1F1F"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView6"
+                app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv3" />
+
+            <ImageView
+                android:id="@+id/select_all_Markat_id"
+                android:layout_width="86dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="7dp"
+                android:clickable="true"
+                android:src="@drawable/show_all_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv3"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+
+            <ImageView
+                android:id="@+id/la_Roche_btn_id"
+                android:layout_width="130dp"
+                android:layout_height="79dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/rectangle_market"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView10" />
+
+            <ImageView
+                android:id="@+id/Vichy_btn_id"
+                android:layout_width="130dp"
+                android:layout_height="79dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/rectangle_market"
+                app:layout_constraintEnd_toStartOf="@+id/la_Roche_btn_id"
+                app:layout_constraintTop_toBottomOf="@id/textView10" />
+
+            <ImageView
+                android:id="@+id/Beasline_btn_id"
+                android:layout_width="130dp"
+                android:layout_height="79dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/rectangle_market"
+                app:layout_constraintEnd_toStartOf="@+id/Vichy_btn_id"
+                app:layout_constraintTop_toBottomOf="@id/textView10" />
+
+            <ImageView
+                android:id="@+id/AXE_btn_id"
+                android:layout_width="130dp"
+                android:layout_height="79dp"
+                android:layout_marginTop="94dp"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/rectangle_market"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView10" />
+
+            <ImageView
+                android:id="@+id/Garnier_btn_id"
+                android:layout_width="130dp"
+                android:layout_height="79dp"
+                android:layout_marginTop="94dp"
+                android:src="@drawable/rectangle_market"
+                app:layout_constraintEnd_toStartOf="@+id/AXE_btn_id"
+                app:layout_constraintTop_toBottomOf="@id/textView10" />
+
+            <ImageView
+                android:id="@+id/Johnsons_btn_id"
+                android:layout_width="130dp"
+                android:layout_height="79dp"
+                android:layout_marginTop="94dp"
+                android:src="@drawable/rectangle_market"
+                app:layout_constraintEnd_toStartOf="@+id/Garnier_btn_id"
+                app:layout_constraintTop_toBottomOf="@id/textView10" />
             <View
                 android:id="@+id/view"
                 android:layout_width="wrap_content"
-                android:layout_height="120dp"
+                android:layout_height="212sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/medicine_id_rv3" />
+                app:layout_constraintTop_toBottomOf="@id/AXE_btn_id" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
