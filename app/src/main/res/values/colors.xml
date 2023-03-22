@@ -23,4 +23,5 @@
     <color name="light_blue1">#0597F2</color>
     <color name="light_grey">#4D4D4D</color>
     <color name="app_background">#FDFDFF</color>
+    <color name="text_color">#1F1F1F</color>
 </resources>

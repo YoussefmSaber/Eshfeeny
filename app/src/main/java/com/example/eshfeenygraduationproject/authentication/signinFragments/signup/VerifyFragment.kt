@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.authentication.signinFragments
+package com.example.eshfeenygraduationproject.authentication.signinFragments.signup
 
 import android.os.Bundle
 import android.util.Log
@@ -11,14 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.CreateUser
-import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModelFactory
 import com.example.eshfeenygraduationproject.databinding.FragmentVerifyBinding
 
 class VerifyFragment : Fragment() {
 
-    val args: VerifyFragmentArgs by navArgs()
+    private val args: VerifyFragmentArgs by navArgs()
 
     private var binding: FragmentVerifyBinding? = null
     private lateinit var viewModel: SharedViewModel
@@ -39,28 +38,16 @@ class VerifyFragment : Fragment() {
         )
 
         Log.i("user data: ", "verify Fragment: $newUser")
-        viewModel.verifyNewUser(newUser.email)
+        viewModel.verifyCode(newUser.email)
 
         binding?.otpCheckButton?.setOnClickListener {
             Log.i("Verify code: ", "Clicked")
 
-            val receivedCode =  viewModel.verifyNewAccountResponse.value?.code
-
             val inputCode = binding?.otpView?.text.toString()
-            val receivedCodeType = receivedCode?.javaClass
-            val inputCodeType = inputCode.javaClass
 
             viewModel.areCodesTheSame(inputCode)
             viewModel.areBothSame.observe(viewLifecycleOwner){
                 Log.i("Verify code: ", "button Clicked")
-                Log.i(
-                    "Verify code: ",
-                    "Input field code $inputCode and it's type $inputCodeType"
-                )
-                Log.i(
-                    "Verify code: ",
-                    "received code value: $receivedCode and it's type $receivedCodeType"
-                )
                 Log.i(
                     "Verify code: ",
                     "Are both equal " + viewModel.areBothSame.value
@@ -75,14 +62,12 @@ class VerifyFragment : Fragment() {
 
                     viewModel.createNewUser(newUser)
                 } else {
-                    binding?.otpView?.setLineColor(getResources().getColor(R.color.red_text))
-                    binding?.otpView?.error = "الرمز الذي قمت بادخاله خاطئ. برجاء المحاولة مره اخري"
+                    binding?.otpWrongMessage?.visibility = View.VISIBLE
                 }
             }
         }
-
         binding?.resendOtpButton?.setOnClickListener {
-            viewModel.verifyNewUser(newUser.email)
+            viewModel.verifyCode(newUser.email)
         }
 
         return binding?.root

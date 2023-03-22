@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.LoginFragment"
+        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -54,12 +54,12 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/welcomeFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_verifyFragment"
-            app:destination="@id/verifyFragment" />
+            android:id="@+id/action_loginFragment_to_sendCodeToMailFragment"
+            app:destination="@id/sendCodeToMailFragment" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.SignupFragment"
+        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.signup.SignupFragment"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" >
         <action
@@ -76,7 +76,7 @@
     </fragment>
     <fragment
         android:id="@+id/verifyFragment"
-        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.VerifyFragment"
+        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.signup.VerifyFragment"
         android:label="fragment_verify"
         tools:layout="@layout/fragment_verify" >
         <argument
@@ -88,6 +88,35 @@
         <argument
             android:name="newUserPassword"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/verifyCodeLoginFragment"
+        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.login.VerifyCodeLoginFragment"
+        android:label="VerifyCodeLoginFragment" >
+        <action
+            android:id="@+id/action_verifyCodeLoginFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.login.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" >
+        <argument
+            android:name="userId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/sendCodeToMailFragment"
+        android:name="com.example.eshfeenygraduationproject.authentication.signinFragments.login.SendCodeToMailFragment"
+        android:label="fragment_send_code_to_mail"
+        tools:layout="@layout/fragment_send_code_to_mail" >
+        <action
+            android:id="@+id/action_sendCodeToMailFragment_to_verifyCodeLoginFragment"
+            app:destination="@id/verifyCodeLoginFragment" />
     </fragment>
 
 </navigation>

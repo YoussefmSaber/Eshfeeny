@@ -22,13 +22,17 @@ class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
     val verifyNewAccountResponse: LiveData<VerifyCodeResponse>
         get() = _verifyNewAccountResponse
 
-    val _emailFound: MutableLiveData<Response<CheckEmailResponse>> = MutableLiveData()
+    private val _emailFound: MutableLiveData<Response<CheckEmailResponse>> = MutableLiveData()
     val emailFound: LiveData<Response<CheckEmailResponse>>
         get() = _emailFound
 
     private val _areBothSame: MutableLiveData<Boolean> = MutableLiveData()
     val areBothSame: LiveData<Boolean>
         get() = _areBothSame
+
+    private val _updatePassword: MutableLiveData<PasswordChangeResponse> = MutableLiveData()
+    val updatePassword: LiveData<PasswordChangeResponse>
+    get() = _updatePassword
 
 
     fun verifyLogin(
@@ -59,9 +63,9 @@ class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
         }
     }
 
-    fun verifyNewUser(email: String) {
+    fun verifyCode(email: String) {
         viewModelScope.launch {
-            val response = repository.verifySignup(email)
+            val response = repository.verifyCode(email)
             _verifyNewAccountResponse.value = response
         }
     }
@@ -72,6 +76,16 @@ class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
         viewModelScope.launch {
             val same = inputCode == _verifyNewAccountResponse.value?.code
             _areBothSame.value = same
+        }
+    }
+
+    fun updateUserPassword(
+        id: String,
+        newPassword: String
+    ) {
+        viewModelScope.launch {
+            val response = repository.updateUserPassword(id, newPassword)
+            _updatePassword.value = response
         }
     }
 }

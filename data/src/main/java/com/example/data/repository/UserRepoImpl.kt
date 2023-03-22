@@ -55,17 +55,22 @@ class UserRepoImpl {
 
 
     @SuppressLint("LongLogTag")
-    suspend fun verifySignup(
+    suspend fun verifyCode(
         email: String
     ): VerifyCodeResponse {
-        return withContext(Dispatchers.IO){
-            try {
-                val code = UserRetrofitInstance.userApi.verifySignup(email)
-                Log.i("(UserRepoImpl)Verify code: ", code.toString())
-                code
-            } catch (e: Exception) {
-                VerifyCodeResponse("Error")
-            }
+        return try {
+            val code = UserRetrofitInstance.userApi.verifyCode(email)
+            Log.i("(UserRepoImpl)Verify code: ", code.toString())
+            code
+        } catch (e: Exception) {
+            VerifyCodeResponse("Error")
         }
+
     }
+
+    suspend fun updateUserPassword(
+        id: String,
+        newPassword: String
+    ): PasswordChangeResponse =
+        UserRetrofitInstance.userApi.updateUserPassword(id, newPassword)
 }

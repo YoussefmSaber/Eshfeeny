@@ -1,7 +1,6 @@
-package com.example.eshfeenygraduationproject.authentication.signinFragments
+package com.example.eshfeenygraduationproject.authentication.signinFragments.signup
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -44,8 +43,11 @@ class SignupFragment : Fragment() {
                     if (emailFound.body() != null) {
                         binding?.emailSignupLayout?.error = getString(R.string.emailAlreadyUsed)
                     } else {
-
-                        val action = SignupFragmentDirections.actionSignupFragmentToVerifyFragment(name, email, password)
+                        val action = SignupFragmentDirections.actionSignupFragmentToVerifyFragment(
+                            name,
+                            email,
+                            password
+                        )
                         Navigation.findNavController(button).navigate(action)
                     }
                 }

@@ -89,12 +89,18 @@
     <!--    OTP Page Text-->
     <string name="enter_otp">ادخل رمز التحقق</string>
     <string name="otp_send">تم إرسال رمز مكون من 4 أرقام إلى بريدك الإلكتروني</string>
+    <string name="otp_wrong">*الرمز الذي قمت بادخاله خاطئ. برجاء المحاولة مره اخري</string>
 
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="chooseTime">إختار</string>
     <string name="otp">رمز تأكيد الايميل</string>
     <string name="resendOtp">إعادة إرسال الرمز</string>
     <string name="checkOtp">تحقق</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="createNewPassword">إنشاء كلمة مرور جديدة</string>
+    <string name="enterNewPassword">ادخل كلمة المرور الجديدة</string>
+    <string name="confNewPassword">تاكيد كلمة المرور</string>
+    <string name="forgetPassword">هل نسيت كلمة المرور ؟</string>
+    <string name="enterEmail">ادخل البريد الاكتروني</string>
+    <string name="send">إرسال</string>
 
 </resources>
