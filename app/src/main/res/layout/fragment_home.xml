@@ -173,7 +173,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView7"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/medicine_items"
                 android:layoutDirection="rtl"
                 />
 
@@ -213,7 +212,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView8"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/medicine_items"
                 android:layoutDirection="rtl"/>
             <TextView
                 android:id="@+id/textView9"
@@ -251,7 +249,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView9"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/medicine_items"
                 android:layoutDirection="rtl"/>
             <TextView
                 android:id="@+id/textView10"
@@ -277,68 +274,187 @@
                 app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv3"
                 tools:ignore="SpeakableTextPresentCheck" />
 
-
-            <ImageView
-                android:id="@+id/la_Roche_btn_id"
-                android:layout_width="130dp"
-                android:layout_height="79dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="5dp"
-                android:src="@drawable/rectangle_market"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView10" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView10">
 
-            <ImageView
-                android:id="@+id/Vichy_btn_id"
-                android:layout_width="130dp"
-                android:layout_height="79dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/rectangle_market"
-                app:layout_constraintEnd_toStartOf="@+id/la_Roche_btn_id"
-                app:layout_constraintTop_toBottomOf="@id/textView10" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/Beasline_btn_id"
-                android:layout_width="130dp"
-                android:layout_height="79dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/rectangle_market"
-                app:layout_constraintEnd_toStartOf="@+id/Vichy_btn_id"
-                app:layout_constraintTop_toBottomOf="@id/textView10" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/beesline_btn_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:backgroundTint="#F7FFFFFF"
+                        android:elevation="0dp"
+                        android:layoutDirection="rtl"
+                        android:padding="6dp"
+                        app:cardCornerRadius="10sp"
+                        app:strokeColor="#e5e5e5"
+                        app:strokeWidth="0.4sp"
+                        android:clickable="true">
 
-            <ImageView
-                android:id="@+id/AXE_btn_id"
-                android:layout_width="130dp"
-                android:layout_height="79dp"
-                android:layout_marginTop="94dp"
-                android:layout_marginEnd="5dp"
-                android:src="@drawable/rectangle_market"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView10" />
+                        <ImageView
+                            android:layout_width="99sp"
+                            android:layout_height="73sp"
+                            android:layout_margin="6sp"
+                            android:src="@drawable/vichy_laboratories_logo_vector"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </com.google.android.material.card.MaterialCardView>
 
-            <ImageView
-                android:id="@+id/Garnier_btn_id"
-                android:layout_width="130dp"
-                android:layout_height="79dp"
-                android:layout_marginTop="94dp"
-                android:src="@drawable/rectangle_market"
-                app:layout_constraintEnd_toStartOf="@+id/AXE_btn_id"
-                app:layout_constraintTop_toBottomOf="@id/textView10" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/vichy_btn_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:backgroundTint="#F7FFFFFF"
+                        android:elevation="0dp"
+                        android:layoutDirection="rtl"
+                        android:padding="6dp"
+                        app:cardCornerRadius="10sp"
+                        app:strokeColor="#e5e5e5"
+                        app:strokeWidth="0.4sp"
+                        android:clickable="true">
 
-            <ImageView
-                android:id="@+id/Johnsons_btn_id"
-                android:layout_width="130dp"
-                android:layout_height="79dp"
-                android:layout_marginTop="94dp"
-                android:src="@drawable/rectangle_market"
-                app:layout_constraintEnd_toStartOf="@+id/Garnier_btn_id"
-                app:layout_constraintTop_toBottomOf="@id/textView10" />
+                        <ImageView
+                            android:layout_width="99sp"
+                            android:layout_height="73sp"
+                            android:layout_margin="6sp"
+                            android:src="@drawable/vichy_laboratories_logo_vector"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/laRoche_btn_id"
+                        android:clickable="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:backgroundTint="#F7FFFFFF"
+                        android:elevation="0dp"
+                        android:layoutDirection="rtl"
+                        android:padding="6dp"
+                        app:cardCornerRadius="10sp"
+                        app:strokeColor="#e5e5e5"
+                        app:strokeWidth="0.4sp">
+
+                        <ImageView
+                            android:layout_width="99sp"
+                            android:layout_height="73sp"
+                            android:layout_margin="6sp"
+                            android:src="@drawable/la_roche_posay_brand"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/johnsons_btn_id"
+                        android:clickable="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:backgroundTint="#F7FFFFFF"
+                        android:elevation="0dp"
+                        android:layoutDirection="rtl"
+                        android:padding="6dp"
+                        app:cardCornerRadius="10sp"
+                        app:strokeColor="#e5e5e5"
+                        app:strokeWidth="0.4sp">
+
+                        <ImageView
+                            android:layout_width="99sp"
+                            android:layout_height="73sp"
+                            android:layout_margin="6sp"
+                            android:src="@drawable/pngwing_com"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/garnier_btn_id"
+                        android:clickable="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:backgroundTint="#F7FFFFFF"
+                        android:elevation="0dp"
+                        android:layoutDirection="rtl"
+                        android:padding="6dp"
+                        app:cardCornerRadius="10sp"
+                        app:strokeColor="#e5e5e5"
+                        app:strokeWidth="0.4sp">
+
+                        <ImageView
+                            android:layout_width="99sp"
+                            android:layout_height="73sp"
+                            android:layout_margin="6sp"
+                            android:src="@drawable/garnier_logo"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/Axe_btn_id"
+                        android:clickable="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:backgroundTint="#F7FFFFFF"
+                        android:elevation="0dp"
+                        android:layoutDirection="rtl"
+                        android:padding="6dp"
+                        app:cardCornerRadius="10sp"
+                        app:strokeColor="#e5e5e5"
+                        app:strokeWidth="0.4sp">
+
+                        <ImageView
+                            android:layout_width="99sp"
+                            android:layout_height="73sp"
+                            android:layout_margin="6sp"
+                            android:src="@drawable/axe_logo_2021"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+            </LinearLayout>
             <View
                 android:id="@+id/view"
                 android:layout_width="wrap_content"
-                android:layout_height="212sp"
+                android:layout_height="420sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/AXE_btn_id" />
+                app:layout_constraintTop_toBottomOf="@id/textView10" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
