@@ -2,6 +2,7 @@ package com.example.eshfeenygraduationproject.eshfeeny
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.eshfeenygraduationproject.R
@@ -23,17 +24,31 @@ class EshfeenyActivity: AppCompatActivity() {
         replaceFragment(HomeFragment())
         binding?.bottomNavigationView?.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.homeFragment -> replaceFragment(HomeFragment())
-                R.id.cartFragment -> replaceFragment(CartFragment())
-                R.id.gpsFragment -> replaceFragment(GpsFragment())
-                R.id.favoriteFragment -> replaceFragment(FavoriteFragment())
-                R.id.moreFragment -> replaceFragment(MoreFragment())
+                R.id.homeFragment -> {
+                    replaceFragment(HomeFragment())
+                    binding?.view1?.visibility = View.VISIBLE
+                    binding?.imageView5?.visibility = View.VISIBLE
+                    binding?.SearchId?.visibility = View.VISIBLE
+                    binding?.computerVesionImageViewId?.visibility = View.VISIBLE
+                }
+                R.id.cartFragment -> {
+                    replaceFragment(CartFragment())
+                    View_search_in_fragments()
+                }
+                R.id.gpsFragment -> {replaceFragment(GpsFragment())
+                    View_search_in_fragments()
+                }
+                R.id.favoriteFragment -> {replaceFragment(FavoriteFragment())
+                    View_search_in_fragments()}
+                R.id.moreFragment -> {replaceFragment(MoreFragment())
+                    View_search_in_fragments()}
                 else ->{
 
                 }
             }
             true
         }
+
     }
     private fun replaceFragment(fragment: Fragment){
         val fragmentManager = supportFragmentManager
@@ -41,4 +56,11 @@ class EshfeenyActivity: AppCompatActivity() {
         fragmentTransaction.replace(R.id.flFragment,fragment)
         fragmentTransaction.commit()
     }
+    private fun View_search_in_fragments(){
+        binding?.view1?.visibility = View.GONE
+        binding?.imageView5?.visibility = View.GONE
+        binding?.SearchId?.visibility = View.GONE
+        binding?.computerVesionImageViewId?.visibility = View.GONE
+    }
+
 }
