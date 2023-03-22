@@ -253,10 +253,34 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/medicine_items"
                 android:layoutDirection="rtl"/>
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/cairo_semibold"
+                android:text = "تصفح الماركات"
+                android:textColor="#1F1F1F"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView6"
+                app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv3" />
+
+            <ImageView
+                android:id="@+id/select_all_Markat_id"
+                android:layout_width="86dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="9dp"
+                android:clickable="true"
+                android:src="@drawable/show_all_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv3"
+                tools:ignore="SpeakableTextPresentCheck" />
+
             <View
                 android:id="@+id/view"
                 android:layout_width="wrap_content"
-                android:layout_height="120dp"
+                android:layout_height="300sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/medicine_id_rv3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
