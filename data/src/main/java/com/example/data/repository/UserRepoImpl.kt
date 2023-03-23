@@ -18,17 +18,9 @@ class UserRepoImpl {
     suspend fun checkEmail(
         email: String
     ): Response<CheckEmailResponse> {
-        return try {
-            UserRetrofitInstance.userApi.checkEmail(email)
-        } catch (e: Exception) {
-            Response.error(
-                400,
-                ResponseBody.create(
-                    "application/json".toMediaTypeOrNull(),
-                    "Email Found"
-                )
-            )
-        }
+        val response = UserRetrofitInstance.userApi.checkEmail(email)
+        Log.i("Email found: ", response.body().toString())
+        return UserRetrofitInstance.userApi.checkEmail(email)
     }
 
     // used for login

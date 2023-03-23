@@ -113,7 +113,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/forgetPasswordEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28sp"
@@ -142,7 +142,7 @@
             app:cornerRadius="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/forgetPasswordEditText" />
 
         <View
             android:id="@+id/divider4"

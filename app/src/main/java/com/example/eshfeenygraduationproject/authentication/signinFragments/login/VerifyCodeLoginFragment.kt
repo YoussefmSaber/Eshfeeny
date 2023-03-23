@@ -1,6 +1,7 @@
 package com.example.eshfeenygraduationproject.authentication.signinFragments.login
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,18 +37,25 @@ class VerifyCodeLoginFragment : Fragment() {
             val inputCode = binding?.otpView?.text.toString()
             viewModel.areCodesTheSame(inputCode)
             viewModel.areBothSame.observe(viewLifecycleOwner) {
-                if (it) {
-                    viewModel.checkEmailExist(args.email)
-                    viewModel.emailFound.observe(viewLifecycleOwner) { emailFound ->
-                        if (emailFound != null) {
-                            val action = VerifyCodeLoginFragmentDirections.actionVerifyCodeLoginFragmentToChangePasswordFragment(emailFound.body()?._id!!)
-                            Navigation.findNavController(button).navigate(action)
+                it?.let { same ->
+                    if (same) {
+                        viewModel.checkEmailExist(args.email)
+                        viewModel.emailFound.observe(viewLifecycleOwner) { response ->
+                            if (response.body() != null) {
+
+                                val action =
+                                    VerifyCodeLoginFragmentDirections.actionVerifyCodeLoginFragmentToChangePasswordFragment(
+                                        response.body()!!._id
+                                    )
+                                Navigation.findNavController(button).navigate(action)
+                            }
                         }
                     }
-
                 }
             }
         }
+
+
 
 
         return binding?.root

@@ -37,14 +37,18 @@ class LoginFragment : Fragment() {
             )
             
             viewModel.verifyLogin(userData)
-            viewModel.verifyUserLogin.observe(viewLifecycleOwner, Observer {
+            viewModel.verifyUserLogin.observe(viewLifecycleOwner){
                 if (it != null) {
                     Log.i("category", it.body().toString())
                     Toast.makeText(requireContext(), "You have been logged in successfully", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(requireContext(), "Check your data", Toast.LENGTH_SHORT).show()
                 }
-            })
+            }
+        }
+
+        binding?.forgetPasswordEditText?.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_sendCodeToMailFragment)
         }
 
         binding?.createInSignin?.setOnClickListener {

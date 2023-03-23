@@ -32,8 +32,7 @@ class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
 
     private val _updatePassword: MutableLiveData<PasswordChangeResponse> = MutableLiveData()
     val updatePassword: LiveData<PasswordChangeResponse>
-    get() = _updatePassword
-
+        get() = _updatePassword
 
     fun verifyLogin(
         userData: VerifyLoginResponse
@@ -50,7 +49,10 @@ class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
     fun checkEmailExist(email: String) {
         viewModelScope.launch {
             val response = repository.checkEmail(email)
-            _emailFound.value = response
+            response?.let {
+                _emailFound.value = it
+                Log.i("code", it.body()?._id.toString())
+            }
         }
     }
 

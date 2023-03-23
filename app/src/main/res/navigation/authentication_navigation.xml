@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/signupFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/onBoardingFragment"
@@ -88,6 +88,10 @@
         <argument
             android:name="newUserPassword"
             app:argType="string" />
+        <action
+            android:id="@+id/action_verifyFragment_to_signupFragment"
+            app:destination="@id/signupFragment"
+            app:popUpTo="@id/signupFragment" />
     </fragment>
     <fragment
         android:id="@+id/verifyCodeLoginFragment"
@@ -117,6 +121,11 @@
         <action
             android:id="@+id/action_sendCodeToMailFragment_to_verifyCodeLoginFragment"
             app:destination="@id/verifyCodeLoginFragment" />
+        <action
+            android:id="@+id/action_sendCodeToMailFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>
