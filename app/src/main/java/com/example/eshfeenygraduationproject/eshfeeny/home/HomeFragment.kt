@@ -20,7 +20,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewMode
 
 
 class HomeFragment : Fragment() {
-    private lateinit var  medicineViewModel:MedicineViewModel
+    private lateinit var medicineViewModel: MedicineViewModel
 
     private var binding: FragmentHomeBinding? = null
 
@@ -30,40 +30,44 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
-        val adapter = MedicineAdapter()
 
         val repo = MedicineRepoImpl()
         val viewModelFactory = MedicineViewModelFactory(repo)
         binding?.addRoshtaPhotoId?.setOnClickListener {
             (
                     activity as EshfeenyActivity
-            ).replaceFragment(RoshtaFragment())
-            }
+                    ).replaceFragment(RoshtaFragment())
+        }
 
-        medicineViewModel = ViewModelProvider(this,viewModelFactory)[MedicineViewModel::class.java]
+        medicineViewModel = ViewModelProvider(this, viewModelFactory)[MedicineViewModel::class.java]
+
         //call recycler view for امساك
         medicineViewModel.getMedicineForEmsaak()
-        medicineViewModel.categories.observe(viewLifecycleOwner){category ->
+        medicineViewModel.categories_Emsaak.observe(viewLifecycleOwner) {
+            val adapter = MedicineAdapter()
             binding?.medicineIdRv?.adapter = adapter
-            adapter.submitList(category)
-            Log.i("Home Frgament sh8aal for Emsaak",category.toString())
+            adapter.submitList(it)
+            Log.i("Home Frgament sh8aal for Emsaak", it.toString())
         }
         //call recycler view for كحه
         medicineViewModel.getMedicineForKo7aa()
-        medicineViewModel.categories.observe(viewLifecycleOwner){category ->
+        medicineViewModel.categories_Ko7aa.observe(viewLifecycleOwner) {
+            val adapter = MedicineAdapter()
             binding?.medicineIdRv2?.adapter = adapter
-            adapter.submitList(category)
-            Log.i("Home Frgament sh8aal for ko7aa",category.toString())
+            adapter.submitList(it)
+            Log.i("Home Frgament sh8aal for ko7aa", it.toString())
         }
         //call recycler view for مغص
         medicineViewModel.getMedicineForM8aas()
-        medicineViewModel.categories.observe(viewLifecycleOwner){category ->
+        medicineViewModel.categories_M8aas.observe(viewLifecycleOwner) {
+            val adapter = MedicineAdapter()
             binding?.medicineIdRv3?.adapter = adapter
-            adapter.submitList(category)
-            Log.i("Home Frgament sh8aal",category.toString())
+            adapter.submitList(it)
+            Log.i("Home Frgament sh8aal", it.toString())
         }
         return binding?.root
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding?.medicineIdRv?.adapter = null

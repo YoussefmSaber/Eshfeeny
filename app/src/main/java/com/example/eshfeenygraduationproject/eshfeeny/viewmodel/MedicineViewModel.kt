@@ -12,44 +12,52 @@ import kotlinx.coroutines.launch
 
 
 class MedicineViewModel(
-   private val repoImpl: MedicineRepoImpl
-):ViewModel() {
-    private val _categories = MutableLiveData<CategoryResponse>()
-    val categories: LiveData<CategoryResponse>
-    get() = _categories
+    private val repoImpl: MedicineRepoImpl
+) : ViewModel() {
+    private val _categories_Emsaak = MutableLiveData<CategoryResponse>()
+    val categories_Emsaak: LiveData<CategoryResponse>
+        get() = _categories_Emsaak
+    private val _categories_Ko7aa = MutableLiveData<CategoryResponse>()
+    val categories_Ko7aa: LiveData<CategoryResponse>
+        get() = _categories_Ko7aa
+    private val _categories_M8aas = MutableLiveData<CategoryResponse>()
+    val categories_M8aas: LiveData<CategoryResponse>
+        get() = _categories_M8aas
 
 
-    fun getMedicineForEmsaak(){
+    fun getMedicineForEmsaak() {
         viewModelScope.launch {
             try {
                 val response = repoImpl.getMedicineFromRemoteForEmsaak()
-                _categories.value = response
-                Log.i("mvvm sh8aal",toString())
-            }catch (e:Exception){
+                _categories_Emsaak.value = response
+                Log.i("mvvm sh8aal", toString())
+            } catch (e: Exception) {
                 // handle error
                 Log.e(TAG, "Error fetching urls Emsaak", e)
             }
         }
     }
-    fun getMedicineForKo7aa(){
+
+    fun getMedicineForKo7aa() {
         viewModelScope.launch {
             try {
                 val response = repoImpl.getMedicineFromRemoteForKo7aa()
-                _categories.value = response
-                Log.i("mvvm sh8aal",toString())
-            }catch (e:Exception){
+                _categories_Ko7aa.value = response
+                Log.i("mvvm sh8aal", toString())
+            } catch (e: Exception) {
                 // handle error
                 Log.e(TAG, "Error fetching urls Ko7aa", e)
             }
         }
     }
-    fun getMedicineForM8aas(){
+
+    fun getMedicineForM8aas() {
         viewModelScope.launch {
             try {
                 val response = repoImpl.getMedicineFromRemoteForM8aas()
-                _categories.value = response
-                Log.i("mvvm sh8aal",toString())
-            }catch (e:Exception){
+                _categories_M8aas.value = response
+                Log.i("mvvm sh8aal", toString())
+            } catch (e: Exception) {
                 // handle error
                 Log.e(TAG, "Error fetching urls M8ass", e)
             }

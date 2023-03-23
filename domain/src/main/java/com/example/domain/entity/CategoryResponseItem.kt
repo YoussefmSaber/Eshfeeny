@@ -7,7 +7,7 @@ data class CategoryResponseItem(
     val brand: String,
     val category: List<String>,
     val description: String,
-    val images: List<String> = listOf("https://i.ibb.co/Z6rJVnf/Picolax.png"),
+    val images: List<String>,
     val nameAr: String,
     val nameEn: String,
     val price: Double,
