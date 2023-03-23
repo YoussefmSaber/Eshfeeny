@@ -5,14 +5,13 @@
     android:id="@+id/clear_photo_btn_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/textRoshta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="8sp"
         android:fontFamily="@font/cairo_semibold"
         android:text="الروشتة"
         android:textColor="#000000"
@@ -168,22 +167,24 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnNext"
-        android:layout_width="351dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="164dp"
+        android:layout_width="351sp"
+        android:layout_height="59sp"
+        android:layout_marginStart="164sp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="164sp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="#0583F2"
         android:fontFamily="@font/cairo_semibold"
         android:text="التالي"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:cornerRadius="10dp"
+        app:cornerRadius="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TxtFieldTakeMid" />
+        app:layout_constraintTop_toBottomOf="@+id/TxtFieldTakeMid"
+        app:layout_constraintVertical_bias="0.483" />
 
     <TextView
         android:id="@+id/txtChoosePhoto"

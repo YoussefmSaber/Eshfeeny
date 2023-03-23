@@ -15,6 +15,8 @@ import androidx.navigation.findNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.databinding.FragmentRoshtaBinding
+import com.example.eshfeenygraduationproject.eshfeeny.EshfeenyActivity
+import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -28,49 +30,53 @@ class RoshtaFragment : Fragment() {
     ): View? {
         super.onCreate(savedInstanceState)
         binding = FragmentRoshtaBinding.inflate(layoutInflater)
+        binding?.exitBtnId?.setOnClickListener {
+            (activity as EshfeenyActivity
+            ).replaceFragment(HomeFragment())
+
+        }
         binding?.addRoshtaPhoto?.setOnClickListener {
-            it.findNavController().navigate(RoshtaFragmentDirections.actionRoshtaFragmentToHomeFragment())
+            val view: View = inflater.inflate(R.layout.bottomsheetlayout, null)
+            val dialog = BottomSheetDialog(requireContext())
+            val gallery: ImageView = view.findViewById(R.id.galleryId)
+            var camera: ImageView = view.findViewById(R.id.photoId)
+            gallery.setOnClickListener {
+                pickPhotoGallery()
+                runBlocking {
+                    delay(3000)
+                }
+                binding?.txtChoosePhoto?.visibility = View.VISIBLE
+                binding?.addRoshtaPhoto?.visibility = View.INVISIBLE
+                binding?.btnNext?.text = "أعرف أقرب صيدلية"
+                binding?.clearBtnId?.visibility = View.VISIBLE
+                binding?.takephoto?.visibility = View.VISIBLE
+                binding?.clearBtnId?.setOnClickListener {
+                    binding?.txtChoosePhoto?.visibility = View.GONE
+                    binding?.takephoto?.visibility = View.GONE
+                    binding?.addRoshtaPhoto?.visibility = View.VISIBLE
+                    binding?.clearBtnId?.visibility = View.GONE
+                }
+            }
+            camera.setOnClickListener {
+                openCamera()
+                runBlocking {
+                    delay(3000)
+                }
+                binding?.txtChoosePhoto?.visibility = View.VISIBLE
+                binding?.addRoshtaPhoto?.visibility = View.INVISIBLE
+                binding?.btnNext?.text = "أعرف أقرب صيدلية"
+                binding?.clearBtnId?.visibility = View.VISIBLE
+                binding?.takephoto?.visibility = View.VISIBLE
+                binding?.clearBtnId?.setOnClickListener {
+                    binding?.txtChoosePhoto?.visibility = View.GONE
+                    binding?.takephoto?.visibility = View.GONE
+                    binding?.addRoshtaPhoto?.visibility = View.VISIBLE
+                    binding?.clearBtnId?.visibility = View.GONE
+                }
+            }
+            dialog.setContentView(view)
+            dialog.show()
         }
-        val view: View = inflater.inflate(R.layout.bottomsheetlayout, null)
-        val dialog = BottomSheetDialog(requireContext())
-        val gallery: ImageView = view.findViewById(R.id.galleryId)
-        var camera: ImageView = view.findViewById(R.id.photoId)
-        gallery.setOnClickListener {
-            pickPhotoGallery()
-            runBlocking {
-                delay(3000)
-            }
-            binding?.txtChoosePhoto?.visibility = View.VISIBLE
-            binding?.addRoshtaPhoto?.visibility = View.INVISIBLE
-            binding?.btnNext?.text = "أعرف أقرب صيدلية"
-            binding?.clearBtnId?.visibility = View.VISIBLE
-            binding?.takephoto?.visibility = View.VISIBLE
-            binding?.clearBtnId?.setOnClickListener {
-                binding?.txtChoosePhoto?.visibility = View.GONE
-                binding?.takephoto?.visibility = View.GONE
-                binding?.addRoshtaPhoto?.visibility = View.VISIBLE
-                binding?.clearBtnId?.visibility = View.GONE
-            }
-        }
-        camera.setOnClickListener {
-            openCamera()
-            runBlocking {
-                delay(3000)
-            }
-            binding?.txtChoosePhoto?.visibility = View.VISIBLE
-            binding?.addRoshtaPhoto?.visibility = View.INVISIBLE
-            binding?.btnNext?.text = "أعرف أقرب صيدلية"
-            binding?.clearBtnId?.visibility = View.VISIBLE
-            binding?.takephoto?.visibility = View.VISIBLE
-            binding?.clearBtnId?.setOnClickListener {
-                binding?.txtChoosePhoto?.visibility = View.GONE
-                binding?.takephoto?.visibility = View.GONE
-                binding?.addRoshtaPhoto?.visibility = View.VISIBLE
-                binding?.clearBtnId?.visibility = View.GONE
-            }
-        }
-        dialog.setContentView(view)
-        dialog.show()
         // Inflate the layout for this fragment
         return binding?.root
     }
@@ -109,6 +115,12 @@ class RoshtaFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as EshfeenyActivity).View_search_in_fragments(true)
+        (activity as EshfeenyActivity).bottomNavigationView(true)
     }
 
 }

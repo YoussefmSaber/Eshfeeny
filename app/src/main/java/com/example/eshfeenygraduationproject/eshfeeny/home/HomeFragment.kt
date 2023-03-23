@@ -1,6 +1,7 @@
 package com.example.eshfeenygraduationproject.eshfeeny.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,8 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.data.repository.MedicineRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
+import com.example.eshfeenygraduationproject.eshfeeny.EshfeenyActivity
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.roshta.RoshtaFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.roshta.RoshtaFragment
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModelFactory
 
@@ -33,8 +35,11 @@ class HomeFragment : Fragment() {
         val repo = MedicineRepoImpl()
         val viewModelFactory = MedicineViewModelFactory(repo)
         binding?.addRoshtaPhotoId?.setOnClickListener {
-            it.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToRoshtaFragment())
-        }
+            (
+                    activity as EshfeenyActivity
+            ).replaceFragment(RoshtaFragment())
+            }
+
         medicineViewModel = ViewModelProvider(this,viewModelFactory)[MedicineViewModel::class.java]
         //call recycler view for امساك
         medicineViewModel.getMedicineForEmsaak()
@@ -64,5 +69,11 @@ class HomeFragment : Fragment() {
         binding?.medicineIdRv?.adapter = null
         binding?.medicineIdRv2?.adapter = null
         binding?.medicineIdRv3?.adapter = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as EshfeenyActivity).View_search_in_fragments(false)
+        (activity as EshfeenyActivity).bottomNavigationView(false)
     }
 }
