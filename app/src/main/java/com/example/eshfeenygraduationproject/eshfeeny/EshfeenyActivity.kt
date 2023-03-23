@@ -33,34 +33,50 @@ class EshfeenyActivity: AppCompatActivity() {
                 }
                 R.id.cartFragment -> {
                     replaceFragment(CartFragment())
-                    View_search_in_fragments()
+
+                    View_search_in_fragments(true)
                 }
                 R.id.gpsFragment -> {replaceFragment(GpsFragment())
-                    View_search_in_fragments()
+                    View_search_in_fragments(true)
                 }
                 R.id.favoriteFragment -> {replaceFragment(FavoriteFragment())
-                    View_search_in_fragments()}
+                    View_search_in_fragments(true)}
                 R.id.moreFragment -> {replaceFragment(MoreFragment())
-                    View_search_in_fragments()}
+                    View_search_in_fragments(true)}
                 else ->{
-
+                    View_search_in_fragments(true)
                 }
             }
             true
         }
 
     }
-    private fun replaceFragment(fragment: Fragment){
+    fun replaceFragment(fragment: Fragment){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.flFragment,fragment)
         fragmentTransaction.commit()
     }
-    private fun View_search_in_fragments(){
-        binding?.view1?.visibility = View.GONE
-        binding?.imageView5?.visibility = View.GONE
-        binding?.SearchId?.visibility = View.GONE
-        binding?.computerVesionImageViewId?.visibility = View.GONE
-    }
 
+    fun View_search_in_fragments(flag:Boolean){
+        if(flag) {
+            binding?.view1?.visibility = View.GONE
+            binding?.imageView5?.visibility = View.GONE
+            binding?.SearchId?.visibility = View.GONE
+            binding?.computerVesionImageViewId?.visibility = View.GONE
+        }
+        else{
+            binding?.view1?.visibility = View.VISIBLE
+            binding?.imageView5?.visibility = View.VISIBLE
+            binding?.SearchId?.visibility = View.VISIBLE
+            binding?.computerVesionImageViewId?.visibility = View.VISIBLE
+        }
+    }
+    fun bottomNavigationView(flag: Boolean){
+        if(flag)
+        binding?.bottomNavigationView?.visibility = View.GONE
+        else{
+            binding?.bottomNavigationView?.visibility = View.VISIBLE
+        }
+    }
 }
