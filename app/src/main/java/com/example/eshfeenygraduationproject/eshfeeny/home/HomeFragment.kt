@@ -8,9 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.data.repository.MedicineRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapter
+import com.example.eshfeenygraduationproject.eshfeeny.roshta.RoshtaFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModelFactory
 
@@ -30,7 +32,9 @@ class HomeFragment : Fragment() {
 
         val repo = MedicineRepoImpl()
         val viewModelFactory = MedicineViewModelFactory(repo)
-
+        binding?.addRoshtaPhotoId?.setOnClickListener {
+            it.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToRoshtaFragment())
+        }
         medicineViewModel = ViewModelProvider(this,viewModelFactory)[MedicineViewModel::class.java]
         //call recycler view for امساك
         medicineViewModel.getMedicineForEmsaak()
