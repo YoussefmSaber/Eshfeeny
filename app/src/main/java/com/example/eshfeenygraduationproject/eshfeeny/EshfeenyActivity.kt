@@ -33,6 +33,7 @@ class EshfeenyActivity: AppCompatActivity() {
                 }
                 R.id.cartFragment -> {
                     replaceFragment(CartFragment())
+
                     View_search_in_fragments(true)
                 }
                 R.id.gpsFragment -> {replaceFragment(GpsFragment())
@@ -56,6 +57,7 @@ class EshfeenyActivity: AppCompatActivity() {
         fragmentTransaction.replace(R.id.flFragment,fragment)
         fragmentTransaction.commit()
     }
+
     fun View_search_in_fragments(flag:Boolean){
         if(flag) {
             binding?.view1?.visibility = View.GONE
@@ -77,6 +79,4 @@ class EshfeenyActivity: AppCompatActivity() {
             binding?.bottomNavigationView?.visibility = View.VISIBLE
         }
     }
-
-
 }
