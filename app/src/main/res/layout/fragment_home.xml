@@ -54,7 +54,6 @@
                 android:id="@+id/add_roshta_photo_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:src="@drawable/add_roshtaaa"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
