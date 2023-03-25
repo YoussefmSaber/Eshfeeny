@@ -3,6 +3,7 @@ package com.example.eshfeenygraduationproject.eshfeeny.medicine
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -31,6 +32,35 @@ class MedicineAdapter() : ListAdapter<CategoryResponseItem, MedicineAdapter.View
             itemBinding.priceMedicineIdTv.text = "${category.price.toInt().toString()} جنيه  "
             // TODO: Change the Image to be the index [0] image[0]
             Glide.with(itemBinding.root.context).load(category.images[0]).into(itemBinding.imgVMedicineId)
+            var cnt = 1
+            itemBinding.btnAddToCartId.setOnClickListener {
+                itemBinding.btnAddToCartId.visibility = View.GONE
+                itemBinding.increaseBtnId.visibility = View.VISIBLE
+                itemBinding.decreaseBtnId.visibility = View.VISIBLE
+                itemBinding.btnCntAddItemId.visibility = View.VISIBLE
+                itemBinding.btnCntAddItemId.text = "1"
+                cnt = 1
+            }
+            itemBinding.increaseBtnId.setOnClickListener {
+                cnt++
+                itemBinding.btnCntAddItemId.text = cnt.toString()
+            }
+            itemBinding.decreaseBtnId.setOnClickListener {
+                    cnt--
+                if(cnt>0)
+                    itemBinding.btnCntAddItemId.text = cnt.toString()
+                else {
+                    itemBinding.btnCntAddItemId.text = "1"
+                    cnt = 1
+                }
+
+            }
+            itemBinding.btnCntAddItemId.setOnClickListener {
+                itemBinding.btnAddToCartId.visibility = View.VISIBLE
+                itemBinding.increaseBtnId.visibility = View.GONE
+                itemBinding.decreaseBtnId.visibility = View.GONE
+                itemBinding.btnCntAddItemId.visibility = View.GONE
+            }
             Log.i("ViewHolder sh8aal",toString())
         }
     }
