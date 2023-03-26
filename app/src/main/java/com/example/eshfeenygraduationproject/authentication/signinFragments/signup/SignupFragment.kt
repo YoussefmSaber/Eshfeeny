@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.data.repository.UserRepoImpl
+import com.example.domain.entity.SendToCheckEmail
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModelFactory
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
@@ -38,7 +39,8 @@ class SignupFragment : Fragment() {
                 binding?.confirmPassSignup?.error = getString(R.string.passwordNotMatch)
 
             } else {
-                viewModel.checkEmailExist(email)
+                val sendEmail = SendToCheckEmail(email)
+                viewModel.checkEmailExist(sendEmail)
                 viewModel.emailFound.observe(viewLifecycleOwner){ emailFound ->
                     if (emailFound.body() != null) {
                         binding?.emailSignupLayout?.error = getString(R.string.emailAlreadyUsed)

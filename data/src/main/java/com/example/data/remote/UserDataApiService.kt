@@ -16,7 +16,7 @@ interface UserDataApiService {
     @POST("users/checkEmail")
     suspend fun checkEmail(
         @Body
-        email: String
+        email: SendToCheckEmail
     ): Response<CheckEmailResponse>
 
     // check if the user email and password matches the ones in the db
@@ -47,6 +47,6 @@ interface UserDataApiService {
         @Path("id")
         id: String,
         @Body
-        newPassword: String
+        newPassword: ChangePassword
     ): PasswordChangeResponse
 }

@@ -16,7 +16,7 @@ class UserRepoImpl {
 
     // used when the user forget his password
     suspend fun checkEmail(
-        email: String
+        email: SendToCheckEmail
     ): Response<CheckEmailResponse> {
         val response = UserRetrofitInstance.userApi.checkEmail(email)
         Log.i("Email found: ", response.body().toString())
@@ -62,7 +62,7 @@ class UserRepoImpl {
 
     suspend fun updateUserPassword(
         id: String,
-        newPassword: String
+        newPassword: ChangePassword
     ): PasswordChangeResponse =
         UserRetrofitInstance.userApi.updateUserPassword(id, newPassword)
 }

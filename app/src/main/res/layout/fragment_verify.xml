@@ -7,9 +7,6 @@
     android:orientation="vertical"
     tools:context=".authentication.signinFragments.signup.VerifyFragment">
 
-    <!-- TODO: Create this Fragment -->
-
-
     <TextView
         android:id="@+id/welcomeSignUp"
         android:layout_width="wrap_content"
@@ -138,6 +135,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="16sp"
         android:layout_marginBottom="16dp"
+        android:stateListAnimator="@null"
+        android:elevation="0dp"
         android:fontFamily="@font/cairo_medium"
         android:padding="8sp"
         android:text="@string/checkOtp"
@@ -153,6 +152,7 @@
         android:id="@+id/resendOtpButton"
         style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="match_parent"
+        android:stateListAnimator="@null"
         android:layout_height="wrap_content"
         android:layout_marginStart="16sp"
         android:layout_marginEnd="16sp"

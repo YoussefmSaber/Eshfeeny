@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.data.repository.UserRepoImpl
+import com.example.domain.entity.SendToCheckEmail
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModelFactory
@@ -39,7 +40,8 @@ class VerifyCodeLoginFragment : Fragment() {
             viewModel.areBothSame.observe(viewLifecycleOwner) {
                 it?.let { same ->
                     if (same) {
-                        viewModel.checkEmailExist(args.email)
+                        val checkEmail = SendToCheckEmail(args.email)
+                        viewModel.checkEmailExist(checkEmail)
                         viewModel.emailFound.observe(viewLifecycleOwner) { response ->
                             if (response.body() != null) {
 
@@ -55,9 +57,9 @@ class VerifyCodeLoginFragment : Fragment() {
             }
         }
 
-
-
-
+        binding?.resendOtpButton?.setOnClickListener {
+            viewModel.verifyCode(args.email)
+        }
         return binding?.root
     }
 

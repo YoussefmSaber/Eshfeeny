@@ -46,7 +46,7 @@ class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
         }
     }
 
-    fun checkEmailExist(email: String) {
+    fun checkEmailExist(email: SendToCheckEmail) {
         viewModelScope.launch {
             val response = repository.checkEmail(email)
             response?.let {
@@ -83,7 +83,7 @@ class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
 
     fun updateUserPassword(
         id: String,
-        newPassword: String
+        newPassword: ChangePassword
     ) {
         viewModelScope.launch {
             val response = repository.updateUserPassword(id, newPassword)
