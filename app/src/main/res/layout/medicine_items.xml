@@ -6,11 +6,12 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:background="#CCE6FF"
-    android:elevation="4dp"
+    android:elevation="0dp"
     android:layoutDirection="rtl"
     app:cardCornerRadius="10sp"
     app:strokeColor="#F7FFFFFF"
-    app:strokeWidth="1dp">
+    app:strokeWidth="1dp"
+    android:stateListAnimator="@null">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout"
@@ -80,6 +81,7 @@
             android:layout_width="136dp"
             android:layout_height="46dp"
             android:backgroundTint="#F99D1C"
+            android:stateListAnimator="@null"
             android:text="أضف الى العربة"
             android:textColor="@color/white"
             android:visibility="visible"
@@ -92,10 +94,9 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/increase_btn_id"
             android:layout_width="30dp"
-            android:layout_height="35dp"
+            android:layout_height="37dp"
             android:layout_marginStart="6dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="14dp"
             android:backgroundTint="#FFE5CC"
             android:elevation="0dp"
             android:text="Button"
@@ -109,14 +110,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/price_medicine_id_tv"
             app:layout_constraintVertical_bias="0.0"
+            android:stateListAnimator="@null"
             tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/decrease_btn_id"
             android:layout_width="30dp"
-            android:layout_height="35dp"
+            android:layout_height="37dp"
             android:layout_marginEnd="6dp"
-            android:layout_marginBottom="14dp"
             android:backgroundTint="#E5E5E5"
             android:visibility="gone"
             app:cornerRadius="5dp"
@@ -127,17 +128,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/increase_btn_id"
+            android:stateListAnimator="@null"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_cnt_add_item_id"
             android:layout_width="70dp"
-            android:layout_height="36dp"
+            android:layout_height="38dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:backgroundTint="#cce6ff"
             android:elevation="0dp"
+            android:shadowColor="#FFFFFF"
+            android:stateListAnimator="@null"
             android:text="1"
             android:textAlignment="center"
             android:textColor="#0583F2"
