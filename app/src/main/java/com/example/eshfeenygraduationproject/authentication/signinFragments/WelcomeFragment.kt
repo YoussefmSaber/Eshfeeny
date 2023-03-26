@@ -25,9 +25,6 @@ class WelcomeFragment : Fragment() {
         binding?.signupButton?.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.Welcome2Signup)
         }
-        binding?.asGuest?.setOnClickListener {
-            TODO("To be implemented when making the login functionality")
-        }
 
         return binding?.root
     }
