@@ -4,28 +4,84 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:backgroundTint="#FFFFFF">
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="wrap_content"
+        android:layout_height="130sp"
+        android:background="#FFFFFF"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/logo_eshfeeny"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SearchView
+        android:id="@+id/SearchId"
+        android:layout_width="356dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/custom_edit1"
+        android:layoutDirection="rtl"
+        android:queryHint="ما الذى تبحث عنه ؟"
+        android:searchIcon="@drawable/__icon__search_"
+        android:textDirection="rtl"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:queryBackground="@null" />
+
+    <ImageView
+        android:id="@+id/computer_vesion_imageView_id"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="70dp"
+        android:clickable="true"
+        android:src="@drawable/camera_logo"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <FrameLayout
         android:id="@+id/flFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/appNavHostFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view1"
         tools:ignore="NotSibling">
 
         <fragment
             android:id="@+id/appNavHostFragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="663dp"
+            android:layout_height="741dp"
             app:defaultNavHost="true"
             app:navGraph="@navigation/application_navigation" />
 
     </FrameLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="421dp"
@@ -38,8 +94,9 @@
         android:layoutDirection="rtl"
         android:paddingStart="7dp"
         android:paddingEnd="7dp"
-        app:backgroundTint="#FDFDFF"
+        android:visibility="visible"
 
+        app:backgroundTint="#FFFFFF"
         app:circularflow_radiusInDP="20dp"
         app:compatShadowEnabled="true"
         app:elevation="0dp"

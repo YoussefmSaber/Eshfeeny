@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clear_photo_btn_id"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/textRoshta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8sp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="الروشتة"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/addRoshtaPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="128sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:contentDescription="TODO"
+        android:focusable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textRoshta"
+        app:srcCompat="@drawable/add3" />
+
+    <View
+        android:id="@+id/divider11"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="#4D4D4D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.737"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textRoshta" />
+
+    <View
+        android:id="@+id/divider12"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="#4D4D4D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.737"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addRoshtaPhoto" />
+
+
+    <View
+        android:id="@+id/divider13"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="27dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="#4D4D4D"
+        app:layout_constraintStart_toEndOf="@+id/txtAww"
+        app:layout_constraintTop_toBottomOf="@+id/divider12" />
+
+    <View
+        android:id="@+id/divider14"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+
+        android:layout_marginTop="27dp"
+
+        android:layout_marginEnd="3dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="#4D4D4D"
+        app:layout_constraintEnd_toStartOf="@+id/txtAww"
+        app:layout_constraintTop_toBottomOf="@+id/divider12" />
+
+    <TextView
+        android:id="@+id/txtAww"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="أو"
+        android:textColor="#1F1F1F"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider12" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAww"
+        app:srcCompat="@drawable/pen" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="اكتب طلبك "
+        android:textColor="#1F1F1F"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="اكتب هنا اسم الدواء او المنتج الذى تريد طلبه من الصيدلية "
+        android:textColor="#868686"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TxtFieldTakeMid"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtFieldTakeMid"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="361dp"
+            android:layout_height="119dp"
+            android:background="@drawable/custom_edit5"
+            android:fontFamily="@font/cairo_semibold"
+            android:hint="مثال : علبة بنادول و بامبرز مقاس 4 "
+            android:textColor="#868686" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNext"
+        android:layout_width="351sp"
+        android:layout_height="59sp"
+        android:layout_marginStart="164sp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="164sp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#0583F2"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="التالي"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:cornerRadius="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TxtFieldTakeMid"
+        app:layout_constraintVertical_bias="0.483" />
+
+    <TextView
+        android:id="@+id/txtChoosePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="الصورة المختارة"
+        android:textColor="#000000"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textRoshta" />
+
+    <ImageView
+        android:id="@+id/takephoto"
+        android:layout_width="147dp"
+        android:layout_height="141dp"
+        android:layout_marginTop="35dp"
+        android:contentDescription="TODO"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textRoshta"
+        app:srcCompat="@android:drawable/divider_horizontal_dark"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/exit_btn_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="17dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/exit_logo"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <ImageView
+        android:id="@+id/clear_btn_id"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="22dp"
+        android:clickable="true"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtChoosePhoto"
+        app:srcCompat="@drawable/clear_logo"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
