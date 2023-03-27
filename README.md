@@ -1,4 +1,4 @@
-<h1>Eshfeeny Android App</h1>
+<h1>Eshfeeny Android Application</h1>
 	<p>The goal of this application is to find the nearest pharmacy to the user that has medicines, skin care products, and related items. It also includes an alarm to remind the user of treatment dates, an index of body mass and basic metabolic rate, and a search function for medicine through prescription or image recognition. The app also utilizes artificial intelligence to diagnose patients and recommend necessary medicines.</p>
 	<h2>Technologies Used</h2>
 	<ul>
