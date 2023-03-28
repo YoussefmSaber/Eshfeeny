@@ -13,6 +13,9 @@
         <action
             android:id="@+id/AlarmFragment2SetAlarm"
             app:destination="@id/setAlarmFragment" />
+        <action
+            android:id="@+id/alarmFragment2MoreFragment"
+            app:destination="@id/moreFragment" />
     </fragment>
     <fragment
         android:id="@+id/setAlarmFragment"
@@ -37,7 +40,11 @@
         android:id="@+id/moreFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.more.MoreFragment"
         android:label="fragment_more"
-        tools:layout="@layout/fragment_more" />
+        tools:layout="@layout/fragment_more" >
+        <action
+            android:id="@+id/moreFragment2AlarmFragment"
+            app:destination="@id/alarmFragment" />
+    </fragment>
     <fragment
         android:id="@+id/gpsFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.gps.GpsFragment"
