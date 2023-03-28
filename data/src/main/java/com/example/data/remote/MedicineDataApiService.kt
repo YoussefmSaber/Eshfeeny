@@ -12,6 +12,7 @@ interface MedicineDataApiService {
 
     @GET("المغص")
     suspend fun getMedicineFromM8aas(): CategoryResponse
+
     @GET("الحموضة و سوء الهضم")
     suspend fun getMedicineFrom7modaAndSo2Hadm(): CategoryResponse
     @GET("الفيتامينات و المكملات الغذائية")
