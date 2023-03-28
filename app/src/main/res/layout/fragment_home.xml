@@ -7,33 +7,25 @@
     android:background="#F7FFFFFF"
     tools:context=".eshfeeny.home.HomeFragment">
 
-
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-       >
+        app:layout_constraintRight_toRightOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/company_id_phorto_home"
-                android:layout_width="419sp"
+                android:layout_width="match_parent"
                 android:layout_height="150sp"
                 android:layout_marginTop="180sp"
-                android:background="#FFFFFF"
-                android:backgroundTint="#FFFFFF"
-                android:clickable="true"
                 android:src="@drawable/insurance_company_logo_home"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -45,7 +37,7 @@
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/cairo_semibold"
                 android:text="سهلنا الطلب عليك"
-                android:textColor="#1F1F1F"
+                android:textColor="@color/text_main"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/company_id_phorto_home" />
@@ -54,18 +46,18 @@
                 android:id="@+id/add_roshta_photo_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:src="@drawable/add_roshtaaa"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView9"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <ImageView
                 android:id="@+id/imageView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
                 android:src="@drawable/search_for_medicine_home"
                 app:layout_constraintEnd_toStartOf="@+id/add_roshta_photo_id"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <TextView
@@ -155,7 +147,6 @@
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
-                android:clickable="true"
                 android:src="@drawable/show_all_icon"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView8"
@@ -168,14 +159,13 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="8dp"
+                android:layoutDirection="rtl"
                 android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView7"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:layoutDirection="rtl"
-                />
+                app:layout_constraintTop_toBottomOf="@id/textView7" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -195,11 +185,11 @@
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="7dp"
-                android:clickable="true"
                 android:src="@drawable/show_all_icon"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv"
                 tools:ignore="SpeakableTextPresentCheck" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/medicine_id_rv2"
                 android:layout_width="match_parent"
@@ -207,13 +197,14 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="8dp"
+                android:layoutDirection="rtl"
                 android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView8"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:layoutDirection="rtl"/>
+                app:layout_constraintTop_toBottomOf="@id/textView8" />
+
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
@@ -232,11 +223,11 @@
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="7dp"
-                android:clickable="true"
                 android:src="@drawable/show_all_icon"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv2"
                 tools:ignore="SpeakableTextPresentCheck" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/medicine_id_rv3"
                 android:layout_width="match_parent"
@@ -244,20 +235,21 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="8dp"
+                android:layoutDirection="rtl"
                 android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView9"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:layoutDirection="rtl"/>
+                app:layout_constraintTop_toBottomOf="@id/textView9" />
+
             <TextView
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/cairo_semibold"
-                android:text = "تصفح الماركات"
+                android:text="تصفح الماركات"
                 android:textColor="#1F1F1F"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView6"
@@ -269,7 +261,6 @@
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="7dp"
-                android:clickable="true"
                 android:src="@drawable/show_all_icon"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv3"
@@ -301,8 +292,7 @@
                         android:padding="6dp"
                         app:cardCornerRadius="10sp"
                         app:strokeColor="#e5e5e5"
-                        app:strokeWidth="0.4sp"
-                        android:clickable="true">
+                        app:strokeWidth="0.4sp">
 
                         <ImageView
                             android:layout_width="99sp"
@@ -321,13 +311,13 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:backgroundTint="#F7FFFFFF"
+                        android:clickable="true"
                         android:elevation="0dp"
                         android:layoutDirection="rtl"
                         android:padding="6dp"
                         app:cardCornerRadius="10sp"
                         app:strokeColor="#e5e5e5"
-                        app:strokeWidth="0.4sp"
-                        android:clickable="true">
+                        app:strokeWidth="0.4sp">
 
                         <ImageView
                             android:layout_width="99sp"
@@ -342,7 +332,6 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/laRoche_btn_id"
-                        android:clickable="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -374,7 +363,6 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/johnsons_btn_id"
-                        android:clickable="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -399,7 +387,6 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/garnier_btn_id"
-                        android:clickable="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -424,7 +411,6 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/Axe_btn_id"
-                        android:clickable="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -449,6 +435,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <View
                 android:id="@+id/view"
                 android:layout_width="wrap_content"
@@ -458,6 +445,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
