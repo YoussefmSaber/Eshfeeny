@@ -22,4 +22,9 @@
     <style name="MyBottomSheetDialog" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bottom_sheet</item>
     </style>
+
+    <style name="CustomBottomNavigationTextAppearance" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:fontFamily">@font/cairo_regular</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>
