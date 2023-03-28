@@ -30,7 +30,7 @@ class Search_for_medicinesFragment : Fragment() {
         val repo = MedicineRepoImpl()
         val viewModelFactory = MedicineViewModelFactory(repo)
         medicineViewModel = ViewModelProvider(this, viewModelFactory)[MedicineViewModel::class.java]
-        medicineViewModel.getMedicineForEmsaak()
+        medicineViewModel.getMedicineForVetamenAndMa2kolat()
         medicineViewModel.categories_Emsaak.observe(viewLifecycleOwner) {
             val adapter = MedicineAdapter()
             binding?.medicinesRvId?.layoutManager =
@@ -56,9 +56,125 @@ class Search_for_medicinesFragment : Fragment() {
                 val adapter = MedicineAdapter()
                 binding?.medicinesRvId?.adapter = adapter
                 adapter.submitList(it)
-                Log.i("Home Frgament sh8aal for ko7aa", it.toString())
+                Log.i("Home Fragment sh8aal for ko7aa", it.toString())
             }
         }
+        //دي مظبوطة بالداتا بتاعتها
+        binding?.chip3?.setOnClickListener {
+            medicineViewModel.getMedicineForMosknaat()
+            medicineViewModel.categories_Mosknaat.observe(viewLifecycleOwner) {
+                val adapter = MedicineAdapter()
+                binding?.medicinesRvId?.adapter = adapter
+                adapter.submitList(it)
+                Log.i("Home Fragment sh8aal for ko7aa", it.toString())
+            }
+        }
+        binding?.chip4?.setOnClickListener {
+            medicineViewModel.getMedicineForModat7aywee()
+            medicineViewModel.categories_Modat7aywee.observe(viewLifecycleOwner) {
+                val adapter = MedicineAdapter()
+                binding?.medicinesRvId?.adapter = adapter
+                adapter.submitList(it)
+                Log.i("Home Fragment sh8aal for ko7aa", it.toString())
+            }
+        }
+        binding?.chip5?.setOnClickListener {
+            medicineViewModel.getMedicineForVetamenAndMa2kolat()
+            medicineViewModel.categories_VetamenAndMa2kolat.observe(viewLifecycleOwner) {
+                val adapter = MedicineAdapter()
+                binding?.medicinesRvId?.adapter = adapter
+                adapter.submitList(it)
+                Log.i("Home Fragment sh8aal for ko7aa", it.toString())
+            }
+        }
+        //دي مظبوطة بالداتا بتاعتها
+
+        binding?.chip6?.setOnClickListener {
+            medicineViewModel.getMedicineFor7modaAndSo2Hadm()
+            medicineViewModel.categories_7modaAndSo2Hadm.observe(viewLifecycleOwner) {
+                val adapter = MedicineAdapter()
+                binding?.medicinesRvId?.adapter = adapter
+                adapter.submitList(it)
+                Log.i("Home Fragment sh8aal for ko7aa", it.toString())
+            }
+        }
+        //دي مظبوطة بالداتا بتاعتها
+
+        binding?.chip7?.setOnClickListener {
+            medicineViewModel.getMedicineForKo7aa()
+            medicineViewModel.categories_Ko7aa.observe(viewLifecycleOwner) {
+                val adapter = MedicineAdapter()
+                binding?.medicinesRvId?.adapter = adapter
+                adapter.submitList(it)
+                Log.i("Home Fragment sh8aal for ko7aa", it.toString())
+            }
+        }
+        //دي مظبوطة بالداتا بتاعتها
+
+        binding?.chip8?.setOnClickListener {
+            medicineViewModel.getMedicineForM8aas()
+            medicineViewModel.categories_M8aas.observe(viewLifecycleOwner) {
+                val adapter = MedicineAdapter()
+                binding?.medicinesRvId?.adapter = adapter
+                adapter.submitList(it)
+                Log.i("Home Fragment sh8aal for ko7aa", it.toString())
+            }
+        }
+        //دي مظبوطة بالداتا بتاعتها
+
+        binding?.chip9?.setOnClickListener {
+            medicineViewModel.getMedicineForEmsaak()
+            medicineViewModel.categories_Emsaak.observe(viewLifecycleOwner) {
+                val adapter = MedicineAdapter()
+                binding?.medicinesRvId?.adapter = adapter
+                adapter.submitList(it)
+                Log.i("Home Fragment sh8aal for ko7aa", it.toString())
+            }
+        }
+        binding?.chip10?.setOnClickListener {
+            medicineViewModel.getMedicineForKo7aa()
+            medicineViewModel.categories_Ko7aa.observe(viewLifecycleOwner) {
+                val adapter = MedicineAdapter()
+                binding?.medicinesRvId?.adapter = adapter
+                adapter.submitList(it)
+                Log.i("Home Fragment sh8aal for ko7aa", it.toString())
+            }
+        }
+        //دي مظبوطة بالداتا بتاعتها
+
+        binding?.chip11?.setOnClickListener {
+            medicineViewModel.getMedicineForT2wyaaElmna3a()
+            medicineViewModel.categories_T2wyaaElmna3a.observe(viewLifecycleOwner) {
+                val adapter = MedicineAdapter()
+                binding?.medicinesRvId?.adapter = adapter
+                adapter.submitList(it)
+                Log.i("Home Fragment sh8aal for ko7aa", it.toString())
+            }
+        }
+        //دي مظبوطة بالداتا بتاعتها
+
+        binding?.chip12?.setOnClickListener {
+            medicineViewModel.getMedicineForModat7aywee()
+            medicineViewModel.categories_Modat7aywee.observe(viewLifecycleOwner) {
+                val adapter = MedicineAdapter()
+                binding?.medicinesRvId?.adapter = adapter
+                adapter.submitList(it)
+                Log.i("Home Fragment sh8aal for ko7aa", it.toString())
+            }
+        }
+        //دي مظبوطة بالداتا بتاعتها
+
+        binding?.chip13?.setOnClickListener {
+            medicineViewModel.getMedicineForVetamenAndMa2kolat()
+            medicineViewModel.categories_VetamenAndMa2kolat.observe(viewLifecycleOwner) {
+                val adapter = MedicineAdapter()
+                binding?.medicinesRvId?.adapter = adapter
+                adapter.submitList(it)
+                Log.i("Home Fragment sh8aal for ko7aa", it.toString())
+            }
+        }
+
+
 
 
         // Inflate the layout for this fragment
