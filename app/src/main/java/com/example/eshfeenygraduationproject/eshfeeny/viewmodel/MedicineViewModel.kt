@@ -63,5 +63,66 @@ class MedicineViewModel(
             }
         }
     }
+    fun getMedicineFor7modaAndSo2Hadm() {
+        viewModelScope.launch {
+            try {
+                val response = repoImpl.getMedicineFromRemoteFor7modaAndSo2Hadm()
+                _categories_M8aas.value = response
+                Log.i("mvvm sh8aal", toString())
+            } catch (e: Exception) {
+                // handle error
+                Log.e(TAG, "Error fetching urls M8ass", e)
+            }
+        }
+    }
+    fun getMedicineForVetamenAndMa2kolat() {
+        viewModelScope.launch {
+            try {
+                val response = repoImpl.getMedicineFromRemoteForVetamenAndMa2kolat()
+                _categories_M8aas.value = response
+                Log.i("mvvm sh8aal", toString())
+            } catch (e: Exception) {
+                // handle error
+                Log.e(TAG, "Error fetching urls M8ass", e)
+            }
+        }
+    }
+    fun getMedicineForT2wyaaElmna3a() {
+        viewModelScope.launch {
+            try {
+                val response = repoImpl.getMedicineFromRemoteForT2wyaaElmna3a()
+                _categories_M8aas.value = response
+                Log.i("mvvm sh8aal", toString())
+            } catch (e: Exception) {
+                // handle error
+                Log.e(TAG, "Error fetching urls M8ass", e)
+            }
+        }
+    }
+    fun getMedicineForMosknaat() {
+        viewModelScope.launch {
+            try {
+                val response = repoImpl.getMedicineFromRemoteForMosknaat()
+                _categories_M8aas.value = response
+                Log.i("mvvm sh8aal", toString())
+            } catch (e: Exception) {
+                // handle error
+                Log.e(TAG, "Error fetching urls M8ass", e)
+            }
+        }
+    }
+    fun getMedicineForModat7aywee() {
+        viewModelScope.launch {
+            try {
+                val response = repoImpl.getMedicineFromRemoteForM8aas()
+                _categories_M8aas.value = response
+                Log.i("mvvm sh8aal", toString())
+            } catch (e: Exception) {
+                // handle error
+                Log.e(TAG, "Error fetching urls M8ass", e)
+            }
+        }
+    }
+
 
 }

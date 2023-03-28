@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".eshfeeny.search_for_medicines.Search_for_medicinesFragment"
     android:layoutDirection="rtl"
-    android:background="#F7FFFFFF">
+    android:backgroundTint="#fdfdff"
+    android:orientation="vertical">
 
     <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -21,168 +22,188 @@
             android:orientation="horizontal">
 
             <com.google.android.material.chip.ChipGroup
+                android:id="@+id/Group_Chips_id"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:singleSelection="true">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip1"
+                    style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:text="كل الأدوية"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/CustomChipStyle"
                     app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"/>
+                    app:chipStrokeWidth="1sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip2"
+                    style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="البرد و السعال"
-                    app:layout_constraintStart_toEndOf="@+id/chip1"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/CustomChipStyle"
                     app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"/>
+                    app:chipStrokeWidth="1sp"
+                    app:layout_constraintStart_toEndOf="@+id/chip1"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip3"
+                    style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="مسكنات"
-                    app:layout_constraintStart_toEndOf="@+id/chip2"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/CustomChipStyle"
                     app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"/>
+                    app:chipStrokeWidth="1sp"
+                    app:layout_constraintStart_toEndOf="@+id/chip2"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip4"
+                    style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="الحروق البسيطة"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/CustomChipStyle"
                     app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"/>
+                    app:chipStrokeWidth="1sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip5"
+                    style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="الحماية من الفيروسات"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/CustomChipStyle"
                     app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"/>
+                    app:chipStrokeWidth="1sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip6"
+                    style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="الحموضة و سوء الهضم"
+                    app:chipStrokeColor="@color/chips_stroke_color"
+                    app:chipStrokeWidth="1sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="TouchTargetSizeCheck"
-                    style="@style/CustomChipStyle"
-                    app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"/>
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip8"
+                    style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="الكحة"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/CustomChipStyle"
                     app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"/>
+                    app:chipStrokeWidth="1sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip9"
+                    style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="المغص"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/CustomChipStyle"
                     app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"/>
+                    app:chipStrokeWidth="1sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip10"
+                    style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="امساك"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/CustomChipStyle"
                     app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"/>
+                    app:chipStrokeWidth="1sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip12"
+                    style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="مسكنات الالام  الموضعية"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/CustomChipStyle"
                     app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"/>
+                    app:chipStrokeWidth="1sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip11"
+                    style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="تقوية المناعة"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/CustomChipStyle"
                     app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"/>
+                    app:chipStrokeWidth="1sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip13"
+                    style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="مضادات حيوية موضعية"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/CustomChipStyle"
                     app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"/>
+                    app:chipStrokeWidth="1sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip7"
+                    style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="الفيتامينات و المكملات الغذائية"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/CustomChipStyle"
                     app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"/>
+                    app:chipStrokeWidth="1sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </com.google.android.material.chip.ChipGroup>
 
         </LinearLayout>
     </HorizontalScrollView>
 
-</LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/medicines_rv_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="90dp"
+        android:layoutDirection="rtl"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/horizontalScrollView"
+        app:layout_constraintTop_toBottomOf="@id/chip1"
+        tools:ignore="NotSibling">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
