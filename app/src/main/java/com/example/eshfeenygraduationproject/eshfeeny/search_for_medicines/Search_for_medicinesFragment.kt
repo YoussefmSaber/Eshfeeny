@@ -30,14 +30,14 @@ class Search_for_medicinesFragment : Fragment() {
         val repo = MedicineRepoImpl()
         val viewModelFactory = MedicineViewModelFactory(repo)
         medicineViewModel = ViewModelProvider(this, viewModelFactory)[MedicineViewModel::class.java]
-        medicineViewModel.getMedicineForVetamenAndMa2kolat()
-        medicineViewModel.categories_Emsaak.observe(viewLifecycleOwner) {
+        medicineViewModel.getMedicineForMosknaat()
+        medicineViewModel.categories_Mosknaat.observe(viewLifecycleOwner) {
             val adapter = MedicineAdapter()
             binding?.medicinesRvId?.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             binding?.medicinesRvId?.adapter = adapter
             adapter.submitList(it)
-            Log.i("Emsaak in search medicine fragment", it.toString())
+            Log.i("Home Fragment sh8aal for ko7aa", it.toString())
         }
         binding?.chip1?.setOnClickListener {
             medicineViewModel.getMedicineForEmsaak()
