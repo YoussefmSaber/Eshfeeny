@@ -88,4 +88,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="chooseTime">إختار</string>
     <string name="more">المزيد</string>
+    <string name="remember_medicine">تذكير بالأدوية</string>
+    <string name="bmi_bmr_calculate">حساب معدل كتله الجسم أو معدل الحرق</string>
+    <string name="myAcc">حسابي</string>
+    <string name="shareApp">مشاركه التطبيق</string>
+    <string name="signout">تسجيل الخروج</string>
 </resources>
