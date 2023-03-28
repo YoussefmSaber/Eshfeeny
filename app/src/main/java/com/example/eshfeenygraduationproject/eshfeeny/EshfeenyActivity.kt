@@ -12,6 +12,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.favorite.FavoriteFragment
 import com.example.eshfeenygraduationproject.eshfeeny.gps.GpsFragment
 import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragment
 import com.example.eshfeenygraduationproject.eshfeeny.more.MoreFragment
+import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.Search_for_medicinesFragment
 
 class EshfeenyActivity: AppCompatActivity() {
     private var binding:ActivityEshfeenyBinding? = null

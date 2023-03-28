@@ -22,6 +22,10 @@
     <color name="orange_main">#F89D1C</color>
     <color name="light_blue1">#0597F2</color>
     <color name="light_grey">#4D4D4D</color>
+    <color name="chips_color">#F7F7F7</color>
+    <color name="chips_color2">#f5fafe</color>
+    <color name="chips_text1">#676767</color>
     <color name="app_background">#FDFDFF</color>
     <color name="text_color">#1F1F1F</color>
+
 </resources>
