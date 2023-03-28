@@ -5,7 +5,7 @@ data class CheckEmailResponse(
     val age: String,
     val email: String,
     val gender: String,
+    val insuranceCards: List<InsuranceCardX>,
     val name: String,
-    val password: String,
     val phoneNumber: String
 )
