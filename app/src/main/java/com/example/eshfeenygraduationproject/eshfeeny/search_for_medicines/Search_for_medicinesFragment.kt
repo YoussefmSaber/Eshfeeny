@@ -184,5 +184,6 @@ class Search_for_medicinesFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as EshfeenyActivity).bottomNavigationView(true)
+        (activity as EshfeenyActivity).View_search_in_fragments(true)
     }
 }
