@@ -24,4 +24,5 @@
     <color name="light_grey">#4D4D4D</color>
     <color name="chips_color">#F7F7F7</color>
     <color name="chips_color2">#f5fafe</color>
+    <color name="chips_text1">#676767</color>
 </resources>

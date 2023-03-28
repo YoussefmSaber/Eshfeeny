@@ -22,7 +22,7 @@ class EshfeenyActivity: AppCompatActivity() {
         // To change the splash screen theme to the default theme for the application
         setTheme(R.style.Theme_EshfeenyGraduationProject)
         setContentView(binding?.root)
-        replaceFragment(Search_for_medicinesFragment())
+        replaceFragment(HomeFragment())
         binding?.bottomNavigationView?.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.homeFragment -> {
