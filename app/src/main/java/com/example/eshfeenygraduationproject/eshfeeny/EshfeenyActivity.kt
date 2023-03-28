@@ -12,6 +12,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.favorite.FavoriteFragment
 import com.example.eshfeenygraduationproject.eshfeeny.gps.GpsFragment
 import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragment
 import com.example.eshfeenygraduationproject.eshfeeny.more.MoreFragment
+import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.Search_for_medicinesFragment
 
 class EshfeenyActivity: AppCompatActivity() {
     private var binding:ActivityEshfeenyBinding? = null
@@ -21,7 +22,7 @@ class EshfeenyActivity: AppCompatActivity() {
         // To change the splash screen theme to the default theme for the application
         setTheme(R.style.Theme_EshfeenyGraduationProject)
         setContentView(binding?.root)
-        replaceFragment(HomeFragment())
+        replaceFragment(Search_for_medicinesFragment())
         binding?.bottomNavigationView?.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.homeFragment -> {

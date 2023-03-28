@@ -61,4 +61,9 @@
             android:id="@+id/action_roshtaFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/search_for_medicinesFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.Search_for_medicinesFragment"
+        android:label="fragment_search_for_medicines"
+        tools:layout="@layout/fragment_search_for_medicines" />
 </navigation>
