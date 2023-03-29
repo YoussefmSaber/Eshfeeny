@@ -82,6 +82,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
     fun verifyCode(email: String) {
         viewModelScope.launch {
             val response = repository.verifyCode(email)
+            Log.i("code", response.toString())
             _verifyNewAccountResponse.value = response
         }
     }

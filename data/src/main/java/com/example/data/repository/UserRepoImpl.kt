@@ -63,6 +63,7 @@ class UserRepoImpl(private val userDAO: UserDAO) {
     ): VerifyCodeResponse {
         return try {
             val code = UserRetrofitInstance.userApi.verifyCode(email)
+            Log.i("(UserRepoImpl)Verify code: ", email)
             Log.i("(UserRepoImpl)Verify code: ", code.toString())
             code
         } catch (e: Exception) {

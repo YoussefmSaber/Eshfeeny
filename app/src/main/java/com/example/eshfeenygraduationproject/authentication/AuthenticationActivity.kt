@@ -22,18 +22,21 @@ class AuthenticationActivity : AppCompatActivity() {
 
         viewModel.getUserData()
         viewModel.userData.observe(this) { userData ->
-            val userEmail = userData.email
-            val userPassword = userData.password
-            val userCredintals = VerifyLoginResponse(userEmail, userPassword)
-            viewModel.verifyLogin(userCredintals)
-            viewModel.verifyUserLogin.observe(this) {
-                if (it != null) {
-                    val intent = Intent(
-                        this,
-                        EshfeenyActivity::class.java
-                    )
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(intent)
+            if (userData != null) {
+                val userEmail = userData.email
+                val userPassword = userData.password
+                val userCredintals = VerifyLoginResponse(userEmail, userPassword)
+                viewModel.verifyLogin(userCredintals)
+                viewModel.verifyUserLogin.observe(this) {
+                    if (it != null) {
+                        val intent = Intent(
+                            this,
+                            EshfeenyActivity::class.java
+                        )
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(intent)
+                    }
                 }
             }
         }
