@@ -20,11 +20,12 @@
         android:icon="@drawable/vector"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/splashScreenTheme"
+        android:theme="@style/Theme.EshfeenyGraduationProject"
         tools:targetApi="31">
         <activity
             android:name=".authentication.AuthenticationActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,7 +34,6 @@
         </activity>
 
         <activity android:name=".eshfeeny.EshfeenyActivity" />
-
 
     </application>
 

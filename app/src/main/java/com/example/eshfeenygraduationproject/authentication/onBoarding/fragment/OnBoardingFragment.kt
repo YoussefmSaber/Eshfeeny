@@ -76,7 +76,6 @@ class OnBoardingFragment : Fragment() {
 
         //  Initializing the binding variable to the onBoardFragment
         binding = FragmentOnBoardingBinding.inflate(inflater)
-
         //  calling the setupviewPager function
         setupViewPager(binding!!)
 
