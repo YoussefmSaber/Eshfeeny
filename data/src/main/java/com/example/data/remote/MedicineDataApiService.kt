@@ -4,23 +4,26 @@ import com.example.domain.entity.CategoryResponse
 import retrofit2.http.GET
 
 interface MedicineDataApiService {
-    @GET("امساك")
+    @GET("products/category/امساك")
     suspend fun getMedicineFromEmsaak(): CategoryResponse
 
-    @GET("الكحة")
+    @GET("products/category/الكحة")
     suspend fun getMedicineFromKo7aa(): CategoryResponse
 
-    @GET("المغص")
+    @GET("products/category/المغص")
     suspend fun getMedicineFromM8aas(): CategoryResponse
-    @GET("الحموضة و سوء الهضم")
+
+    @GET("products/category/الحموضة%20و%20سوء%20الهضم")
     suspend fun getMedicineFrom7modaAndSo2Hadm(): CategoryResponse
-    @GET("الفيتامينات و المكملات الغذائية")
+    @GET("products/category/الفيتامينات%20و%20المكملات%20الغذائية")
     suspend fun getMedicineFromVetamenAndMa2kolat(): CategoryResponse
-    @GET("تقوية المناعة")
+    @GET("products/category/تقوية%20المناعة")
     suspend fun getMedicineFromT2wyaaElmna3a(): CategoryResponse
-    @GET("مسكنات")
+    @GET("products/category/مسكنات")
     suspend fun getMedicineFromMosknaat(): CategoryResponse
-    @GET("مضادات حيوية")
+    @GET("products/category/مضادات%20حيوية")
     suspend fun getMedicineFromModat7aywee(): CategoryResponse
 
+    @GET("products/type/الأدوية")
+    suspend fun getMedicineFromAllMedicines(): CategoryResponse
 }
