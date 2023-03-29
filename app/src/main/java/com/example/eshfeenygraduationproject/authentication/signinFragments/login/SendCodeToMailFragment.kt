@@ -7,11 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import com.example.data.repository.UserRepoImpl
-import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
-import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModelFactory
 import com.example.eshfeenygraduationproject.databinding.FragmentSendCodeToMailBinding
 
 class SendCodeToMailFragment : Fragment() {
@@ -26,9 +23,7 @@ class SendCodeToMailFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSendCodeToMailBinding.inflate(inflater)
 
-        val repository = UserRepoImpl()
-        val viewModelFactory = SharedViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory)[SharedViewModel::class.java]
+        viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
         binding?.sendEmailBtn?.setOnClickListener {
             val action =

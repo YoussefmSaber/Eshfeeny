@@ -1,7 +1,6 @@
 package com.example.eshfeenygraduationproject.authentication.signinFragments.login
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +10,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.SendToCheckEmail
-import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
-import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModelFactory
 import com.example.eshfeenygraduationproject.databinding.FragmentVerifyCodeLoginBinding
 
 class VerifyCodeLoginFragment : Fragment() {
@@ -29,9 +26,7 @@ class VerifyCodeLoginFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentVerifyCodeLoginBinding.inflate(inflater)
 
-        val repository = UserRepoImpl()
-        val viewModelFactory = SharedViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory)[SharedViewModel::class.java]
+        viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
         viewModel.verifyCode(args.email)
         binding?.otpCheckButton?.setOnClickListener { button ->

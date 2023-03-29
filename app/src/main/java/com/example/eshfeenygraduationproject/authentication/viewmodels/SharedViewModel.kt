@@ -1,22 +1,38 @@
 package com.example.eshfeenygraduationproject.authentication.viewmodels
 
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.example.data.local.db.user.UserDatabase
+import com.example.data.local.db.user.model.UserInfo
 import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
+class SharedViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _verifyUserLogin: MutableLiveData<Response<UserResponse>?> = MutableLiveData()
-    val verifyUserLogin: LiveData<Response<UserResponse>?>
+    private val repository: UserRepoImpl
+
+    init {
+        val userDao = UserDatabase.getDatabase(application).userDao()
+
+        repository = UserRepoImpl(userDao)
+    }
+
+    private val _userData: MutableLiveData<UserInfo> = MutableLiveData()
+    val userData: LiveData<UserInfo>
+    get() = _userData
+
+
+    private val _verifyUserLogin: MutableLiveData<Response<UserInfo>> = MutableLiveData()
+    val verifyUserLogin: LiveData<Response<UserInfo>>
         get() = _verifyUserLogin
 
-    private val _createUserResponse: MutableLiveData<Response<NewUserResponse>> = MutableLiveData()
+    private val _createUserResponse: MutableLiveData<Response<UserInfo>> = MutableLiveData()
+    val createUserResponse: LiveData<Response<UserInfo>>
+        get() = _createUserResponse
 
     private val _verifyNewAccountResponse: MutableLiveData<VerifyCodeResponse> = MutableLiveData()
     val verifyNewAccountResponse: LiveData<VerifyCodeResponse>
@@ -39,16 +55,14 @@ class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
     ) {
         viewModelScope.launch {
             val response = repository.verifyLogin(userData)
-            if (response.isSuccessful)
-                _verifyUserLogin.value = response
-            else
-                _verifyUserLogin.value = null
+            _verifyUserLogin.value = response
         }
     }
 
     fun checkEmailExist(email: SendToCheckEmail) {
         viewModelScope.launch {
             val response = repository.checkEmail(email)
+            Log.i("Error", response.body().toString())
             response?.let {
                 _emailFound.value = it
                 Log.i("code", it.body()?._id.toString())
@@ -88,6 +102,27 @@ class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
         viewModelScope.launch {
             val response = repository.updateUserPassword(id, newPassword)
             _updatePassword.value = response
+        }
+    }
+
+    fun addUserToDatabase(
+        userData: UserInfo
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addUserDataToDatabase(userData)
+            Log.i("DB", userData.toString())
+        }
+    }
+
+    fun deleteUserFromDatabase() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteUserData()
+        }
+    }
+
+    fun getUserData(){
+        viewModelScope.launch {
+            _userData.value = repository.getUserData()
         }
     }
 }

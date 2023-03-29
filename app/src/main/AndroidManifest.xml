@@ -5,6 +5,7 @@
     <uses-permission
         android:name="android.permission.ACCESS_FINE_LOCATION"
         tools:ignore="CoarseFineLocation" />
+
     <!-- The BACKGROUND_LOCATION permission is required for geofencing functionality to work on Q+ -->
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
@@ -22,7 +23,7 @@
         android:theme="@style/splashScreenTheme"
         tools:targetApi="31">
         <activity
-            android:name=".eshfeeny.EshfeenyActivity"
+            android:name=".authentication.AuthenticationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +32,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".authentication.AuthenticationActivity" />
+        <activity android:name=".eshfeeny.EshfeenyActivity" />
 
 
     </application>

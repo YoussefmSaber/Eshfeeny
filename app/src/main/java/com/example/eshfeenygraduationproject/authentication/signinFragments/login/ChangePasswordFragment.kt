@@ -11,9 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.ChangePassword
-import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
-import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModelFactory
 import com.example.eshfeenygraduationproject.databinding.FragmentChangePasswordBinding
 
 class ChangePasswordFragment : Fragment() {
@@ -29,9 +27,7 @@ class ChangePasswordFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentChangePasswordBinding.inflate(inflater)
 
-        val repository = UserRepoImpl()
-        val viewModelFactory = SharedViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory)[SharedViewModel::class.java]
+        viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
         binding?.confBtn?.setOnClickListener {
             val newPassword = ChangePassword(binding?.newPasswordEditText?.text.toString())
