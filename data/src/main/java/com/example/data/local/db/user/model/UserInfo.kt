@@ -22,7 +22,7 @@ data class UserInfo(
     val insuranceCards: List<InsuranceCardX>? = null,
     val name: String,
     val orderHistory: List<OrderHistory>? = null,
-    val password: String,
+    var password: String,
     val phoneNumber: String? = null,
     val searchHistory: List<String>? = null
 )

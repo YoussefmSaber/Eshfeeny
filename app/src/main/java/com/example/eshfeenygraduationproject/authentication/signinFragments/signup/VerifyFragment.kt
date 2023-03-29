@@ -29,13 +29,12 @@ class VerifyFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentVerifyBinding.inflate(inflater)
-        Log.i("Test", "No Error Here verifyFragment")
         viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
         val newUser = CreateUser(
-            args.newUserName,
-            args.newUserEmail,
-            args.newUserPassword
+            name = args.newUserName,
+            email = args.newUserEmail,
+            password = args.newUserPassword
         )
 
         Log.i("user data: ", "verify Fragment: $newUser")
@@ -58,6 +57,8 @@ class VerifyFragment : Fragment() {
                     viewModel.createNewUser(newUser)
                     viewModel.createUserResponse.observe(viewLifecycleOwner) { response ->
                         response.body()?.let { userData ->
+                            Log.i("DB Singup", userData.toString())
+                            userData.password = args.newUserPassword
                             viewModel.addUserToDatabase(userData)
                             val intent = Intent(
                                 activity,
