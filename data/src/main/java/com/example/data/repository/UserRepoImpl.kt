@@ -29,7 +29,7 @@ class UserRepoImpl(private val userDAO: UserDAO) {
     // used for login
     suspend fun verifyLogin(
         userData: VerifyLoginResponse
-    ): Response<UserResponse> {
+    ): Response<UserInfo> {
         return try {
             UserRetrofitInstance.userApi.verifyLogin(userData)
         } catch (e: Exception) {

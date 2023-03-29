@@ -14,8 +14,7 @@ import com.example.data.local.db.user.model.converters.*
     AlarmConverters::class,
     CartConverters::class,
     OrderHistoryConverters::class,
-    FavoritesListConverter::class,
-    SearchHistoryListConverter::class
+    StringListConverter::class,
 )
 abstract class UserDatabase : RoomDatabase() {
 

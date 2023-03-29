@@ -7,13 +7,13 @@ import com.google.gson.reflect.TypeToken
 
 class AlarmConverters {
     @TypeConverter
-    fun fromString(value: String): List<Alarm> {
-        val listType = object : TypeToken<List<Alarm>>() {}.type
+    fun fromString(value: String): List<Alarm>? {
+        val listType = object : TypeToken<List<Alarm>?>() {}.type
         return Gson().fromJson(value, listType)
     }
 
     @TypeConverter
-    fun fromList(list: List<Alarm>): String {
+    fun fromList(list: List<Alarm>?): String {
         val gson = Gson()
         return gson.toJson(list)
     }

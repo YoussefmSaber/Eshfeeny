@@ -7,13 +7,13 @@ import com.google.gson.reflect.TypeToken
 
 class CartConverters {
     @TypeConverter
-    fun fromString(value: String): List<Cart> {
-        val listType = object : TypeToken<List<Cart>>() {}.type
+    fun fromString(value: String): List<Cart>? {
+        val listType = object : TypeToken<List<Cart>?>() {}.type
         return Gson().fromJson(value, listType)
     }
 
     @TypeConverter
-    fun fromList(list: List<Cart>): String {
+    fun fromList(list: List<Cart>?): String {
         val gson = Gson()
         return gson.toJson(list)
     }

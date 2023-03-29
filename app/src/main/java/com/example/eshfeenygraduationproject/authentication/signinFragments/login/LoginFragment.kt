@@ -31,12 +31,19 @@ class LoginFragment : Fragment() {
                 binding?.nameSignin?.text.toString(),
                 binding?.passwordSignup?.text.toString()
             )
-            
+
             viewModel.verifyLogin(userData)
-            viewModel.verifyUserLogin.observe(viewLifecycleOwner){
+            viewModel.verifyUserLogin.observe(viewLifecycleOwner) {
                 if (it != null) {
                     Log.i("category", it.body().toString())
-                    Toast.makeText(requireContext(), "You have been logged in successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "You have been logged in successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    it.body()?.let { userInfo ->
+                        viewModel.addUserToDatabase(userInfo)
+                    }
                 } else {
                     Toast.makeText(requireContext(), "Check your data", Toast.LENGTH_SHORT).show()
                 }
@@ -44,7 +51,8 @@ class LoginFragment : Fragment() {
         }
 
         binding?.forgetPasswordEditText?.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_sendCodeToMailFragment)
+            Navigation.findNavController(it)
+                .navigate(R.id.action_loginFragment_to_sendCodeToMailFragment)
         }
 
         binding?.createInSignin?.setOnClickListener {

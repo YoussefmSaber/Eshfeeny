@@ -7,13 +7,13 @@ import com.google.gson.reflect.TypeToken
 
 class InsuranceCardConverters {
     @TypeConverter
-    fun fromString(value: String): List<InsuranceCardX> {
-        val listType = object : TypeToken<List<InsuranceCardX>>() {}.type
+    fun fromString(value: String): List<InsuranceCardX>? {
+        val listType = object : TypeToken<List<InsuranceCardX>?>() {}.type
         return Gson().fromJson(value, listType)
     }
 
     @TypeConverter
-    fun fromList(list: List<InsuranceCardX>): String {
+    fun fromList(list: List<InsuranceCardX>?): String {
         val gson = Gson()
         return gson.toJson(list)
     }

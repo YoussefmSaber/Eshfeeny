@@ -7,13 +7,13 @@ import com.google.gson.reflect.TypeToken
 
 class OrderHistoryConverters {
     @TypeConverter
-    fun fromString(value: String): List<OrderHistory> {
-        val listType = object : TypeToken<List<OrderHistory>>() {}.type
+    fun fromString(value: String): List<OrderHistory>? {
+        val listType = object : TypeToken<List<OrderHistory>?>() {}.type
         return Gson().fromJson(value, listType)
     }
 
     @TypeConverter
-    fun fromList(list: List<OrderHistory>): String {
+    fun fromList(list: List<OrderHistory>?): String {
         val gson = Gson()
         return gson.toJson(list)
     }

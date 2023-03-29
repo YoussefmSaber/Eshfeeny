@@ -1,5 +1,6 @@
 package com.example.data.remote
 
+import com.example.data.local.db.user.model.UserInfo
 import com.example.domain.entity.*
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -24,7 +25,7 @@ interface UserDataApiService {
     suspend fun verifyLogin(
         @Body
         verifyLoginResponse: VerifyLoginResponse
-    ): Response<UserResponse>
+    ): Response<UserInfo>
 
     // create user account in the db
     @POST("users/")
