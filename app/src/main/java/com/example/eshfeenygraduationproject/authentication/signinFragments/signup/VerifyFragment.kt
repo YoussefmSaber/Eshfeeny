@@ -1,5 +1,6 @@
 package com.example.eshfeenygraduationproject.authentication.signinFragments.signup
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.CreateUser
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
 import com.example.eshfeenygraduationproject.databinding.FragmentVerifyBinding
+import com.example.eshfeenygraduationproject.eshfeeny.EshfeenyActivity
 
 class VerifyFragment : Fragment() {
 
@@ -27,7 +29,7 @@ class VerifyFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentVerifyBinding.inflate(inflater)
-
+        Log.i("Test", "No Error Here verifyFragment")
         viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
         val newUser = CreateUser(
@@ -45,21 +47,25 @@ class VerifyFragment : Fragment() {
             val inputCode = binding?.otpView?.text.toString()
 
             viewModel.areCodesTheSame(inputCode)
-            viewModel.areBothSame.observe(viewLifecycleOwner){
-                Log.i("Verify code: ", "button Clicked")
-                Log.i(
-                    "Verify code: ",
-                    "Are both equal " + viewModel.areBothSame.value
-                )
+            viewModel.areBothSame.observe(viewLifecycleOwner) {
                 if (it) {
                     Toast.makeText(
                         requireContext(),
                         "You have verified your account",
                         Toast.LENGTH_SHORT
                     ).show()
-                    Log.i("Verify", "you have been verified")
 
                     viewModel.createNewUser(newUser)
+                    viewModel.createUserResponse.observe(viewLifecycleOwner) { response ->
+                        response.body()?.let { userData ->
+                            viewModel.addUserToDatabase(userData)
+                            val intent = Intent(
+                                activity,
+                                EshfeenyActivity::class.java
+                            )
+                            startActivity(intent)
+                        }
+                    }
                 } else {
                     binding?.otpWrongMessage?.visibility = View.VISIBLE
                 }

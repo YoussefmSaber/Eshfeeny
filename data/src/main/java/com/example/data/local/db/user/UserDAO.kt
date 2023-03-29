@@ -12,10 +12,8 @@ interface UserDAO {
     )
 
     @Query("SELECT * FROM user_details")
-    fun getUserData(): UserInfo
+    suspend fun getUserData(): UserInfo
 
-    @Delete
-    suspend fun deleteUserData(
-        userData: UserInfo
-    )
+    @Query("DELETE FROM user_details")
+    suspend fun deleteUserData()
 }

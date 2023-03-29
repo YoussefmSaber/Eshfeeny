@@ -1,6 +1,7 @@
 package com.example.eshfeenygraduationproject.authentication.signinFragments.signup
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -31,17 +32,20 @@ class SignupFragment : Fragment() {
             val name = binding?.nameSignup?.text.toString()
 
             if (password != confPassword) {
-
                 binding?.passwordSignup?.error = getString(R.string.passwordNotMatch)
                 binding?.confirmPassSignup?.error = getString(R.string.passwordNotMatch)
 
             } else {
                 val sendEmail = SendToCheckEmail(email)
                 viewModel.checkEmailExist(sendEmail)
+                Log.i("Test", "No Error Here")
                 viewModel.emailFound.observe(viewLifecycleOwner){ emailFound ->
+                    Log.i("Test", "No Error Here")
                     if (emailFound.body() != null) {
+                        Log.i("Test", "No Error Here")
                         binding?.emailSignupLayout?.error = getString(R.string.emailAlreadyUsed)
                     } else {
+                        Log.i("Test", "No Error Here")
                         val action = SignupFragmentDirections.actionSignupFragmentToVerifyFragment(
                             name,
                             email,

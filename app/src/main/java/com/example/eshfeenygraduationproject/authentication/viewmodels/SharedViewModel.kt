@@ -21,11 +21,18 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
         repository = UserRepoImpl(userDao)
     }
 
+    private val _userData: MutableLiveData<UserInfo> = MutableLiveData()
+    val userData: LiveData<UserInfo>
+    get() = _userData
+
+
     private val _verifyUserLogin: MutableLiveData<Response<UserInfo>> = MutableLiveData()
     val verifyUserLogin: LiveData<Response<UserInfo>>
         get() = _verifyUserLogin
 
-    private val _createUserResponse: MutableLiveData<Response<NewUserResponse>> = MutableLiveData()
+    private val _createUserResponse: MutableLiveData<Response<UserInfo>> = MutableLiveData()
+    val createUserResponse: LiveData<Response<UserInfo>>
+        get() = _createUserResponse
 
     private val _verifyNewAccountResponse: MutableLiveData<VerifyCodeResponse> = MutableLiveData()
     val verifyNewAccountResponse: LiveData<VerifyCodeResponse>
@@ -55,6 +62,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
     fun checkEmailExist(email: SendToCheckEmail) {
         viewModelScope.launch {
             val response = repository.checkEmail(email)
+            Log.i("Error", response.body().toString())
             response?.let {
                 _emailFound.value = it
                 Log.i("code", it.body()?._id.toString())
@@ -103,6 +111,18 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
         viewModelScope.launch(Dispatchers.IO) {
             repository.addUserDataToDatabase(userData)
             Log.i("DB", userData.toString())
+        }
+    }
+
+    fun deleteUserFromDatabase() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteUserData()
+        }
+    }
+
+    fun getUserData(){
+        viewModelScope.launch {
+            _userData.value = repository.getUserData()
         }
     }
 }

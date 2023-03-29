@@ -32,7 +32,7 @@ interface UserDataApiService {
     suspend fun createNewUser(
         @Body
         newUser: CreateUser
-    ): Response<NewUserResponse>
+    ): Response<UserInfo>
 
     // GET request functions
     // get a code to check if the email exist or not

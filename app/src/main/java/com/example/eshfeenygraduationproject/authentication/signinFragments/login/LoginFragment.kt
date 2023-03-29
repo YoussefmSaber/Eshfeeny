@@ -1,5 +1,6 @@
 package com.example.eshfeenygraduationproject.authentication.signinFragments.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -12,6 +13,7 @@ import com.example.domain.entity.VerifyLoginResponse
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
 import com.example.eshfeenygraduationproject.databinding.FragmentLoginBinding
+import com.example.eshfeenygraduationproject.eshfeeny.EshfeenyActivity
 
 class LoginFragment : Fragment() {
     private var binding: FragmentLoginBinding? = null
@@ -35,7 +37,6 @@ class LoginFragment : Fragment() {
             viewModel.verifyLogin(userData)
             viewModel.verifyUserLogin.observe(viewLifecycleOwner) {
                 if (it != null) {
-                    Log.i("category", it.body().toString())
                     Toast.makeText(
                         requireContext(),
                         "You have been logged in successfully",
@@ -43,6 +44,13 @@ class LoginFragment : Fragment() {
                     ).show()
                     it.body()?.let { userInfo ->
                         viewModel.addUserToDatabase(userInfo)
+                        Log.i("DB", userInfo.toString())
+                        val intent = Intent(
+                            activity,
+                            EshfeenyActivity::class.java
+                        )
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(intent)
                     }
                 } else {
                     Toast.makeText(requireContext(), "Check your data", Toast.LENGTH_SHORT).show()

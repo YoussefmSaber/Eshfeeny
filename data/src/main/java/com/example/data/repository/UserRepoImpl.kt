@@ -21,9 +21,17 @@ class UserRepoImpl(private val userDAO: UserDAO) {
     suspend fun checkEmail(
         email: SendToCheckEmail
     ): Response<CheckEmailResponse> {
-        val response = UserRetrofitInstance.userApi.checkEmail(email)
-        Log.i("Email found: ", response.body().toString())
-        return UserRetrofitInstance.userApi.checkEmail(email)
+        return try {
+            UserRetrofitInstance.userApi.checkEmail(email)
+        } catch (e: Exception) {
+            Response.error(
+                400,
+                ResponseBody.create(
+                    "application/json".toMediaTypeOrNull(),
+                    "Email not found"
+                )
+            )
+        }
     }
 
     // used for login
@@ -45,7 +53,7 @@ class UserRepoImpl(private val userDAO: UserDAO) {
 
     suspend fun createNewUser(
         newUser: CreateUser
-    ): Response<NewUserResponse> =
+    ): Response<UserInfo> =
         UserRetrofitInstance.userApi.createNewUser(newUser)
 
 
@@ -75,12 +83,10 @@ class UserRepoImpl(private val userDAO: UserDAO) {
         userDAO.addUserData(userData)
     }
 
-    suspend fun deleteUserData(
-        userData: UserInfo
-    ) {
-        userDAO.deleteUserData(userData)
+    suspend fun deleteUserData() {
+        userDAO.deleteUserData()
     }
 
-    fun getUserData(): UserInfo = userDAO.getUserData()
+    suspend fun getUserData(): UserInfo = userDAO.getUserData()
 
 }
