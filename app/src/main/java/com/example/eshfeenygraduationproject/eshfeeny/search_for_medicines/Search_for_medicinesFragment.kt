@@ -35,9 +35,10 @@ class Search_for_medicinesFragment : Fragment() {
         }
         val repo = MedicineRepoImpl()
         val viewModelFactory = MedicineViewModelFactory(repo)
+        //Show All Medicines
         medicineViewModel = ViewModelProvider(this, viewModelFactory)[MedicineViewModel::class.java]
-        medicineViewModel.getMedicineForMosknaat()
-        medicineViewModel.categories_Mosknaat.observe(viewLifecycleOwner) {
+        medicineViewModel.getMedicineForAllMedicines()
+        medicineViewModel.categories_AllMedicines.observe(viewLifecycleOwner) {
             val adapter = MedicineAdapter()
             binding?.medicinesRvId?.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -46,8 +47,8 @@ class Search_for_medicinesFragment : Fragment() {
             Log.i("Home Fragment sh8aal for ko7aa", it.toString())
         }
         binding?.chip1?.setOnClickListener {
-            medicineViewModel.getMedicineForEmsaak()
-            medicineViewModel.categories_Emsaak.observe(viewLifecycleOwner) {
+            medicineViewModel.getMedicineForAllMedicines()
+            medicineViewModel.categories_AllMedicines.observe(viewLifecycleOwner) {
                 val adapter = MedicineAdapter()
                 binding?.medicinesRvId?.layoutManager =
                     StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -56,6 +57,7 @@ class Search_for_medicinesFragment : Fragment() {
                 Log.i("Emsaak in search medicine fragment", it.toString())
             }
         }
+        //لسة الداتا
         binding?.chip2?.setOnClickListener {
             medicineViewModel.getMedicineForKo7aa()
             medicineViewModel.categories_Ko7aa.observe(viewLifecycleOwner) {
@@ -75,6 +77,7 @@ class Search_for_medicinesFragment : Fragment() {
                 Log.i("Home Fragment sh8aal for ko7aa", it.toString())
             }
         }
+        //لسة الداتا
         binding?.chip4?.setOnClickListener {
             medicineViewModel.getMedicineForModat7aywee()
             medicineViewModel.categories_Modat7aywee.observe(viewLifecycleOwner) {
@@ -84,9 +87,12 @@ class Search_for_medicinesFragment : Fragment() {
                 Log.i("Home Fragment sh8aal for ko7aa", it.toString())
             }
         }
+        //لسة الداتا
         binding?.chip5?.setOnClickListener {
             medicineViewModel.getMedicineForVetamenAndMa2kolat()
             medicineViewModel.categories_VetamenAndMa2kolat.observe(viewLifecycleOwner) {
+                binding?.medicinesRvId?.layoutManager =
+                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                 val adapter = MedicineAdapter()
                 binding?.medicinesRvId?.adapter = adapter
                 adapter.submitList(it)
@@ -98,6 +104,8 @@ class Search_for_medicinesFragment : Fragment() {
         binding?.chip6?.setOnClickListener {
             medicineViewModel.getMedicineFor7modaAndSo2Hadm()
             medicineViewModel.categories_7modaAndSo2Hadm.observe(viewLifecycleOwner) {
+                binding?.medicinesRvId?.layoutManager =
+                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                 val adapter = MedicineAdapter()
                 binding?.medicinesRvId?.adapter = adapter
                 adapter.submitList(it)
@@ -109,6 +117,8 @@ class Search_for_medicinesFragment : Fragment() {
         binding?.chip7?.setOnClickListener {
             medicineViewModel.getMedicineForKo7aa()
             medicineViewModel.categories_Ko7aa.observe(viewLifecycleOwner) {
+                binding?.medicinesRvId?.layoutManager =
+                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                 val adapter = MedicineAdapter()
                 binding?.medicinesRvId?.adapter = adapter
                 adapter.submitList(it)
@@ -120,6 +130,8 @@ class Search_for_medicinesFragment : Fragment() {
         binding?.chip8?.setOnClickListener {
             medicineViewModel.getMedicineForM8aas()
             medicineViewModel.categories_M8aas.observe(viewLifecycleOwner) {
+                binding?.medicinesRvId?.layoutManager =
+                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                 val adapter = MedicineAdapter()
                 binding?.medicinesRvId?.adapter = adapter
                 adapter.submitList(it)
@@ -131,15 +143,21 @@ class Search_for_medicinesFragment : Fragment() {
         binding?.chip9?.setOnClickListener {
             medicineViewModel.getMedicineForEmsaak()
             medicineViewModel.categories_Emsaak.observe(viewLifecycleOwner) {
+                binding?.medicinesRvId?.layoutManager =
+                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                 val adapter = MedicineAdapter()
                 binding?.medicinesRvId?.adapter = adapter
                 adapter.submitList(it)
                 Log.i("Home Fragment sh8aal for ko7aa", it.toString())
             }
         }
+        //لسة الداتا
+
         binding?.chip10?.setOnClickListener {
             medicineViewModel.getMedicineForKo7aa()
             medicineViewModel.categories_Ko7aa.observe(viewLifecycleOwner) {
+                binding?.medicinesRvId?.layoutManager =
+                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                 val adapter = MedicineAdapter()
                 binding?.medicinesRvId?.adapter = adapter
                 adapter.submitList(it)
@@ -151,6 +169,8 @@ class Search_for_medicinesFragment : Fragment() {
         binding?.chip11?.setOnClickListener {
             medicineViewModel.getMedicineForT2wyaaElmna3a()
             medicineViewModel.categories_T2wyaaElmna3a.observe(viewLifecycleOwner) {
+                binding?.medicinesRvId?.layoutManager =
+                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                 val adapter = MedicineAdapter()
                 binding?.medicinesRvId?.adapter = adapter
                 adapter.submitList(it)
@@ -162,6 +182,8 @@ class Search_for_medicinesFragment : Fragment() {
         binding?.chip12?.setOnClickListener {
             medicineViewModel.getMedicineForModat7aywee()
             medicineViewModel.categories_Modat7aywee.observe(viewLifecycleOwner) {
+                binding?.medicinesRvId?.layoutManager =
+                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                 val adapter = MedicineAdapter()
                 binding?.medicinesRvId?.adapter = adapter
                 adapter.submitList(it)
@@ -173,6 +195,8 @@ class Search_for_medicinesFragment : Fragment() {
         binding?.chip13?.setOnClickListener {
             medicineViewModel.getMedicineForVetamenAndMa2kolat()
             medicineViewModel.categories_VetamenAndMa2kolat.observe(viewLifecycleOwner) {
+                binding?.medicinesRvId?.layoutManager =
+                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                 val adapter = MedicineAdapter()
                 binding?.medicinesRvId?.adapter = adapter
                 adapter.submitList(it)
