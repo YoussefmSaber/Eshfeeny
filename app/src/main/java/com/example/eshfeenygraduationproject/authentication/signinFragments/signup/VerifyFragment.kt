@@ -12,7 +12,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.CreateUser
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
-import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModelFactory
 import com.example.eshfeenygraduationproject.databinding.FragmentVerifyBinding
 
 class VerifyFragment : Fragment() {
@@ -28,9 +27,9 @@ class VerifyFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentVerifyBinding.inflate(inflater)
-        val repository = UserRepoImpl()
-        val viewModelFactory = SharedViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory)[SharedViewModel::class.java]
+
+        viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
+
         val newUser = CreateUser(
             args.newUserName,
             args.newUserEmail,

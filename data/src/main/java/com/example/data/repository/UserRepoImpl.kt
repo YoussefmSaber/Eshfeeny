@@ -1,7 +1,10 @@
 package com.example.data.repository
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.util.Log
+import com.example.data.local.db.user.UserDAO
+import com.example.data.local.db.user.model.UserInfo
 import com.example.data.remote.apis.UserRetrofitInstance
 import com.example.domain.entity.*
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +15,7 @@ import okhttp3.ResponseBody
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Response
 
-class UserRepoImpl {
+class UserRepoImpl(private val userDAO: UserDAO) {
 
     // used when the user forget his password
     suspend fun checkEmail(
@@ -65,4 +68,19 @@ class UserRepoImpl {
         newPassword: ChangePassword
     ): PasswordChangeResponse =
         UserRetrofitInstance.userApi.updateUserPassword(id, newPassword)
+
+    suspend fun addUserDataToDatabase(
+        userData: UserInfo
+    ) {
+        userDAO.addUserData(userData)
+    }
+
+    suspend fun deleteUserData(
+        userData: UserInfo
+    ) {
+        userDAO.deleteUserData(userData)
+    }
+
+    fun getUserData(): UserInfo = userDAO.getUserData()
+
 }

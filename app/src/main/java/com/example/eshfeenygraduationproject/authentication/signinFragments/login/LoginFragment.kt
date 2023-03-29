@@ -5,13 +5,11 @@ import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.VerifyLoginResponse
 import com.example.eshfeenygraduationproject.R
-import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModelFactory
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
 import com.example.eshfeenygraduationproject.databinding.FragmentLoginBinding
 
@@ -26,9 +24,7 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(inflater)
 
-        val repository = UserRepoImpl()
-        val viewModelFactory = SharedViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory)[SharedViewModel::class.java]
+        viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
         binding?.confirmButtonSignin?.setOnClickListener {
             val userData = VerifyLoginResponse(

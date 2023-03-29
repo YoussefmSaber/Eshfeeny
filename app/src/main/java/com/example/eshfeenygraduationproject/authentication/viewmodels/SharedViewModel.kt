@@ -1,16 +1,23 @@
 package com.example.eshfeenygraduationproject.authentication.viewmodels
 
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.example.data.local.db.user.UserDatabase
 import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.*
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class SharedViewModel(private val repository: UserRepoImpl) : ViewModel() {
+class SharedViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val repository: UserRepoImpl
+
+    init {
+        val userDao =UserDatabase.getDatabase(application).userDao()
+
+        repository = UserRepoImpl(userDao)
+    }
 
     private val _verifyUserLogin: MutableLiveData<Response<UserResponse>?> = MutableLiveData()
     val verifyUserLogin: LiveData<Response<UserResponse>?>
