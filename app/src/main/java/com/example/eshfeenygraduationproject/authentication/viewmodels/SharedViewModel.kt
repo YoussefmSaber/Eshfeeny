@@ -38,15 +38,19 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
         viewModelScope.launch {
             Log.i("test", _isLoggedIn.value.toString())
             _userData.value = repository.getUserData()
-            _userData.value?.let {
-                val userCredentials = VerifyLoginResponse(it.email, it.password)
-                _verifyUserLogin.value = repository.verifyLogin(userCredentials)
-                if (_verifyUserLogin.value != null) {
+            _userData.value.let {
+                if (it == null) {
                     _isLoggedIn.value = true
-                    Log.i("test", _isLoggedIn.value.toString())
-                    val intent = Intent(getApplication(), EshfeenyActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    getApplication<Application>().startActivity(intent)
+                } else {
+                    val userCredentials = VerifyLoginResponse(it.email, it.password)
+                    _verifyUserLogin.value = repository.verifyLogin(userCredentials)
+                    if (_verifyUserLogin.value != null) {
+                        _isLoggedIn.value = true
+                        Log.i("test", _isLoggedIn.value.toString())
+                        val intent = Intent(getApplication(), EshfeenyActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        getApplication<Application>().startActivity(intent)
+                    }
                 }
             }
         }
