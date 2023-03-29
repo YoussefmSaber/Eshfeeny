@@ -59,10 +59,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <ImageView
-                android:id="@+id/imageView9"
+                android:id="@+id/SearchForMed_btn_id_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
+                android:clickable="true"
                 android:src="@drawable/search_for_medicine_home"
                 app:layout_constraintEnd_toStartOf="@+id/add_roshta_photo_id"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -77,64 +78,68 @@
                 android:textColor="#1F1F1F"
                 android:textSize="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+                app:layout_constraintTop_toBottomOf="@+id/SearchForMed_btn_id_home" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/VP_btn_id_Home"
                 android:layout_width="117dp"
                 android:layout_height="98dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
+                android:clickable="true"
                 android:src="@drawable/el_7maya_mn_el_versus"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/MAC_btn_id_Home"
                 android:layout_width="76dp"
                 android:layout_height="101dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="44dp"
+                android:clickable="true"
                 android:src="@drawable/elom_w_eltfl"
-                app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                app:layout_constraintEnd_toStartOf="@+id/VP_btn_id_Home"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/WP_btn_id_Home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="60dp"
                 android:src="@drawable/montgat_el_mr2aa"
-                app:layout_constraintEnd_toStartOf="@+id/imageView6"
-                app:layout_constraintTop_toTopOf="@+id/imageView6" />
+                app:layout_constraintEnd_toStartOf="@+id/MAC_btn_id_Home"
+                app:layout_constraintTop_toTopOf="@+id/MAC_btn_id_Home" />
 
             <ImageView
-                android:id="@+id/imageView8"
+                android:id="@+id/SAH_btn_id_Home"
                 android:layout_width="115dp"
                 android:layout_height="101dp"
                 android:layout_marginTop="10dp"
+                android:clickable="true"
                 android:src="@drawable/el_3naya_bl_bshraa"
-                app:layout_constraintEnd_toEndOf="@+id/imageView4"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+                app:layout_constraintEnd_toEndOf="@+id/VP_btn_id_Home"
+                app:layout_constraintTop_toBottomOf="@+id/VP_btn_id_Home" />
 
             <ImageView
-                android:id="@+id/imageView10"
+                android:id="@+id/DC_btn_id_Home"
                 android:layout_width="79dp"
                 android:layout_height="98dp"
                 android:layout_marginEnd="44dp"
                 android:src="@drawable/el_3naya_bl_asnaan"
-                app:layout_constraintEnd_toStartOf="@+id/imageView8"
-                app:layout_constraintTop_toTopOf="@+id/imageView8" />
+                app:layout_constraintEnd_toStartOf="@+id/SAH_btn_id_Home"
+                app:layout_constraintTop_toTopOf="@+id/SAH_btn_id_Home" />
 
             <ImageView
-                android:id="@+id/imageView11"
+                android:id="@+id/MP_btn_id_Home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="60dp"
+                android:clickable="true"
                 android:contentDescription="TODO"
                 android:src="@drawable/montgat_el_rgaal"
-                app:layout_constraintEnd_toStartOf="@+id/imageView10"
-                app:layout_constraintTop_toTopOf="@+id/imageView10" />
+                app:layout_constraintEnd_toStartOf="@+id/DC_btn_id_Home"
+                app:layout_constraintTop_toTopOf="@+id/DC_btn_id_Home" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -146,7 +151,7 @@
                 android:textColor="#1F1F1F"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+                app:layout_constraintTop_toBottomOf="@+id/SAH_btn_id_Home" />
 
             <ImageView
                 android:id="@+id/select_all_summer_needs_id"
@@ -157,7 +162,7 @@
                 android:clickable="true"
                 android:src="@drawable/show_all_icon"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView8"
+                app:layout_constraintTop_toBottomOf="@+id/SAH_btn_id_Home"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <androidx.recyclerview.widget.RecyclerView

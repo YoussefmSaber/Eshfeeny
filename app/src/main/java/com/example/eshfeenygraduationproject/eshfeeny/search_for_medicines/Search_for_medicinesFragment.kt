@@ -13,6 +13,7 @@ import com.example.data.repository.MedicineRepoImpl
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentSearchForMedicinesBinding
 import com.example.eshfeenygraduationproject.eshfeeny.EshfeenyActivity
+import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragment
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModelFactory
@@ -27,6 +28,11 @@ class Search_for_medicinesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSearchForMedicinesBinding.inflate(layoutInflater)
+        binding?.exit1BtnId?.setOnClickListener {
+            (activity as EshfeenyActivity
+                    ).replaceFragment(HomeFragment())
+
+        }
         val repo = MedicineRepoImpl()
         val viewModelFactory = MedicineViewModelFactory(repo)
         medicineViewModel = ViewModelProvider(this, viewModelFactory)[MedicineViewModel::class.java]
