@@ -16,6 +16,9 @@
         <action
             android:id="@+id/alarmFragment2MoreFragment"
             app:destination="@id/moreFragment" />
+        <action
+            android:id="@+id/action_alarmFragment_to_myAccountFragment"
+            app:destination="@id/myAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/setAlarmFragment"
@@ -73,4 +76,9 @@
         android:name="com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.Search_for_medicinesFragment"
         android:label="fragment_search_for_medicines"
         tools:layout="@layout/fragment_search_for_medicines" />
+    <fragment
+        android:id="@+id/myAccountFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.myaccount.MyAccountFragment"
+        android:label="fragment_my_account"
+        tools:layout="@layout/fragment_my_account" />
 </navigation>

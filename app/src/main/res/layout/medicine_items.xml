@@ -78,8 +78,8 @@
 
         <Button
             android:id="@+id/btn_addToCart_id"
-            android:layout_width="136dp"
-            android:layout_height="46dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:backgroundTint="#F99D1C"
             android:stateListAnimator="@null"
             android:text="أضف الى العربة"
