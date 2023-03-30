@@ -21,13 +21,11 @@ class AuthenticationActivity : AppCompatActivity() {
         // To change the splash screen theme to the default theme for the application
         installSplashScreen().apply {
             setKeepOnScreenCondition {
-                Log.i("test", viewModel.isLoggedIn.value!!.toString())
-                !(viewModel.isLoggedIn.value!!)
+                Log.i("test activity", viewModel.loadingToLogin.value!!.toString())
+                !(viewModel.loadingToLogin.value!!)
             }
         }
         setTheme(R.style.Theme_EshfeenyGraduationProject)
         setContentView(R.layout.activity_authentication)
-
     }
-
 }
