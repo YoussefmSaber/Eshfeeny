@@ -85,95 +85,83 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/SearchId">
 
-        <LinearLayout
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/Group_Chips_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:checkedChip="@id/chip1"
+        app:layout_constraintBottom_toTopOf="@id/medicines_rv_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/SearchId"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:singleLine="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip1"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:background="@color/white"
-            android:backgroundTint="#FFFFFF"
-            android:orientation="horizontal">
+            android:layout_marginStart="8dp"
+            android:text="كل منتجات الرجال"
+            app:chipStrokeColor="@color/chips_stroke_color"
+            app:chipStrokeWidth="1sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/Group_Chips_id"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:singleSelection="true">
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip2"
+            style="@style/CustomChipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="جل الحلاقة"
+            app:chipStrokeColor="@color/chips_stroke_color"
+            app:chipStrokeWidth="1sp"
+            app:layout_constraintStart_toEndOf="@+id/chip1"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip1"
-                    style="@style/CustomChipStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="كل منتجات الرجال"
-                    app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip3"
+            style="@style/CustomChipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" مزيل العرق"
+            app:chipStrokeColor="@color/chips_stroke_color"
+            app:chipStrokeWidth="1sp"
+            app:layout_constraintStart_toEndOf="@+id/chip2"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip2"
-                    style="@style/CustomChipStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="جل الحلاقة"
-                    app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"
-                    app:layout_constraintStart_toEndOf="@+id/chip1"
-                    app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip4"
+            style="@style/CustomChipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="مستلزمات الحلاقة"
+            app:chipStrokeColor="@color/chips_stroke_color"
+            app:chipStrokeWidth="1sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.chip.ChipGroup>
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip3"
-                    style="@style/CustomChipStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text=" مزيل العرق"
-                    app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"
-                    app:layout_constraintStart_toEndOf="@+id/chip2"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip4"
-                    style="@style/CustomChipStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="مستلزمات الحلاقة"
-                    app:chipStrokeColor="@color/chips_stroke_color"
-                    app:chipStrokeWidth="1sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </com.google.android.material.chip.ChipGroup>
-
-        </LinearLayout>
-    </HorizontalScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/medicines_rv_id"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="165dp"
+        android:layout_height="wrap_content"
         android:layoutDirection="rtl"
         android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/horizontalScrollView"
-        app:layout_constraintTop_toTopOf="@+id/SearchId"
-        tools:ignore="NotSibling">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Group_Chips_id"
+        app:spanCount="2"
+        tools:ignore="NotSibling"
+        tools:listitem="@layout/medicine_items">
 
     </androidx.recyclerview.widget.RecyclerView>
 
