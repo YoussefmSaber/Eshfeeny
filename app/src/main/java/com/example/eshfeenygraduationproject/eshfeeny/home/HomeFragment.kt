@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(layoutInflater)
+        binding = FragmentHomeBinding.inflate(inflater)
 
         val repo = MedicineRepoImpl()
         val viewModelFactory = MedicineViewModelFactory(repo)

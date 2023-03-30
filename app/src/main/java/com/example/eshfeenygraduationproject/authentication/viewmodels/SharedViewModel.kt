@@ -1,13 +1,16 @@
 package com.example.eshfeenygraduationproject.authentication.viewmodels
 
 import android.app.Application
+import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.data.local.db.user.UserDatabase
 import com.example.data.local.db.user.model.UserInfo
 import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.*
+import com.example.eshfeenygraduationproject.eshfeeny.EshfeenyActivity
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -15,20 +18,43 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
 
     private val repository: UserRepoImpl
 
-    init {
-        val userDao = UserDatabase.getDatabase(application).userDao()
-
-        repository = UserRepoImpl(userDao)
-    }
-
     private val _userData: MutableLiveData<UserInfo> = MutableLiveData()
     val userData: LiveData<UserInfo>
-    get() = _userData
-
+        get() = _userData
 
     private val _verifyUserLogin: MutableLiveData<Response<UserInfo>> = MutableLiveData()
     val verifyUserLogin: LiveData<Response<UserInfo>>
         get() = _verifyUserLogin
+
+    private val _loadingToLogin: MutableLiveData<Boolean> = MutableLiveData(false)
+    val loadingToLogin: LiveData<Boolean>
+        get() = _loadingToLogin
+
+    init {
+        val userDao = UserDatabase.getDatabase(application).userDao()
+
+        repository = UserRepoImpl(userDao)
+
+        viewModelScope.launch {
+            Log.i("test viewModel", _loadingToLogin.value.toString())
+            _userData.value = repository.getUserData()
+            _userData.value.let {
+                if (it == null) {
+                    _loadingToLogin.value = true
+                } else {
+                    val userCredentials = VerifyLoginResponse(it.email, it.password)
+                    _verifyUserLogin.value = repository.verifyLogin(userCredentials)
+                    if (_verifyUserLogin.value != null) {
+                        _loadingToLogin.value = true
+                        Log.i("test", _loadingToLogin.value.toString())
+                        val intent = Intent(getApplication(), EshfeenyActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        getApplication<Application>().startActivity(intent)
+                    }
+                }
+            }
+        }
+    }
 
     private val _createUserResponse: MutableLiveData<Response<UserInfo>> = MutableLiveData()
     val createUserResponse: LiveData<Response<UserInfo>>
@@ -121,7 +147,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    fun getUserData(){
+    fun getUserData() {
         viewModelScope.launch {
             _userData.value = repository.getUserData()
         }

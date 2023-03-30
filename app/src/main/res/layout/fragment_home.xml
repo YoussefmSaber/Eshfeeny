@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/add_roshtaaa"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView9"
+                app:layout_constraintStart_toEndOf="@id/SearchForMed_btn_id_home"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <ImageView
@@ -300,7 +300,7 @@
                         android:padding="6dp"
                         app:cardCornerRadius="10sp"
                         app:strokeColor="#e5e5e5"
-                        app:strokeWidth="0.4sp">
+                        app:strokeWidth="1dp">
 
                         <ImageView
                             android:layout_width="99sp"

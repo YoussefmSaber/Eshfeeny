@@ -11,13 +11,14 @@ import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.AuthenticationActivity
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
 import com.example.eshfeenygraduationproject.databinding.FragmentMoreBinding
+import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MoreViewModel
 
 
 class MoreFragment : Fragment() {
 
     private var binding: FragmentMoreBinding? = null
 
-    private lateinit var viewModel: SharedViewModel
+    private lateinit var viewModel: MoreViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,7 +26,7 @@ class MoreFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentMoreBinding.inflate(inflater)
 
-        viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
+        viewModel = ViewModelProvider(this)[MoreViewModel::class.java]
 
         binding?.logoutButton?.setOnClickListener {
             viewModel.deleteUserFromDatabase()
