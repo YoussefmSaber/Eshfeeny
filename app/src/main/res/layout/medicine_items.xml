@@ -84,7 +84,7 @@
             android:stateListAnimator="@null"
             android:text="أضف الى العربة"
             android:textColor="@color/white"
-            android:visibility="visible"
+            android:visibility="gone"
             app:cornerRadius="8sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,8 +99,9 @@
             android:layout_marginTop="8dp"
             android:backgroundTint="#FFE5CC"
             android:elevation="0dp"
+            android:stateListAnimator="@null"
             android:text="Button"
-            android:visibility="gone"
+            android:visibility="visible"
             app:cornerRadius="5dp"
             app:icon="@drawable/plus_icon"
             app:iconGravity="textTop"
@@ -110,7 +111,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/price_medicine_id_tv"
             app:layout_constraintVertical_bias="0.0"
-            android:stateListAnimator="@null"
             tools:ignore="TouchTargetSizeCheck" />
 
         <Button
@@ -119,7 +119,8 @@
             android:layout_height="37dp"
             android:layout_marginEnd="6dp"
             android:backgroundTint="#E5E5E5"
-            android:visibility="gone"
+            android:stateListAnimator="@null"
+            android:visibility="visible"
             app:cornerRadius="5dp"
             app:icon="@drawable/menus_icon"
             app:iconGravity="textTop"
@@ -128,7 +129,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/increase_btn_id"
-            android:stateListAnimator="@null"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <com.google.android.material.button.MaterialButton
@@ -145,7 +145,7 @@
             android:text="1"
             android:textAlignment="center"
             android:textColor="#0583F2"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintEnd_toStartOf="@+id/increase_btn_id"
             app:layout_constraintStart_toEndOf="@+id/decrease_btn_id"
             app:layout_constraintTop_toBottomOf="@+id/price_medicine_id_tv"
