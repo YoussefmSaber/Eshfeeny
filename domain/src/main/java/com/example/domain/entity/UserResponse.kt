@@ -9,7 +9,7 @@ data class UserResponse(
     val email: String,
     val favorites: List<String>,
     val gender: String,
-    val insuranceCards: List<InsuranceCard>,
+    val insuranceCards: List<InsuranceCardX>,
     val name: String,
     val orderHistory: List<OrderHistory>,
     val password: String,

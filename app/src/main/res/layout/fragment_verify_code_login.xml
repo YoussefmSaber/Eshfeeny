@@ -7,9 +7,6 @@
     android:orientation="vertical"
     tools:context=".authentication.signinFragments.signup.VerifyFragment">
 
-    <!-- TODO: Create this Fragment -->
-
-
     <TextView
         android:id="@+id/welcomeSignUp"
         android:layout_width="wrap_content"
@@ -49,9 +46,9 @@
         app:layout_constraintBottom_toTopOf="@id/otpTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintVertical_bias="0"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
@@ -98,6 +95,7 @@
         android:cursorVisible="true"
         android:fontFamily="@font/cairo_medium"
         android:hint="@string/otp"
+        android:imeOptions="actionDone"
         android:inputType="number"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -112,7 +110,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:imeOptions="actionDone"
         app:layout_constraintTop_toBottomOf="@+id/otpSendTextView"
         app:lineColor="#676767"
         app:lineWidth="1sp"
@@ -126,11 +123,11 @@
         android:fontFamily="@font/cairo_medium"
         android:text="@string/otp_wrong"
         android:textColor="@color/red_text"
-        app:layout_constraintTop_toBottomOf="@id/otpView"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintEnd_toEndOf="parent"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/otpView" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/otpCheckButton"

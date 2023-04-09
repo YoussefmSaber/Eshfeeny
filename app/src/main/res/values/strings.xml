@@ -103,4 +103,12 @@
     <string name="enterEmail">ادخل البريد الاكتروني</string>
     <string name="send">إرسال</string>
 
+    <!--    More Page Text-->
+    <string name="remember_medicine">تذكير بالأدوية</string>
+    <string name="bmi_bmr_calculate">حساب معدل كتلة الجسم أو معدل الحرق</string>
+    <string name="myAcc">حسابي</string>
+    <string name="shareApp">مشاركه التطبيق</string>
+    <string name="signout">تسجيل الخروج</string>
+    <string name="more">المزيد</string>
+
 </resources>

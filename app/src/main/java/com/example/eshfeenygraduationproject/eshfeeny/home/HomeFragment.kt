@@ -15,6 +15,7 @@ import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.EshfeenyActivity
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.roshta.RoshtaFragment
+import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.*
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModelFactory
 
@@ -29,15 +30,60 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(layoutInflater)
+        binding = FragmentHomeBinding.inflate(inflater)
 
         val repo = MedicineRepoImpl()
         val viewModelFactory = MedicineViewModelFactory(repo)
+        //To open Roshta fragment
         binding?.addRoshtaPhotoId?.setOnClickListener {
             (
                     activity as EshfeenyActivity
                     ).replaceFragment(RoshtaFragment())
         }
+        //To open Search Medicine Fragment
+        binding?.SearchForMedBtnIdHome?.setOnClickListener {
+            (
+                    activity as EshfeenyActivity
+                    ).replaceFragment(Search_for_medicinesFragment())
+        }
+        ////To open Virus Protection Fragment
+        binding?.VPBtnIdHome?.setOnClickListener {
+            (
+                    activity as EshfeenyActivity
+                    ).replaceFragment(Virus_ProtectionFragment())
+        }
+        //To open Mother and Child Fragment
+        binding?.MACBtnIdHome?.setOnClickListener {
+            (
+                    activity as EshfeenyActivity
+                    ).replaceFragment(Mother_and_ChildFragment())
+        }
+        //To open Women's products Fragment
+        binding?.WPBtnIdHome?.setOnClickListener {
+            (
+                    activity as EshfeenyActivity
+                    ).replaceFragment(Womens_ProductsFragment())
+        }
+        //To open Skin and hair care Fragment
+        binding?.SAHBtnIdHome?.setOnClickListener {
+            (
+                    activity as EshfeenyActivity
+                    ).replaceFragment(Skin_and_hair_careFragment())
+        }
+        //To open Dental care Fragment
+        binding?.DCBtnIdHome?.setOnClickListener {
+            (
+                    activity as EshfeenyActivity
+                    ).replaceFragment(Dental_CareFragment())
+        }
+        //To open Men's products Fragment
+        binding?.MPBtnIdHome?.setOnClickListener {
+            (
+                    activity as EshfeenyActivity
+                    ).replaceFragment(Mens_ProductsFragment())
+        }
+
+
 
         medicineViewModel = ViewModelProvider(this, viewModelFactory)[MedicineViewModel::class.java]
 
