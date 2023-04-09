@@ -1,14 +1,335 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#CCE6FF"
+    android:elevation="0dp"
+    android:orientation="vertical"
     tools:context=".eshfeeny.details.DetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <View
+        android:id="@+id/view3"
+        android:layout_width="wrap_content"
+        android:layout_height="85dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/id_btn_add_to_cart_details"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#F99D1C"
+        android:fontFamily="@font/cairo_medium"
+        android:text="أضف الى العربة "
+        android:textSize="18sp"
+        android:visibility="visible"
+        app:cornerRadius="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/id_inc_Details"
+        android:layout_width="55sp"
+        android:layout_height="55sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="54dp"
+        android:backgroundTint="#FFE5CC"
+        android:stateListAnimator="@null"
+        android:visibility="gone"
+        app:icon="@drawable/plus_icon"
+        app:iconGravity="textTop"
+        app:iconPadding="0sp"
+        app:iconSize="24sp"
+        app:iconTint="#F99D1C"
+        app:layout_constraintEnd_toEndOf="@+id/view3"
+        app:layout_constraintTop_toTopOf="@+id/view3"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/btn_cnt_cart_details"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#CCE6FF"
+        android:fontFamily="@font/cairo_medium"
+        android:stateListAnimator="@null"
+        android:text="1"
+        android:textColor="#0583F2"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@+id/id_inc_Details"
+        app:layout_constraintTop_toTopOf="@+id/id_inc_Details" />
+
+    <Button
+        android:id="@+id/id_ctn_des_details"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#E5E5E5"
+        android:stateListAnimator="@null"
+        android:visibility="gone"
+        app:icon="@drawable/menus_icon"
+        app:iconGravity="textTop"
+        app:iconPadding="0sp"
+        app:iconTint="#4D4D4D"
+        app:layout_constraintEnd_toStartOf="@+id/btn_cnt_cart_details"
+        app:layout_constraintTop_toTopOf="@+id/btn_cnt_cart_details"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/cairo_semibold"
+                android:text="تفاصيل المنتج "
+                android:textColor="#1F1F1F"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/exit1_btn_id"
+                android:layout_width="27dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:src="@drawable/exit_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <ImageView
+                android:id="@+id/btn_cart_details"
+                android:layout_width="40dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/cir_cart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/divider12"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginTop="16dp"
+                android:background="?android:attr/listDivider"
+                android:backgroundTint="#4D4D4D"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.737"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView121" />
+
+            <ImageView
+                android:id="@+id/id_img_Medicine_details"
+                android:layout_width="170sp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="67dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider12"
+                tools:src="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/id_btn_fav_details"
+                android:layout_width="40dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/cir_love"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider12" />
+
+            <ImageView
+                android:id="@+id/id_btn_replacement_details"
+                android:layout_width="43dp"
+                android:layout_height="41dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/cir__"
+                app:layout_constraintStart_toStartOf="@+id/id_btn_fav_details"
+                app:layout_constraintTop_toBottomOf="@+id/id_btn_fav_details" />
+
+            <ImageView
+                android:id="@+id/id_btn_gps_details"
+                android:layout_width="43dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/cir_gps"
+                app:layout_constraintStart_toStartOf="@+id/id_btn_replacement_details"
+                app:layout_constraintTop_toBottomOf="@+id/id_btn_replacement_details" />
+
+            <ImageView
+                android:id="@+id/id_btn_share_details"
+                android:layout_width="44dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/cir_share"
+                app:layout_constraintStart_toStartOf="@+id/id_btn_gps_details"
+                app:layout_constraintTop_toBottomOf="@+id/id_btn_gps_details" />
+
+            <TextView
+                android:id="@+id/id_txt_amount_volume_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/cairo_medium"
+                android:text="TextView"
+                android:textColor="#1F1F1F"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/id_img_Medicine_details" />
+
+            <TextView
+                android:id="@+id/id_txt_price_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/cairo_medium"
+                android:text="TextView"
+                android:textColor="#0583F2"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/id_txt_amount_volume_details"
+                app:layout_constraintTop_toBottomOf="@+id/id_txt_amount_volume_details" />
+
+            <View
+                android:id="@+id/divider13"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginTop="16dp"
+                android:background="?android:attr/listDivider"
+                android:backgroundTint="#4D4D4D"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.737"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/id_txt_price_details" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/cairo_medium"
+                android:text="الوصف:"
+                android:textColor="#1F1F1F"
+                app:layout_constraintEnd_toEndOf="@+id/id_txt_price_details"
+                app:layout_constraintTop_toTopOf="@+id/divider13" />
+
+            <TextView
+                android:id="@+id/id_txt_usecase_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/cairo_regular"
+                android:text="TextView"
+                android:textColor="#1F1F1F"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView16"
+                app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/cairo_medium"
+                android:text="دواعى الاستخدام :"
+                android:textColor="#1F1F1F"
+                app:layout_constraintEnd_toEndOf="@+id/id_txt_usecase_details"
+                app:layout_constraintTop_toBottomOf="@+id/id_txt_usecase_details" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/id_rv_useCase_details"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layoutDirection="rtl"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/cairo_medium"
+                android:text="طريقةالاستخدام :"
+                android:textColor="#1F1F1F"
+                app:layout_constraintEnd_toEndOf="@+id/id_txt_usecase_details"
+                app:layout_constraintTop_toBottomOf="@+id/id_rv_useCase_details" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/id_rv_usage_details"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layoutDirection="rtl"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/cairo_medium"
+                android:text="الاعراض الجانبية :"
+                android:textColor="#1F1F1F"
+                app:layout_constraintEnd_toEndOf="@+id/id_txt_usecase_details"
+                app:layout_constraintTop_toBottomOf="@+id/id_rv_usage_details" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/id_rv_sideEffect_details"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:layoutDirection="rtl"
+                app:layout_constraintBottom_toTopOf="@+id/textView21"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/cairo_medium"
+                android:text="التحذيرات :"
+                android:textColor="#1F1F1F"
+                app:layout_constraintEnd_toEndOf="@+id/id_txt_usecase_details"
+                app:layout_constraintTop_toBottomOf="@+id/id_rv_sideEffect_details" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/id_rv_warning_details"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layoutDirection="rtl"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView21" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
