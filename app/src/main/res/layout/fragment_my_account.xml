@@ -5,10 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".eshfeeny.myaccount.MyAccountFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="الملف الشخصي"
+        android:textSize="20sp"
+        android:fontFamily="@font/cairo_semibold"
+        android:textColor="@color/text_main"/>
 
 </FrameLayout>
