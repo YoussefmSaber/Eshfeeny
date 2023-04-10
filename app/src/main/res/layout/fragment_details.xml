@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="medicine"
+            type="com.example.domain.entity.CategoryResponseItem" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -145,7 +151,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider12"
-                tools:src="@tools:sample/avatars" />
+                tools:src="@{medicine.images[0]}" />
 
             <ImageView
                 android:id="@+id/id_btn_fav_details"
@@ -191,7 +197,7 @@
                 android:layout_marginTop="52dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/cairo_medium"
-                android:text="TextView"
+                android:text="@{medicine.nameAr + '|' + medicine.amount + '|' + medicine.volume}"
                 android:textColor="#1F1F1F"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/id_img_Medicine_details" />
@@ -202,7 +208,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/cairo_medium"
-                android:text="TextView"
+                android:text="@{medicine.price}"
                 android:textColor="#0583F2"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/id_txt_amount_volume_details"
@@ -237,7 +243,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/cairo_regular"
-                android:text="TextView"
+                android:text="@{medicine.description}"
                 android:textColor="#1F1F1F"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView16"
@@ -336,3 +342,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
