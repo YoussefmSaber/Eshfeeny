@@ -10,11 +10,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.CreateUser
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
 import com.example.eshfeenygraduationproject.databinding.FragmentVerifyBinding
-import com.example.eshfeenygraduationproject.eshfeeny.EshfeenyActivity
+import com.example.eshfeenygraduationproject.eshfeeny.MainActivity
 
 class VerifyFragment : Fragment() {
 
@@ -62,7 +61,7 @@ class VerifyFragment : Fragment() {
                             viewModel.addUserToDatabase(userData)
                             val intent = Intent(
                                 activity,
-                                EshfeenyActivity::class.java
+                                MainActivity::class.java
                             )
                             startActivity(intent)
                         }

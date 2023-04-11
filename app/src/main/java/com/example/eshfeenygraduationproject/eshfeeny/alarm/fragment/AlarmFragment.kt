@@ -32,9 +32,7 @@ class AlarmFragment : Fragment() {
         // initializing the adapter of the recycler view
         binding?.calendarDaySelectRV?.adapter = adapter
         // adding a navigation to the add button to go to Set alarm page
-        binding?.addAlarmBtn?.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.AlarmFragment2SetAlarm)
-        }
+
         return binding?.root
     }
 

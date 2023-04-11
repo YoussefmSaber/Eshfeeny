@@ -11,12 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.navigation.findNavController
 import com.example.eshfeenygraduationproject.R
-import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.databinding.FragmentRoshtaBinding
-import com.example.eshfeenygraduationproject.eshfeeny.EshfeenyActivity
-import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -30,11 +26,7 @@ class RoshtaFragment : Fragment() {
     ): View? {
         super.onCreate(savedInstanceState)
         binding = FragmentRoshtaBinding.inflate(layoutInflater)
-        binding?.exitBtnId?.setOnClickListener {
-            (activity as EshfeenyActivity
-            ).replaceFragment(HomeFragment())
 
-        }
         binding?.addRoshtaPhoto?.setOnClickListener {
             val view: View = inflater.inflate(R.layout.bottomsheetlayout, null)
             val dialog = BottomSheetDialog(requireContext())
@@ -116,11 +108,4 @@ class RoshtaFragment : Fragment() {
         super.onDestroyView()
         binding = null
     }
-
-    override fun onResume() {
-        super.onResume()
-        (activity as EshfeenyActivity).View_search_in_fragments(true)
-        (activity as EshfeenyActivity).bottomNavigationView(true)
-    }
-
 }

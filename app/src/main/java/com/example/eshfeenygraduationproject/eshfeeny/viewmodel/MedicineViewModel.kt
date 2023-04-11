@@ -181,6 +181,4 @@ class MedicineViewModel(
             }
         }
     }
-
-
 }

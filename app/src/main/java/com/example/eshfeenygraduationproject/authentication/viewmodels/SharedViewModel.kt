@@ -8,9 +8,8 @@ import com.example.data.local.db.user.UserDatabase
 import com.example.data.local.db.user.model.UserInfo
 import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.*
-import com.example.eshfeenygraduationproject.eshfeeny.EshfeenyActivity
+import com.example.eshfeenygraduationproject.eshfeeny.MainActivity
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -47,7 +46,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
                     if (_verifyUserLogin.value != null) {
                         _loadingToLogin.value = true
                         Log.i("test", _loadingToLogin.value.toString())
-                        val intent = Intent(getApplication(), EshfeenyActivity::class.java)
+                        val intent = Intent(getApplication(), MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         getApplication<Application>().startActivity(intent)
                     }
