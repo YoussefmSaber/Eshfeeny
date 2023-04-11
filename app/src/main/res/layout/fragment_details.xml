@@ -151,7 +151,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider12"
-                tools:src="@{medicine.images[0]}" />
+                app:imageUrl="@{medicine.images[0]}"
+                tools:src="@tools:sample/avatars"/>
 
             <ImageView
                 android:id="@+id/id_btn_fav_details"
@@ -208,7 +209,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/cairo_medium"
-                android:text="@{medicine.price}"
+                android:text="@{String.valueOf(medicine.price)}"
                 android:textColor="#0583F2"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/id_txt_amount_volume_details"
