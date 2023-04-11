@@ -1,16 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layoutDirection="rtl"
     android:layout_height="match_parent"
     tools:context=".eshfeeny.myaccount.MyAccountFragment">
 
     <TextView
+        android:id="@+id/pageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="الملف الشخصي"
-        android:textSize="20sp"
+        android:layout_marginTop="16sp"
         android:fontFamily="@font/cairo_semibold"
-        android:textColor="@color/text_main"/>
+        android:text="الملف الشخصي"
+        android:textColor="@color/text_main"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="16sp"
+        android:src="@drawable/arrow_right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fullNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="18sp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="الإسم الكامل"
+        android:textColor="@color/text_main"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backButton" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fullNameEditTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16sp"
+        android:hint="أدخل الإسم بالكامل"
+        app:boxCornerRadiusBottomEnd="10sp"
+        app:boxCornerRadiusBottomStart="10sp"
+        app:boxCornerRadiusTopEnd="10sp"
+        app:boxCornerRadiusTopStart="10sp"
+        app:boxStrokeColor="@color/blue_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fullNameTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/cairo_semibold"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/emailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16sp"
+        android:layout_marginStart="18sp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="البريد الإلكترونى"
+        android:textColor="@color/text_main"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fullNameEditTextLayout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailEditTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16sp"
+        android:layout_marginStart="16sp"
+        android:hint="البريد الإلكترونى"
+        app:boxCornerRadiusBottomEnd="10sp"
+        app:boxCornerRadiusBottomStart="10sp"
+        app:boxCornerRadiusTopEnd="10sp"
+        app:boxCornerRadiusTopStart="10sp"
+        app:boxStrokeColor="@color/blue_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/cairo_semibold"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/phoneTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16sp"
+        android:layout_marginStart="18sp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="رقم الهاتف"
+        android:textColor="@color/text_main"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailEditTextLayout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phoneEditTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16sp"
+        android:layout_marginStart="16sp"
+        android:hint="ادخل رقم هاتفك"
+        app:boxCornerRadiusBottomEnd="10sp"
+        app:boxCornerRadiusBottomStart="10sp"
+        app:boxCornerRadiusTopEnd="10sp"
+        app:boxCornerRadiusTopStart="10sp"
+        app:boxStrokeColor="@color/blue_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phoneTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/cairo_semibold"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/genderTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16sp"
+        android:layout_marginStart="18sp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="الجنس"
+        android:textColor="@color/text_main"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phoneEditTextLayout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/genderEditTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16sp"
+        android:layout_marginStart="16sp"
+        android:hint="النوع"
+        app:boxCornerRadiusBottomEnd="10sp"
+        app:boxCornerRadiusBottomStart="10sp"
+        app:boxCornerRadiusTopEnd="10sp"
+        app:boxCornerRadiusTopStart="10sp"
+        app:boxStrokeColor="@color/blue_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/genderTextView">
+
+        <AutoCompleteTextView
+            android:id="@+id/genderInputEditText"
+            android:layout_width="match_parent"
+            android:inputType="none"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/cairo_semibold"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

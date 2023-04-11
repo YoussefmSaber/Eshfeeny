@@ -8,12 +8,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.VerifyLoginResponse
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
 import com.example.eshfeenygraduationproject.databinding.FragmentLoginBinding
-import com.example.eshfeenygraduationproject.eshfeeny.EshfeenyActivity
+import com.example.eshfeenygraduationproject.eshfeeny.MainActivity
 
 class LoginFragment : Fragment() {
     private var binding: FragmentLoginBinding? = null
@@ -47,7 +46,7 @@ class LoginFragment : Fragment() {
                         Log.i("DB", userInfo.toString())
                         val intent = Intent(
                             activity,
-                            EshfeenyActivity::class.java
+                            MainActivity::class.java
                         )
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(intent)

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment2">
+    <fragment
+        android:id="@+id/homeFragment2"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/cartFragment2"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.cart.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/moreFragment2"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.more.MoreFragment"
+        android:label="fragment_more"
+        tools:layout="@layout/fragment_more" />
+    <fragment
+        android:id="@+id/favoriteFragment2"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/gpsFragment2"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.gps.GpsFragment"
+        android:label="fragment_gps"
+        tools:layout="@layout/fragment_gps" />
+</navigation>

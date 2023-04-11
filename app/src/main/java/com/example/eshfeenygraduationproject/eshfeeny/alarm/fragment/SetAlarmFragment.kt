@@ -38,9 +38,7 @@ class SetAlarmFragment : Fragment() {
         var repetitionNumber = 1
 
         // setting a navigation to the backArrow image view to go back to the calender fragment
-        binding?.BackArrow?.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.SetAlarm2AlarmFragment)
-        }
+
         // setting the hint attribute to both of medcienNameInput view and DescriptionInput view
         binding?.DescriptionInput?.hint = getString(R.string.notes)
         binding?.medcienNameInput?.hint = getString(R.string.medicenName)

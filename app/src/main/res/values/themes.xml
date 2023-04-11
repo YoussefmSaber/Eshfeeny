@@ -17,9 +17,19 @@
     <style name="MyBottomSheetDialog" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bottom_sheet</item>
     </style>
+
     <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/chip_background_color</item>
         <item name="android:textColor">@color/chips_text_color</item>
     </style>
+
+    <style name="Theme.EshfeenyGraduationProject.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.EshfeenyGraduationProject.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.EshfeenyGraduationProject.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

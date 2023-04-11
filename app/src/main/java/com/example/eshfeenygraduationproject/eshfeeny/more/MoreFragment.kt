@@ -7,26 +7,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.AuthenticationActivity
-import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
 import com.example.eshfeenygraduationproject.databinding.FragmentMoreBinding
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MoreViewModel
-
+import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.UserViewModel
 
 class MoreFragment : Fragment() {
 
     private var binding: FragmentMoreBinding? = null
 
-    private lateinit var viewModel: MoreViewModel
+    private lateinit var viewModel: UserViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentMoreBinding.inflate(inflater)
+        viewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
-        viewModel = ViewModelProvider(this)[MoreViewModel::class.java]
+
+
+
 
         binding?.logoutButton?.setOnClickListener {
             viewModel.deleteUserFromDatabase()
@@ -40,6 +45,8 @@ class MoreFragment : Fragment() {
 
         return binding?.root
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
