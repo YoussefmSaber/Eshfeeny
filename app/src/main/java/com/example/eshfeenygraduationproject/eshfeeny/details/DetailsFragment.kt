@@ -1,12 +1,11 @@
 package com.example.eshfeenygraduationproject.eshfeeny.details
 
+
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import com.example.eshfeenygraduationproject.R
+import androidx.fragment.app.Fragment
 import com.example.eshfeenygraduationproject.databinding.FragmentDetailsBinding
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.SideEffectsAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.UsageAdapter
