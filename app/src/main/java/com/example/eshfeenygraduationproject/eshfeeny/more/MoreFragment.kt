@@ -29,8 +29,13 @@ class MoreFragment : Fragment() {
         binding = FragmentMoreBinding.inflate(inflater)
         viewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
+        binding?.myAccount?.setOnClickListener {
+            findNavController().navigate(R.id.action_moreFragment2_to_myAccountFragment)
+        }
 
-
+        binding?.Alarm?.setOnClickListener {
+            findNavController().navigate(R.id.action_moreFragment2_to_alarmFragment)
+        }
 
 
         binding?.logoutButton?.setOnClickListener {
