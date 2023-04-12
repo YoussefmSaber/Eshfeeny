@@ -8,7 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.denzcoskun.imageslider.constants.AnimationTypes
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.models.SlideModel
 import com.example.data.repository.MedicineRepoImpl
+import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.*
@@ -30,6 +34,17 @@ class HomeFragment : Fragment() {
 
         val repo = MedicineRepoImpl()
         val viewModelFactory = MedicineViewModelFactory(repo)
+
+        val imgList = ArrayList<SlideModel>()
+        imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318089572432/flip_img1.png"))
+        imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318370586674/flip_img2.png"))
+        imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318664192031/flip_img3.png"))
+        imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318932623361/flip_img4.png"))
+        imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498319305912380/flip_img5.png"))
+
+        binding?.imageSLider?.setImageList(imgList, ScaleTypes.FIT)
+        binding?.imageSLider?.setSlideAnimation(AnimationTypes.DEPTH_SLIDE)
+
         //To open Roshta fragment
 
         //To open Search Medicine Fragment
@@ -45,8 +60,6 @@ class HomeFragment : Fragment() {
         //To open Dental care Fragment
 
         //To open Men's products Fragment
-
-
 
 
         medicineViewModel = ViewModelProvider(this, viewModelFactory)[MedicineViewModel::class.java]
