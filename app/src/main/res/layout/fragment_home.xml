@@ -19,15 +19,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/imageSLider"
+                android:layout_margin="22sp"
+                android:layout_width="match_parent"
+                android:layout_height="150sp"
+                app:iss_auto_cycle="true"
+                app:iss_period="2500"
+                app:iss_delay="100"
+                app:iss_corner_radius="10"
+                app:iss_selected_dot="@drawable/circle"
+                app:iss_unselected_dot="@drawable/not_selected_icon"
+                app:layout_constraintBottom_toTopOf="@id/company_id_phorto_home"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <ImageView
                 android:id="@+id/company_id_phorto_home"
                 android:layout_width="match_parent"
                 android:layout_height="150sp"
-                android:layout_marginTop="180sp"
                 android:src="@drawable/insurance_company_logo_home"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageSLider"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView

@@ -57,6 +57,9 @@ dependencies {
     //  The dot indicator in the onboarding screen
     implementation 'com.tbuonomo:dotsindicator:4.3'
 
+    //  Auto Image Slider
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.2'
+
     //  Recycler View
     implementation 'androidx.recyclerview:recyclerview:1.3.0'
     implementation 'androidx.recyclerview:recyclerview-selection:1.1.0'
