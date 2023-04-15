@@ -8,7 +8,15 @@
         android:id="@+id/homeFragment2"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment2_to_medicineCategoryFragment"
+            app:destination="@id/medicineCategoryFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/cartFragment2"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.cart.CartFragment"
@@ -21,10 +29,18 @@
         tools:layout="@layout/fragment_more" >
         <action
             android:id="@+id/action_moreFragment2_to_alarmFragment"
-            app:destination="@id/alarmFragment" />
+            app:destination="@id/alarmFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_moreFragment2_to_myAccountFragment"
-            app:destination="@id/myAccountFragment" />
+            app:destination="@id/myAccountFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment2"
@@ -43,10 +59,18 @@
         tools:layout="@layout/fragment_alarm" >
         <action
             android:id="@+id/action_alarmFragment_to_moreFragment2"
-            app:destination="@id/moreFragment2" />
+            app:destination="@id/moreFragment2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_alarmFragment_to_setAlarmFragment"
-            app:destination="@id/setAlarmFragment" />
+            app:destination="@id/setAlarmFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/setAlarmFragment"
@@ -55,7 +79,11 @@
         tools:layout="@layout/fragment_set_alarm" >
         <action
             android:id="@+id/action_setAlarmFragment_to_alarmFragment"
-            app:destination="@id/alarmFragment" />
+            app:destination="@id/alarmFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/myAccountFragment"
@@ -64,6 +92,26 @@
         tools:layout="@layout/fragment_my_account" >
         <action
             android:id="@+id/action_myAccountFragment_to_moreFragment2"
-            app:destination="@id/moreFragment2" />
+            app:destination="@id/moreFragment2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/medicineCategoryFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.MedicineCategoryFragment"
+        android:label="fragment_medicine_category"
+        tools:layout="@layout/fragment_medicine_category" >
+        <action
+            android:id="@+id/action_medicineCategoryFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="category"
+            app:argType="string" />
     </fragment>
 </navigation>

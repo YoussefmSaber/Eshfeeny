@@ -14,6 +14,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/vector"
+        android:usesCleartextTraffic="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.EshfeenyGraduationProject"
@@ -21,8 +22,8 @@
         <activity
             android:name=".eshfeeny.MainActivity"
             android:exported="false"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.EshfeenyGraduationProject.NoActionBar" />
+            android:label="MainActivity"
+            android:theme="@style/Theme.EshfeenyGraduationProject" />
         <activity
             android:name=".authentication.AuthenticationActivity"
             android:exported="true"

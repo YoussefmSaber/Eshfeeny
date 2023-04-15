@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".eshfeeny.search_for_medicines.MedicineCategoryFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cartCard"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_gravity="center_vertical|start"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="12sp"
+        app:cardCornerRadius="20sp"
+        app:layout_constraintEnd_toStartOf="@id/categoryTitle"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/cart_small_icon" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/categoryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="العناية بالاسنان"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@id/backBtn"
+        app:layout_constraintStart_toEndOf="@id/cartCard"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12sp"
+        android:src="@drawable/arrow_right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/categoryTitle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16sp"
+        android:background="@drawable/search_background"
+        android:layoutDirection="rtl"
+        app:defaultQueryHint="ما الذي تبحث عنه؟"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/categoryTitle"
+        app:queryHint="ما الذي تبحث عنه؟"
+        app:searchIcon="@drawable/__icon__search_" />
+
+    <HorizontalScrollView
+        android:id="@+id/chipGroupParent"
+        android:layout_width="match_parent"
+        android:layout_margin="8sp"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchView">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/medicineChipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollHorizontally="true"
+            app:itemSpacing="16sp"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/medicineRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layoutDirection="rtl"
+        app:layout_constraintTop_toBottomOf="@id/chipGroupParent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:listitem="@layout/medicine_items"
+        app:layout_constraintHeight_max="0dp"
+        app:layout_constraintHeight_default="wrap"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

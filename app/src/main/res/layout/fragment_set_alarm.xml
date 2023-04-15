@@ -9,10 +9,10 @@
 
     <ImageView
         android:id="@+id/BackArrow"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="15dp"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="30sp"
+        android:layout_marginEnd="15sp"
         android:contentDescription="@string/back_to_alarm_page"
         android:src="@drawable/arrow_right"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -27,5 +27,6 @@
     <color name="chips_text1">#676767</color>
     <color name="app_background">#FDFDFF</color>
     <color name="text_color">#1F1F1F</color>
-
+    <color name="chip_stroke_notSelected">#e5e5e5</color>
+    <color name="chip_stroke_selected">@color/blue_main</color>
 </resources>

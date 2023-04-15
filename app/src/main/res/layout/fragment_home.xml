@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7FFFFFF"
+    android:background="#fff"
     tools:context=".eshfeeny.home.HomeFragment">
 
     <ScrollView
@@ -19,24 +19,49 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.denzcoskun.imageslider.ImageSlider
-                android:id="@+id/imageSLider"
-                android:layout_margin="22sp"
-                android:layout_width="match_parent"
-                android:layout_height="150sp"
-                app:iss_auto_cycle="true"
-                app:iss_period="2500"
-                app:iss_delay="100"
-                app:iss_corner_radius="10"
-                app:iss_selected_dot="@drawable/circle"
-                app:iss_unselected_dot="@drawable/not_selected_icon"
-                app:layout_constraintBottom_toTopOf="@id/company_id_phorto_home"
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16sp"
+                android:src="@drawable/logo_eshfeeny"
+                app:layout_constraintBottom_toTopOf="@id/searchView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16sp"
+                android:background="@drawable/search_background"
+                android:layoutDirection="rtl"
+                app:defaultQueryHint="ما الذي تبحث عنه؟"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categoryTitle"
+                app:queryHint="ما الذي تبحث عنه؟"
+                app:searchIcon="@drawable/__icon__search_" />
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/imageSLider"
+                android:layout_width="match_parent"
+                android:layout_height="150sp"
+                android:layout_margin="22sp"
+                app:iss_auto_cycle="true"
+                app:iss_corner_radius="10"
+                app:iss_delay="0"
+                app:iss_period="1500"
+                app:iss_selected_dot="@drawable/circle"
+                app:iss_unselected_dot="@drawable/not_selected_icon"
+                app:layout_constraintBottom_toTopOf="@id/insuranceCompanyBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/searchView" />
+
             <ImageView
-                android:id="@+id/company_id_phorto_home"
+                android:id="@+id/insuranceCompanyBtn"
                 android:layout_width="match_parent"
                 android:layout_height="150sp"
                 android:src="@drawable/insurance_company_logo_home"
@@ -55,7 +80,7 @@
                 android:textColor="@color/text_main"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/company_id_phorto_home" />
+                app:layout_constraintTop_toBottomOf="@+id/insuranceCompanyBtn" />
 
             <ImageView
                 android:id="@+id/add_roshta_photo_id"
@@ -63,17 +88,15 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/add_roshtaaa"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/SearchForMed_btn_id_home"
+                app:layout_constraintStart_toEndOf="@id/searchForMedsBtn"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <ImageView
-                android:id="@+id/SearchForMed_btn_id_home"
+                android:id="@+id/searchForMedsBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginEnd="5dp"
                 android:clickable="true"
-
                 android:src="@drawable/search_for_medicine_home"
                 app:layout_constraintEnd_toStartOf="@+id/add_roshta_photo_id"
                 app:layout_constraintStart_toStartOf="parent"
@@ -89,68 +112,63 @@
                 android:textColor="#1F1F1F"
                 android:textSize="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/SearchForMed_btn_id_home" />
+                app:layout_constraintTop_toBottomOf="@+id/searchForMedsBtn" />
 
             <ImageView
-                android:id="@+id/VP_btn_id_Home"
+                android:id="@+id/virusProtectionBtn"
                 android:layout_width="117dp"
                 android:layout_height="98dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
-                android:clickable="true"
                 android:src="@drawable/el_7maya_mn_el_versus"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <ImageView
-                android:id="@+id/MAC_btn_id_Home"
+                android:id="@+id/motherAndChildBtn"
                 android:layout_width="76dp"
                 android:layout_height="101dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="44dp"
-                android:clickable="true"
                 android:src="@drawable/elom_w_eltfl"
-                app:layout_constraintEnd_toStartOf="@+id/VP_btn_id_Home"
+                app:layout_constraintEnd_toStartOf="@+id/virusProtectionBtn"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <ImageView
-                android:id="@+id/WP_btn_id_Home"
+                android:id="@+id/womenProductsBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="60dp"
                 android:src="@drawable/montgat_el_mr2aa"
-                app:layout_constraintEnd_toStartOf="@+id/MAC_btn_id_Home"
-                app:layout_constraintTop_toTopOf="@+id/MAC_btn_id_Home" />
+                app:layout_constraintEnd_toStartOf="@+id/motherAndChildBtn"
+                app:layout_constraintTop_toTopOf="@+id/motherAndChildBtn" />
 
             <ImageView
-                android:id="@+id/SAH_btn_id_Home"
+                android:id="@+id/skinAndHairCareBtn"
                 android:layout_width="115dp"
                 android:layout_height="101dp"
                 android:layout_marginTop="10dp"
-                android:clickable="true"
                 android:src="@drawable/el_3naya_bl_bshraa"
-                app:layout_constraintEnd_toEndOf="@+id/VP_btn_id_Home"
-                app:layout_constraintTop_toBottomOf="@+id/VP_btn_id_Home" />
+                app:layout_constraintEnd_toEndOf="@+id/virusProtectionBtn"
+                app:layout_constraintTop_toBottomOf="@+id/virusProtectionBtn" />
 
             <ImageView
-                android:id="@+id/DC_btn_id_Home"
+                android:id="@+id/dentalCareBtn"
                 android:layout_width="79dp"
                 android:layout_height="98dp"
                 android:layout_marginEnd="44dp"
                 android:src="@drawable/el_3naya_bl_asnaan"
-                app:layout_constraintEnd_toStartOf="@+id/SAH_btn_id_Home"
-                app:layout_constraintTop_toTopOf="@+id/SAH_btn_id_Home" />
+                app:layout_constraintEnd_toStartOf="@+id/skinAndHairCareBtn"
+                app:layout_constraintTop_toTopOf="@+id/skinAndHairCareBtn" />
 
             <ImageView
-                android:id="@+id/MP_btn_id_Home"
+                android:id="@+id/menProductsBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="60dp"
-                android:clickable="true"
-                android:contentDescription="TODO"
                 android:src="@drawable/montgat_el_rgaal"
-                app:layout_constraintEnd_toStartOf="@+id/DC_btn_id_Home"
-                app:layout_constraintTop_toTopOf="@+id/DC_btn_id_Home" />
+                app:layout_constraintEnd_toStartOf="@+id/dentalCareBtn"
+                app:layout_constraintTop_toTopOf="@+id/dentalCareBtn" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -162,7 +180,7 @@
                 android:textColor="#1F1F1F"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/SAH_btn_id_Home" />
+                app:layout_constraintTop_toBottomOf="@+id/skinAndHairCareBtn" />
 
             <ImageView
                 android:id="@+id/select_all_summer_needs_id"
@@ -172,7 +190,7 @@
                 android:layout_marginTop="12dp"
                 android:src="@drawable/show_all_icon"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/SAH_btn_id_Home"
+                app:layout_constraintTop_toBottomOf="@+id/skinAndHairCareBtn"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -314,15 +332,14 @@
                         android:layout_margin="8dp"
                         android:backgroundTint="#F7FFFFFF"
                         android:elevation="0dp"
-                        android:layoutDirection="rtl"
                         android:padding="6dp"
                         app:cardCornerRadius="10sp"
                         app:strokeColor="#e5e5e5"
-                        app:strokeWidth="1dp">
+                        app:strokeWidth="1sp">
 
                         <ImageView
-                            android:layout_width="99sp"
-                            android:layout_height="73sp"
+                            android:layout_width="100sp"
+                            android:layout_height="75sp"
                             android:layout_margin="6sp"
                             android:src="@drawable/vichy_laboratories_logo_vector"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -337,17 +354,15 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:backgroundTint="#F7FFFFFF"
-                        android:clickable="true"
                         android:elevation="0dp"
-                        android:layoutDirection="rtl"
                         android:padding="6dp"
                         app:cardCornerRadius="10sp"
                         app:strokeColor="#e5e5e5"
-                        app:strokeWidth="0.4sp">
+                        app:strokeWidth="1sp">
 
                         <ImageView
-                            android:layout_width="99sp"
-                            android:layout_height="73sp"
+                            android:layout_width="100sp"
+                            android:layout_height="75sp"
                             android:layout_margin="6sp"
                             android:src="@drawable/vichy_laboratories_logo_vector"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -363,15 +378,14 @@
                         android:layout_margin="8dp"
                         android:backgroundTint="#F7FFFFFF"
                         android:elevation="0dp"
-                        android:layoutDirection="rtl"
                         android:padding="6dp"
                         app:cardCornerRadius="10sp"
                         app:strokeColor="#e5e5e5"
-                        app:strokeWidth="0.4sp">
+                        app:strokeWidth="1sp">
 
                         <ImageView
-                            android:layout_width="99sp"
-                            android:layout_height="73sp"
+                            android:layout_width="100sp"
+                            android:layout_height="75sp"
                             android:layout_margin="6sp"
                             android:src="@drawable/la_roche_posay_brand"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -394,15 +408,14 @@
                         android:layout_margin="8dp"
                         android:backgroundTint="#F7FFFFFF"
                         android:elevation="0dp"
-                        android:layoutDirection="rtl"
                         android:padding="6dp"
                         app:cardCornerRadius="10sp"
                         app:strokeColor="#e5e5e5"
-                        app:strokeWidth="0.4sp">
+                        app:strokeWidth="1sp">
 
                         <ImageView
-                            android:layout_width="99sp"
-                            android:layout_height="73sp"
+                            android:layout_width="100sp"
+                            android:layout_height="75sp"
                             android:layout_margin="6sp"
                             android:src="@drawable/pngwing_com"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -418,15 +431,14 @@
                         android:layout_margin="8dp"
                         android:backgroundTint="#F7FFFFFF"
                         android:elevation="0dp"
-                        android:layoutDirection="rtl"
                         android:padding="6dp"
                         app:cardCornerRadius="10sp"
                         app:strokeColor="#e5e5e5"
-                        app:strokeWidth="0.4sp">
+                        app:strokeWidth="1sp">
 
                         <ImageView
-                            android:layout_width="99sp"
-                            android:layout_height="73sp"
+                            android:layout_width="100sp"
+                            android:layout_height="75sp"
                             android:layout_margin="6sp"
                             android:src="@drawable/garnier_logo"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -442,15 +454,14 @@
                         android:layout_margin="8dp"
                         android:backgroundTint="#F7FFFFFF"
                         android:elevation="0dp"
-                        android:layoutDirection="rtl"
                         android:padding="6dp"
                         app:cardCornerRadius="10sp"
                         app:strokeColor="#e5e5e5"
-                        app:strokeWidth="0.4sp">
+                        app:strokeWidth="1sp">
 
                         <ImageView
-                            android:layout_width="99sp"
-                            android:layout_height="73sp"
+                            android:layout_width="100sp"
+                            android:layout_height="75sp"
                             android:layout_margin="6sp"
                             android:src="@drawable/axe_logo_2021"
                             app:layout_constraintBottom_toBottomOf="parent"
