@@ -17,12 +17,16 @@
 
     <TextView
         android:id="@+id/txt_id_details"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:fontFamily="@font/cairo_regular"
         android:text="TextView"
         android:textColor="#1F1F1F"
+        android:layout_marginEnd="4sp"
+        android:layout_marginStart="4sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/img_points_id"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

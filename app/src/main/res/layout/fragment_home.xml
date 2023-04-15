@@ -40,7 +40,7 @@
                 app:defaultQueryHint="ما الذي تبحث عنه؟"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/categoryTitle"
+                app:layout_constraintTop_toBottomOf="@id/logo"
                 app:queryHint="ما الذي تبحث عنه؟"
                 app:searchIcon="@drawable/__icon__search_" />
 
@@ -64,7 +64,7 @@
                 android:id="@+id/insuranceCompanyBtn"
                 android:layout_width="match_parent"
                 android:layout_height="150sp"
-                android:src="@drawable/insurance_company_logo_home"
+                android:src="@drawable/insurance_card"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imageSLider"

@@ -66,7 +66,7 @@ class MedicineAdapter() : ListAdapter<CategoryResponseItem, MedicineAdapter.View
                 itemBinding.btnCntAddItemId.visibility = View.GONE
             }
             itemBinding.imgVMedicineId.setOnClickListener {
-                val action = HomeFragmentDirections.actionHomeFragment2ToDetailsFragment2(category._id)
+                val action = HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(category._id)
                 it.findNavController().navigate(action)
             }
 
