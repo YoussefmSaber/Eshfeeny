@@ -2,10 +2,13 @@ package com.example.data.repository
 
 import com.example.data.remote.apis.UserRetrofitInstance
 import com.example.domain.entity.CategoryResponse
-import com.example.domain.entity.CategoryResponseItem
 import retrofit2.Response
 
 class MedicineRepoImpl {
+
+    suspend fun getMedicinesFromRemote(medicines: String): Response<CategoryResponse> =
+        UserRetrofitInstance.medicineApi.getMedicineFromRemote(medicines)
+
     //get medicine امساك
     suspend fun getMedicineFromRemoteForEmsaak(): CategoryResponse =
         UserRetrofitInstance.medicineApi.getMedicineFromEmsaak()
@@ -41,9 +44,4 @@ class MedicineRepoImpl {
     //get All Medicine
     suspend fun getMedicineFromRemoteForAllMedicines(): CategoryResponse =
         UserRetrofitInstance.medicineApi.getMedicineFromAllMedicines()
-
-    //get details for medicine
-    suspend fun getMedicineDetailsFromRemote(id: String): Response<CategoryResponseItem> {
-        return UserRetrofitInstance.medicineApi.getMedicineDetails(id)
-    }
 }

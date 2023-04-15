@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.*
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentAlarmBinding
 import com.example.eshfeenygraduationproject.eshfeeny.util.*
@@ -32,7 +33,9 @@ class AlarmFragment : Fragment() {
         // initializing the adapter of the recycler view
         binding?.calendarDaySelectRV?.adapter = adapter
         // adding a navigation to the add button to go to Set alarm page
-
+        binding?.addAlarmBtn?.setOnClickListener {
+            findNavController().navigate(R.id.action_alarmFragment_to_setAlarmFragment)
+        }
         return binding?.root
     }
 

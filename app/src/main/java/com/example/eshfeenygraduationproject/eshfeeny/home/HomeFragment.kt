@@ -8,11 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.data.repository.MedicineRepoImpl
-import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.*
@@ -48,19 +48,39 @@ class HomeFragment : Fragment() {
         //To open Roshta fragment
 
         //To open Search Medicine Fragment
+        binding?.searchForMedsBtn?.setOnClickListener {
+            navigateToRightCategory("allMeds", it)
+        }
 
-        ////To open Virus Protection Fragment
+        //To open Virus Protection Fragment
+        binding?.virusProtectionBtn?.setOnClickListener {
+            navigateToRightCategory("virusProtection", it)
+        }
 
         //To open Mother and Child Fragment
+        binding?.motherAndChildBtn?.setOnClickListener {
+            navigateToRightCategory("motherAndChild", it)
+        }
 
         //To open Women's products Fragment
+        binding?.womenProductsBtn?.setOnClickListener {
+            navigateToRightCategory("womenProducts", it)
+        }
 
         //To open Skin and hair care Fragment
+        binding?.skinAndHairCareBtn?.setOnClickListener {
+            navigateToRightCategory("skinAndHairCare", it)
+        }
 
         //To open Dental care Fragment
+        binding?.dentalCareBtn?.setOnClickListener {
+            navigateToRightCategory("dentalCareBtn", it)
+        }
 
         //To open Men's products Fragment
-
+        binding?.menProductsBtn?.setOnClickListener {
+            navigateToRightCategory("menProducts", it)
+        }
 
         medicineViewModel = ViewModelProvider(this, viewModelFactory)[MedicineViewModel::class.java]
 
@@ -89,6 +109,11 @@ class HomeFragment : Fragment() {
             Log.i("Home Frgament sh8aal", it.toString())
         }
         return binding?.root
+    }
+
+    private fun navigateToRightCategory(categoryName: String, view: View) {
+        val action = HomeFragmentDirections.actionHomeFragment2ToMedicineCategoryFragment(categoryName)
+        Navigation.findNavController(view).navigate(action)
     }
 
     override fun onDestroyView() {

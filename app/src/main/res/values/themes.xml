@@ -23,13 +23,4 @@
         <item name="android:textColor">@color/chips_text_color</item>
     </style>
 
-    <style name="Theme.EshfeenyGraduationProject.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.EshfeenyGraduationProject.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.EshfeenyGraduationProject.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
 </resources>
