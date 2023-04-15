@@ -67,6 +67,7 @@
                 android:id="@+id/price_medicine_id_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8sp"
                 android:layout_marginBottom="8sp"
                 android:fontFamily="@font/cairo_semibold"

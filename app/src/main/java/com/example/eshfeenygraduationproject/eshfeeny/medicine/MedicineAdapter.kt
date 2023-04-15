@@ -5,12 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.domain.entity.CategoryResponseItem
 import com.example.eshfeenygraduationproject.databinding.MedicineItemsBinding
+import com.example.eshfeenygraduationproject.eshfeeny.details.DetailsFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragmentDirections
 
 
 class MedicineAdapter() : ListAdapter<CategoryResponseItem, MedicineAdapter.ViewHolder>(CategoryDiffCallback()) {
@@ -46,7 +50,7 @@ class MedicineAdapter() : ListAdapter<CategoryResponseItem, MedicineAdapter.View
                 itemBinding.btnCntAddItemId.text = cnt.toString()
             }
             itemBinding.decreaseBtnId.setOnClickListener {
-                    cnt--
+                cnt--
                 if(cnt>0)
                     itemBinding.btnCntAddItemId.text = cnt.toString()
                 else {
@@ -61,6 +65,11 @@ class MedicineAdapter() : ListAdapter<CategoryResponseItem, MedicineAdapter.View
                 itemBinding.decreaseBtnId.visibility = View.GONE
                 itemBinding.btnCntAddItemId.visibility = View.GONE
             }
+            itemBinding.imgVMedicineId.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeFragment2ToDetailsFragment2(category._id)
+                it.findNavController().navigate(action)
+            }
+
             Log.i("ViewHolder sh8aal",toString())
         }
     }
