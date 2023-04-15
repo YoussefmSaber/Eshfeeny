@@ -1,44 +1,37 @@
 package com.example.eshfeenygraduationproject.eshfeeny.medicine
 
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.entity.CategoryResponseItem
 import com.example.eshfeenygraduationproject.databinding.MedicineDetailsItemBinding
 
-class WarningAdapter(): ListAdapter<CategoryResponseItem, WarningAdapter.WarningViewHolder>(WarningDiffCallback()) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WarningViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = MedicineDetailsItemBinding.inflate(inflater, parent, false)
-        return WarningViewHolder(binding)
-    }
 
-    override fun onBindViewHolder(holder: WarningViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
-    }
-    class WarningViewHolder(private val binding: MedicineDetailsItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(category: CategoryResponseItem) {
-            binding.txtIdDetails.text = "${category.warning}"
+class WarningAdapter(val warning: List<String>) :
+    RecyclerView.Adapter<WarningAdapter.WarningViewHolder>() {
+    inner class WarningViewHolder(private val binding: MedicineDetailsItemBinding):RecyclerView.ViewHolder(binding.root){
+        fun bind(category: String) {
+            binding.txtIdDetails.text = category
         }
     }
-}
-class WarningDiffCallback: DiffUtil.ItemCallback<CategoryResponseItem>() {
-    override fun areItemsTheSame(
-        oldItem: CategoryResponseItem,
-        newItem: CategoryResponseItem
-    ): Boolean {
-        return oldItem._id == newItem._id
-    }
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): WarningViewHolder =
+        WarningViewHolder(
+            MedicineDetailsItemBinding.inflate(LayoutInflater.from(parent.context),
+                parent,
+                false)
+        )
 
-    override fun areContentsTheSame(
-        oldItem: CategoryResponseItem,
-        newItem: CategoryResponseItem
-    ): Boolean {
-        return oldItem == newItem
+    override fun getItemCount(): Int = warning.size
+    override fun onBindViewHolder(holder: WarningAdapter.WarningViewHolder, position: Int) {
+        val day = warning[position]
+        holder.bind(day)
     }
 }
+
+
+
+
+

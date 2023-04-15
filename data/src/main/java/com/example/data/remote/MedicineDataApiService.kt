@@ -1,7 +1,10 @@
 package com.example.data.remote
 
 import com.example.domain.entity.CategoryResponse
+import com.example.domain.entity.CategoryResponseItem
+import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface MedicineDataApiService {
     @GET("products/category/امساك")
@@ -26,4 +29,6 @@ interface MedicineDataApiService {
 
     @GET("products/type/الأدوية")
     suspend fun getMedicineFromAllMedicines(): CategoryResponse
+    @GET("/products/{id}")
+    suspend fun getMedicineDetails(@Path("id") id: String): Response<CategoryResponseItem>
 }

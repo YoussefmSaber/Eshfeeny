@@ -8,7 +8,11 @@
         android:id="@+id/homeFragment2"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment2_to_detailsFragment2"
+            app:destination="@id/detailsFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/cartFragment2"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.cart.CartFragment"
@@ -29,4 +33,15 @@
         android:name="com.example.eshfeenygraduationproject.eshfeeny.gps.GpsFragment"
         android:label="fragment_gps"
         tools:layout="@layout/fragment_gps" />
+    <fragment
+        android:id="@+id/detailsFragment2"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.details.DetailsFragment"
+        android:label="DetailsFragment" >
+        <action
+            android:id="@+id/action_detailsFragment2_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+        <argument
+            android:name="Id"
+            app:argType="string" />
+    </fragment>
 </navigation>

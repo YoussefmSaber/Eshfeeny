@@ -1,24 +1,33 @@
 package com.example.eshfeenygraduationproject.eshfeeny.viewmodel
 
+import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.data.repository.MedicineRepoImpl
 import com.example.domain.entity.CategoryResponse
+import com.example.domain.entity.CategoryResponseItem
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
-class DetailsViewModel: ViewModel() {
-    private val _medicine = MutableLiveData<CategoryResponse>()
-    val medicine: LiveData<CategoryResponse>
+class DetailsViewModel(
+    private val repoImpl: MedicineRepoImpl
+): ViewModel() {
+    private val _medicine = MutableLiveData<Response<CategoryResponseItem>>()
+    val medicine: LiveData<Response<CategoryResponseItem>>
         get() = _medicine
-    fun setMedicine(medicine:CategoryResponse){
+    @SuppressLint("LongLogTag")
+    fun setMedicine(id: String){
         viewModelScope.launch {
             try {
-                _medicine.value = medicine
+                val response = repoImpl.getMedicineDetailsFromRemote(id)
+                _medicine.value = response
+                Log.i("mvvm sh8aal All Medicines in details fragment ", toString())
             }catch (e:Exception){
-                Log.e(TAG, "Error in MVVM details", e)
+                Log.e(TAG, "Error in MVVM details in all medicines", e)
             }
         }
 
