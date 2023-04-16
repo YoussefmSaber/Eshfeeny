@@ -22,6 +22,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.util.MedicinsCategories
 import com.example.eshfeenygraduationproject.eshfeeny.util.MedicinsCategories.dentalCare
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.UserViewModel
 import com.google.android.material.chip.Chip
 
 class MedicineCategoryFragment : Fragment() {
@@ -29,7 +30,8 @@ class MedicineCategoryFragment : Fragment() {
     private var selectedChip: Chip? = null
     private var binding: FragmentMedicineCategoryBinding? = null
     private val args: MedicineCategoryFragmentArgs by navArgs()
-    private lateinit var viewModel: MedicineViewModel
+    private lateinit var medicineViewModel: MedicineViewModel
+    private lateinit var userViewModel: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,53 +45,58 @@ class MedicineCategoryFragment : Fragment() {
 
         val repo = MedicineRepoImpl()
         val viewModelFactory = MedicineViewModelFactory(repo)
-        viewModel = ViewModelProvider(this, viewModelFactory)[MedicineViewModel::class.java]
+        medicineViewModel = ViewModelProvider(this, viewModelFactory)[MedicineViewModel::class.java]
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
         binding?.backBtn?.setOnClickListener {
             Navigation.findNavController(it)
                 .navigate(R.id.action_medicineCategoryFragment_to_homeFragment2)
         }
 
-        when (args.category) {
-            "allMeds" -> {
-                binding?.categoryTitle?.text = "كل الادوية"
-                setAllMeds()
-            }
-            "virusProtection" -> {
-                binding?.categoryTitle?.text = "الحماية من الفيروسات"
-                setVirusProtection()
-            }
-            "motherAndChild" -> {
+        userViewModel.userData.observe(viewLifecycleOwner) {
+            when (args.category) {
+                "allMeds" -> {
+                    binding?.categoryTitle?.text = "كل الادوية"
+                    setAllMeds(it._id)
+                }
+                "virusProtection" -> {
+                    binding?.categoryTitle?.text = "الحماية من الفيروسات"
+                    setVirusProtection(it._id)
+                }
+                "motherAndChild" -> {
 
-            }
-            "womenProducts" -> {
+                }
+                "womenProducts" -> {
 
-            }
-            "skinAndHairCare" -> {
+                }
+                "skinAndHairCare" -> {
 
-            }
-            "dentalCareBtn" -> {
+                }
+                "dentalCareBtn" -> {
 
-            }
-            "menProducts" -> {
+                }
+                "menProducts" -> {
 
+                }
             }
         }
+
+
 
         return binding?.root
     }
 
-    private fun setVirusProtection() {
+    private fun setVirusProtection(userId: String) {
         for (med in MedicinsCategories.virusProtection) {
-            val newChip = createChip(getString(med))
+            val newChip = createChip(getString(med), userId)
             binding?.medicineChipGroup?.addView(newChip)
         }
     }
 
-    private fun setAllMeds() {
+    private fun setAllMeds(userId: String) {
         var isFirstChip = true
         for (med in MedicinsCategories.allMedicines) {
-            val newChip = createChip(getString(med))
+            val newChip = createChip(getString(med), userId)
             binding?.medicineChipGroup?.addView(newChip)
 
             if (isFirstChip) {
@@ -99,11 +106,11 @@ class MedicineCategoryFragment : Fragment() {
                 selectedChip = newChip
                 isFirstChip = false
 
-                viewModel.getMedicineForAllMedicines()
-                viewModel.categories_AllMedicines.observe(viewLifecycleOwner) { response ->
+                medicineViewModel.getMedicineForAllMedicines()
+                medicineViewModel.categories_AllMedicines.observe(viewLifecycleOwner) { response ->
 
                     Log.i("chip Test", response.toString())
-                    val adapter = MedicineAdapter()
+                    val adapter = MedicineAdapter(medicineViewModel, userId)
 
                     adapter.submitList(response)
                     binding?.medicineRecyclerView?.adapter = adapter
@@ -112,7 +119,7 @@ class MedicineCategoryFragment : Fragment() {
         }
     }
 
-    private fun createChip(name: String): Chip {
+    private fun createChip(name: String, userId: String): Chip {
         val chip = Chip(context)
         chip.text = name
 
@@ -135,19 +142,19 @@ class MedicineCategoryFragment : Fragment() {
                 selectedChip = chip
 
 
-                viewModel.getMedicinesFromRemote(name)
-                viewModel.category_medicines.observe(viewLifecycleOwner) { response ->
+                medicineViewModel.getMedicinesFromRemote(name)
+                medicineViewModel.category_medicines.observe(viewLifecycleOwner) { response ->
 
-                    val adapter = MedicineAdapter()
+                    val adapter = MedicineAdapter(medicineViewModel, userId)
                     adapter.submitList(response.body())
 
                     binding?.medicineRecyclerView?.adapter = adapter
                 }
                 if (chip.text == getString(R.string.allMedicines)) {
-                    viewModel.getMedicineForAllMedicines()
-                    viewModel.categories_AllMedicines.observe(viewLifecycleOwner) { response ->
+                    medicineViewModel.getMedicineForAllMedicines()
+                    medicineViewModel.categories_AllMedicines.observe(viewLifecycleOwner) { response ->
                         Log.i("chip Test", response.toString())
-                        val adapter = MedicineAdapter()
+                        val adapter = MedicineAdapter(medicineViewModel, userId)
                         adapter.submitList(response)
                         binding?.medicineRecyclerView?.adapter = adapter
                     }

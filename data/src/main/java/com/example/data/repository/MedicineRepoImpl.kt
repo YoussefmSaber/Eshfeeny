@@ -3,6 +3,8 @@ package com.example.data.repository
 import com.example.data.remote.apis.UserRetrofitInstance
 import com.example.domain.entity.CategoryResponse
 import com.example.domain.entity.CategoryResponseItem
+import com.example.domain.entity.patchRequestVar.AddToFavorites
+import com.example.domain.entity.patchresponse.PatchRequestResponse
 import retrofit2.Response
 
 class MedicineRepoImpl {
@@ -28,4 +30,11 @@ class MedicineRepoImpl {
     //get All Medicine
     suspend fun getMedicineFromRemoteForAllMedicines(): CategoryResponse =
         UserRetrofitInstance.medicineApi.getMedicineFromAllMedicines()
+
+    suspend fun addMedicineToFavorites(
+        userId: String,
+        productId: AddToFavorites
+    ): PatchRequestResponse {
+            return UserRetrofitInstance.medicineApi.addMedicneToFavorite(userId, productId)
+    }
 }

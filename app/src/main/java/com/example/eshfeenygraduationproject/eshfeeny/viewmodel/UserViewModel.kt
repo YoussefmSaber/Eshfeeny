@@ -15,22 +15,21 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: UserRepoImpl
 
-
-    init {
-        val userDao = UserDatabase.getDatabase(application).userDao()
-
-        repository = UserRepoImpl(userDao)
-    }
-
     private val _userData: MutableLiveData<UserInfo> = MutableLiveData()
     val userData: LiveData<UserInfo>
         get() = _userData
 
-    fun getUserData() {
+
+    init {
+        val userDao = UserDatabase.getDatabase(application).userDao()
+        repository = UserRepoImpl(userDao)
+
+
         viewModelScope.launch {
             _userData.value = repository.getUserData()
         }
     }
+
 
     fun deleteUserFromDatabase() {
         viewModelScope.launch(Dispatchers.IO) {

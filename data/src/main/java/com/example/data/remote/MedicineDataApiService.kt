@@ -2,8 +2,12 @@ package com.example.data.remote
 
 import com.example.domain.entity.CategoryResponse
 import com.example.domain.entity.CategoryResponseItem
+import com.example.domain.entity.patchRequestVar.AddToFavorites
+import com.example.domain.entity.patchresponse.PatchRequestResponse
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.Path
 
 interface MedicineDataApiService {
@@ -31,4 +35,12 @@ interface MedicineDataApiService {
 
     @GET("products/type/الأدوية")
     suspend fun getMedicineFromAllMedicines(): CategoryResponse
+
+    @PATCH("users/{id}/favorites")
+    suspend fun addMedicneToFavorite(
+        @Path("id")
+        id: String,
+        @Body
+        productId: AddToFavorites
+    ): PatchRequestResponse
 }

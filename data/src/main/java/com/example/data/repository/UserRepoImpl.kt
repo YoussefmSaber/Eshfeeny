@@ -1,18 +1,15 @@
 package com.example.data.repository
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.util.Log
 import com.example.data.local.db.user.UserDAO
 import com.example.data.local.db.user.model.UserInfo
 import com.example.data.remote.apis.UserRetrofitInstance
 import com.example.domain.entity.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import okhttp3.MediaType
+import com.example.domain.entity.patchRequestVar.ChangePassword
+import com.example.domain.entity.patchresponse.PatchRequestResponse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
-import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Response
 
 class UserRepoImpl(private val userDAO: UserDAO) {
@@ -75,7 +72,7 @@ class UserRepoImpl(private val userDAO: UserDAO) {
     suspend fun updateUserPassword(
         id: String,
         newPassword: ChangePassword
-    ): PasswordChangeResponse =
+    ): PatchRequestResponse =
         UserRetrofitInstance.userApi.updateUserPassword(id, newPassword)
 
     suspend fun addUserDataToDatabase(

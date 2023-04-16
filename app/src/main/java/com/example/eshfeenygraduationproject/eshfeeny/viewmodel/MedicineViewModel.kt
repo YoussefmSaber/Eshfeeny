@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.MedicineRepoImpl
 import com.example.domain.entity.CategoryResponse
+import com.example.domain.entity.patchRequestVar.AddToFavorites
+import com.example.domain.entity.patchresponse.PatchRequestResponse
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -40,6 +42,10 @@ class MedicineViewModel(
     private val _categories_AllMedicines = MutableLiveData<CategoryResponse>()
     val categories_AllMedicines: LiveData<CategoryResponse>
         get() = _categories_AllMedicines
+
+    private val _medicineToFavorites = MutableLiveData<PatchRequestResponse>()
+    val medicineToFavorite: LiveData<PatchRequestResponse>
+        get() = _medicineToFavorites
 
 
     fun getMedicinesFromRemote(medicine: String) {
@@ -103,6 +109,20 @@ class MedicineViewModel(
             } catch (e: Exception) {
                 // handle error
                 Log.e(TAG, "Error fetching urls AllMedicines", e)
+            }
+        }
+    }
+
+    fun addMedicineToFavorites(
+        userId: String,
+        productId: AddToFavorites
+    ) {
+        viewModelScope.launch {
+            try {
+                val response = repoImpl.addMedicineToFavorites(userId, productId)
+                _medicineToFavorites.value = response
+            } catch (e: Exception) {
+                Log.e("Favorite", "Error adding medicine to favorites" + e)
             }
         }
     }
