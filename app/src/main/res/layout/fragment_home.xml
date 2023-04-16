@@ -207,7 +207,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView7"
-                tools:listitem="@layout/medicine_items" />
+                tools:listitem="@layout/medicine_item_home" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -246,7 +246,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView8"
-                tools:listitem="@layout/medicine_items" />
+                tools:listitem="@layout/medicine_item_home" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -285,7 +285,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView9"
-                tools:listitem="@layout/medicine_items" />
+                tools:listitem="@layout/medicine_item_home" />
 
             <TextView
                 android:id="@+id/textView10"
