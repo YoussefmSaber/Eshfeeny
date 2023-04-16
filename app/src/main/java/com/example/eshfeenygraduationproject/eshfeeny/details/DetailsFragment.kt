@@ -36,8 +36,8 @@ class DetailsFragment : Fragment() {
 
         viewModel.setMedicine(args.Id)
         viewModel.medicine.observe(viewLifecycleOwner){
-            binding?.idTxtAmountVolumeDetails?.text = it.body()?.nameAr
-            binding?.idTxtPriceDetails?.text = it.body()?.price.toString()
+            binding?.idTxtAmountVolumeDetails?.text = "${it.body()?.nameAr} | ${it.body()?.amount} | ${it.body()?.volume}"
+            binding?.idTxtPriceDetails?.text = "${it.body()?.price.toString()} جنيه"
             binding?.idTxtDescrection?.text = it.body()?.description
 
 //            binding?.idImgMedicineDetails?.context?.let { it1 -> Glide.with(it1).load(it.body()?.images?.get(0)).into() }

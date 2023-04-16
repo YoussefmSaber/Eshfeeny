@@ -9,8 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.example.data.repository.UserRepoImpl
-import com.example.domain.entity.ChangePassword
+import com.example.domain.entity.patchRequestVar.ChangePassword
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
 import com.example.eshfeenygraduationproject.databinding.FragmentChangePasswordBinding
 

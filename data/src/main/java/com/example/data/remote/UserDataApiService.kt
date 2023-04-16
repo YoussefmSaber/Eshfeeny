@@ -2,7 +2,8 @@ package com.example.data.remote
 
 import com.example.data.local.db.user.model.UserInfo
 import com.example.domain.entity.*
-import okhttp3.ResponseBody
+import com.example.domain.entity.patchRequestVar.ChangePassword
+import com.example.domain.entity.patchresponse.PatchRequestResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -49,5 +50,5 @@ interface UserDataApiService {
         id: String,
         @Body
         newPassword: ChangePassword
-    ): PasswordChangeResponse
+    ): PatchRequestResponse
 }

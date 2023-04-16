@@ -13,16 +13,20 @@ import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.data.repository.MedicineRepoImpl
+import com.example.data.repository.UserRepoImpl
+import com.example.domain.entity.CategoryResponse
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.*
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.UserViewModel
 
 
 class HomeFragment : Fragment() {
-    private lateinit var medicineViewModel: MedicineViewModel
 
+    private lateinit var userViewModel: UserViewModel
+    private lateinit var medicineViewModel: MedicineViewModel
     private var binding: FragmentHomeBinding? = null
 
     @SuppressLint("LongLogTag")
@@ -32,8 +36,9 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater)
 
-        val repo = MedicineRepoImpl()
-        val viewModelFactory = MedicineViewModelFactory(repo)
+        val medicineRepo = MedicineRepoImpl()
+        val viewModelFactory = MedicineViewModelFactory(medicineRepo)
+
 
         val imgList = ArrayList<SlideModel>()
         imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318089572432/flip_img1.png"))
@@ -82,32 +87,37 @@ class HomeFragment : Fragment() {
             navigateToRightCategory("menProducts", it)
         }
 
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         medicineViewModel = ViewModelProvider(this, viewModelFactory)[MedicineViewModel::class.java]
 
+        userViewModel.userData.observe(viewLifecycleOwner){ userData ->
+            val userID = userData._id
+
+            medicineViewModel.getMedicineForEmsaak()
+            medicineViewModel.categories_Emsaak.observe(viewLifecycleOwner) {
+                val adapter = MedicineAdapter(medicineViewModel, userID)
+                binding?.medicineIdRv?.adapter = adapter
+                adapter.submitList(it)
+            }
+            //call recycler view for كحه
+            medicineViewModel.getMedicineForKo7aa()
+            medicineViewModel.categories_Ko7aa.observe(viewLifecycleOwner) {
+                val adapter = MedicineAdapter(medicineViewModel, userID)
+                binding?.medicineIdRv2?.adapter = adapter
+                adapter.submitList(it)
+                Log.i("Home Frgament sh8aal for ko7aa", it.toString())
+            }
+            //call recycler view for مغص
+            medicineViewModel.getMedicineForM8aas()
+            medicineViewModel.categories_M8aas.observe(viewLifecycleOwner) {
+                val adapter = MedicineAdapter(medicineViewModel, userID)
+                binding?.medicineIdRv3?.adapter = adapter
+                adapter.submitList(it)
+                Log.i("Home Frgament sh8aal", it.toString())
+            }
+        }
+
         //call recycler view for امساك
-        medicineViewModel.getMedicineForEmsaak()
-        medicineViewModel.categories_Emsaak.observe(viewLifecycleOwner) {
-            val adapter = MedicineAdapter()
-            binding?.medicineIdRv?.adapter = adapter
-            adapter.submitList(it)
-            Log.i("Home Frgament sh8aal for Emsaak", it.toString())
-        }
-        //call recycler view for كحه
-        medicineViewModel.getMedicineForKo7aa()
-        medicineViewModel.categories_Ko7aa.observe(viewLifecycleOwner) {
-            val adapter = MedicineAdapter()
-            binding?.medicineIdRv2?.adapter = adapter
-            adapter.submitList(it)
-            Log.i("Home Frgament sh8aal for ko7aa", it.toString())
-        }
-        //call recycler view for مغص
-        medicineViewModel.getMedicineForM8aas()
-        medicineViewModel.categories_M8aas.observe(viewLifecycleOwner) {
-            val adapter = MedicineAdapter()
-            binding?.medicineIdRv3?.adapter = adapter
-            adapter.submitList(it)
-            Log.i("Home Frgament sh8aal", it.toString())
-        }
         return binding?.root
     }
 

@@ -23,14 +23,13 @@ class MyAccountFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentMyAccountBinding.inflate(inflater)
         viewModel = ViewModelProvider(this)[UserViewModel::class.java]
-        viewModel.getUserData()
+
         viewModel.userData.observe(viewLifecycleOwner) {
             binding?.nameInputEditText?.setText(it.name)
             binding?.emailInputEditText?.setText(it.email)
             binding?.genderInputEditText?.setText(it.gender)
             binding?.phoneInputEditText?.setText(it.phoneNumber)
         }
-
 
         return binding?.root
     }

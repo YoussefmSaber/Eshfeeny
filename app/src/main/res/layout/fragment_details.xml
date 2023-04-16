@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
         <variable
             name="medicine"
             type="com.example.domain.entity.CategoryResponseItem" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,6 +16,274 @@
         android:elevation="0dp"
         android:orientation="vertical"
         tools:context=".eshfeeny.details.DetailsFragment">
+
+        <TextView
+            android:id="@+id/textView121"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8sp"
+            android:fontFamily="@font/cairo_semibold"
+            android:text="تفاصيل المنتج "
+            android:textColor="#1F1F1F"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/exit1_btn_id"
+            android:layout_width="27sp"
+            android:layout_height="24sp"
+            android:layout_marginTop="13sp"
+            android:layout_marginEnd="16sp"
+            android:clickable="true"
+            android:src="@drawable/exit_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <ImageView
+            android:id="@+id/btn_cart_details"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/cir_cart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider12"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/listDivider"
+            android:backgroundTint="#4D4D4D"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.737"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView121" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16sp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/id_btn_add_to_cart_details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_default="wrap"
+            app:layout_constraintHeight_max="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider12"
+            app:layout_constraintVertical_bias="0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/id_img_Medicine_details"
+                    android:layout_width="170sp"
+                    android:layout_height="170sp"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginTop="16sp"
+                    app:imageUrl="@{medicine.images[0]}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/avatars" />
+
+                <ImageView
+                    android:id="@+id/id_btn_fav_details"
+                    android:layout_width="40sp"
+                    android:layout_height="40sp"
+                    android:layout_marginStart="16sp"
+                    android:layout_marginTop="40sp"
+                    android:src="@drawable/cir_love"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider12" />
+
+                <ImageView
+                    android:id="@+id/id_btn_replacement_details"
+                    android:layout_width="40sp"
+                    android:layout_height="40sp"
+                    android:layout_marginTop="16sp"
+                    android:src="@drawable/cir__"
+                    app:layout_constraintStart_toStartOf="@+id/id_btn_fav_details"
+                    app:layout_constraintTop_toBottomOf="@+id/id_btn_fav_details" />
+
+                <ImageView
+                    android:id="@+id/id_btn_gps_details"
+                    android:layout_width="40sp"
+                    android:layout_height="40sp"
+                    android:layout_marginTop="16sp"
+                    android:src="@drawable/cir_gps"
+                    app:layout_constraintStart_toStartOf="@+id/id_btn_replacement_details"
+                    app:layout_constraintTop_toBottomOf="@+id/id_btn_replacement_details" />
+
+                <ImageView
+                    android:id="@+id/id_btn_share_details"
+                    android:layout_width="44dp"
+                    android:layout_height="39dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/cir_share"
+                    app:layout_constraintStart_toStartOf="@+id/id_btn_gps_details"
+                    app:layout_constraintTop_toBottomOf="@+id/id_btn_gps_details" />
+
+                <TextView
+                    android:id="@+id/id_txt_amount_volume_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="52dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/cairo_medium"
+                    android:textColor="#1F1F1F"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_img_Medicine_details" />
+
+                <TextView
+                    android:id="@+id/id_txt_price_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/cairo_medium"
+                    android:textColor="#0583F2"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/id_txt_amount_volume_details"
+                    app:layout_constraintTop_toBottomOf="@+id/id_txt_amount_volume_details" />
+
+                <View
+                    android:id="@+id/divider13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="16dp"
+                    android:background="?android:attr/listDivider"
+                    android:backgroundTint="#4D4D4D"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.737"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_txt_price_details" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/cairo_medium"
+                    android:text="الوصف:"
+                    android:textColor="#1F1F1F"
+                    app:layout_constraintEnd_toEndOf="@+id/id_txt_price_details"
+                    app:layout_constraintTop_toTopOf="@+id/divider13" />
+
+                <TextView
+                    android:id="@+id/id_txt_descrection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/cairo_regular"
+                    android:text="@{medicine.description}"
+                    android:textColor="#1F1F1F"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/textView16"
+                    app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/cairo_medium"
+                    android:text="دواعى الاستخدام :"
+                    android:textColor="#1F1F1F"
+                    app:layout_constraintEnd_toEndOf="@+id/id_txt_descrection"
+                    app:layout_constraintTop_toBottomOf="@+id/id_txt_descrection" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/id_rv_useCase_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layoutDirection="ltr"
+                    android:textDirection="rtl"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView18"
+                    tools:listitem="@layout/medicine_details_item" />
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/cairo_medium"
+                    android:text="طريقة الاستخدام :"
+                    android:textColor="#1F1F1F"
+                    app:layout_constraintEnd_toEndOf="@+id/id_txt_descrection"
+                    app:layout_constraintTop_toBottomOf="@+id/id_rv_useCase_details" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/id_rv_usage_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layoutDirection="ltr"
+                    android:textDirection="rtl"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/cairo_medium"
+                    android:text="الاعراض الجانبية :"
+                    android:textColor="#1F1F1F"
+                    app:layout_constraintEnd_toEndOf="@+id/id_txt_descrection"
+                    app:layout_constraintTop_toBottomOf="@+id/id_rv_usage_details" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/id_rv_sideEffect_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:layoutDirection="ltr"
+                    android:textDirection="rtl"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@+id/textView21"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/cairo_medium"
+                    android:text="التحذيرات :"
+                    android:textColor="#1F1F1F"
+                    app:layout_constraintEnd_toEndOf="@+id/id_txt_descrection"
+                    app:layout_constraintTop_toBottomOf="@+id/id_rv_sideEffect_details" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/id_rv_warning_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layoutDirection="ltr"
+                    android:textDirection="rtl"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView21" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
 
         <View
@@ -86,274 +356,6 @@
             app:layout_constraintEnd_toStartOf="@+id/btn_cnt_cart_details"
             app:layout_constraintTop_toTopOf="@+id/btn_cnt_cart_details"
             tools:ignore="SpeakableTextPresentCheck" />
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/textView121"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/cairo_semibold"
-                    android:text="تفاصيل المنتج "
-                    android:textColor="#1F1F1F"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/exit1_btn_id"
-                    android:layout_width="27dp"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginEnd="16dp"
-                    android:clickable="true"
-                    android:src="@drawable/exit_logo"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-                <ImageView
-                    android:id="@+id/btn_cart_details"
-                    android:layout_width="40dp"
-                    android:layout_height="43dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/cir_cart"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <View
-                    android:id="@+id/divider12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="16dp"
-                    android:background="?android:attr/listDivider"
-                    android:backgroundTint="#4D4D4D"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.737"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView121" />
-
-                <ImageView
-                    android:id="@+id/id_img_Medicine_details"
-                    android:layout_width="170sp"
-                    android:layout_height="170sp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="67dp"
-                    app:imageUrl="@{medicine.images[0]}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/divider12"
-                    tools:src="@tools:sample/avatars" />
-
-                <ImageView
-                    android:id="@+id/id_btn_fav_details"
-                    android:layout_width="40dp"
-                    android:layout_height="39dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="40dp"
-                    android:src="@drawable/cir_love"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/divider12" />
-
-                <ImageView
-                    android:id="@+id/id_btn_replacement_details"
-                    android:layout_width="43dp"
-                    android:layout_height="41dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@drawable/cir__"
-                    app:layout_constraintStart_toStartOf="@+id/id_btn_fav_details"
-                    app:layout_constraintTop_toBottomOf="@+id/id_btn_fav_details" />
-
-                <ImageView
-                    android:id="@+id/id_btn_gps_details"
-                    android:layout_width="43dp"
-                    android:layout_height="39dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@drawable/cir_gps"
-                    app:layout_constraintStart_toStartOf="@+id/id_btn_replacement_details"
-                    app:layout_constraintTop_toBottomOf="@+id/id_btn_replacement_details" />
-
-                <ImageView
-                    android:id="@+id/id_btn_share_details"
-                    android:layout_width="44dp"
-                    android:layout_height="39dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@drawable/cir_share"
-                    app:layout_constraintStart_toStartOf="@+id/id_btn_gps_details"
-                    app:layout_constraintTop_toBottomOf="@+id/id_btn_gps_details" />
-
-                <TextView
-                    android:id="@+id/id_txt_amount_volume_details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="52dp"
-                    android:layout_marginEnd="16dp"
-                    android:fontFamily="@font/cairo_medium"
-                    android:text="@{medicine.nameAr + '|' + medicine.amount + '|' + medicine.volume}"
-                    android:textColor="#1F1F1F"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_img_Medicine_details" />
-
-                <TextView
-                    android:id="@+id/id_txt_price_details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/cairo_medium"
-                    android:text="@{String.valueOf(medicine.price)}"
-                    android:textColor="#0583F2"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="@+id/id_txt_amount_volume_details"
-                    app:layout_constraintTop_toBottomOf="@+id/id_txt_amount_volume_details" />
-
-                <View
-                    android:id="@+id/divider13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="16dp"
-                    android:background="?android:attr/listDivider"
-                    android:backgroundTint="#4D4D4D"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.737"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_txt_price_details" />
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/cairo_medium"
-                    android:text="الوصف:"
-                    android:textColor="#1F1F1F"
-                    app:layout_constraintEnd_toEndOf="@+id/id_txt_price_details"
-                    app:layout_constraintTop_toTopOf="@+id/divider13" />
-
-                <TextView
-                    android:id="@+id/id_txt_descrection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/cairo_regular"
-                    android:text="@{medicine.description}"
-                    android:textColor="#1F1F1F"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView16"
-                    app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/cairo_medium"
-                    android:text="دواعى الاستخدام :"
-                    android:textColor="#1F1F1F"
-                    app:layout_constraintEnd_toEndOf="@+id/id_txt_descrection"
-                    app:layout_constraintTop_toBottomOf="@+id/id_txt_descrection" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/id_rv_useCase_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layoutDirection="ltr"
-                    android:textDirection="rtl"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18"
-                    tools:listitem="@layout/medicine_details_item" />
-
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/cairo_medium"
-                    android:text="طريقةالاستخدام :"
-                    android:textColor="#1F1F1F"
-                    app:layout_constraintEnd_toEndOf="@+id/id_txt_descrection"
-                    app:layout_constraintTop_toBottomOf="@+id/id_rv_useCase_details" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/id_rv_usage_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:layoutDirection="ltr"
-                    android:textDirection="rtl"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
-                <TextView
-                    android:id="@+id/textView20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/cairo_medium"
-                    android:text="الاعراض الجانبية :"
-                    android:textColor="#1F1F1F"
-                    app:layout_constraintEnd_toEndOf="@+id/id_txt_descrection"
-                    app:layout_constraintTop_toBottomOf="@+id/id_rv_usage_details" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/id_rv_sideEffect_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:layoutDirection="ltr"
-                    android:textDirection="rtl"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toTopOf="@+id/textView21"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/cairo_medium"
-                    android:text="التحذيرات :"
-                    android:textColor="#1F1F1F"
-                    app:layout_constraintEnd_toEndOf="@+id/id_txt_descrection"
-                    app:layout_constraintTop_toBottomOf="@+id/id_rv_sideEffect_details" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/id_rv_warning_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:layoutDirection="ltr"
-                    android:textDirection="rtl"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView21" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

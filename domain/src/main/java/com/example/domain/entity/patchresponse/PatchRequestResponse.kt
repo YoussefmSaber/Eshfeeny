@@ -1,6 +1,6 @@
-package com.example.domain.entity
+package com.example.domain.entity.patchresponse
 
-data class PasswordChangeResponse(
+data class PatchRequestResponse(
     val acknowledged: Boolean,
     val matchedCount: Int,
     val modifiedCount: Int,

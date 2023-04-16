@@ -8,6 +8,8 @@ import com.example.data.local.db.user.UserDatabase
 import com.example.data.local.db.user.model.UserInfo
 import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.*
+import com.example.domain.entity.patchRequestVar.ChangePassword
+import com.example.domain.entity.patchresponse.PatchRequestResponse
 import com.example.eshfeenygraduationproject.eshfeeny.MainActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -71,8 +73,8 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
     val areBothSame: LiveData<Boolean>
         get() = _areBothSame
 
-    private val _updatePassword: MutableLiveData<PasswordChangeResponse> = MutableLiveData()
-    val updatePassword: LiveData<PasswordChangeResponse>
+    private val _updatePassword: MutableLiveData<PatchRequestResponse> = MutableLiveData()
+    val updatePassword: LiveData<PatchRequestResponse>
         get() = _updatePassword
 
     fun verifyLogin(
