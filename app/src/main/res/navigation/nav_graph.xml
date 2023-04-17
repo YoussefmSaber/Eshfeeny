@@ -48,6 +48,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_moreFragment2_to_bmiAndBmrFragment"
+            app:destination="@id/bmiAndBmrFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment2"
@@ -135,5 +138,14 @@
         <argument
             android:name="Id"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/bmiAndBmrFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.bmiandbmr.BmiAndBmrFragment"
+        android:label="fragment_bmi_and_bmr"
+        tools:layout="@layout/fragment_bmi_and_bmr" >
+        <action
+            android:id="@+id/action_bmiAndBmrFragment_to_moreFragment2"
+            app:destination="@id/moreFragment2" />
     </fragment>
 </navigation>
