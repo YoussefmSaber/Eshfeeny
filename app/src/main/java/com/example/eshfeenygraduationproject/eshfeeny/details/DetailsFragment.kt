@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.data.repository.MedicineRepoImpl
+import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentDetailsBinding
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.SideEffectsAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.UsageAdapter
@@ -58,6 +60,13 @@ class DetailsFragment : Fragment() {
             binding?.idRvWarningDetails?.adapter = warningAdapter
 
 
+        }
+
+        //Return to Home fragment
+
+        binding?.exit1BtnId?.setOnClickListener {
+            Navigation.findNavController(it)
+                .navigate(R.id.action_detailsFragment_to_homeFragment2)
         }
         // Inflate the layout for this fragment
         return binding?.root
