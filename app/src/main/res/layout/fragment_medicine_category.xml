@@ -40,12 +40,12 @@
 
     <ImageView
         android:id="@+id/backBtn"
-        android:layout_width="40sp"
+        android:layout_width="27sp"
         android:layout_height="40sp"
         android:layout_gravity="center_vertical|right"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="12sp"
-        android:src="@drawable/arrow_right"
+        android:src="@drawable/exit_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/categoryTitle"
         app:layout_constraintTop_toTopOf="parent" />
