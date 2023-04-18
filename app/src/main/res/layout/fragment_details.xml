@@ -6,7 +6,7 @@
     <data>
         <variable
             name="medicine"
-            type="com.example.domain.entity.CategoryResponseItem" />
+            type="com.example.domain.entity.product.ProductResponseItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

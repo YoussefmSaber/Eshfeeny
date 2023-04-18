@@ -8,8 +8,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.MedicineRepoImpl
-import com.example.domain.entity.CategoryResponse
-import com.example.domain.entity.patchRequestVar.AddToFavorites
+import com.example.domain.entity.product.ProductResponse
+import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -19,36 +19,36 @@ class MedicineViewModel(
     private val repoImpl: MedicineRepoImpl
 ) : ViewModel() {
 
-    private val _categories_medicines = MutableLiveData<Response<CategoryResponse>>()
-    val category_medicines: LiveData<Response<CategoryResponse>>
+    private val _categories_medicines = MutableLiveData<Response<ProductResponse>>()
+    val category_medicines: LiveData<Response<ProductResponse>>
         get() = _categories_medicines
 
     //Categories For Emsaak
-    private val _categories_Emsaak = MutableLiveData<CategoryResponse>()
-    val categories_Emsaak: LiveData<CategoryResponse>
+    private val _categories_Emsaak = MutableLiveData<ProductResponse>()
+    val categories_Emsaak: LiveData<ProductResponse>
         get() = _categories_Emsaak
 
     //Categories For Ko7aa
-    private val _categories_Ko7aa = MutableLiveData<CategoryResponse>()
-    val categories_Ko7aa: LiveData<CategoryResponse>
+    private val _categories_Ko7aa = MutableLiveData<ProductResponse>()
+    val categories_Ko7aa: LiveData<ProductResponse>
         get() = _categories_Ko7aa
 
     //Categories For M8aas
-    private val _categories_M8aas = MutableLiveData<CategoryResponse>()
-    val categories_M8aas: LiveData<CategoryResponse>
+    private val _categories_M8aas = MutableLiveData<ProductResponse>()
+    val categories_M8aas: LiveData<ProductResponse>
         get() = _categories_M8aas
 
     //Categories For كل الادويه
-    private val _categoriesAllMedicines = MutableLiveData<CategoryResponse>()
-    val categoriesAllMedicines: LiveData<CategoryResponse>
+    private val _categoriesAllMedicines = MutableLiveData<ProductResponse>()
+    val categoriesAllMedicines: LiveData<ProductResponse>
         get() = _categoriesAllMedicines
 
     private val _medicineToFavorites = MutableLiveData<PatchRequestResponse>()
     val medicineToFavorite: LiveData<PatchRequestResponse>
         get() = _medicineToFavorites
 
-    private val _favoriteProducts = MutableLiveData<CategoryResponse>()
-    val favoriteProducts: LiveData<CategoryResponse>
+    private val _favoriteProducts = MutableLiveData<ProductResponse>()
+    val favoriteProducts: LiveData<ProductResponse>
         get() = _favoriteProducts
 
     private val _deleteFavoriteProduct = MutableLiveData<PatchRequestResponse>()
@@ -122,7 +122,7 @@ class MedicineViewModel(
 
     fun addMedicineToFavorites(
         userId: String,
-        productId: AddToFavorites
+        productId: PatchProductId
     ) {
         viewModelScope.launch {
             try {

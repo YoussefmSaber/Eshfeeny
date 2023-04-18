@@ -10,16 +10,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.domain.entity.CategoryResponseItem
-import com.example.domain.entity.patchRequestVar.AddToFavorites
+import com.example.domain.entity.product.ProductResponseItem
+import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.MedicineItemCategoryBinding
-import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.MedicineCategoryFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModel
 
 
-class MedicineAdapterCategory(private val viewModel: MedicineViewModel, val userId: String) : ListAdapter<CategoryResponseItem, MedicineAdapterCategory.ViewHolder>(CategoryDiffCallback()) {
+class MedicineAdapterCategory(private val viewModel: MedicineViewModel, val userId: String) : ListAdapter<ProductResponseItem, MedicineAdapterCategory.ViewHolder>(CategoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding = MedicineItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -34,7 +33,7 @@ class MedicineAdapterCategory(private val viewModel: MedicineViewModel, val user
 
     inner class ViewHolder(private val itemBinding: MedicineItemCategoryBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun bind(category: CategoryResponseItem) {
+        fun bind(category: ProductResponseItem) {
 
             viewModel.getFavoriteProducts(userId)
 
@@ -86,7 +85,7 @@ class MedicineAdapterCategory(private val viewModel: MedicineViewModel, val user
             } else {
                 itemBinding.heartIconId.setImageResource(R.drawable.favorite_notfill)
                 itemBinding.heartIconId.setOnClickListener {
-                    viewModel.addMedicineToFavorites(userId, AddToFavorites(category._id))
+                    viewModel.addMedicineToFavorites(userId, PatchProductId(category._id))
                     itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
                 }
             }
@@ -95,17 +94,17 @@ class MedicineAdapterCategory(private val viewModel: MedicineViewModel, val user
         }
     }
 
-    class CategoryDiffCallback : DiffUtil.ItemCallback<CategoryResponseItem>() {
+    class CategoryDiffCallback : DiffUtil.ItemCallback<ProductResponseItem>() {
         override fun areItemsTheSame(
-            oldItem: CategoryResponseItem,
-            newItem: CategoryResponseItem
+            oldItem: ProductResponseItem,
+            newItem: ProductResponseItem
         ): Boolean {
             return oldItem._id == newItem._id
         }
 
         override fun areContentsTheSame(
-            oldItem: CategoryResponseItem,
-            newItem: CategoryResponseItem
+            oldItem: ProductResponseItem,
+            newItem: ProductResponseItem
         ): Boolean {
             return oldItem == newItem
         }

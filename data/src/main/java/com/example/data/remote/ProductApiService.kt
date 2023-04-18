@@ -1,8 +1,8 @@
 package com.example.data.remote
 
-import com.example.domain.entity.CategoryResponse
-import com.example.domain.entity.CategoryResponseItem
-import com.example.domain.entity.patchRequestVar.AddToFavorites
+import com.example.domain.entity.product.ProductResponse
+import com.example.domain.entity.product.ProductResponseItem
+import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -11,45 +11,45 @@ import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.Path
 
-interface MedicineDataApiService {
+interface ProductApiService {
 
     @GET("products/category/{medicines}")
     suspend fun getMedicineFromRemote(
         @Path("medicines")
         medicines: String
-    ): Response<CategoryResponse>
+    ): Response<ProductResponse>
 
     @GET("products/category/امساك")
-    suspend fun getMedicineFromEmsaak(): CategoryResponse
+    suspend fun getMedicineFromEmsaak(): ProductResponse
 
     @GET("products/category/الكحة")
-    suspend fun getMedicineFromKo7aa(): CategoryResponse
+    suspend fun getMedicineFromKo7aa(): ProductResponse
 
     @GET("products/category/المغص")
-    suspend fun getMedicineFromM8aas(): CategoryResponse
+    suspend fun getMedicineFromM8aas(): ProductResponse
 
     @GET("products/{id}")
     suspend fun getMedicineDetailsFromRemote(
         @Path("id")
         id: String
-    ): Response<CategoryResponseItem>
+    ): Response<ProductResponseItem>
 
     @GET("products/type/الأدوية")
-    suspend fun getMedicineFromAllMedicines(): CategoryResponse
+    suspend fun getMedicineFromAllMedicines(): ProductResponse
 
     @PATCH("users/{id}/favorites")
     suspend fun addMedicneToFavorite(
         @Path("id")
         id: String,
         @Body
-        productId: AddToFavorites
+        productId: PatchProductId
     ): PatchRequestResponse
 
     @GET("products/user/{userId}/favorites")
     suspend fun getFavoriteProducts (
         @Path("userId")
         id: String
-    ): CategoryResponse
+    ): ProductResponse
 
     @DELETE("users/{userId}/favorites/{productId}")
     suspend fun deleteFavoriteProduct(

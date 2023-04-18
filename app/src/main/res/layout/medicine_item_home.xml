@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -14,12 +14,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="8dp"
         android:background="#CCE6FF"
+        app:cardElevation="0dp"
         android:elevation="0dp"
         android:layoutDirection="rtl"
         android:stateListAnimator="@null"
         app:cardCornerRadius="10sp"
-        app:strokeColor="#F7FFFFFF"
-        app:strokeWidth="1dp">
+        app:strokeColor="#e7e7e7"
+        app:strokeWidth="1.4dp">
 
         <LinearLayout
             android:id="@+id/layout"
@@ -161,7 +162,7 @@
                 tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

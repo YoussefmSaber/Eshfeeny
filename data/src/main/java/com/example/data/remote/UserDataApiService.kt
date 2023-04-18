@@ -2,10 +2,13 @@ package com.example.data.remote
 
 import com.example.data.local.db.user.model.UserInfo
 import com.example.domain.entity.*
+import com.example.domain.entity.cart.CartResponse
+import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.patchRequestVar.ChangePassword
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
@@ -51,4 +54,50 @@ interface UserDataApiService {
         @Body
         newPassword: ChangePassword
     ): PatchRequestResponse
+
+    @GET("users/{userId}/cart")
+    suspend fun getUsersCartItems(
+        @Path("userId")
+        userId: String
+    ): CartResponse
+
+    @PATCH("users/{userId}/cart")
+    suspend fun addProductToCart(
+        @Path("userId")
+        userId: String,
+        @Body
+        productId: PatchProductId
+    ): PatchProductId
+
+    @DELETE("users/{userId}/cart")
+    suspend fun removeProductFromCart(
+        @Path("userId")
+        userId: String,
+        @Body
+        productId: PatchProductId
+    ): PatchRequestResponse
+
+    @PATCH("users/{userId}/cart/{productId}/1")
+    suspend fun incrementProductNumberInCart(
+        @Path("userId")
+        userId: String,
+        @Path("productId")
+        productId: String
+    ): PatchRequestResponse
+
+    @PATCH("users/{userId}/cart/{productId}/-1")
+    suspend fun decrementProductNumberInCart(
+        @Path("userId")
+        userId: String,
+        @Path("productId")
+        productId: String
+    ): PatchRequestResponse
+
+    @GET("products/user/{userId}/cart/{productId}")
+    suspend fun getNumberOfItemInCart(
+        @Path("userId")
+        userId: String,
+        @Path("productId")
+        productId: String
+    ): Int
 }

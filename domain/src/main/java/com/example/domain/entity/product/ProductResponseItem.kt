@@ -1,6 +1,6 @@
-package com.example.domain.entity
+package com.example.domain.entity.product
 
-data class CategoryResponseItem(
+data class ProductResponseItem(
     val _id: String,
     val activeIngredient: List<String>,
     val amount: String,

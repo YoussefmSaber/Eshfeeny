@@ -26,14 +26,14 @@ class FavoriteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        Log.i("favoriteFragment", "View Created")
+
         binding = FragmentFavoriteBinding.inflate(inflater)
+
         val repo = MedicineRepoImpl()
         val viewModelFactory = MedicineViewModelFactory(repo)
+
         medicineViewModel = ViewModelProvider(this, viewModelFactory)[MedicineViewModel::class.java]
         val userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
-        Log.i("favoriteFragment", "ViewModel Initialized")
-
 
         userViewModel.userData.observe(viewLifecycleOwner) {
             val userId = it._id
@@ -53,9 +53,6 @@ class FavoriteFragment : Fragment() {
                 }
             }
         }
-
-
-
         return binding?.root
     }
 
