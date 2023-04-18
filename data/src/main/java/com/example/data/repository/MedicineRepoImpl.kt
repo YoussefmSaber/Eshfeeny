@@ -1,6 +1,7 @@
 package com.example.data.repository
 
 import com.example.data.remote.apis.UserRetrofitInstance
+import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.domain.entity.patchRequestVar.PatchProductId
@@ -47,4 +48,33 @@ class MedicineRepoImpl {
         productId: String
     ): PatchRequestResponse =
         UserRetrofitInstance.medicineApi.deleteFavoriteProduct(userId, productId)
+
+    suspend fun getUserCartItems(
+        userId: String
+    ): CartResponse = UserRetrofitInstance.userApi.getUsersCartItems(userId)
+
+    suspend fun addProductToCart(
+        userId: String,
+        productId: PatchProductId
+    ): PatchRequestResponse = UserRetrofitInstance.userApi.addProductToCart(userId, productId)
+
+    suspend fun removeProductFromCart(
+        userId: String,
+        productId: PatchProductId
+    ): PatchRequestResponse = UserRetrofitInstance.userApi.removeProductFromCart(userId, productId)
+
+    suspend fun incrementProductNumberInCart(
+        userId: String,
+        productId: String
+    ): PatchRequestResponse = UserRetrofitInstance.userApi.incrementProductNumberInCart(userId, productId)
+
+    suspend fun decrementProductNumberInCart(
+        userId: String,
+        productId: String
+    ): PatchRequestResponse = UserRetrofitInstance.userApi.decrementProductNumberInCart(userId, productId)
+
+    suspend fun getNumberOfItemInCart(
+        userId: String,
+        productId: String
+    ): Int = UserRetrofitInstance.userApi.getNumberOfItemInCart(userId, productId)
 }

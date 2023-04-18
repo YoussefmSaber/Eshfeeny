@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.MedicineRepoImpl
+import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.patchresponse.PatchRequestResponse
@@ -16,7 +17,7 @@ import retrofit2.Response
 
 
 class MedicineViewModel(
-    private val repoImpl: MedicineRepoImpl
+    private val repo: MedicineRepoImpl
 ) : ViewModel() {
 
     private val _categories_medicines = MutableLiveData<Response<ProductResponse>>()
@@ -55,10 +56,18 @@ class MedicineViewModel(
     val deleteFavoriteProduct: LiveData<PatchRequestResponse>
         get() = _deleteFavoriteProduct
 
+    private val _cartItems: MutableLiveData<CartResponse> = MutableLiveData()
+    val cartItems: LiveData<CartResponse>
+        get() = _cartItems
+
+    private val _productNumber: MutableLiveData<Int> = MutableLiveData()
+    val productNumber: LiveData<Int>
+        get() = _productNumber
+
     fun getMedicinesFromRemote(medicine: String) {
         viewModelScope.launch {
             try {
-                val response = repoImpl.getMedicinesFromRemote(medicine)
+                val response = repo.getMedicinesFromRemote(medicine)
                 _categories_medicines.value = response
                 Log.i("Chip Click Test", response.toString())
             } catch (e: Exception) {
@@ -70,7 +79,7 @@ class MedicineViewModel(
     fun getMedicineForEmsaak() {
         viewModelScope.launch {
             try {
-                val response = repoImpl.getMedicineFromRemoteForEmsaak()
+                val response = repo.getMedicineFromRemoteForEmsaak()
                 _categories_Emsaak.value = response
                 Log.i("mvvm sh8aal Emsaak", toString())
             } catch (e: Exception) {
@@ -83,7 +92,7 @@ class MedicineViewModel(
     fun getMedicineForKo7aa() {
         viewModelScope.launch {
             try {
-                val response = repoImpl.getMedicineFromRemoteForKo7aa()
+                val response = repo.getMedicineFromRemoteForKo7aa()
                 _categories_Ko7aa.value = response
                 Log.i("mvvm sh8aal Ko7aa ", toString())
             } catch (e: Exception) {
@@ -96,7 +105,7 @@ class MedicineViewModel(
     fun getMedicineForM8aas() {
         viewModelScope.launch {
             try {
-                val response = repoImpl.getMedicineFromRemoteForM8aas()
+                val response = repo.getMedicineFromRemoteForM8aas()
                 _categories_M8aas.value = response
                 Log.i("mvvm sh8aal M8aas", toString())
             } catch (e: Exception) {
@@ -110,7 +119,7 @@ class MedicineViewModel(
     fun getMedicineForAllMedicines() {
         viewModelScope.launch {
             try {
-                val response = repoImpl.getMedicineFromRemoteForAllMedicines()
+                val response = repo.getMedicineFromRemoteForAllMedicines()
                 _categoriesAllMedicines.value = response
                 Log.i("Chip Click Test", _categoriesAllMedicines.value.toString())
             } catch (e: Exception) {
@@ -126,7 +135,7 @@ class MedicineViewModel(
     ) {
         viewModelScope.launch {
             try {
-                val response = repoImpl.addMedicineToFavorites(userId, productId)
+                val response = repo.addMedicineToFavorites(userId, productId)
                 _medicineToFavorites.value = response
             } catch (e: Exception) {
                 Log.e("Favorite", "Error adding medicine to favorites" + e)
@@ -139,7 +148,7 @@ class MedicineViewModel(
     ) {
         viewModelScope.launch {
             try {
-                _favoriteProducts.value = repoImpl.getFavoriteProducts(userId)
+                _favoriteProducts.value = repo.getFavoriteProducts(userId)
             } catch (e: Exception) {
                 Log.e("error", "Error fetching Favorite Products")
             }
@@ -152,10 +161,85 @@ class MedicineViewModel(
     ) {
         viewModelScope.launch {
             try {
-                val response = repoImpl.deleteFavoriteProduct(userId, productId)
+                val response = repo.deleteFavoriteProduct(userId, productId)
                 _deleteFavoriteProduct.value = response
             } catch (e: Exception) {
                 Log.i("delete Favorite", "Couldn't delete the favorite item")
+            }
+        }
+    }
+
+    fun getUserCartItems(userId: String) {
+        viewModelScope.launch {
+            try {
+                _cartItems.value = repo.getUserCartItems(userId)
+            } catch (e: Exception) {
+                Log.e("cart", "Error fetching the cart items")
+            }
+        }
+    }
+
+    fun addProductToCart(
+        userId: String,
+        productId: PatchProductId
+    ) {
+        viewModelScope.launch {
+            try {
+                repo.addProductToCart(userId, productId)
+            } catch (e: Exception) {
+                Log.e("cart", "Error adding product to cart")
+            }
+        }
+    }
+
+    fun removeProductFromCart(
+        userId: String,
+        productId: PatchProductId
+    ) {
+        viewModelScope.launch {
+            try {
+                repo.removeProductFromCart(userId, productId)
+            } catch (e: Exception) {
+                Log.e("cart", "Error removing product from cart")
+            }
+        }
+    }
+
+    fun incrementProductNumberInCart(
+        userId: String,
+        productId: String
+    ) {
+        viewModelScope.launch {
+            try {
+                repo.incrementProductNumberInCart(userId, productId)
+            } catch (e: Exception) {
+                Log.e("cart", "Error incrementing product number")
+            }
+        }
+    }
+
+    fun decrementProductNumberInCart(
+        userId: String,
+        productId: String
+    ) {
+        viewModelScope.launch {
+            try {
+                repo.decrementProductNumberInCart(userId, productId)
+            } catch (e: Exception) {
+                Log.e("cart", "Error decrementing product number")
+            }
+        }
+    }
+
+    fun getNumberOfItemInCart(
+        userId: String,
+        productId: String
+    ) {
+        viewModelScope.launch {
+            try {
+                _productNumber.value = repo.getNumberOfItemInCart(userId, productId)
+            } catch (e: Exception) {
+                Log.e("cart", "Error getting the product number")
             }
         }
     }
