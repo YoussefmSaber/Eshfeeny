@@ -133,7 +133,7 @@
                 android:stateListAnimator="@null"
                 android:visibility="gone"
                 app:cornerRadius="5dp"
-                app:icon="@drawable/menus_icon"
+                app:icon="@drawable/minus_icon"
                 app:iconGravity="textTop"
                 app:iconPadding="0dp"
                 app:iconTint="#4D4D4D"

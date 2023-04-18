@@ -172,8 +172,15 @@
     <string name="constipation">الإمساك</string>
     <string name="topicalAntibiotics">مضادات حيوية موضوعية</string>
     <string name="vitaminsAndNutritionalSupplements">الفيتامينات والمكملات الغذائية</string>
-    <string name="no_favorite_items">لا توجد أي منتجات مفضلة لديك</string>
-    <string name="favorite">المنتجات المفضلة</string>
 
+
+    <!--    Favorite Fragment-->
+    <string name="favorite">المنتجات المفضلة</string>
+    <string name="no_favorite_items">لا توجد أي منتجات مفضلة لديك</string>
+
+    <!--    Cart Fragment-->
+    <string name="cart">عربة التسوق</string>
+    <string name="emptyCart">عربة التسوق فارغه</string>
+    <string name="noItemsInCart">يبدو أنك لم تضف أي عناصر إالى سلة التسوق الخاصة بك </string>
 
 </resources>
