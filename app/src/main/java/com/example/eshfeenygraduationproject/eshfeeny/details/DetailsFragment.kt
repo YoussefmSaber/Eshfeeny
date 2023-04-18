@@ -9,9 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.data.repository.MedicineRepoImpl
+import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentDetailsBinding
-import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapterFavorite
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.UseCaseAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.DetailsViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.DetailsViewModelFactory
@@ -27,7 +26,7 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDetailsBinding.inflate(inflater,container,false)
-        val repo = MedicineRepoImpl()
+        val repo = ProductRepoImpl()
         val viewModelFactory = DetailsViewModelFactory(repo)
         viewModel = ViewModelProvider(this,viewModelFactory)[DetailsViewModel::class.java]
         binding?.lifecycleOwner = viewLifecycleOwner

@@ -8,9 +8,9 @@ import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import retrofit2.Response
 
-class MedicineRepoImpl {
+class ProductRepoImpl {
 
-    suspend fun getMedicinesFromRemote(medicines: String): Response<ProductResponse> =
+    suspend fun getProductsFromRemote(medicines: String): Response<ProductResponse> =
         UserRetrofitInstance.medicineApi.getMedicineFromRemote(medicines)
 
     //get medicine امساك

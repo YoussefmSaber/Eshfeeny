@@ -7,13 +7,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.data.repository.MedicineRepoImpl
+import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.product.ProductResponseItem
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class DetailsViewModel(
-    private val repoImpl: MedicineRepoImpl
+    private val repoImpl: ProductRepoImpl
 ): ViewModel() {
     private val _medicine = MutableLiveData<Response<ProductResponseItem>>()
     val medicine: LiveData<Response<ProductResponseItem>>

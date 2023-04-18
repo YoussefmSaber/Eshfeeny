@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.data.repository.MedicineRepoImpl
+import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.patchRequestVar.PatchProductId
@@ -17,36 +17,32 @@ import retrofit2.Response
 
 
 class ProductViewModel(
-    private val repo: MedicineRepoImpl
+    private val repo: ProductRepoImpl
 ) : ViewModel() {
 
-    private val _categories_medicines = MutableLiveData<Response<ProductResponse>>()
-    val category_medicines: LiveData<Response<ProductResponse>>
-        get() = _categories_medicines
+    private val _remoteProducts = MutableLiveData<Response<ProductResponse>>()
+    val remoteProducts: LiveData<Response<ProductResponse>>
+        get() = _remoteProducts
 
     //Categories For Emsaak
-    private val _categories_Emsaak = MutableLiveData<ProductResponse>()
-    val categories_Emsaak: LiveData<ProductResponse>
-        get() = _categories_Emsaak
+    private val _categoriesEmsaak = MutableLiveData<ProductResponse>()
+    val categoriesEmsaak: LiveData<ProductResponse>
+        get() = _categoriesEmsaak
 
     //Categories For Ko7aa
-    private val _categories_Ko7aa = MutableLiveData<ProductResponse>()
-    val categories_Ko7aa: LiveData<ProductResponse>
-        get() = _categories_Ko7aa
+    private val _categoriesKo7aa = MutableLiveData<ProductResponse>()
+    val categoriesKo7aa: LiveData<ProductResponse>
+        get() = _categoriesKo7aa
 
     //Categories For M8aas
-    private val _categories_M8aas = MutableLiveData<ProductResponse>()
-    val categories_M8aas: LiveData<ProductResponse>
-        get() = _categories_M8aas
+    private val _categoriesM8aas = MutableLiveData<ProductResponse>()
+    val categoriesM8aas: LiveData<ProductResponse>
+        get() = _categoriesM8aas
 
     //Categories For كل الادويه
-    private val _categoriesAllMedicines = MutableLiveData<ProductResponse>()
-    val categoriesAllMedicines: LiveData<ProductResponse>
-        get() = _categoriesAllMedicines
-
-    private val _medicineToFavorites = MutableLiveData<PatchRequestResponse>()
-    val medicineToFavorite: LiveData<PatchRequestResponse>
-        get() = _medicineToFavorites
+    private val _categoriesAllProducts = MutableLiveData<ProductResponse>()
+    val categoriesAllProducts: LiveData<ProductResponse>
+        get() = _categoriesAllProducts
 
     private val _favoriteProducts = MutableLiveData<ProductResponse>()
     val favoriteProducts: LiveData<ProductResponse>
@@ -64,11 +60,11 @@ class ProductViewModel(
     val productNumber: LiveData<Int>
         get() = _productNumber
 
-    fun getMedicinesFromRemote(medicine: String) {
+    fun getProductsFromRemote(medicine: String) {
         viewModelScope.launch {
             try {
-                val response = repo.getMedicinesFromRemote(medicine)
-                _categories_medicines.value = response
+                val response = repo.getProductsFromRemote(medicine)
+                _remoteProducts.value = response
                 Log.i("Chip Click Test", response.toString())
             } catch (e: Exception) {
                 Log.e(TAG, "ERROR FETCHING URLS " + e)
@@ -80,7 +76,7 @@ class ProductViewModel(
         viewModelScope.launch {
             try {
                 val response = repo.getMedicineFromRemoteForEmsaak()
-                _categories_Emsaak.value = response
+                _categoriesEmsaak.value = response
                 Log.i("mvvm sh8aal Emsaak", toString())
             } catch (e: Exception) {
                 // handle error
@@ -93,7 +89,7 @@ class ProductViewModel(
         viewModelScope.launch {
             try {
                 val response = repo.getMedicineFromRemoteForKo7aa()
-                _categories_Ko7aa.value = response
+                _categoriesKo7aa.value = response
                 Log.i("mvvm sh8aal Ko7aa ", toString())
             } catch (e: Exception) {
                 // handle error
@@ -106,7 +102,7 @@ class ProductViewModel(
         viewModelScope.launch {
             try {
                 val response = repo.getMedicineFromRemoteForM8aas()
-                _categories_M8aas.value = response
+                _categoriesM8aas.value = response
                 Log.i("mvvm sh8aal M8aas", toString())
             } catch (e: Exception) {
                 // handle error
@@ -120,8 +116,8 @@ class ProductViewModel(
         viewModelScope.launch {
             try {
                 val response = repo.getMedicineFromRemoteForAllMedicines()
-                _categoriesAllMedicines.value = response
-                Log.i("Chip Click Test", _categoriesAllMedicines.value.toString())
+                _categoriesAllProducts.value = response
+                Log.i("Chip Click Test", _categoriesAllProducts.value.toString())
             } catch (e: Exception) {
                 // handle error
                 Log.e(TAG, "Error fetching urls AllMedicines", e)
@@ -135,8 +131,7 @@ class ProductViewModel(
     ) {
         viewModelScope.launch {
             try {
-                val response = repo.addMedicineToFavorites(userId, productId)
-                _medicineToFavorites.value = response
+                repo.addMedicineToFavorites(userId, productId)
             } catch (e: Exception) {
                 Log.e("Favorite", "Error adding medicine to favorites" + e)
             }

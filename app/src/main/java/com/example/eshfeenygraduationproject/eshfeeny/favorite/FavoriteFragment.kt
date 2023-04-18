@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.example.data.repository.MedicineRepoImpl
+import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentFavoriteBinding
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapterFavorite
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
@@ -25,7 +25,7 @@ class FavoriteFragment : Fragment() {
 
         binding = FragmentFavoriteBinding.inflate(inflater)
 
-        val repo = MedicineRepoImpl()
+        val repo = ProductRepoImpl()
         val viewModelFactory = ProductViewModelFactory(repo)
 
         productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]

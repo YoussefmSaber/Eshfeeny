@@ -11,7 +11,7 @@ import androidx.navigation.Navigation
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
-import com.example.data.repository.MedicineRepoImpl
+import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapterHome
 import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.*
@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater)
 
-        val medicineRepo = MedicineRepoImpl()
+        val medicineRepo = ProductRepoImpl()
         val viewModelFactory = ProductViewModelFactory(medicineRepo)
 
 
@@ -91,7 +91,7 @@ class HomeFragment : Fragment() {
             val userID = userData._id
 
             productViewModel.getMedicineForEmsaak()
-            productViewModel.categories_Emsaak.observe(viewLifecycleOwner) {
+            productViewModel.categoriesEmsaak.observe(viewLifecycleOwner) {
 
                 productViewModel.getFavoriteProducts(userID)
                 productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
@@ -104,7 +104,7 @@ class HomeFragment : Fragment() {
             }
             //call recycler view for كحه
             productViewModel.getMedicineForKo7aa()
-            productViewModel.categories_Ko7aa.observe(viewLifecycleOwner) {
+            productViewModel.categoriesKo7aa.observe(viewLifecycleOwner) {
 
                 productViewModel.getFavoriteProducts(userID)
                 productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
@@ -117,7 +117,7 @@ class HomeFragment : Fragment() {
             }
             //call recycler view for مغص
             productViewModel.getMedicineForM8aas()
-            productViewModel.categories_M8aas.observe(viewLifecycleOwner) {
+            productViewModel.categoriesM8aas.observe(viewLifecycleOwner) {
                 productViewModel.getFavoriteProducts(userID)
                 productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
 
