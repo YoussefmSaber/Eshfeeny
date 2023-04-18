@@ -6,7 +6,9 @@ import com.example.data.local.db.user.UserDAO
 import com.example.data.local.db.user.model.UserInfo
 import com.example.data.remote.apis.UserRetrofitInstance
 import com.example.domain.entity.*
+import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.patchRequestVar.ChangePassword
+import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
@@ -86,5 +88,34 @@ class UserRepoImpl(private val userDAO: UserDAO) {
     }
 
     suspend fun getUserData(): UserInfo = userDAO.getUserData()
+
+    suspend fun getUserCartItems(
+        userId: String
+    ): CartResponse = UserRetrofitInstance.userApi.getUsersCartItems(userId)
+
+    suspend fun addProductToCart(
+        userId: String,
+        productId: PatchProductId
+    ): PatchRequestResponse = UserRetrofitInstance.userApi.addProductToCart(userId, productId)
+
+    suspend fun removeProductFromCart(
+        userId: String,
+        productId: PatchProductId
+    ): PatchRequestResponse = UserRetrofitInstance.userApi.removeProductFromCart(userId, productId)
+
+    suspend fun incrementProductNumberInCart(
+        userId: String,
+        productId: String
+    ): PatchRequestResponse = UserRetrofitInstance.userApi.incrementProductNumberInCart(userId, productId)
+
+    suspend fun decrementProductNumberInCart(
+        userId: String,
+        productId: String
+    ): PatchRequestResponse = UserRetrofitInstance.userApi.decrementProductNumberInCart(userId, productId)
+
+    suspend fun getNumberOfItemInCart(
+        userId: String,
+        productId: String
+    ): Int = UserRetrofitInstance.userApi.getNumberOfItemInCart(userId, productId)
 
 }
