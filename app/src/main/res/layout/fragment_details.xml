@@ -6,7 +6,7 @@
     <data>
         <variable
             name="medicine"
-            type="com.example.domain.entity.CategoryResponseItem" />
+            type="com.example.domain.entity.product.ProductResponseItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -100,7 +100,7 @@
                     android:layout_height="40sp"
                     android:layout_marginStart="16sp"
                     android:layout_marginTop="40sp"
-                    android:src="@drawable/cir_love"
+                    android:src="@drawable/details_favorite_notselected"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider12" />
 

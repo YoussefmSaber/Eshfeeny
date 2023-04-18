@@ -207,7 +207,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView7"
-                tools:listitem="@layout/medicine_items" />
+                tools:listitem="@layout/medicine_item_home" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -246,7 +246,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView8"
-                tools:listitem="@layout/medicine_items" />
+                tools:listitem="@layout/medicine_item_home" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -285,7 +285,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView9"
-                tools:listitem="@layout/medicine_items" />
+                tools:listitem="@layout/medicine_item_home" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -331,6 +331,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:backgroundTint="#F7FFFFFF"
+                        app:cardElevation="0dp"
                         android:elevation="0dp"
                         android:padding="6dp"
                         app:cardCornerRadius="10sp"
@@ -355,6 +356,7 @@
                         android:layout_margin="8dp"
                         android:backgroundTint="#F7FFFFFF"
                         android:elevation="0dp"
+                        app:cardElevation="0dp"
                         android:padding="6dp"
                         app:cardCornerRadius="10sp"
                         app:strokeColor="#e5e5e5"
@@ -378,6 +380,7 @@
                         android:layout_margin="8dp"
                         android:backgroundTint="#F7FFFFFF"
                         android:elevation="0dp"
+                        app:cardElevation="0dp"
                         android:padding="6dp"
                         app:cardCornerRadius="10sp"
                         app:strokeColor="#e5e5e5"
@@ -406,6 +409,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        app:cardElevation="0dp"
                         android:backgroundTint="#F7FFFFFF"
                         android:elevation="0dp"
                         android:padding="6dp"
@@ -432,6 +436,7 @@
                         android:backgroundTint="#F7FFFFFF"
                         android:elevation="0dp"
                         android:padding="6dp"
+                        app:cardElevation="0dp"
                         app:cardCornerRadius="10sp"
                         app:strokeColor="#e5e5e5"
                         app:strokeWidth="1sp">
@@ -455,6 +460,7 @@
                         android:backgroundTint="#F7FFFFFF"
                         android:elevation="0dp"
                         android:padding="6dp"
+                        app:cardElevation="0dp"
                         app:cardCornerRadius="10sp"
                         app:strokeColor="#e5e5e5"
                         app:strokeWidth="1sp">

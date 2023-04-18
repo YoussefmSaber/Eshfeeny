@@ -1,5 +1,5 @@
 package com.example.domain.entity.patchRequestVar
 
-data class AddToFavorites(
+data class PatchProductId(
     val productId: String
 )

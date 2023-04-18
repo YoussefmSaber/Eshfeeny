@@ -1,6 +1,6 @@
 package com.example.data.remote.apis
 
-import com.example.data.remote.MedicineDataApiService
+import com.example.data.remote.ProductApiService
 import com.example.data.remote.UserDataApiService
 import com.example.data.utils.Constants.Companion.BASE_URL
 import retrofit2.Retrofit
@@ -18,7 +18,7 @@ object UserRetrofitInstance {
     val userApi: UserDataApiService by lazy {
         userRetrofit.create(UserDataApiService::class.java)
     }
-    val medicineApi: MedicineDataApiService by lazy {
-        userRetrofit.create(MedicineDataApiService::class.java)
+    val medicineApi: ProductApiService by lazy {
+        userRetrofit.create(ProductApiService::class.java)
     }
 }
