@@ -4,20 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".eshfeeny.favorite.FavoriteFragment"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".eshfeeny.favorite.FavoriteFragment">
 
-    <ImageView
-        android:id="@+id/empty_img_cart_id"
+    <TextView
+        android:id="@+id/moreTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="271dp"
-        android:layout_marginBottom="244dp"
-        android:src="@drawable/fav_empty"
+        android:layout_marginTop="16sp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="@string/favorite"
+        android:textColor="@color/text_main"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="16sp"
+        android:background="#e5e5e5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/moreTextview" />
+
+    <LinearLayout
+        android:id="@+id/noItemsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider5">
+
+        <ImageView
+            android:id="@+id/emptyFavoriteImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/gray_favorite" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/cairo_medium"
+            android:text="@string/no_favorite_items"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favoriteRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layoutDirection="rtl"
+        app:layout_constraintHeight_default="wrap"
+        android:visibility="gone"
+        app:layout_constraintHeight_max="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider5"
+        app:spanCount="2"
+        tools:listitem="@layout/medicine_item_category" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

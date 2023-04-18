@@ -1,7 +1,6 @@
 package com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines
 
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
@@ -17,9 +16,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.data.repository.MedicineRepoImpl
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentMedicineCategoryBinding
-import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapter
+import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapterCategory
+import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapterHome
 import com.example.eshfeenygraduationproject.eshfeeny.util.MedicinsCategories
-import com.example.eshfeenygraduationproject.eshfeeny.util.MedicinsCategories.dentalCare
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModelFactory
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.UserViewModel
@@ -81,8 +80,6 @@ class MedicineCategoryFragment : Fragment() {
             }
         }
 
-
-
         return binding?.root
     }
 
@@ -107,10 +104,9 @@ class MedicineCategoryFragment : Fragment() {
                 isFirstChip = false
 
                 medicineViewModel.getMedicineForAllMedicines()
-                medicineViewModel.categories_AllMedicines.observe(viewLifecycleOwner) { response ->
+                medicineViewModel.categoriesAllMedicines.observe(viewLifecycleOwner) { response ->
 
-                    Log.i("chip Test", response.toString())
-                    val adapter = MedicineAdapter(medicineViewModel, userId)
+                    val adapter = MedicineAdapterCategory(medicineViewModel, userId)
 
                     adapter.submitList(response)
                     binding?.medicineRecyclerView?.adapter = adapter
@@ -134,27 +130,24 @@ class MedicineCategoryFragment : Fragment() {
                     setChipColors(previousSelectedChip)
                 }
 
-                // Select the clicked chip
                 chip.isSelected = true
                 setChipColors(chip)
 
-                // Update the currently selected chip
                 selectedChip = chip
-
 
                 medicineViewModel.getMedicinesFromRemote(name)
                 medicineViewModel.category_medicines.observe(viewLifecycleOwner) { response ->
 
-                    val adapter = MedicineAdapter(medicineViewModel, userId)
+                    val adapter = MedicineAdapterCategory(medicineViewModel, userId)
                     adapter.submitList(response.body())
 
                     binding?.medicineRecyclerView?.adapter = adapter
                 }
                 if (chip.text == getString(R.string.allMedicines)) {
                     medicineViewModel.getMedicineForAllMedicines()
-                    medicineViewModel.categories_AllMedicines.observe(viewLifecycleOwner) { response ->
+                    medicineViewModel.categoriesAllMedicines.observe(viewLifecycleOwner) { response ->
                         Log.i("chip Test", response.toString())
-                        val adapter = MedicineAdapter(medicineViewModel, userId)
+                        val adapter = MedicineAdapterCategory(medicineViewModel, userId)
                         adapter.submitList(response)
                         binding?.medicineRecyclerView?.adapter = adapter
                     }

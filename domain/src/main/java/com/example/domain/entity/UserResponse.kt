@@ -1,5 +1,7 @@
 package com.example.domain.entity
 
+import com.example.domain.entity.cart.Cart
+
 data class UserResponse(
     val _id: String,
     val address: String,

@@ -24,7 +24,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         val userDao = UserDatabase.getDatabase(application).userDao()
         repository = UserRepoImpl(userDao)
 
-
         viewModelScope.launch {
             _userData.value = repository.getUserData()
         }
