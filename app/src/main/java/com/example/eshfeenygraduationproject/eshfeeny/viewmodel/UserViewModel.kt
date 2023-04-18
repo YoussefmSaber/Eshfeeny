@@ -27,7 +27,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         get() = _cartItems
 
 
-
     init {
         val userDao = UserDatabase.getDatabase(application).userDao()
         repository = UserRepoImpl(userDao)
@@ -46,7 +45,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun getUserCartItems(userId: String) {
         viewModelScope.launch {
             try {
-                _cartItems.value =  repository.getUserCartItems(userId)
+                _cartItems.value = repository.getUserCartItems(userId)
             } catch (e: Exception) {
                 Log.e("cart", "Error fetching the cart items")
             }
@@ -70,7 +69,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         userId: String,
         productId: PatchProductId
     ) {
-        viewModelScope.launch{
+        viewModelScope.launch {
             try {
                 repository.removeProductFromCart(userId, productId)
             } catch (e: Exception) {
@@ -83,7 +82,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         userId: String,
         productId: String
     ) {
-        viewModelScope.launch{
+        viewModelScope.launch {
             try {
                 repository.incrementProductNumberInCart(userId, productId)
             } catch (e: Exception) {
@@ -101,6 +100,19 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 repository.decrementProductNumberInCart(userId, productId)
             } catch (e: Exception) {
                 Log.e("cart", "Error decrementing product number")
+            }
+        }
+    }
+
+    fun getNumberOfItemInCart(
+        userId: String,
+        productId: String
+    ) {
+        viewModelScope.launch {
+            try {
+                repository.getNumberOfItemInCart(userId, productId)
+            } catch (e: Exception) {
+                Log.e("cart", "Error getting the product number")
             }
         }
     }
