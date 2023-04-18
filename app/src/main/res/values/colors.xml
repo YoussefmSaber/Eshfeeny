@@ -12,6 +12,7 @@
     <!--    Colors we will use    -->
     <color name="rectangle_color">#ECECEC</color>
     <color name="light_blue">#e1eeff</color>
+    <color name="light_blue22">#0583F2</color>
     <color name="days_border">#CECECE</color>
     <color name="text_sec">#868484</color>
     <color name="days_color">#4D4D4D</color>

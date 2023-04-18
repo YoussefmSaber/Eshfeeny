@@ -117,8 +117,8 @@
         <item>أنثى</item>
     </string-array>
 
-<!--                     Medicine Products               -->
-    
+    <!--                     Medicine Products               -->
+
     <!--    Dental Care items-->
     <string name="allDentalCare">كل منتجات العناية بالاسنان</string>
     <string name="mouthCare">العناية بالفم</string>
@@ -147,7 +147,7 @@
     <string name="immunityBooster">تقوية المناعة</string>
     <string name="medicalMasksAndGloves">الكمامات والقفازات</string>
     <string name="handSanitizers">مطهرات اليد</string>
-    
+
     <!--    Skin And Hair items-->
     <string name="allSkinAndHairProducts">كل منتجات العناية بالبشرة والشعر</string>
     <string name="sunProtection">الحماية من الشمس</string>
@@ -159,7 +159,7 @@
     <string name="hairConditioner">بلسم الشعر</string>
     <string name="shampoo">شامبو</string>
     <string name="topicalPainRelievers">مسكنات الالام الموضوعية</string>
-    
+
     <!--    Medicines items-->
     <string name="allMedicines">كل الأدوية</string>
     <string name="coldAndFlu">البرد والسعال</string>
@@ -174,13 +174,18 @@
     <string name="vitaminsAndNutritionalSupplements">الفيتامينات والمكملات الغذائية</string>
 
 
-    <!--    Favorite Fragment-->
-    <string name="favorite">المنتجات المفضلة</string>
+    <!--    Bmi And Bmr items-->
+    <string name="CM">سم</string>
+    <string name="YourAge">كم عمرك؟</string>
+    <string name="KM">كجم</string>
+    <string name="editTxt">تعديل</string>
+    <string name="Clctxt">حساب</string>
+    <string-array name="Gender">
+        <item>ذكر</item>
+        <item>أنثى</item>
+    </string-array>
     <string name="no_favorite_items">لا توجد أي منتجات مفضلة لديك</string>
+    <string name="favorite">المنتجات المفضلة</string>
 
-    <!--    Cart Fragment-->
-    <string name="cart">عربة التسوق</string>
-    <string name="emptyCart">عربة التسوق فارغه</string>
-    <string name="noItemsInCart">يبدو أنك لم تضف أي عناصر إالى سلة التسوق الخاصة بك </string>
 
 </resources>

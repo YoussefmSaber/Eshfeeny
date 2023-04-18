@@ -36,7 +36,9 @@ class MoreFragment : Fragment() {
         binding?.Alarm?.setOnClickListener {
             findNavController().navigate(R.id.action_moreFragment2_to_alarmFragment)
         }
-
+        binding?.BmiBmr?.setOnClickListener {
+            findNavController().navigate(R.id.action_moreFragment2_to_bmiAndBmrFragment)
+        }
         binding?.logoutButton?.setOnClickListener {
             viewModel.deleteUserFromDatabase()
             val intent = Intent(
