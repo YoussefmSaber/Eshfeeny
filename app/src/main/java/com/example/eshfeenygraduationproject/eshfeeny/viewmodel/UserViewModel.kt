@@ -78,4 +78,17 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
+    fun incrementProductNumberInCart(
+        userId: String,
+        productId: String
+    ) {
+        viewModelScope.launch{
+            try {
+                repository.incrementProductNumberInCart(userId, productId)
+            } catch (e: Exception) {
+                Log.e("cart", "Error incrementing product number")
+            }
+        }
+    }
 }
