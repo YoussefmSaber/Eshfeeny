@@ -67,7 +67,7 @@ interface UserDataApiService {
         userId: String,
         @Body
         productId: PatchProductId
-    ): PatchProductId
+    ): PatchRequestResponse
 
     @DELETE("users/{userId}/cart")
     suspend fun removeProductFromCart(

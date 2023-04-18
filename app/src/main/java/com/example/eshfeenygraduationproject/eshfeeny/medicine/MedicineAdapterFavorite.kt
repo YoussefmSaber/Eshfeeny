@@ -15,10 +15,10 @@ import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.MedicineItemCategoryBinding
 import com.example.eshfeenygraduationproject.eshfeeny.favorite.FavoriteFragmentDirections
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 
 
-class MedicineAdapterFavorite(private val viewModel: MedicineViewModel, val userId: String) :
+class MedicineAdapterFavorite(private val viewModel: ProductViewModel, val userId: String) :
     ListAdapter<ProductResponseItem, MedicineAdapterFavorite.ViewHolder>(CategoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

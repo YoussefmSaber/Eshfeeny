@@ -16,10 +16,10 @@ import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.MedicineItemHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragmentDirections
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 
 
-class MedicineAdapterHome(private val viewModel: MedicineViewModel, val userId: String, val favoritePorducts: ProductResponse) :
+class MedicineAdapterHome(private val viewModel: ProductViewModel, val userId: String, val favoritePorducts: ProductResponse) :
     ListAdapter<ProductResponseItem, MedicineAdapterHome.ViewHolder>(CategoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

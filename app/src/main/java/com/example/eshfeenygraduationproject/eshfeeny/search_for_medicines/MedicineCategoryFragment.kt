@@ -13,14 +13,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.data.repository.MedicineRepoImpl
+import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentMedicineCategoryBinding
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapterCategory
-import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapterHome
 import com.example.eshfeenygraduationproject.eshfeeny.util.MedicinsCategories
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModel
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModelFactory
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.UserViewModel
 import com.google.android.material.chip.Chip
 
@@ -29,7 +28,7 @@ class MedicineCategoryFragment : Fragment() {
     private var selectedChip: Chip? = null
     private var binding: FragmentMedicineCategoryBinding? = null
     private val args: MedicineCategoryFragmentArgs by navArgs()
-    private lateinit var medicineViewModel: MedicineViewModel
+    private lateinit var productViewModel: ProductViewModel
     private lateinit var userViewModel: UserViewModel
 
     override fun onCreateView(
@@ -42,9 +41,9 @@ class MedicineCategoryFragment : Fragment() {
         binding?.medicineRecyclerView?.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
-        val repo = MedicineRepoImpl()
-        val viewModelFactory = MedicineViewModelFactory(repo)
-        medicineViewModel = ViewModelProvider(this, viewModelFactory)[MedicineViewModel::class.java]
+        val repo = ProductRepoImpl()
+        val viewModelFactory = ProductViewModelFactory(repo)
+        productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
         binding?.backBtn?.setOnClickListener {
@@ -103,10 +102,10 @@ class MedicineCategoryFragment : Fragment() {
                 selectedChip = newChip
                 isFirstChip = false
 
-                medicineViewModel.getMedicineForAllMedicines()
-                medicineViewModel.categoriesAllMedicines.observe(viewLifecycleOwner) { response ->
+                productViewModel.getMedicineForAllMedicines()
+                productViewModel.categoriesAllProducts.observe(viewLifecycleOwner) { response ->
 
-                    val adapter = MedicineAdapterCategory(medicineViewModel, userId)
+                    val adapter = MedicineAdapterCategory(productViewModel, userId)
 
                     adapter.submitList(response)
                     binding?.medicineRecyclerView?.adapter = adapter
@@ -135,19 +134,19 @@ class MedicineCategoryFragment : Fragment() {
 
                 selectedChip = chip
 
-                medicineViewModel.getMedicinesFromRemote(name)
-                medicineViewModel.category_medicines.observe(viewLifecycleOwner) { response ->
+                productViewModel.getProductsFromRemote(name)
+                productViewModel.remoteProducts.observe(viewLifecycleOwner) { response ->
 
-                    val adapter = MedicineAdapterCategory(medicineViewModel, userId)
+                    val adapter = MedicineAdapterCategory(productViewModel, userId)
                     adapter.submitList(response.body())
 
                     binding?.medicineRecyclerView?.adapter = adapter
                 }
                 if (chip.text == getString(R.string.allMedicines)) {
-                    medicineViewModel.getMedicineForAllMedicines()
-                    medicineViewModel.categoriesAllMedicines.observe(viewLifecycleOwner) { response ->
+                    productViewModel.getMedicineForAllMedicines()
+                    productViewModel.categoriesAllProducts.observe(viewLifecycleOwner) { response ->
                         Log.i("chip Test", response.toString())
-                        val adapter = MedicineAdapterCategory(medicineViewModel, userId)
+                        val adapter = MedicineAdapterCategory(productViewModel, userId)
                         adapter.submitList(response)
                         binding?.medicineRecyclerView?.adapter = adapter
                     }
