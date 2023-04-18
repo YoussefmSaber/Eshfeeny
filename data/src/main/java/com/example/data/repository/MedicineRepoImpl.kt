@@ -40,9 +40,12 @@ class MedicineRepoImpl {
 
     suspend fun getFavoriteProducts(
         userId: String
-    ): CategoryResponse {
-        val response = UserRetrofitInstance.medicineApi.getFavoriteProducts(userId)
-        Log.i("Favorite Products", response.toString())
-        return response
-    }
+    ): CategoryResponse =
+        UserRetrofitInstance.medicineApi.getFavoriteProducts(userId)
+
+    suspend fun deleteFavoriteProduct(
+        userId: String,
+        productId: String
+    ): PatchRequestResponse =
+        UserRetrofitInstance.medicineApi.deleteFavoriteProduct(userId, productId)
 }

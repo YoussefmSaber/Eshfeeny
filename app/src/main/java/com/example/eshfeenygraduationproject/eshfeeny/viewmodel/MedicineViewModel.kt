@@ -51,6 +51,10 @@ class MedicineViewModel(
     val favoriteProducts: LiveData<CategoryResponse>
         get() = _favoriteProducts
 
+    private val _deleteFavoriteProduct = MutableLiveData<PatchRequestResponse>()
+    val deleteFavoriteProduct: LiveData<PatchRequestResponse>
+        get() = _deleteFavoriteProduct
+
     fun getMedicinesFromRemote(medicine: String) {
         viewModelScope.launch {
             try {
@@ -135,10 +139,23 @@ class MedicineViewModel(
     ) {
         viewModelScope.launch {
             try {
-                val response = repoImpl.getFavoriteProducts(userId)
-                _favoriteProducts.value = response
+                _favoriteProducts.value = repoImpl.getFavoriteProducts(userId)
             } catch (e: Exception) {
                 Log.e("error", "Error fetching Favorite Products")
+            }
+        }
+    }
+
+    fun deleteFavoriteProduct(
+        userId: String,
+        productId: String
+    ) {
+        viewModelScope.launch {
+            try {
+                val response = repoImpl.deleteFavoriteProduct(userId, productId)
+                _deleteFavoriteProduct.value = response
+            } catch (e: Exception) {
+                Log.i("delete Favorite", "Couldn't delete the favorite item")
             }
         }
     }

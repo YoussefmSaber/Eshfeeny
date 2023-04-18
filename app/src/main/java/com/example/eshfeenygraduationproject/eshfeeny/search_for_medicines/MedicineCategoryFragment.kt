@@ -80,8 +80,6 @@ class MedicineCategoryFragment : Fragment() {
             }
         }
 
-
-
         return binding?.root
     }
 
@@ -108,7 +106,6 @@ class MedicineCategoryFragment : Fragment() {
                 medicineViewModel.getMedicineForAllMedicines()
                 medicineViewModel.categoriesAllMedicines.observe(viewLifecycleOwner) { response ->
 
-                    Log.i("chip Test", response.toString())
                     val adapter = MedicineAdapterCategory(medicineViewModel, userId)
 
                     adapter.submitList(response)
@@ -133,13 +130,10 @@ class MedicineCategoryFragment : Fragment() {
                     setChipColors(previousSelectedChip)
                 }
 
-                // Select the clicked chip
                 chip.isSelected = true
                 setChipColors(chip)
 
-                // Update the currently selected chip
                 selectedChip = chip
-
 
                 medicineViewModel.getMedicinesFromRemote(name)
                 medicineViewModel.category_medicines.observe(viewLifecycleOwner) { response ->
@@ -153,7 +147,7 @@ class MedicineCategoryFragment : Fragment() {
                     medicineViewModel.getMedicineForAllMedicines()
                     medicineViewModel.categoriesAllMedicines.observe(viewLifecycleOwner) { response ->
                         Log.i("chip Test", response.toString())
-                        val adapter = MedicineAdapterHome(medicineViewModel, userId)
+                        val adapter = MedicineAdapterCategory(medicineViewModel, userId)
                         adapter.submitList(response)
                         binding?.medicineRecyclerView?.adapter = adapter
                     }

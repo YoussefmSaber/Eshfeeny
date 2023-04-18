@@ -22,31 +22,40 @@ class FavoriteFragment : Fragment() {
 
     private var binding: FragmentFavoriteBinding? = null
     private lateinit var medicineViewModel: MedicineViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-
+        Log.i("favoriteFragment", "View Created")
         binding = FragmentFavoriteBinding.inflate(inflater)
         val repo = MedicineRepoImpl()
         val viewModelFactory = MedicineViewModelFactory(repo)
         medicineViewModel = ViewModelProvider(this, viewModelFactory)[MedicineViewModel::class.java]
         val userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        Log.i("favoriteFragment", "ViewModel Initialized")
 
-        userViewModel.userData.value?.let {
-            Log.i("Favorite Fragment", it._id)
-            medicineViewModel.getFavoriteProducts(it._id)
+
+        userViewModel.userData.observe(viewLifecycleOwner) {
+            val userId = it._id
+
+            medicineViewModel.getFavoriteProducts(userId)
+
             medicineViewModel.favoriteProducts.observe(viewLifecycleOwner) { products ->
+
                 if (products != null) {
                     binding?.noItemsLayout?.visibility = View.GONE
                     binding?.favoriteRecyclerView?.visibility = View.VISIBLE
-                    val adapter = MedicineAdapterFavorite(medicineViewModel, it._id)
-                    adapter.submitList(products)
+
+                    val adapter = MedicineAdapterFavorite(medicineViewModel, userId)
                     binding?.favoriteRecyclerView?.adapter = adapter
+
+                    adapter.submitList(products)
                 }
             }
         }
 
-        // Inflate the layout for this fragment
+
+
         return binding?.root
     }
 

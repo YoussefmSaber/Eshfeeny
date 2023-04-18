@@ -35,6 +35,9 @@ class MedicineAdapterCategory(private val viewModel: MedicineViewModel, val user
     inner class ViewHolder(private val itemBinding: MedicineItemCategoryBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(category: CategoryResponseItem) {
+
+            viewModel.getFavoriteProducts(userId)
+
             itemBinding.medicineNameIdTv.text = category.nameAr
             itemBinding.priceMedicineIdTv.text = "${category.price.toInt().toString()} جنيه  "
             // TODO: Change the Image to be the index [0] image[0]
@@ -73,10 +76,19 @@ class MedicineAdapterCategory(private val viewModel: MedicineViewModel, val user
                 it.findNavController().navigate(action)
             }
 
-            itemBinding.heartIconId.setOnClickListener {
-
-                viewModel.addMedicineToFavorites(userId, AddToFavorites(category._id))
+            if (viewModel.favoriteProducts.value?.contains(category) == true) {
                 itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
+
+                itemBinding.heartIconId.setOnClickListener {
+                    viewModel.deleteFavoriteProduct(userId, category._id)
+                    itemBinding.heartIconId.setImageResource(R.drawable.favorite_notfill)
+                }
+            } else {
+                itemBinding.heartIconId.setImageResource(R.drawable.favorite_notfill)
+                itemBinding.heartIconId.setOnClickListener {
+                    viewModel.addMedicineToFavorites(userId, AddToFavorites(category._id))
+                    itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
+                }
             }
 
             Log.i("ViewHolder sh8aal",toString())

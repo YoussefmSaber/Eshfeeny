@@ -88,6 +88,21 @@ class MedicineAdapterFavorite(private val viewModel: MedicineViewModel, val user
                 it.findNavController().navigate(action)
             }
 
+            if (viewModel.favoriteProducts.value?.contains(category) == true) {
+                itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
+
+                itemBinding.heartIconId.setOnClickListener {
+                    viewModel.deleteFavoriteProduct(userId, category._id)
+                    itemBinding.heartIconId.setImageResource(R.drawable.favorite_notfill)
+                }
+            } else {
+                itemBinding.heartIconId.setImageResource(R.drawable.favorite_notfill)
+                itemBinding.heartIconId.setOnClickListener {
+                    viewModel.addMedicineToFavorites(userId, AddToFavorites(category._id))
+                    itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
+                }
+            }
+
             Log.i("ViewHolder sh8aal", toString())
         }
     }

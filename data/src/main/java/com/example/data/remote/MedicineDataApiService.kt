@@ -6,6 +6,7 @@ import com.example.domain.entity.patchRequestVar.AddToFavorites
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.Path
@@ -49,4 +50,12 @@ interface MedicineDataApiService {
         @Path("userId")
         id: String
     ): CategoryResponse
+
+    @DELETE("users/{userId}/favorites/{productId}")
+    suspend fun deleteFavoriteProduct(
+        @Path("userId")
+        userId: String,
+        @Path("productId")
+        productId: String
+    ): PatchRequestResponse
 }

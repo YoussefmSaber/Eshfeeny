@@ -88,30 +88,44 @@ class HomeFragment : Fragment() {
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         medicineViewModel = ViewModelProvider(this, viewModelFactory)[MedicineViewModel::class.java]
 
-        userViewModel.userData.observe(viewLifecycleOwner){ userData ->
+        userViewModel.userData.observe(viewLifecycleOwner) { userData ->
             val userID = userData._id
 
             medicineViewModel.getMedicineForEmsaak()
             medicineViewModel.categories_Emsaak.observe(viewLifecycleOwner) {
-                val adapter = MedicineAdapterHome(medicineViewModel, userID)
-                binding?.medicineIdRv?.adapter = adapter
-                adapter.submitList(it)
+
+                medicineViewModel.getFavoriteProducts(userID)
+                medicineViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
+
+                    val adapter = MedicineAdapterHome(medicineViewModel, userID, favoriteProducts)
+                    binding?.medicineIdRv?.adapter = adapter
+
+                    adapter.submitList(it)
+                }
             }
             //call recycler view for كحه
             medicineViewModel.getMedicineForKo7aa()
             medicineViewModel.categories_Ko7aa.observe(viewLifecycleOwner) {
-                val adapter = MedicineAdapterHome(medicineViewModel, userID)
-                binding?.medicineIdRv2?.adapter = adapter
-                adapter.submitList(it)
-                Log.i("Home Frgament sh8aal for ko7aa", it.toString())
+
+                medicineViewModel.getFavoriteProducts(userID)
+                medicineViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
+
+                    val adapter = MedicineAdapterHome(medicineViewModel, userID, favoriteProducts)
+                    binding?.medicineIdRv2?.adapter = adapter
+
+                    adapter.submitList(it)
+                }
             }
             //call recycler view for مغص
             medicineViewModel.getMedicineForM8aas()
             medicineViewModel.categories_M8aas.observe(viewLifecycleOwner) {
-                val adapter = MedicineAdapterHome(medicineViewModel, userID)
-                binding?.medicineIdRv3?.adapter = adapter
-                adapter.submitList(it)
-                Log.i("Home Frgament sh8aal", it.toString())
+                medicineViewModel.getFavoriteProducts(userID)
+                medicineViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
+
+                    val adapter = MedicineAdapterHome(medicineViewModel, userID, favoriteProducts)
+                    binding?.medicineIdRv3?.adapter = adapter
+                    adapter.submitList(it)
+                }
             }
         }
 
@@ -120,7 +134,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToRightCategory(categoryName: String, view: View) {
-        val action = HomeFragmentDirections.actionHomeFragment2ToMedicineCategoryFragment(categoryName)
+        val action =
+            HomeFragmentDirections.actionHomeFragment2ToMedicineCategoryFragment(categoryName)
         Navigation.findNavController(view).navigate(action)
     }
 
