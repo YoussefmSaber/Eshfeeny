@@ -91,4 +91,17 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
+    fun decrementProductNumberInCart(
+        userId: String,
+        productId: String
+    ) {
+        viewModelScope.launch {
+            try {
+                repository.decrementProductNumberInCart(userId, productId)
+            } catch (e: Exception) {
+                Log.e("cart", "Error decrementing product number")
+            }
+        }
+    }
 }
