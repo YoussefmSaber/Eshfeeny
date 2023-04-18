@@ -3,49 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layoutDirection="rtl">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/productDetailsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/productNumberLayout"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/cartItemImg"
+        android:layout_width="90sp"
+        android:layout_height="90sp"
+        android:layout_margin="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/cartItemName"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:srcCompat="@tools:sample/avatars" />
 
-        <ImageView
-            android:id="@+id/cartItemImg"
-            android:layout_width="90sp"
-            android:layout_height="90sp"
-            android:layout_gravity="center"
-            android:layout_marginStart="16sp"
-            android:layout_marginTop="8sp"
-            tools:srcCompat="@tools:sample/avatars" />
+    <TextView
+        android:id="@+id/cartItemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8sp"
+        android:fontFamily="@font/cairo_regular"
+        android:text="فيوسيكورت | أفضل كريم مضاد حيوى ومضاد للالتهابات | 30 جم"
+        android:textColor="@color/text_color"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/cartItemRemove"
+        app:layout_constraintHeight_default="wrap"
+        app:layout_constraintHeight_max="0dp"
+        app:layout_constraintStart_toEndOf="@id/cartItemImg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/cartItemName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="8sp"
-            android:layout_weight="1"
-            android:fontFamily="@font/cairo_regular"
-            android:text="فيوسيكورت | أفضل كريم مضاد حيوى ومضاد للالتهابات | 30 جم"
-            android:textColor="@color/text_color"
-            android:textSize="18sp" />
+    <ImageView
+        android:id="@+id/cartItemRemove"
+        android:layout_width="14sp"
+        android:layout_height="14sp"
+        android:layout_marginTop="16sp"
+        android:layout_marginEnd="16sp"
+        android:src="@drawable/clear_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cartItemName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <ImageView
-            android:id="@+id/cartItemRemove"
-            android:layout_width="14sp"
-            android:layout_height="14sp"
-            android:layout_marginTop="16sp"
-            android:layout_marginEnd="16sp"
-            android:src="@drawable/clear_logo" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/productNumberLayout"
@@ -57,9 +59,10 @@
         app:layout_constraintHorizontal_bias="0.77"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/productDetailsLayout">
+        app:layout_constraintTop_toBottomOf="@id/cartItemName">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/incrementAmountBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4sp"
@@ -68,8 +71,8 @@
             app:cardElevation="0dp">
 
             <ImageView
-                android:layout_width="24sp"
-                android:layout_height="24sp"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
                 android:layout_margin="8sp"
                 android:src="@drawable/plus_icon" />
         </com.google.android.material.card.MaterialCardView>
@@ -84,17 +87,19 @@
             app:cardElevation="0dp">
 
             <TextView
+                android:id="@+id/productAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48sp"
                 android:layout_marginEnd="48sp"
                 android:fontFamily="@font/cairo_medium"
-                android:text="1"
+                android:text="8"
                 android:textColor="@color/blue_main"
-                android:textSize="21sp" />
+                android:textSize="23sp" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/decrementAmountBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4sp"
@@ -103,8 +108,8 @@
             app:cardElevation="0dp">
 
             <ImageView
-                android:layout_width="24sp"
-                android:layout_height="24sp"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
                 android:layout_margin="8sp"
                 android:src="@drawable/minus_icon" />
         </com.google.android.material.card.MaterialCardView>
@@ -118,7 +123,7 @@
             android:fontFamily="@font/cairo_medium"
             android:text="55.5 جنية"
             android:textColor="@color/blue_main"
-            android:textSize="12sp"
+            android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/productNumberLayout"
@@ -134,6 +139,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/productNumberLayout" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

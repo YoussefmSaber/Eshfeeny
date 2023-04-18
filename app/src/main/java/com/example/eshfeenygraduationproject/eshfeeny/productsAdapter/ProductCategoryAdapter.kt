@@ -109,5 +109,4 @@ class ProductCategoryAdapter(private val viewModel: ProductViewModel, val userId
             return oldItem == newItem
         }
     }
-
 }
