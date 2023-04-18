@@ -13,10 +13,8 @@ import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.data.repository.MedicineRepoImpl
-import com.example.data.repository.UserRepoImpl
-import com.example.domain.entity.CategoryResponse
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
-import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapter
+import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapterHome
 import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.*
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModelFactory
@@ -95,14 +93,14 @@ class HomeFragment : Fragment() {
 
             medicineViewModel.getMedicineForEmsaak()
             medicineViewModel.categories_Emsaak.observe(viewLifecycleOwner) {
-                val adapter = MedicineAdapter(medicineViewModel, userID)
+                val adapter = MedicineAdapterHome(medicineViewModel, userID)
                 binding?.medicineIdRv?.adapter = adapter
                 adapter.submitList(it)
             }
             //call recycler view for كحه
             medicineViewModel.getMedicineForKo7aa()
             medicineViewModel.categories_Ko7aa.observe(viewLifecycleOwner) {
-                val adapter = MedicineAdapter(medicineViewModel, userID)
+                val adapter = MedicineAdapterHome(medicineViewModel, userID)
                 binding?.medicineIdRv2?.adapter = adapter
                 adapter.submitList(it)
                 Log.i("Home Frgament sh8aal for ko7aa", it.toString())
@@ -110,7 +108,7 @@ class HomeFragment : Fragment() {
             //call recycler view for مغص
             medicineViewModel.getMedicineForM8aas()
             medicineViewModel.categories_M8aas.observe(viewLifecycleOwner) {
-                val adapter = MedicineAdapter(medicineViewModel, userID)
+                val adapter = MedicineAdapterHome(medicineViewModel, userID)
                 binding?.medicineIdRv3?.adapter = adapter
                 adapter.submitList(it)
                 Log.i("Home Frgament sh8aal", it.toString())

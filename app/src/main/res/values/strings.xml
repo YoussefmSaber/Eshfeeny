@@ -172,6 +172,8 @@
     <string name="constipation">الإمساك</string>
     <string name="topicalAntibiotics">مضادات حيوية موضوعية</string>
     <string name="vitaminsAndNutritionalSupplements">الفيتامينات والمكملات الغذائية</string>
-    
-    
+    <string name="no_favorite_items">لا توجد أي منتجات مفضلة لديك</string>
+    <string name="favorite">المنتجات المفضلة</string>
+
+
 </resources>

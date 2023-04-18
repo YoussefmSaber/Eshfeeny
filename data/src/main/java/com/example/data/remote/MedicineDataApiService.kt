@@ -43,4 +43,10 @@ interface MedicineDataApiService {
         @Body
         productId: AddToFavorites
     ): PatchRequestResponse
+
+    @GET("products/user/{userId}/favorites")
+    suspend fun getFavoriteProducts (
+        @Path("userId")
+        id: String
+    ): CategoryResponse
 }

@@ -39,14 +39,17 @@ class MedicineViewModel(
         get() = _categories_M8aas
 
     //Categories For كل الادويه
-    private val _categories_AllMedicines = MutableLiveData<CategoryResponse>()
-    val categories_AllMedicines: LiveData<CategoryResponse>
-        get() = _categories_AllMedicines
+    private val _categoriesAllMedicines = MutableLiveData<CategoryResponse>()
+    val categoriesAllMedicines: LiveData<CategoryResponse>
+        get() = _categoriesAllMedicines
 
     private val _medicineToFavorites = MutableLiveData<PatchRequestResponse>()
     val medicineToFavorite: LiveData<PatchRequestResponse>
         get() = _medicineToFavorites
 
+    private val _favoriteProducts = MutableLiveData<CategoryResponse>()
+    val favoriteProducts: LiveData<CategoryResponse>
+        get() = _favoriteProducts
 
     fun getMedicinesFromRemote(medicine: String) {
         viewModelScope.launch {
@@ -104,8 +107,8 @@ class MedicineViewModel(
         viewModelScope.launch {
             try {
                 val response = repoImpl.getMedicineFromRemoteForAllMedicines()
-                _categories_AllMedicines.value = response
-                Log.i("Chip Click Test", _categories_AllMedicines.value.toString())
+                _categoriesAllMedicines.value = response
+                Log.i("Chip Click Test", _categoriesAllMedicines.value.toString())
             } catch (e: Exception) {
                 // handle error
                 Log.e(TAG, "Error fetching urls AllMedicines", e)
@@ -123,6 +126,19 @@ class MedicineViewModel(
                 _medicineToFavorites.value = response
             } catch (e: Exception) {
                 Log.e("Favorite", "Error adding medicine to favorites" + e)
+            }
+        }
+    }
+
+    fun getFavoriteProducts(
+        userId: String
+    ) {
+        viewModelScope.launch {
+            try {
+                val response = repoImpl.getFavoriteProducts(userId)
+                _favoriteProducts.value = response
+            } catch (e: Exception) {
+                Log.e("error", "Error fetching Favorite Products")
             }
         }
     }

@@ -11,10 +11,8 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.data.repository.MedicineRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentDetailsBinding
-import com.example.eshfeenygraduationproject.eshfeeny.medicine.SideEffectsAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.medicine.UsageAdapter
+import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapterFavorite
 import com.example.eshfeenygraduationproject.eshfeeny.medicine.UseCaseAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.medicine.WarningAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.DetailsViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.DetailsViewModelFactory
 
@@ -48,13 +46,13 @@ class DetailsFragment : Fragment() {
             } }
             val useCaseAdapter = UseCaseAdapter(it.body()!!.useCases)
             binding?.idRvUseCaseDetails?.adapter = useCaseAdapter
-            val sideEffectAdapter = SideEffectsAdapter(it.body()!!.sideEffects)
+            val sideEffectAdapter = UseCaseAdapter(it.body()!!.sideEffects)
             binding?.idRvSideEffectDetails?.adapter = sideEffectAdapter
 
-            val usageAdapter = UsageAdapter(it.body()!!.usage)
+            val usageAdapter = UseCaseAdapter(it.body()!!.usage)
             binding?.idRvUsageDetails?.adapter = usageAdapter
 
-            val warningAdapter = WarningAdapter(it.body()!!.warning)
+            val warningAdapter = UseCaseAdapter(it.body()!!.warning)
             binding?.idRvWarningDetails?.adapter = warningAdapter
 
 

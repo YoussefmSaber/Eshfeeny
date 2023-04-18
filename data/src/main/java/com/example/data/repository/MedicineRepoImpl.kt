@@ -1,5 +1,6 @@
 package com.example.data.repository
 
+import android.util.Log
 import com.example.data.remote.apis.UserRetrofitInstance
 import com.example.domain.entity.CategoryResponse
 import com.example.domain.entity.CategoryResponseItem
@@ -34,7 +35,14 @@ class MedicineRepoImpl {
     suspend fun addMedicineToFavorites(
         userId: String,
         productId: AddToFavorites
-    ): PatchRequestResponse {
-            return UserRetrofitInstance.medicineApi.addMedicneToFavorite(userId, productId)
+    ): PatchRequestResponse =
+        UserRetrofitInstance.medicineApi.addMedicneToFavorite(userId, productId)
+
+    suspend fun getFavoriteProducts(
+        userId: String
+    ): CategoryResponse {
+        val response = UserRetrofitInstance.medicineApi.getFavoriteProducts(userId)
+        Log.i("Favorite Products", response.toString())
+        return response
     }
 }
