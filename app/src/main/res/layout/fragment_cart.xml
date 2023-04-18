@@ -36,7 +36,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layoutDirection="rtl"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/findNearestPharmacyLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_default="wrap"
@@ -87,24 +86,26 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/findNearestPharmacyLayout"
         android:layout_width="match_parent"
-        app:cardElevation="40dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/cartRecyclerView"
+        android:visibility="gone"
+        app:layout_constraintVertical_bias="1"
+        app:cardElevation="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/cartRecyclerView">
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="اعرف اقرب صيدلية "
-            android:fontFamily="@font/cairo_semibold"
-            android:textSize="20sp"
             android:layout_margin="16sp"
-            android:stateListAnimator="@null"
-            app:cornerRadius="10sp"
+            android:backgroundTint="@color/orange_main"
+            android:fontFamily="@font/cairo_semibold"
             android:padding="8sp"
-            android:backgroundTint="@color/orange_main"/>
+            android:stateListAnimator="@null"
+            android:text="اعرف اقرب صيدلية "
+            android:textSize="20sp"
+            app:cornerRadius="10sp" />
 
     </com.google.android.material.card.MaterialCardView>
 
