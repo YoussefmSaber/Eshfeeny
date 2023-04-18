@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 
-class MedicineViewModel(
+class ProductViewModel(
     private val repo: MedicineRepoImpl
 ) : ViewModel() {
 

@@ -15,10 +15,10 @@ import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.MedicineItemCategoryBinding
 import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.MedicineCategoryFragmentDirections
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.MedicineViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 
 
-class MedicineAdapterCategory(private val viewModel: MedicineViewModel, val userId: String) : ListAdapter<ProductResponseItem, MedicineAdapterCategory.ViewHolder>(CategoryDiffCallback()) {
+class MedicineAdapterCategory(private val viewModel: ProductViewModel, val userId: String) : ListAdapter<ProductResponseItem, MedicineAdapterCategory.ViewHolder>(CategoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding = MedicineItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
