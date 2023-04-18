@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.eshfeeny.medicine
+package com.example.eshfeenygraduationproject.eshfeeny.productsAdapter
 
 
 import android.view.LayoutInflater
@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.eshfeenygraduationproject.databinding.MedicineDetailsItemBinding
 
 
-class WarningAdapter(val warning: List<String>) :
-    RecyclerView.Adapter<WarningAdapter.WarningViewHolder>() {
-    inner class WarningViewHolder(private val binding: MedicineDetailsItemBinding):RecyclerView.ViewHolder(binding.root){
+class UseCaseAdapter(val useCase: List<String>) :
+    RecyclerView.Adapter<UseCaseAdapter.UseCaseViewHolder>() {
+    inner class UseCaseViewHolder(private val binding: MedicineDetailsItemBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(category: String) {
             binding.txtIdDetails.text = category
         }
@@ -17,16 +17,16 @@ class WarningAdapter(val warning: List<String>) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): WarningViewHolder =
-        WarningViewHolder(
+    ): UseCaseViewHolder =
+        UseCaseViewHolder(
             MedicineDetailsItemBinding.inflate(LayoutInflater.from(parent.context),
                 parent,
                 false)
         )
 
-    override fun getItemCount(): Int = warning.size
-    override fun onBindViewHolder(holder: WarningAdapter.WarningViewHolder, position: Int) {
-        val day = warning[position]
+    override fun getItemCount(): Int = useCase.size
+    override fun onBindViewHolder(holder: UseCaseAdapter.UseCaseViewHolder, position: Int) {
+        val day = useCase[position]
         holder.bind(day)
     }
 }

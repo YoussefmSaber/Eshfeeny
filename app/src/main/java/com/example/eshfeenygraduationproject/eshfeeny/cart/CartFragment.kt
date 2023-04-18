@@ -5,15 +5,41 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.R
+import com.example.eshfeenygraduationproject.databinding.FragmentCartBinding
+import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.UserViewModel
 
 
 class CartFragment : Fragment() {
+
+    private var binding: FragmentCartBinding? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+        binding = FragmentCartBinding.inflate(inflater)
+
+        val userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        val repo = ProductRepoImpl()
+
+        val productViewModelFactory = ProductViewModelFactory(repo)
+        val productViewModel =
+            ViewModelProvider(this, productViewModelFactory)[ProductViewModel::class.java]
+
+        userViewModel.userData.observe(viewLifecycleOwner) {
+            productViewModel.getUserCartItems(it._id)
+        }
+
+        return binding?.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }
