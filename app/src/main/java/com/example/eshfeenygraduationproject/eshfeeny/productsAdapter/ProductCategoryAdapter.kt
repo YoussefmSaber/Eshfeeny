@@ -18,20 +18,23 @@ import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.Medic
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 
 
-class ProductCategoryAdapter(private val viewModel: ProductViewModel, val userId: String) : ListAdapter<ProductResponseItem, ProductCategoryAdapter.ViewHolder>(CategoryDiffCallback()) {
+class ProductCategoryAdapter(private val viewModel: ProductViewModel, val userId: String) :
+    ListAdapter<ProductResponseItem, ProductCategoryAdapter.ViewHolder>(CategoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemBinding = MedicineItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        Log.i("CreateViewHolder sh8aal",itemBinding.toString())
+        val itemBinding =
+            MedicineItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        Log.i("CreateViewHolder sh8aal", itemBinding.toString())
         return ViewHolder(itemBinding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
-        Log.i("onBindViewHolder sh8aal",toString())
+        Log.i("onBindViewHolder sh8aal", toString())
     }
 
-    inner class ViewHolder(private val itemBinding: MedicineItemCategoryBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+    inner class ViewHolder(private val itemBinding: MedicineItemCategoryBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(category: ProductResponseItem) {
 
@@ -40,7 +43,8 @@ class ProductCategoryAdapter(private val viewModel: ProductViewModel, val userId
             itemBinding.medicineNameIdTv.text = category.nameAr
             itemBinding.priceMedicineIdTv.text = "${category.price.toInt().toString()} جنيه  "
             // TODO: Change the Image to be the index [0] image[0]
-            Glide.with(itemBinding.root.context).load(category.images[0]).into(itemBinding.imgVMedicineId)
+            Glide.with(itemBinding.root.context).load(category.images[0])
+                .into(itemBinding.imgVMedicineId)
             var cnt = 1
             itemBinding.btnAddToCartId.setOnClickListener {
                 itemBinding.btnAddToCartId.visibility = View.GONE
@@ -56,7 +60,7 @@ class ProductCategoryAdapter(private val viewModel: ProductViewModel, val userId
             }
             itemBinding.decreaseBtnId.setOnClickListener {
                 cnt--
-                if(cnt>0)
+                if (cnt > 0)
                     itemBinding.btnCntAddItemId.text = cnt.toString()
                 else {
                     itemBinding.btnCntAddItemId.text = "1"
@@ -71,7 +75,10 @@ class ProductCategoryAdapter(private val viewModel: ProductViewModel, val userId
                 itemBinding.btnCntAddItemId.visibility = View.GONE
             }
             itemBinding.imgVMedicineId.setOnClickListener {
-                val action = MedicineCategoryFragmentDirections.actionMedicineCategoryFragmentToDetailsFragment(category._id)
+                val action =
+                    MedicineCategoryFragmentDirections.actionMedicineCategoryFragmentToDetailsFragment(
+                        category._id
+                    )
                 it.findNavController().navigate(action)
             }
 
@@ -90,7 +97,7 @@ class ProductCategoryAdapter(private val viewModel: ProductViewModel, val userId
                 }
             }
 
-            Log.i("ViewHolder sh8aal",toString())
+            Log.i("ViewHolder sh8aal", toString())
         }
     }
 

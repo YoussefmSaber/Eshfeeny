@@ -1,12 +1,12 @@
 package com.example.eshfeenygraduationproject.eshfeeny.cart
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentCartBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductCartAdapter
@@ -33,14 +33,22 @@ class CartFragment : Fragment() {
             ViewModelProvider(this, productViewModelFactory)[ProductViewModel::class.java]
 
         userViewModel.userData.observe(viewLifecycleOwner) { userDetails ->
-            productViewModel.getUserCartItems(userDetails._id)
-            productViewModel.cartItems.observe(viewLifecycleOwner) {
-                binding?.cartImageLayout?.visibility = View.GONE
-                binding?.cartRecyclerView?.visibility = View.VISIBLE
 
-                val adapter = ProductCartAdapter(productViewModel, userDetails._id)
-                binding?.cartRecyclerView?.adapter = adapter
-                adapter.submitList(it.cart)
+            productViewModel.getUserCartItems(userDetails._id)
+
+
+            productViewModel.cartItems.observe(viewLifecycleOwner) {
+                if (it.cart.isEmpty()) {
+                    binding?.cartImageLayout?.visibility = View.VISIBLE
+                    binding?.cartRecyclerView?.visibility = View.GONE
+                } else {
+                    binding?.cartImageLayout?.visibility = View.GONE
+                    binding?.cartRecyclerView?.visibility = View.VISIBLE
+                    val adapter = ProductCartAdapter(productViewModel, userDetails._id)
+                    binding?.cartRecyclerView?.adapter = adapter
+                    Log.i("cart", it.cart.toString())
+                    adapter.submitList(it.cart)
+                }
             }
         }
 
