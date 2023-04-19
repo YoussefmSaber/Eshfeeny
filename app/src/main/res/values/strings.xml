@@ -187,5 +187,10 @@
     <string name="no_favorite_items">لا توجد أي منتجات مفضلة لديك</string>
     <string name="favorite">المنتجات المفضلة</string>
 
-
+    <!--    Cart-->
+    <string name="cart">عربة التسوق</string>
+    <string name="emptyCart">عربة التسوق فارغه</string>
+    <string name="noItemsInCart">يبدو أنك لم تضف أي عناصر إالى سلة التسوق الخاصة بك </string>
+    <string name="priceMayChange">قد تخلتف الأسعار بين الصيدليات</string>
+    <string name="continueShopping">استمر بالتسوق</string>
 </resources>

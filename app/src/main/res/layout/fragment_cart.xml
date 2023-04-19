@@ -6,15 +6,108 @@
     android:layout_height="match_parent"
     tools:context=".eshfeeny.cart.CartFragment">
 
-    <ImageView
-        android:id="@+id/empty_img_cart_id"
-        android:layout_width="289dp"
-        android:layout_height="216dp"
-        android:layout_marginTop="271dp"
-        android:layout_marginBottom="244dp"
-        android:src="@drawable/cart_empty"
+    <TextView
+        android:id="@+id/moreTextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16sp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="@string/cart"
+        android:textColor="@color/text_main"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="16sp"
+        android:background="#e5e5e5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/moreTextview" />
+
+    <LinearLayout
+        android:id="@+id/cartImageLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider5">
+
+        <ImageView
+            android:id="@+id/emptyCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/gray_cart" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/cairo_medium"
+            android:text="@string/emptyCart"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/cairo_regular"
+            android:text="@string/noItemsInCart"
+            android:textColor="@color/text_color"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cartRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layoutDirection="rtl"
+        app:layout_constraintBottom_toBottomOf="@id/findNearestPharmacyLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="wrap"
+        app:layout_constraintHeight_max="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider5"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/cart_item" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/findNearestPharmacyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintVertical_bias="1"
+        app:cardElevation="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cartRecyclerView">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16sp"
+            android:backgroundTint="@color/orange_main"
+            android:fontFamily="@font/cairo_semibold"
+            android:padding="8sp"
+            android:stateListAnimator="@null"
+            android:text="اعرف اقرب صيدلية "
+            android:textSize="20sp"
+            app:cornerRadius="10sp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

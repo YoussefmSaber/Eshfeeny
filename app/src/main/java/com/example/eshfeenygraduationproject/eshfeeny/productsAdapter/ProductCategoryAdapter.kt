@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.eshfeeny.medicine
+package com.example.eshfeenygraduationproject.eshfeeny.productsAdapter
 
 
 import android.util.Log
@@ -14,12 +14,12 @@ import com.example.domain.entity.product.ProductResponseItem
 import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.MedicineItemCategoryBinding
-import com.example.eshfeenygraduationproject.eshfeeny.favorite.FavoriteFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.MedicineCategoryFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 
 
-class MedicineAdapterFavorite(private val viewModel: ProductViewModel, val userId: String) :
-    ListAdapter<ProductResponseItem, MedicineAdapterFavorite.ViewHolder>(CategoryDiffCallback()) {
+class ProductCategoryAdapter(private val viewModel: ProductViewModel, val userId: String) :
+    ListAdapter<ProductResponseItem, ProductCategoryAdapter.ViewHolder>(CategoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding =
@@ -38,14 +38,13 @@ class MedicineAdapterFavorite(private val viewModel: ProductViewModel, val userI
 
         fun bind(category: ProductResponseItem) {
 
+            viewModel.getFavoriteProducts(userId)
+
             itemBinding.medicineNameIdTv.text = category.nameAr
             itemBinding.priceMedicineIdTv.text = "${category.price.toInt().toString()} جنيه  "
-
-            itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
-
+            // TODO: Change the Image to be the index [0] image[0]
             Glide.with(itemBinding.root.context).load(category.images[0])
                 .into(itemBinding.imgVMedicineId)
-
             var cnt = 1
             itemBinding.btnAddToCartId.setOnClickListener {
                 itemBinding.btnAddToCartId.visibility = View.GONE
@@ -55,12 +54,10 @@ class MedicineAdapterFavorite(private val viewModel: ProductViewModel, val userI
                 itemBinding.btnCntAddItemId.text = "1"
                 cnt = 1
             }
-
             itemBinding.increaseBtnId.setOnClickListener {
                 cnt++
                 itemBinding.btnCntAddItemId.text = cnt.toString()
             }
-
             itemBinding.decreaseBtnId.setOnClickListener {
                 cnt--
                 if (cnt > 0)
@@ -69,18 +66,17 @@ class MedicineAdapterFavorite(private val viewModel: ProductViewModel, val userI
                     itemBinding.btnCntAddItemId.text = "1"
                     cnt = 1
                 }
-            }
 
+            }
             itemBinding.btnCntAddItemId.setOnClickListener {
                 itemBinding.btnAddToCartId.visibility = View.VISIBLE
                 itemBinding.increaseBtnId.visibility = View.GONE
                 itemBinding.decreaseBtnId.visibility = View.GONE
                 itemBinding.btnCntAddItemId.visibility = View.GONE
             }
-
             itemBinding.imgVMedicineId.setOnClickListener {
                 val action =
-                    FavoriteFragmentDirections.actionFavoriteFragment2ToDetailsFragment(
+                    MedicineCategoryFragmentDirections.actionMedicineCategoryFragmentToDetailsFragment(
                         category._id
                     )
                 it.findNavController().navigate(action)

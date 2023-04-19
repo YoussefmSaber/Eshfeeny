@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentDetailsBinding
-import com.example.eshfeenygraduationproject.eshfeeny.medicine.UseCaseAdapter
+import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.UseCaseAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.DetailsViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.DetailsViewModelFactory
 

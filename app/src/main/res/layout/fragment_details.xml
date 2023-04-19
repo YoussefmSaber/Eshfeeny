@@ -72,8 +72,7 @@
             android:scrollbars="none"
             app:layout_constraintBottom_toTopOf="@id/id_btn_add_to_cart_details"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_default="wrap"
-            app:layout_constraintHeight_max="0dp"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider12"
             app:layout_constraintVertical_bias="0">
@@ -102,7 +101,7 @@
                     android:layout_marginTop="40sp"
                     android:src="@drawable/details_favorite_notselected"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/divider12" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/id_btn_replacement_details"
@@ -349,7 +348,7 @@
             android:backgroundTint="#E5E5E5"
             android:stateListAnimator="@null"
             android:visibility="gone"
-            app:icon="@drawable/menus_icon"
+            app:icon="@drawable/minus_icon"
             app:iconGravity="textTop"
             app:iconPadding="0sp"
             app:iconTint="#4D4D4D"
