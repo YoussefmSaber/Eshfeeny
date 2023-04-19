@@ -12,7 +12,7 @@ import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentBmiAndBmrBinding
 import com.google.android.material.textfield.TextInputEditText
 
-
+@Suppress("DEPRECATION")
 class BmiAndBmrFragment : Fragment() {
     private var binding:FragmentBmiAndBmrBinding? = null
     override fun onCreateView(
@@ -26,7 +26,7 @@ class BmiAndBmrFragment : Fragment() {
             findNavController().navigate(R.id.action_bmiAndBmrFragment_to_moreFragment2)
         }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bmi_and_bmr, container, false)
+        return binding?.root
     }
     private fun setHint(view: TextInputEditText, string: Int) {
         view.setOnFocusChangeListener { v, hasFocus ->
