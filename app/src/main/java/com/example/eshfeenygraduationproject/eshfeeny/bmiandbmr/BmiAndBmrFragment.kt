@@ -17,7 +17,8 @@ import com.google.android.material.textfield.TextInputEditText
 
 @Suppress("DEPRECATION")
 class BmiAndBmrFragment : Fragment() {
-    private var binding:FragmentBmiAndBmrBinding? = null
+    private var _binding: FragmentBmiAndBmrBinding? = null
+    private val binding get() = _binding!!
     var flagAge = false
     var flagHeight = false
     var flagWeight = false
@@ -25,29 +26,35 @@ class BmiAndBmrFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentBmiAndBmrBinding.inflate(layoutInflater)
+        _binding = FragmentBmiAndBmrBinding.inflate(layoutInflater)
+        return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         forBindingId()
         forLetId()
         val gender = resources.getStringArray(R.array.Gender)
-        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_items,gender)
-        binding?.genderAutoComplete?.setAdapter(arrayAdapter)
-
-        binding?.NextBtntInBMI?.setOnClickListener {
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_items, gender)
+        binding.genderAutoComplete.setAdapter(arrayAdapter)
+        binding.NextBtntInBMI.setOnClickListener {
             bindingIsEmpty()
-            val age = binding?.ageEditText?.text.toString()
-            val height = binding?.heightEditText?.text.toString()
-            val weight = binding?.weightEditText?.text.toString()
-            val gender1 = binding?.genderAutoComplete?.text.toString()
-            if (flagAge and flagHeight and flagWeight){
+            val age = binding.ageEditText.text.toString()
+            val height = binding.heightEditText.text.toString()
+            val weight = binding.weightEditText.text.toString()
+            val gender1 = binding.genderAutoComplete.text.toString()
+            if (flagAge and flagHeight and flagWeight) {
                 findNavController().navigate(R.id.action_bmiAndBmrFragment_to_verifyDataFragment)
-
+                val intent = Intent(requireContext(), VerifyDataFragment::class.java)
+                intent.putExtra("EXTRA_AGE", age)
+                intent.putExtra("EXTRA_HEIGHT", height)
+                intent.putExtra("EXTRA_WEIGHT", weight)
+                intent.putExtra("EXTRA_GENDER", gender1)
             }
         }
-        binding?.backBtn22?.setOnClickListener {
+        binding.backBtn22.setOnClickListener {
             findNavController().navigate(R.id.action_bmiAndBmrFragment_to_moreFragment2)
         }
-        // Inflate the layout for this fragment
-        return binding?.root
+
     }
     private fun setHint(view: TextInputEditText, string: Int) {
         view.setOnFocusChangeListener { v, hasFocus ->
@@ -63,56 +70,50 @@ class BmiAndBmrFragment : Fragment() {
         }
     }
     private fun forBindingId(){
-        binding?.ageEditText?.inputType = InputType.TYPE_CLASS_NUMBER
-        binding?.heightEditText?.inputType = InputType.TYPE_CLASS_NUMBER
-        binding?.weightEditText?.inputType = InputType.TYPE_CLASS_NUMBER
-        binding?.ageEditText?.hint = getString(R.string.YourAge)
-        binding?.heightEditText?.hint = getString(R.string.CM)
-        binding?.weightEditText?.hint = getString(R.string.KM)
+        binding.ageEditText.inputType = InputType.TYPE_CLASS_NUMBER
+        binding.heightEditText.inputType = InputType.TYPE_CLASS_NUMBER
+        binding.weightEditText.inputType = InputType.TYPE_CLASS_NUMBER
+        binding.ageEditText.hint = getString(R.string.YourAge)
+        binding.heightEditText.hint = getString(R.string.CM)
+        binding.weightEditText.hint = getString(R.string.KM)
     }
     private fun forLetId(){
-        binding?.ageEditText?.let {
-            setHint(it, R.string.YourAge)
-        }
-        binding?.heightEditText?.let {
-            setHint(it, R.string.CM)
-        }
-        binding?.weightEditText?.let {
-            setHint(it, R.string.KM)
-        }
+        setHint(binding.ageEditText, R.string.YourAge)
+        setHint(binding.heightEditText, R.string.CM)
+        setHint(binding.weightEditText, R.string.KM)
     }
     private fun bindingIsEmpty(){
-        if(binding?.ageEditText?.text?.isEmpty() == true) {
-            binding?.Star1?.visibility = View.VISIBLE
-            binding?.Star1?.setTextColor(Color.parseColor("#EB1D36"))
+        if(binding.ageEditText.text?.isEmpty() == true) {
+            binding.Star1.visibility = View.VISIBLE
+            binding.Star1.setTextColor(Color.parseColor("#EB1D36"))
             flagAge = false
         }
-        else if (binding?.ageEditText?.text?.isEmpty() != true){
-            binding?.Star1?.visibility = View.INVISIBLE
-            binding?.AgeInputLayout?.boxStrokeColor = resources.getColor(R.color.light_blue1)
+        else if (binding.ageEditText.text?.isEmpty() != true){
+            binding.Star1.visibility = View.INVISIBLE
+            binding.AgeInputLayout.boxStrokeColor = resources.getColor(R.color.light_blue1)
             flagAge = true
         }
-        if(binding?.heightEditText?.text?.isEmpty() == true) {
-            binding?.Star2?.visibility = View.VISIBLE
-            binding?.Star2?.setTextColor(Color.parseColor("#EB1D36"))
+        if(binding.heightEditText.text?.isEmpty() == true) {
+            binding.Star2.visibility = View.VISIBLE
+            binding.Star2.setTextColor(Color.parseColor("#EB1D36"))
             flagHeight = false
         }
-        else if (binding?.heightEditText?.text?.isEmpty() != true){
-            binding?.Star2?.visibility = View.INVISIBLE
-            binding?.HeightInputLayout?.boxStrokeColor = resources.getColor(R.color.light_blue1)
+        else if (binding.heightEditText.text?.isEmpty() != true){
+            binding.Star2.visibility = View.INVISIBLE
+            binding.HeightInputLayout.boxStrokeColor = resources.getColor(R.color.light_blue1)
             flagHeight = true
 
         }
-        if(binding?.weightEditText?.text?.isEmpty() == true) {
-            binding?.Star3?.visibility = View.VISIBLE
-            binding?.Star3?.setTextColor(Color.parseColor("#EB1D36"))
+        if(binding.weightEditText.text?.isEmpty() == true) {
+            binding.Star3.visibility = View.VISIBLE
+            binding.Star3.setTextColor(Color.parseColor("#EB1D36"))
             flagWeight = false
         }
-        else if (binding?.weightEditText?.text?.isEmpty() != true){
-            binding?.Star3?.visibility = View.INVISIBLE
-            binding?.WeightInputLayout?.boxStrokeColor = resources.getColor(R.color.light_blue1)
+        else if (binding.weightEditText.text?.isEmpty() != true){
+            binding.Star3.visibility = View.INVISIBLE
+            binding.WeightInputLayout.boxStrokeColor = resources.getColor(R.color.light_blue1)
             flagWeight = true
         }
-        binding?.GenderInputLayout?.boxStrokeColor = resources.getColor(R.color.light_blue1)
+        binding.GenderInputLayout.boxStrokeColor = resources.getColor(R.color.light_blue1)
     }
 }

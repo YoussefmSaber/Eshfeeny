@@ -136,6 +136,7 @@
         app:boxCornerRadiusTopEnd="10sp"
         app:boxCornerRadiusTopStart="10sp"
         app:boxStrokeColor="#868484"
+        android:textDirection="rtl"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6">
 
@@ -159,7 +160,7 @@
         app:boxCornerRadiusTopEnd="10sp"
         app:boxCornerRadiusTopStart="10sp"
         app:boxStrokeColor="#868484"
-
+        android:textDirection="rtl"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         tools:ignore="InvalidId">
@@ -218,6 +219,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textColorHint="#868484"
+            android:textDirection="rtl"
             tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
