@@ -191,5 +191,21 @@
         <action
             android:id="@+id/action_bmiAndBmrFragment_to_moreFragment2"
             app:destination="@id/moreFragment2" />
+        <action
+            android:id="@+id/action_bmiAndBmrFragment_to_verifyDataFragment"
+            app:destination="@id/verifyDataFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/verifyDataFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.bmiandbmr.VerifyDataFragment"
+        android:label="fragment_verify_data"
+        tools:layout="@layout/fragment_verify_data" >
+        <action
+            android:id="@+id/action_verifyDataFragment_to_bmiAndBmrFragment"
+            app:destination="@id/bmiAndBmrFragment" />
     </fragment>
 </navigation>
