@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.eshfeeny.medicine
+package com.example.eshfeenygraduationproject.eshfeeny.productsAdapter
 
 
 import android.util.Log
@@ -10,21 +10,20 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.eshfeenygraduationproject.R
-import com.example.eshfeenygraduationproject.databinding.MedicineItemHomeBinding
-import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragmentDirections
+import com.example.eshfeenygraduationproject.databinding.MedicineItemCategoryBinding
+import com.example.eshfeenygraduationproject.eshfeeny.favorite.FavoriteFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 
 
-class MedicineAdapterHome(private val viewModel: ProductViewModel, val userId: String, val favoritePorducts: ProductResponse) :
-    ListAdapter<ProductResponseItem, MedicineAdapterHome.ViewHolder>(CategoryDiffCallback()) {
+class ProductFavoriteAdapter(private val viewModel: ProductViewModel, val userId: String) :
+    ListAdapter<ProductResponseItem, ProductFavoriteAdapter.ViewHolder>(CategoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding =
-            MedicineItemHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            MedicineItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         Log.i("CreateViewHolder sh8aal", itemBinding.toString())
         return ViewHolder(itemBinding)
     }
@@ -34,16 +33,19 @@ class MedicineAdapterHome(private val viewModel: ProductViewModel, val userId: S
         Log.i("onBindViewHolder sh8aal", toString())
     }
 
-    inner class ViewHolder(private val itemBinding: MedicineItemHomeBinding) :
+    inner class ViewHolder(private val itemBinding: MedicineItemCategoryBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(category: ProductResponseItem) {
 
             itemBinding.medicineNameIdTv.text = category.nameAr
             itemBinding.priceMedicineIdTv.text = "${category.price.toInt().toString()} جنيه  "
-            // TODO: Change the Image to be the index [0] image[0]
+
+            itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
+
             Glide.with(itemBinding.root.context).load(category.images[0])
                 .into(itemBinding.imgVMedicineId)
+
             var cnt = 1
             itemBinding.btnAddToCartId.setOnClickListener {
                 itemBinding.btnAddToCartId.visibility = View.GONE
@@ -53,6 +55,7 @@ class MedicineAdapterHome(private val viewModel: ProductViewModel, val userId: S
                 itemBinding.btnCntAddItemId.text = "1"
                 cnt = 1
             }
+
             itemBinding.increaseBtnId.setOnClickListener {
                 cnt++
                 itemBinding.btnCntAddItemId.text = cnt.toString()
@@ -74,13 +77,16 @@ class MedicineAdapterHome(private val viewModel: ProductViewModel, val userId: S
                 itemBinding.decreaseBtnId.visibility = View.GONE
                 itemBinding.btnCntAddItemId.visibility = View.GONE
             }
+
             itemBinding.imgVMedicineId.setOnClickListener {
                 val action =
-                    HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(category._id)
+                    FavoriteFragmentDirections.actionFavoriteFragment2ToDetailsFragment(
+                        category._id
+                    )
                 it.findNavController().navigate(action)
             }
 
-            if (favoritePorducts.contains(category)) {
+            if (viewModel.favoriteProducts.value?.contains(category) == true) {
                 itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
 
                 itemBinding.heartIconId.setOnClickListener {
@@ -94,6 +100,8 @@ class MedicineAdapterHome(private val viewModel: ProductViewModel, val userId: S
                     itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
                 }
             }
+
+            Log.i("ViewHolder sh8aal", toString())
         }
     }
 

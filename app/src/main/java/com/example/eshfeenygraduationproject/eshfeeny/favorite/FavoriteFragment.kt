@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentFavoriteBinding
-import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapterFavorite
+import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductFavoriteAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModelFactory
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.UserViewModel
@@ -42,7 +42,7 @@ class FavoriteFragment : Fragment() {
                     binding?.noItemsLayout?.visibility = View.GONE
                     binding?.favoriteRecyclerView?.visibility = View.VISIBLE
 
-                    val adapter = MedicineAdapterFavorite(productViewModel, userId)
+                    val adapter = ProductFavoriteAdapter(productViewModel, userId)
                     binding?.favoriteRecyclerView?.adapter = adapter
 
                     adapter.submitList(products)

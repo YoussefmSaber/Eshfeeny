@@ -13,7 +13,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
-import com.example.eshfeenygraduationproject.eshfeeny.medicine.MedicineAdapterHome
+import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductHomeAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.*
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModelFactory
@@ -96,7 +96,7 @@ class HomeFragment : Fragment() {
                 productViewModel.getFavoriteProducts(userID)
                 productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
 
-                    val adapter = MedicineAdapterHome(productViewModel, userID, favoriteProducts)
+                    val adapter = ProductHomeAdapter(productViewModel, userID, favoriteProducts)
                     binding?.medicineIdRv?.adapter = adapter
 
                     adapter.submitList(it)
@@ -109,7 +109,7 @@ class HomeFragment : Fragment() {
                 productViewModel.getFavoriteProducts(userID)
                 productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
 
-                    val adapter = MedicineAdapterHome(productViewModel, userID, favoriteProducts)
+                    val adapter = ProductHomeAdapter(productViewModel, userID, favoriteProducts)
                     binding?.medicineIdRv2?.adapter = adapter
 
                     adapter.submitList(it)
@@ -121,7 +121,7 @@ class HomeFragment : Fragment() {
                 productViewModel.getFavoriteProducts(userID)
                 productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
 
-                    val adapter = MedicineAdapterHome(productViewModel, userID, favoriteProducts)
+                    val adapter = ProductHomeAdapter(productViewModel, userID, favoriteProducts)
                     binding?.medicineIdRv3?.adapter = adapter
                     adapter.submitList(it)
                 }
