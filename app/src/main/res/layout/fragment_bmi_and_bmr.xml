@@ -265,7 +265,7 @@
     <Button
         android:id="@+id/NextBtntInBMI"
         android:layout_width="328sp"
-        android:layout_height="55sp"
+        android:layout_height="57sp"
         android:layout_marginStart="16sp"
         android:layout_marginTop="70sp"
         android:layout_marginEnd="16sp"
