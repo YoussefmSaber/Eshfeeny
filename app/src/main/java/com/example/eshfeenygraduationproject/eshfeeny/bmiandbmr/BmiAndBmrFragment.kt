@@ -43,12 +43,17 @@ class BmiAndBmrFragment : Fragment() {
             val weight = binding.weightEditText.text.toString()
             val gender1 = binding.genderAutoComplete.text.toString()
             if (flagAge and flagHeight and flagWeight) {
-                findNavController().navigate(R.id.action_bmiAndBmrFragment_to_verifyDataFragment)
-                val intent = Intent(requireContext(), VerifyDataFragment::class.java)
-                intent.putExtra("EXTRA_AGE", age)
-                intent.putExtra("EXTRA_HEIGHT", height)
-                intent.putExtra("EXTRA_WEIGHT", weight)
-                intent.putExtra("EXTRA_GENDER", gender1)
+                val bundle = Bundle()
+                bundle.putInt("Age",age.toInt())
+                bundle.putInt("Height",height.toInt())
+                bundle.putInt("Weight",weight.toInt())
+                bundle.putString("Gender",gender1)
+                val fragment = VerifyDataFragment()
+                fragment.arguments = bundle
+                val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.fragmentContainerView2, fragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
             }
         }
         binding.backBtn22.setOnClickListener {
