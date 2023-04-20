@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/custom_edit_for_bottomsheetbmibmr"
+        android:backgroundTint="@color/white">
+
+
+        <Button
+            android:id="@+id/btnIdCalcBmi"
+            android:layout_width="370dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="#0583F2"
+            android:fontFamily="@font/cairo_semibold"
+            android:text="حساب معدل كتلة الجسم"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textSize="20dp"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="حساب معدل كتلة الجسم" />
+
+        <Button
+            android:id="@+id/btnIdCalcBmr"
+            android:layout_width="370dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="100dp"
+            android:backgroundTint="#0583F2"
+            android:fontFamily="@font/cairo_semibold"
+            android:text="حساب معدل الحرق"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textSize="20dp"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="حساب معدل الحرق" />
+
+        <TextView
+            android:id="@+id/txtIdExit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/cairo_semibold"
+            android:text="إلغاء"
+            android:textColor="#EB1D36"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnIdCalcBmr" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
