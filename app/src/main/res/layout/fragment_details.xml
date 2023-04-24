@@ -96,12 +96,12 @@
                     tools:src="@tools:sample/avatars" />
 
                 <ImageView
-                    android:id="@+id/id_btn_fav_details"
+                    android:id="@+id/favoriteImgView"
                     android:layout_width="40sp"
                     android:layout_height="40sp"
                     android:layout_marginStart="16sp"
                     android:layout_marginTop="40sp"
-                    android:src="@drawable/details_favorite_notselected"
+                    android:src="@drawable/details_favorite_not_selected"
                     app:layout_constraintBottom_toTopOf="@id/id_btn_replacement_details"
                     app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
                     app:layout_constraintHorizontal_bias="0"
@@ -119,7 +119,7 @@
                     app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_btn_fav_details" />
+                    app:layout_constraintTop_toBottomOf="@+id/favoriteImgView" />
 
                 <ImageView
                     android:id="@+id/id_btn_gps_details"
@@ -375,6 +375,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/decrementBtn"
                         android:layout_width="48sp"
                         android:layout_height="48sp"
                         android:layout_marginStart="4sp"
@@ -412,6 +413,7 @@
                             android:gravity="center">
 
                             <TextView
+                                android:id="@+id/productAmount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/cairo_medium"
@@ -422,6 +424,7 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/productIncrementBtn"
                         android:layout_width="48sp"
                         android:layout_height="48sp"
                         android:layout_marginStart="4sp"

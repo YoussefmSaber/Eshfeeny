@@ -17,6 +17,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.UseCaseAda
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.UserViewModel
 
 
 class DetailsFragment : Fragment() {
@@ -24,6 +25,7 @@ class DetailsFragment : Fragment() {
     private var binding: FragmentDetailsBinding? = null
     private lateinit var viewModel: ProductViewModel
     private val args by navArgs<DetailsFragmentArgs>()
+    private lateinit var userViewModel: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,31 +34,41 @@ class DetailsFragment : Fragment() {
 
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+
         val repo = ProductRepoImpl()
         val productViewModelFactory = ProductViewModelFactory(repo)
 
         viewModel = ViewModelProvider(this, productViewModelFactory)[ProductViewModel::class.java]
-        binding?.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.getProductFromRemote(args.Id)
-        viewModel.productDetails.observe(viewLifecycleOwner) {
+        userViewModel.userData.observe(viewLifecycleOwner) { userData ->
 
-            val productBody = it
-            binding?.idTxtAmountVolumeDetails?.text =
-                "${productBody?.nameAr} | ${productBody?.amount} | ${productBody?.volume}"
+            viewModel.getFavoriteProducts(userData._id)
+            viewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
 
-            binding?.idTxtPriceDetails?.text = "${productBody?.price.toString()} جنيه"
-            binding?.idTxtDescrection?.text = productBody?.description
+                viewModel.getProductFromRemote(args.Id)
+                viewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
+                    if (productDetails in favoriteProducts) {
+                        binding?.favoriteImgView?.setImageResource(R.drawable.details_favorite_selected)
+                    }
 
-            productBody?.images?.get(0)?.let {
-                binding?.idImgMedicineDetails?.loadUrl(it)
+                    binding?.idTxtAmountVolumeDetails?.text =
+                        "${productDetails?.nameAr} | ${productDetails?.amount} | ${productDetails?.volume}"
+
+                    binding?.idTxtPriceDetails?.text = "${productDetails?.price.toString()} جنيه"
+                    binding?.idTxtDescrection?.text = productDetails?.description
+
+                    productDetails?.images?.get(0)?.let {
+                        binding?.idImgMedicineDetails?.loadUrl(it)
+                    }
+
+                    productDetails?.let { productResponse ->
+                        setAdapters(productResponse)
+                    }
+                }
             }
-
-            productBody?.let { productResponse ->
-                setAdapters(productResponse)
-            }
-
         }
+
         // Inflate the layout for this fragment
         return binding?.root
     }
@@ -79,5 +91,4 @@ class DetailsFragment : Fragment() {
         binding?.idRvUsageDetails?.adapter = UseCaseAdapter(productResponse.usage)
         binding?.idRvWarningDetails?.adapter = UseCaseAdapter(productResponse.warning)
     }
-
 }
