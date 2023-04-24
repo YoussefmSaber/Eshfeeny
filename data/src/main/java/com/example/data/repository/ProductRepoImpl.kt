@@ -28,7 +28,7 @@ class ProductRepoImpl {
     suspend fun getMedicineFromRemoteForM8aas(): ProductResponse =
         UserRetrofitInstance.medicineApi.getMedicineFromM8aas()
 
-    suspend fun getMedicineDetailsFromRemote(id: String): Response<ProductResponseItem> =
+    suspend fun getProductFromRemote(id: String): Response<ProductResponseItem> =
         UserRetrofitInstance.medicineApi.getMedicineDetailsFromRemote(id)
 
     //get All Medicine

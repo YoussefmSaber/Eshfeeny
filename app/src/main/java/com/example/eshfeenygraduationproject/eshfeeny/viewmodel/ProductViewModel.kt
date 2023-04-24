@@ -12,6 +12,7 @@ import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.patchresponse.PatchRequestResponse
+import com.example.domain.entity.product.ProductResponseItem
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -23,6 +24,10 @@ class ProductViewModel(
     private val _remoteProducts = MutableLiveData<Response<ProductResponse>>()
     val remoteProducts: LiveData<Response<ProductResponse>>
         get() = _remoteProducts
+
+    private val _productDetails = MutableLiveData<ProductResponseItem>()
+    val productDetails: LiveData<ProductResponseItem>
+        get() = _productDetails
 
     //Categories For Emsaak
     private val _categoriesEmsaak = MutableLiveData<ProductResponse>()
@@ -68,6 +73,17 @@ class ProductViewModel(
                 Log.i("Chip Click Test", response.toString())
             } catch (e: Exception) {
                 Log.e(TAG, "ERROR FETCHING URLS " + e)
+            }
+        }
+    }
+
+    fun getProductFromRemote(productId: String) {
+        viewModelScope.launch {
+            try {
+                val response = repo.getProductFromRemote(productId)
+                _productDetails.value = response.body()
+            } catch (e: Exception) {
+                Log.e("Fetching Product", "Error getting product details $e")
             }
         }
     }
