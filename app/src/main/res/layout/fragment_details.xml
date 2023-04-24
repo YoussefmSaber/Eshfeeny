@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="medicine"
             type="com.example.domain.entity.product.ProductResponseItem" />
@@ -66,13 +67,14 @@
             app:layout_constraintTop_toBottomOf="@+id/textView121" />
 
         <ScrollView
-            android:layout_width="0dp"
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="16sp"
             android:scrollbars="none"
             app:layout_constraintBottom_toTopOf="@id/id_btn_add_to_cart_details"
             app:layout_constraintEnd_toEndOf="parent"
-
+            app:layout_constraintHeight_max="0dp"
+            app:layout_constraintHeight_default="wrap"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider12"
             app:layout_constraintVertical_bias="0">
@@ -100,6 +102,9 @@
                     android:layout_marginStart="16sp"
                     android:layout_marginTop="40sp"
                     android:src="@drawable/details_favorite_notselected"
+                    app:layout_constraintBottom_toTopOf="@id/id_btn_replacement_details"
+                    app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
+                    app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -107,27 +112,39 @@
                     android:id="@+id/id_btn_replacement_details"
                     android:layout_width="40sp"
                     android:layout_height="40sp"
+                    android:layout_marginStart="16sp"
                     android:layout_marginTop="16sp"
                     android:src="@drawable/cir__"
-                    app:layout_constraintStart_toStartOf="@+id/id_btn_fav_details"
+                    app:layout_constraintBottom_toTopOf="@id/id_btn_gps_details"
+                    app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_btn_fav_details" />
 
                 <ImageView
                     android:id="@+id/id_btn_gps_details"
                     android:layout_width="40sp"
                     android:layout_height="40sp"
+                    android:layout_marginStart="16sp"
                     android:layout_marginTop="16sp"
                     android:src="@drawable/cir_gps"
-                    app:layout_constraintStart_toStartOf="@+id/id_btn_replacement_details"
+                    app:layout_constraintBottom_toTopOf="@id/id_btn_share_details"
+                    app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_btn_replacement_details" />
 
                 <ImageView
                     android:id="@+id/id_btn_share_details"
                     android:layout_width="44dp"
                     android:layout_height="39dp"
+                    android:layout_marginStart="16sp"
                     android:layout_marginTop="16dp"
                     android:src="@drawable/cir_share"
-                    app:layout_constraintStart_toStartOf="@+id/id_btn_gps_details"
+                    app:layout_constraintBottom_toTopOf="@id/id_txt_amount_volume_details"
+                    app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_btn_gps_details" />
 
                 <TextView
@@ -138,7 +155,10 @@
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/cairo_medium"
                     android:textColor="#1F1F1F"
+                    app:layout_constraintBottom_toTopOf="@id/id_txt_price_details"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_img_Medicine_details" />
 
                 <TextView
@@ -149,7 +169,10 @@
                     android:fontFamily="@font/cairo_medium"
                     android:textColor="#0583F2"
                     android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider13"
                     app:layout_constraintEnd_toEndOf="@+id/id_txt_amount_volume_details"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_txt_amount_volume_details" />
 
                 <View
@@ -172,7 +195,10 @@
                     android:fontFamily="@font/cairo_medium"
                     android:text="الوصف:"
                     android:textColor="#1F1F1F"
+                    app:layout_constraintBottom_toTopOf="@id/id_txt_descrection"
                     app:layout_constraintEnd_toEndOf="@+id/id_txt_price_details"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/divider13" />
 
                 <TextView
@@ -184,7 +210,10 @@
                     android:text="@{medicine.description}"
                     android:textColor="#1F1F1F"
                     android:textSize="12sp"
+                    app:layout_constraintBottom_toTopOf="@id/textView18"
                     app:layout_constraintEnd_toEndOf="@+id/textView16"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
                 <TextView
@@ -195,7 +224,10 @@
                     android:fontFamily="@font/cairo_medium"
                     android:text="دواعى الاستخدام :"
                     android:textColor="#1F1F1F"
+                    app:layout_constraintBottom_toTopOf="@id/id_rv_useCase_details"
                     app:layout_constraintEnd_toEndOf="@+id/id_txt_descrection"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_txt_descrection" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -203,23 +235,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:layoutDirection="ltr"
                     android:textDirection="rtl"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@+id/textView19"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18"
-                    tools:listitem="@layout/medicine_details_item" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
                 <TextView
                     android:id="@+id/textView19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/cairo_medium"
                     android:text="طريقة الاستخدام :"
                     android:textColor="#1F1F1F"
+                    app:layout_constraintBottom_toTopOf="@id/id_rv_usage_details"
                     app:layout_constraintEnd_toEndOf="@+id/id_txt_descrection"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_rv_useCase_details" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -227,9 +263,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:layoutDirection="ltr"
                     android:textDirection="rtl"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@+id/textView20"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView19" />
@@ -242,7 +280,10 @@
                     android:fontFamily="@font/cairo_medium"
                     android:text="الاعراض الجانبية :"
                     android:textColor="#1F1F1F"
+                    app:layout_constraintBottom_toTopOf="@id/id_rv_sideEffect_details"
                     app:layout_constraintEnd_toEndOf="@+id/id_txt_descrection"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_rv_usage_details" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -250,7 +291,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="8dp"
                     android:layoutDirection="ltr"
                     android:textDirection="rtl"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -267,7 +308,10 @@
                     android:fontFamily="@font/cairo_medium"
                     android:text="التحذيرات :"
                     android:textColor="#1F1F1F"
+                    app:layout_constraintBottom_toTopOf="@id/id_rv_warning_details"
                     app:layout_constraintEnd_toEndOf="@+id/id_txt_descrection"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_rv_sideEffect_details" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -275,37 +319,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:layoutDirection="ltr"
                     android:textDirection="rtl"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView21" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
-
-        <View
-            android:id="@+id/view3"
-            android:layout_width="wrap_content"
-            android:layout_height="85dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
         <Button
             android:id="@+id/id_btn_add_to_cart_details"
-            android:layout_width="350sp"
-            android:layout_height="57sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16sp"
             android:layout_marginBottom="16dp"
             android:backgroundTint="#F99D1C"
             android:fontFamily="@font/cairo_medium"
+            android:padding="8sp"
             android:text="أضف الى العربة "
             android:textSize="18sp"
             android:visibility="visible"
             app:cornerRadius="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scrollView" />
 
         <Button
             android:id="@+id/id_inc_Details"
@@ -321,8 +362,10 @@
             app:iconPadding="0sp"
             app:iconSize="24sp"
             app:iconTint="#F99D1C"
-            app:layout_constraintEnd_toEndOf="@+id/view3"
-            app:layout_constraintTop_toTopOf="@+id/view3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scrollView"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
