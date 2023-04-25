@@ -170,16 +170,14 @@ class DetailsFragment : Fragment() {
                     args.Id
                 )
                 binding?.favoriteImgView?.setImageResource(R.drawable.favorite_notfill)
-                isFavorite = !isFavorite
-
             } else {
                 viewModel.addMedicineToFavorites(
                     userData._id,
                     PatchProductId(args.Id)
                 )
                 binding?.favoriteImgView?.setImageResource(R.drawable.favorite_fill)
-                isFavorite = !isFavorite
             }
+            isFavorite = !isFavorite
         }
     }
 

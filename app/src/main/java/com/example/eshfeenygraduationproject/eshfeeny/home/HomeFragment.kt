@@ -3,21 +3,16 @@ package com.example.eshfeenygraduationproject.eshfeeny.home
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.denzcoskun.imageslider.constants.AnimationTypes
-import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.constants.*
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductHomeAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.*
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModelFactory
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.UserViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.*
 
 
 class HomeFragment : Fragment() {
@@ -89,41 +84,54 @@ class HomeFragment : Fragment() {
 
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
             val userID = userData._id
+            productViewModel.getFavoriteProducts(userID)
+            productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
 
-            productViewModel.getMedicineForEmsaak()
-            productViewModel.categoriesEmsaak.observe(viewLifecycleOwner) {
+                productViewModel.getUserCartItems(userID)
+                productViewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
 
-                productViewModel.getFavoriteProducts(userID)
-                productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
+                    productViewModel.getMedicineForEmsaak()
+                    productViewModel.categoriesEmsaak.observe(viewLifecycleOwner) {
 
-                    val adapter = ProductHomeAdapter(productViewModel, userID, favoriteProducts)
-                    binding?.medicineIdRv?.adapter = adapter
+                        val adapter = ProductHomeAdapter(
+                            productViewModel,
+                            userID,
+                            favoriteProducts,
+                            cartItems
+                        )
+                        binding?.medicineIdRv?.adapter = adapter
 
-                    adapter.submitList(it)
-                }
-            }
-            //call recycler view for كحه
-            productViewModel.getMedicineForKo7aa()
-            productViewModel.categoriesKo7aa.observe(viewLifecycleOwner) {
+                        adapter.submitList(it)
+                    }
 
-                productViewModel.getFavoriteProducts(userID)
-                productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
+                    //call recycler view for كحه
+                    productViewModel.getMedicineForKo7aa()
+                    productViewModel.categoriesKo7aa.observe(viewLifecycleOwner) {
 
-                    val adapter = ProductHomeAdapter(productViewModel, userID, favoriteProducts)
-                    binding?.medicineIdRv2?.adapter = adapter
+                        val adapter = ProductHomeAdapter(
+                            productViewModel,
+                            userID,
+                            favoriteProducts,
+                            cartItems
+                        )
+                        binding?.medicineIdRv2?.adapter = adapter
 
-                    adapter.submitList(it)
-                }
-            }
-            //call recycler view for مغص
-            productViewModel.getMedicineForM8aas()
-            productViewModel.categoriesM8aas.observe(viewLifecycleOwner) {
-                productViewModel.getFavoriteProducts(userID)
-                productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
+                        adapter.submitList(it)
+                    }
 
-                    val adapter = ProductHomeAdapter(productViewModel, userID, favoriteProducts)
-                    binding?.medicineIdRv3?.adapter = adapter
-                    adapter.submitList(it)
+                    //call recycler view for مغص
+                    productViewModel.getMedicineForM8aas()
+                    productViewModel.categoriesM8aas.observe(viewLifecycleOwner) {
+
+                        val adapter = ProductHomeAdapter(
+                            productViewModel,
+                            userID,
+                            favoriteProducts,
+                            cartItems
+                        )
+                        binding?.medicineIdRv3?.adapter = adapter
+                        adapter.submitList(it)
+                    }
                 }
             }
         }

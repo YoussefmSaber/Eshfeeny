@@ -36,7 +36,6 @@ class CartFragment : Fragment() {
 
             productViewModel.getUserCartItems(userDetails._id)
 
-
             productViewModel.cartItems.observe(viewLifecycleOwner) {
                 if (it.cart.isEmpty()) {
                     binding?.cartImageLayout?.visibility = View.VISIBLE

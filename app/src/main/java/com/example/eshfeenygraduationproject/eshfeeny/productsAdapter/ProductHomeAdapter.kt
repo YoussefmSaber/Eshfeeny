@@ -5,12 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.domain.entity.patchRequestVar.PatchProductId
@@ -24,7 +23,8 @@ import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 class ProductHomeAdapter(
     private val viewModel: ProductViewModel,
     val userId: String,
-    val favoritePorducts: ProductResponse
+    val favoriteProducts: ProductResponse,
+    val cartProducts: CartResponse
 ) :
     ListAdapter<ProductResponseItem, ProductHomeAdapter.ViewHolder>(CategoryDiffCallback()) {
 
@@ -43,39 +43,104 @@ class ProductHomeAdapter(
     inner class ViewHolder(private val itemBinding: MedicineItemHomeBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun bind(category: ProductResponseItem) {
+        private var isFavorite = false
+        private var itemCount: Int? = null
 
+        fun bind(product: ProductResponseItem) {
+            setData2UI(product)
+            addItemToCart(product)
+            setFavoriteItem(product)
+            navigate2Details(product)
+            incrementProductAmount(product)
+            decrementProductAmount(product)
+        }
+
+        private fun setData2UI(category: ProductResponseItem) {
             itemBinding.medicineNameIdTv.text = category.nameAr
             itemBinding.priceMedicineIdTv.text = "${category.price.toInt().toString()} جنيه  "
             // TODO: Change the Image to be the index [0] image[0]
             itemBinding.imgVMedicineId.loadUrl(category.images[0])
+        }
+
+        private fun addItemToCart(category: ProductResponseItem) {
 
             itemBinding.add2CartBtn.setOnClickListener {
+
+                itemCount = getQuantityInCart(cartProducts, category._id)
+
                 itemBinding.add2CartBtn.visibility = View.GONE
                 itemBinding.cardFunctionalityLayout.visibility = View.VISIBLE
+
+                if (itemCount != null) {
+                    itemBinding.productAmount.text = itemCount.toString()
+                } else {
+                    viewModel.addProductToCart(userId, PatchProductId(category._id))
+                    itemBinding.productAmount.text = "1"
+                }
             }
+        }
 
-
-            itemBinding.imgVMedicineId.setOnClickListener {
-                val action =
-                    HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(category._id)
-                it.findNavController().navigate(action)
-            }
-
-            if (favoritePorducts.contains(category)) {
+        private fun setFavoriteItem(category: ProductResponseItem) {
+            if (favoriteProducts.contains(category)) {
+                isFavorite = true
                 itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
-
-                itemBinding.heartIconId.setOnClickListener {
+            }
+            itemBinding.heartIconId.setOnClickListener {
+                if (isFavorite) {
                     viewModel.deleteFavoriteProduct(userId, category._id)
                     itemBinding.heartIconId.setImageResource(R.drawable.favorite_notfill)
-                }
-            } else {
-                itemBinding.heartIconId.setImageResource(R.drawable.favorite_notfill)
-                itemBinding.heartIconId.setOnClickListener {
-                    viewModel.addMedicineToFavorites(userId, PatchProductId(category._id))
+                } else {
+                    viewModel.addMedicineToFavorites(
+                        userId,
+                        PatchProductId(category._id)
+                    )
                     itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
                 }
+                isFavorite = !isFavorite
             }
+        }
+
+        private fun navigate2Details(product: ProductResponseItem) {
+            itemBinding.imgVMedicineId.setOnClickListener {
+                val action =
+                    HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(product._id)
+                it.findNavController().navigate(action)
+            }
+        }
+
+        private fun incrementProductAmount(product: ProductResponseItem) {
+            itemBinding.increaseBtnId.setOnClickListener {
+                itemCount = itemCount?.plus(1)
+                itemBinding.productAmount.text = itemCount?.toString()
+                viewModel.incrementProductNumberInCart(userId, product._id)
+            }
+        }
+
+        private fun decrementProductAmount(product: ProductResponseItem) {
+            itemBinding.decreaseBtnId.setOnClickListener {
+                if (itemCount == 1) {
+
+                    viewModel.removeProductFromCart(userId, PatchProductId(product._id))
+                    itemCount = itemCount?.minus(1)
+
+                    itemBinding.add2CartBtn.visibility = View.VISIBLE
+                    itemBinding.cardFunctionalityLayout.visibility = View.GONE
+                } else {
+                    viewModel.decrementProductNumberInCart(userId, product._id)
+                    itemCount = itemCount?.minus(1)
+                    itemBinding.productAmount.text = itemCount?.toString()
+                }
+            }
+        }
+
+
+        private fun getQuantityInCart(cartResponse: CartResponse, productId: String): Int? {
+            for (cartItem in cartResponse.cart) {
+                if (cartItem.product._id == productId) {
+                    return cartItem.quantity
+                }
+            }
+            return null
         }
     }
 
