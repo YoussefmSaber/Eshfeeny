@@ -6,13 +6,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.example.data.local.db.user.model.UserInfo
 import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.patchRequestVar.PatchProductId
+import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentDetailsBinding
@@ -41,12 +42,7 @@ class DetailsFragment : Fragment() {
 
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
-        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
-
-        val repo = ProductRepoImpl()
-        val productViewModelFactory = ProductViewModelFactory(repo)
-
-        viewModel = ViewModelProvider(this, productViewModelFactory)[ProductViewModel::class.java]
+        initializeViewModels()
 
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
 
@@ -55,84 +51,16 @@ class DetailsFragment : Fragment() {
 
                 viewModel.getProductFromRemote(args.Id)
                 viewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
-                    if (productDetails in favoriteProducts) {
-                        isFavorite = true
-                        binding?.favoriteImgView?.setImageResource(R.drawable.favorite_fill)
-                    }
-                    binding?.favoriteImgCard?.setOnClickListener {
-                        if (isFavorite) {
-                            viewModel.deleteFavoriteProduct(
-                                userData._id,
-                                args.Id
-                            )
-                            binding?.favoriteImgView?.setImageResource(R.drawable.favorite_notfill)
-                            isFavorite = !isFavorite
 
-                        } else {
-                            viewModel.addMedicineToFavorites(
-                                userData._id,
-                                PatchProductId(args.Id)
-                            )
-                            binding?.favoriteImgView?.setImageResource(R.drawable.favorite_fill)
-                            isFavorite = !isFavorite
-                        }
-                    }
+                    setFavoriteItem(productDetails, favoriteProducts, userData)
 
-                    binding?.idTxtAmountVolumeDetails?.text =
-                        "${productDetails?.nameAr} | ${productDetails?.amount} | ${productDetails?.volume}"
+                    setDataToViews(productDetails)
 
-                    binding?.idTxtPriceDetails?.text =
-                        "${productDetails?.price.toString()} جنيه"
-                    binding?.idTxtDescrection?.text = productDetails?.description
+                    checkItemInCart(userData)
 
-                    productDetails?.images?.get(0)?.let {
-                        binding?.idImgMedicineDetails?.loadUrl(it)
-                    }
+                    decreaseItemFromCart(userData, productDetails)
 
-                    binding?.add2CartBtn?.setOnClickListener { btn ->
-                        viewModel.getNumberOfItemInCart(userData._id, args.Id)
-                        viewModel.productNumber.observe(viewLifecycleOwner) { productItemCount ->
-                            Log.i(
-                                "Details Fragment",
-                                "product id: ${args.Id} and the count is: $productItemCount"
-                            )
-                            if (productItemCount == 0) {
-                                viewModel.addProductToCart(
-                                    userData._id,
-                                    PatchProductId(args.Id)
-                                )
-                            } else {
-                                itemCount = productItemCount
-                                binding?.productAmount?.text = itemCount.toString()
-                            }
-                        }
-                        btn.visibility = View.GONE
-                        binding?.itemFunctionsLayout?.visibility = View.VISIBLE
-                    }
-
-                    binding?.decrementBtn?.setOnClickListener {
-                        if (itemCount == 1) {
-                            binding?.itemFunctionsLayout?.visibility = View.GONE
-                            binding?.add2CartBtn?.visibility = View.VISIBLE
-                            viewModel.removeProductFromCart(
-                                userData._id,
-                                PatchProductId(productDetails._id)
-                            )
-                        } else {
-                            itemCount--
-                            viewModel.decrementProductNumberInCart(
-                                userData._id,
-                                productDetails._id
-                            )
-                            binding?.productAmount?.text = itemCount.toString()
-                        }
-                    }
-
-                    binding?.productIncrementBtn?.setOnClickListener {
-                        itemCount++
-                        viewModel.incrementProductNumberInCart(userData._id, productDetails._id)
-                        binding?.productAmount?.text = itemCount.toString()
-                    }
+                    increaseItemInCart(userData, productDetails)
 
                     binding?.productAmount?.text = itemCount.toString()
 
@@ -145,6 +73,114 @@ class DetailsFragment : Fragment() {
 
         // Inflate the layout for this fragment
         return binding?.root
+    }
+
+    private fun initializeViewModels() {
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+
+        val repo = ProductRepoImpl()
+        val productViewModelFactory = ProductViewModelFactory(repo)
+
+        viewModel = ViewModelProvider(this, productViewModelFactory)[ProductViewModel::class.java]
+    }
+
+    private fun increaseItemInCart(
+        userData: UserInfo,
+        productDetails: ProductResponseItem
+    ) {
+        binding?.productIncrementBtn?.setOnClickListener {
+            itemCount++
+            viewModel.incrementProductNumberInCart(userData._id, productDetails._id)
+            binding?.productAmount?.text = itemCount.toString()
+        }
+    }
+
+    private fun decreaseItemFromCart(
+        userData: UserInfo,
+        productDetails: ProductResponseItem
+    ) {
+        binding?.decrementBtn?.setOnClickListener {
+            if (itemCount == 1) {
+                binding?.itemFunctionsLayout?.visibility = View.GONE
+                binding?.add2CartBtn?.visibility = View.VISIBLE
+                viewModel.removeProductFromCart(
+                    userData._id,
+                    PatchProductId(productDetails._id)
+                )
+            } else {
+                itemCount--
+                viewModel.decrementProductNumberInCart(
+                    userData._id,
+                    productDetails._id
+                )
+                binding?.productAmount?.text = itemCount.toString()
+            }
+        }
+    }
+
+    private fun checkItemInCart(userData: UserInfo) {
+        binding?.add2CartBtn?.setOnClickListener { btn ->
+            viewModel.getNumberOfItemInCart(userData._id, args.Id)
+            viewModel.productNumber.observe(viewLifecycleOwner) { productItemCount ->
+                Log.i(
+                    "Details Fragment",
+                    "product id: ${args.Id} and the count is: $productItemCount"
+                )
+                if (productItemCount == 0) {
+                    viewModel.addProductToCart(
+                        userData._id,
+                        PatchProductId(args.Id)
+                    )
+                } else {
+                    itemCount = productItemCount
+                    binding?.productAmount?.text = itemCount.toString()
+                }
+            }
+            btn.visibility = View.GONE
+            binding?.itemFunctionsLayout?.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setDataToViews(productDetails: ProductResponseItem?) {
+        binding?.idTxtAmountVolumeDetails?.text =
+            "${productDetails?.nameAr} | ${productDetails?.amount} | ${productDetails?.volume}"
+
+        binding?.idTxtPriceDetails?.text =
+            "${productDetails?.price.toString()} جنيه"
+        binding?.idTxtDescrection?.text = productDetails?.description
+
+        productDetails?.images?.get(0)?.let {
+            binding?.idImgMedicineDetails?.loadUrl(it)
+        }
+    }
+
+    private fun setFavoriteItem(
+        productDetails: ProductResponseItem,
+        favoriteProducts: ProductResponse,
+        userData: UserInfo
+    ) {
+        if (productDetails in favoriteProducts) {
+            isFavorite = true
+            binding?.favoriteImgView?.setImageResource(R.drawable.favorite_fill)
+        }
+        binding?.favoriteImgCard?.setOnClickListener {
+            if (isFavorite) {
+                viewModel.deleteFavoriteProduct(
+                    userData._id,
+                    args.Id
+                )
+                binding?.favoriteImgView?.setImageResource(R.drawable.favorite_notfill)
+                isFavorite = !isFavorite
+
+            } else {
+                viewModel.addMedicineToFavorites(
+                    userData._id,
+                    PatchProductId(args.Id)
+                )
+                binding?.favoriteImgView?.setImageResource(R.drawable.favorite_fill)
+                isFavorite = !isFavorite
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

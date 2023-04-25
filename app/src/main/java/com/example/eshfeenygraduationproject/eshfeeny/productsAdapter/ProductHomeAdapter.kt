@@ -21,7 +21,11 @@ import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 
 
-class ProductHomeAdapter(private val viewModel: ProductViewModel, val userId: String, val favoritePorducts: ProductResponse) :
+class ProductHomeAdapter(
+    private val viewModel: ProductViewModel,
+    val userId: String,
+    val favoritePorducts: ProductResponse
+) :
     ListAdapter<ProductResponseItem, ProductHomeAdapter.ViewHolder>(CategoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,36 +50,12 @@ class ProductHomeAdapter(private val viewModel: ProductViewModel, val userId: St
             // TODO: Change the Image to be the index [0] image[0]
             itemBinding.imgVMedicineId.loadUrl(category.images[0])
 
-            var cnt = 1
-            itemBinding.btnAddToCartId.setOnClickListener {
-                itemBinding.btnAddToCartId.visibility = View.GONE
-                itemBinding.increaseBtnId.visibility = View.VISIBLE
-                itemBinding.decreaseBtnId.visibility = View.VISIBLE
-                itemBinding.btnCntAddItemId.visibility = View.VISIBLE
-                itemBinding.btnCntAddItemId.text = "1"
-                cnt = 1
-            }
-            itemBinding.increaseBtnId.setOnClickListener {
-                cnt++
-                itemBinding.btnCntAddItemId.text = cnt.toString()
+            itemBinding.add2CartBtn.setOnClickListener {
+                itemBinding.add2CartBtn.visibility = View.GONE
+                itemBinding.cardFunctionalityLayout.visibility = View.VISIBLE
             }
 
-            itemBinding.decreaseBtnId.setOnClickListener {
-                cnt--
-                if (cnt > 0)
-                    itemBinding.btnCntAddItemId.text = cnt.toString()
-                else {
-                    itemBinding.btnCntAddItemId.text = "1"
-                    cnt = 1
-                }
-            }
 
-            itemBinding.btnCntAddItemId.setOnClickListener {
-                itemBinding.btnAddToCartId.visibility = View.VISIBLE
-                itemBinding.increaseBtnId.visibility = View.GONE
-                itemBinding.decreaseBtnId.visibility = View.GONE
-                itemBinding.btnCntAddItemId.visibility = View.GONE
-            }
             itemBinding.imgVMedicineId.setOnClickListener {
                 val action =
                     HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(category._id)
