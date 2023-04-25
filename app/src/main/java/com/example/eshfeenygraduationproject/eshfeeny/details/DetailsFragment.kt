@@ -92,7 +92,10 @@ class DetailsFragment : Fragment() {
                     binding?.add2CartBtn?.setOnClickListener { btn ->
                         viewModel.getNumberOfItemInCart(userData._id, args.Id)
                         viewModel.productNumber.observe(viewLifecycleOwner) { productItemCount ->
-                            Log.i("Details Fragment", "product id: ${args.Id} and the count is: $productItemCount")
+                            Log.i(
+                                "Details Fragment",
+                                "product id: ${args.Id} and the count is: $productItemCount"
+                            )
                             if (productItemCount == 0) {
                                 viewModel.addProductToCart(
                                     userData._id,
@@ -100,6 +103,7 @@ class DetailsFragment : Fragment() {
                                 )
                             } else {
                                 itemCount = productItemCount
+                                binding?.productAmount?.text = itemCount.toString()
                             }
                         }
                         btn.visibility = View.GONE
@@ -107,7 +111,7 @@ class DetailsFragment : Fragment() {
                     }
 
                     binding?.decrementBtn?.setOnClickListener {
-                        if (itemCount < 1) {
+                        if (itemCount == 1) {
                             binding?.itemFunctionsLayout?.visibility = View.GONE
                             binding?.add2CartBtn?.visibility = View.VISIBLE
                             viewModel.removeProductFromCart(
@@ -120,12 +124,14 @@ class DetailsFragment : Fragment() {
                                 userData._id,
                                 productDetails._id
                             )
+                            binding?.productAmount?.text = itemCount.toString()
                         }
                     }
 
                     binding?.productIncrementBtn?.setOnClickListener {
                         itemCount++
                         viewModel.incrementProductNumberInCart(userData._id, productDetails._id)
+                        binding?.productAmount?.text = itemCount.toString()
                     }
 
                     binding?.productAmount?.text = itemCount.toString()

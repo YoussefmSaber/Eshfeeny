@@ -88,5 +88,9 @@ class ProductRepoImpl {
     suspend fun getNumberOfItemInCart(
         userId: String,
         productId: String
-    ): Int = UserRetrofitInstance.userApi.getNumberOfItemInCart(userId, productId)
+    ): Int {
+        val resp = UserRetrofitInstance.userApi.getNumberOfItemInCart(userId, productId)
+        Log.i("details Fragment", resp.toString())
+        return resp
+    }
 }

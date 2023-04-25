@@ -249,6 +249,7 @@ class ProductViewModel(
         viewModelScope.launch {
             try {
                 _productNumber.value = repo.getNumberOfItemInCart(userId, productId)
+                Log.i("details", _productNumber.value.toString())
             } catch (e: Exception) {
                 Log.e("cart", "Error getting the product number")
             }
