@@ -28,7 +28,7 @@ class ProductRepoImpl {
     suspend fun getMedicineFromRemoteForM8aas(): ProductResponse =
         UserRetrofitInstance.medicineApi.getMedicineFromM8aas()
 
-    suspend fun getMedicineDetailsFromRemote(id: String): Response<ProductResponseItem> =
+    suspend fun getProductFromRemote(id: String): Response<ProductResponseItem> =
         UserRetrofitInstance.medicineApi.getMedicineDetailsFromRemote(id)
 
     //get All Medicine
@@ -88,5 +88,9 @@ class ProductRepoImpl {
     suspend fun getNumberOfItemInCart(
         userId: String,
         productId: String
-    ): Int = UserRetrofitInstance.userApi.getNumberOfItemInCart(userId, productId)
+    ): Int {
+        val resp = UserRetrofitInstance.userApi.getNumberOfItemInCart(userId, productId)
+        Log.i("details Fragment", resp.toString())
+        return resp
+    }
 }

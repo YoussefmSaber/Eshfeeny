@@ -71,10 +71,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scrollbars="none"
-            app:layout_constraintBottom_toTopOf="@id/id_btn_add_to_cart_details"
+            app:layout_constraintBottom_toTopOf="@id/buttonLayout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_max="0dp"
             app:layout_constraintHeight_default="wrap"
+            app:layout_constraintHeight_max="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider12"
             app:layout_constraintVertical_bias="0">
@@ -95,57 +95,100 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@tools:sample/avatars" />
 
-                <ImageView
-                    android:id="@+id/id_btn_fav_details"
-                    android:layout_width="40sp"
-                    android:layout_height="40sp"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/favoriteImgCard"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
                     android:layout_marginStart="16sp"
                     android:layout_marginTop="40sp"
-                    android:src="@drawable/details_favorite_notselected"
+                    app:cardBackgroundColor="#f7f7f7"
+                    app:cardCornerRadius="15sp"
+                    app:cardElevation="2dp"
                     app:layout_constraintBottom_toTopOf="@id/id_btn_replacement_details"
                     app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
+                    <ImageView
+                        android:id="@+id/favoriteImgView"
+                        android:layout_width="18sp"
+                        android:layout_height="18sp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/favorite_notfill" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+
                     android:id="@+id/id_btn_replacement_details"
-                    android:layout_width="40sp"
-                    android:layout_height="40sp"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
                     android:layout_marginStart="16sp"
                     android:layout_marginTop="16sp"
-                    android:src="@drawable/cir__"
+                    app:cardBackgroundColor="#f7f7f7"
+                    app:cardCornerRadius="15sp"
+                    app:cardElevation="3dp"
                     app:layout_constraintBottom_toTopOf="@id/id_btn_gps_details"
                     app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_btn_fav_details" />
+                    app:layout_constraintTop_toBottomOf="@+id/favoriteImgCard">
 
-                <ImageView
+                    <ImageView
+                        android:layout_width="18sp"
+                        android:layout_height="18sp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/replacement" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+
                     android:id="@+id/id_btn_gps_details"
-                    android:layout_width="40sp"
-                    android:layout_height="40sp"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
                     android:layout_marginStart="16sp"
                     android:layout_marginTop="16sp"
-                    android:src="@drawable/cir_gps"
+                    app:cardBackgroundColor="#f7f7f7"
+                    app:cardCornerRadius="15sp"
+                    app:cardElevation="4dp"
                     app:layout_constraintBottom_toTopOf="@id/id_btn_share_details"
                     app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_btn_replacement_details" />
+                    app:layout_constraintTop_toBottomOf="@+id/id_btn_replacement_details">
 
-                <ImageView
+                    <ImageView
+                        android:layout_width="18sp"
+                        android:layout_height="18sp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/location" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+
                     android:id="@+id/id_btn_share_details"
-                    android:layout_width="44dp"
-                    android:layout_height="39dp"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
                     android:layout_marginStart="16sp"
-                    android:layout_marginTop="16dp"
-                    android:src="@drawable/cir_share"
+                    android:layout_marginTop="16sp"
+                    app:cardBackgroundColor="#f7f7f7"
+                    app:cardCornerRadius="15sp"
+                    app:cardElevation="5dp"
                     app:layout_constraintBottom_toTopOf="@id/id_txt_amount_volume_details"
                     app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_btn_gps_details" />
+                    app:layout_constraintTop_toBottomOf="@+id/id_btn_gps_details">
+
+                    <ImageView
+                        android:layout_width="18sp"
+                        android:layout_height="18sp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/share" />
+                </com.google.android.material.card.MaterialCardView>
+
 
                 <TextView
                     android:id="@+id/id_txt_amount_volume_details"
@@ -234,6 +277,7 @@
                     android:id="@+id/id_rv_useCase_details"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:scrollbarFadeDuration="0"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:layoutDirection="ltr"
@@ -330,75 +374,124 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
-        <Button
-            android:id="@+id/id_btn_add_to_cart_details"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/buttonLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16sp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#F99D1C"
-            android:fontFamily="@font/cairo_medium"
-            android:padding="8sp"
-            android:text="أضف الى العربة "
-            android:textSize="18sp"
-            android:visibility="visible"
-            app:cornerRadius="10sp"
+            app:cardElevation="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/scrollView" />
+            app:layout_constraintTop_toBottomOf="@id/scrollView">
 
-        <Button
-            android:id="@+id/id_inc_Details"
-            android:layout_width="55sp"
-            android:layout_height="55sp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="54dp"
-            android:backgroundTint="#FFE5CC"
-            android:stateListAnimator="@null"
-            android:visibility="gone"
-            app:icon="@drawable/plus_icon"
-            app:iconGravity="textTop"
-            app:iconPadding="0sp"
-            app:iconSize="24sp"
-            app:iconTint="#F99D1C"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/scrollView"
-            tools:ignore="SpeakableTextPresentCheck" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btn_cnt_cart_details"
-            android:layout_width="170dp"
-            android:layout_height="55dp"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="#CCE6FF"
-            android:fontFamily="@font/cairo_medium"
-            android:stateListAnimator="@null"
-            android:text="1"
-            android:textColor="#0583F2"
-            android:textSize="20sp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toStartOf="@+id/id_inc_Details"
-            app:layout_constraintTop_toTopOf="@+id/id_inc_Details" />
+                <Button
+                    android:id="@+id/add2CartBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16sp"
+                    android:layout_marginBottom="16dp"
+                    android:backgroundTint="#F99D1C"
+                    android:fontFamily="@font/cairo_medium"
+                    android:padding="8sp"
+                    android:text="أضف الى العربة "
+                    android:textSize="18sp"
+                    android:visibility="visible"
+                    app:cornerRadius="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/id_ctn_des_details"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="#E5E5E5"
-            android:stateListAnimator="@null"
-            android:visibility="gone"
-            app:icon="@drawable/minus_icon"
-            app:iconGravity="textTop"
-            app:iconPadding="0sp"
-            app:iconTint="#4D4D4D"
-            app:layout_constraintEnd_toStartOf="@+id/btn_cnt_cart_details"
-            app:layout_constraintTop_toTopOf="@+id/btn_cnt_cart_details"
-            tools:ignore="SpeakableTextPresentCheck" />
+                <LinearLayout
+                    android:id="@+id/itemFunctionsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/decrementBtn"
+                        android:layout_width="48sp"
+                        android:layout_height="48sp"
+                        android:layout_marginStart="4sp"
+                        android:layout_marginTop="16sp"
+                        android:layout_marginEnd="4sp"
+                        android:layout_marginBottom="16sp"
+                        app:cardBackgroundColor="#e5e5e5"
+                        app:cardCornerRadius="5sp"
+                        app:cardElevation="0sp">
+
+                        <ImageView
+                            android:layout_width="25sp"
+                            android:layout_height="25sp"
+                            android:layout_gravity="center"
+                            android:layout_margin="8sp"
+                            android:src="@drawable/minus_icon" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="150sp"
+                        android:layout_height="46sp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="4sp"
+                        android:layout_marginTop="16sp"
+                        android:layout_marginEnd="4sp"
+                        android:layout_marginBottom="16sp"
+                        android:textAlignment="center"
+                        app:cardBackgroundColor="@color/light_blue"
+                        app:cardCornerRadius="5sp"
+                        app:cardElevation="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/productAmount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/cairo_medium"
+                                android:text="5"
+                                android:textColor="@color/blue_main"
+                                android:textSize="24sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/productIncrementBtn"
+                        android:layout_width="48sp"
+                        android:layout_height="48sp"
+                        android:layout_marginStart="4sp"
+                        android:layout_marginTop="16sp"
+                        android:layout_marginEnd="4sp"
+                        android:layout_marginBottom="16sp"
+                        app:cardBackgroundColor="#FFE5CC"
+                        app:cardCornerRadius="5sp"
+                        app:cardElevation="0dp">
+
+                        <ImageView
+                            android:layout_width="25sp"
+                            android:layout_height="25sp"
+                            android:layout_gravity="center"
+                            android:layout_margin="8sp"
+                            android:src="@drawable/plus_icon" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
