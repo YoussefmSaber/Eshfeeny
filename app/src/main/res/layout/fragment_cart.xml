@@ -73,11 +73,11 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layoutDirection="rtl"
-        app:layout_constraintBottom_toBottomOf="@id/findNearestPharmacyLayout"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/findNearestPharmacyLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_default="wrap"
         app:layout_constraintHeight_max="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider5"
         app:layout_constraintVertical_bias="0.0"
@@ -87,13 +87,13 @@
         android:id="@+id/findNearestPharmacyLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintVertical_bias="1"
+        android:visibility="visible"
         app:cardElevation="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cartRecyclerView">
+        app:layout_constraintTop_toBottomOf="@id/cartRecyclerView"
+        app:layout_constraintVertical_bias="1">
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"

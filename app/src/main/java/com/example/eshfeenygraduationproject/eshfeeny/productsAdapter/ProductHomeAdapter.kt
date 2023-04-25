@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -16,6 +17,7 @@ import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.MedicineItemHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 
 
@@ -42,8 +44,8 @@ class ProductHomeAdapter(private val viewModel: ProductViewModel, val userId: St
             itemBinding.medicineNameIdTv.text = category.nameAr
             itemBinding.priceMedicineIdTv.text = "${category.price.toInt().toString()} جنيه  "
             // TODO: Change the Image to be the index [0] image[0]
-            Glide.with(itemBinding.root.context).load(category.images[0])
-                .into(itemBinding.imgVMedicineId)
+            itemBinding.imgVMedicineId.loadUrl(category.images[0])
+
             var cnt = 1
             itemBinding.btnAddToCartId.setOnClickListener {
                 itemBinding.btnAddToCartId.visibility = View.GONE

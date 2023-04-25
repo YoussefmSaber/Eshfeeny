@@ -95,57 +95,100 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@tools:sample/avatars" />
 
-                <ImageView
-                    android:id="@+id/favoriteImgView"
-                    android:layout_width="40sp"
-                    android:layout_height="40sp"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/favoriteImgCard"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
                     android:layout_marginStart="16sp"
                     android:layout_marginTop="40sp"
-                    android:src="@drawable/details_favorite_not_selected"
+                    app:cardBackgroundColor="#f7f7f7"
+                    app:cardCornerRadius="15sp"
+                    app:cardElevation="2dp"
                     app:layout_constraintBottom_toTopOf="@id/id_btn_replacement_details"
                     app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
+                    <ImageView
+                        android:id="@+id/favoriteImgView"
+                        android:layout_width="18sp"
+                        android:layout_height="18sp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/favorite_notfill" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+
                     android:id="@+id/id_btn_replacement_details"
-                    android:layout_width="40sp"
-                    android:layout_height="40sp"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
                     android:layout_marginStart="16sp"
                     android:layout_marginTop="16sp"
-                    android:src="@drawable/cir__"
+                    app:cardBackgroundColor="#f7f7f7"
+                    app:cardCornerRadius="15sp"
+                    app:cardElevation="3dp"
                     app:layout_constraintBottom_toTopOf="@id/id_btn_gps_details"
                     app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/favoriteImgView" />
+                    app:layout_constraintTop_toBottomOf="@+id/favoriteImgCard">
 
-                <ImageView
+                    <ImageView
+                        android:layout_width="18sp"
+                        android:layout_height="18sp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/replacement" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+
                     android:id="@+id/id_btn_gps_details"
-                    android:layout_width="40sp"
-                    android:layout_height="40sp"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
                     android:layout_marginStart="16sp"
                     android:layout_marginTop="16sp"
-                    android:src="@drawable/cir_gps"
+                    app:cardBackgroundColor="#f7f7f7"
+                    app:cardCornerRadius="15sp"
+                    app:cardElevation="4dp"
                     app:layout_constraintBottom_toTopOf="@id/id_btn_share_details"
                     app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_btn_replacement_details" />
+                    app:layout_constraintTop_toBottomOf="@+id/id_btn_replacement_details">
 
-                <ImageView
+                    <ImageView
+                        android:layout_width="18sp"
+                        android:layout_height="18sp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/location" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+
                     android:id="@+id/id_btn_share_details"
-                    android:layout_width="44dp"
-                    android:layout_height="39dp"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
                     android:layout_marginStart="16sp"
-                    android:layout_marginTop="16dp"
-                    android:src="@drawable/cir_share"
+                    android:layout_marginTop="16sp"
+                    app:cardBackgroundColor="#f7f7f7"
+                    app:cardCornerRadius="15sp"
+                    app:cardElevation="5dp"
                     app:layout_constraintBottom_toTopOf="@id/id_txt_amount_volume_details"
                     app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_btn_gps_details" />
+                    app:layout_constraintTop_toBottomOf="@+id/id_btn_gps_details">
+
+                    <ImageView
+                        android:layout_width="18sp"
+                        android:layout_height="18sp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/share" />
+                </com.google.android.material.card.MaterialCardView>
+
 
                 <TextView
                     android:id="@+id/id_txt_amount_volume_details"
@@ -234,6 +277,7 @@
                     android:id="@+id/id_rv_useCase_details"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:scrollbarFadeDuration="0"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:layoutDirection="ltr"
