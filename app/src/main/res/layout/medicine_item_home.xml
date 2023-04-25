@@ -8,17 +8,17 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="8dp"
-        android:background="#CCE6FF"
-        app:cardElevation="0dp"
+        app:cardBackgroundColor="#fdfdff"
         android:elevation="0dp"
         android:layoutDirection="rtl"
         android:stateListAnimator="@null"
         app:cardCornerRadius="10sp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="#e7e7e7"
         app:strokeWidth="1.4dp">
 
@@ -84,11 +84,10 @@
                 app:layout_constraintTop_toBottomOf="@id/medicine_name_id_tv" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_addToCart_id"
+                android:id="@+id/add2CartBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8sp"
-                android:layout_marginEnd="8sp"
+                android:layout_margin="8sp"
                 android:backgroundTint="#F99D1C"
                 android:fontFamily="@font/cairo_semibold"
                 android:stateListAnimator="@null"
@@ -101,65 +100,67 @@
                 app:layout_constraintTop_toBottomOf="@id/price_medicine_id_tv"
                 tools:ignore="TouchTargetSizeCheck" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/increase_btn_id"
-                android:layout_width="30dp"
-                android:layout_height="37dp"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="#FFE5CC"
-                android:elevation="0dp"
-                android:stateListAnimator="@null"
-                android:text="Button"
-                android:visibility="gone"
-                app:cornerRadius="5dp"
-                app:icon="@drawable/plus_icon"
-                app:iconGravity="textTop"
-                app:iconPadding="16dp"
-                app:iconTint="#F99D1C"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/price_medicine_id_tv"
-                app:layout_constraintVertical_bias="0.0"
-                tools:ignore="TouchTargetSizeCheck" />
 
-            <Button
-                android:id="@+id/decrease_btn_id"
-                android:layout_width="30dp"
-                android:layout_height="37dp"
-                android:layout_marginEnd="6dp"
-                android:backgroundTint="#E5E5E5"
-                android:stateListAnimator="@null"
-                android:visibility="gone"
-                app:cornerRadius="5dp"
-                app:icon="@drawable/minus_icon"
-                app:iconGravity="textTop"
-                app:iconPadding="0dp"
-                app:iconTint="#4D4D4D"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/increase_btn_id"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            <LinearLayout
+                android:id="@+id/cardFunctionalityLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginVertical="10sp"
+                android:orientation="horizontal"
+                android:visibility="gone">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_cnt_add_item_id"
-                android:layout_width="70dp"
-                android:layout_height="38dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:backgroundTint="#cce6ff"
-                android:elevation="0dp"
-                android:shadowColor="#FFFFFF"
-                android:stateListAnimator="@null"
-                android:text="1"
-                android:textAlignment="center"
-                android:textColor="#0583F2"
-                android:visibility="gone"
-                app:layout_constraintEnd_toStartOf="@+id/increase_btn_id"
-                app:layout_constraintStart_toEndOf="@+id/decrease_btn_id"
-                app:layout_constraintTop_toBottomOf="@+id/price_medicine_id_tv"
-                tools:ignore="TouchTargetSizeCheck" />
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/increase_btn_id"
+                    android:layout_width="28sp"
+                    android:layout_height="28sp"
+                    android:layout_margin="8sp"
+                    app:cardBackgroundColor="#FFE5CC"
+                    app:cardElevation="0dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/plus_icon" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn_cnt_add_item_id"
+                    android:layout_width="60sp"
+                    android:layout_height="28sp"
+                    app:cardBackgroundColor="@color/light_blue"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:id="@+id/productAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/cairo_medium"
+                        android:text="1"
+                        android:textColor="@color/blue_main" />
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/decrease_btn_id"
+                    android:layout_width="28sp"
+                    android:layout_height="28sp"
+                    android:layout_margin="8sp"
+                    app:cardBackgroundColor="#E5E5E5"
+                    app:cardElevation="0dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/minus_icon" />
+
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
