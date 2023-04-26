@@ -58,7 +58,6 @@ class ProductHomeAdapter(
         private fun setData2UI(category: ProductResponseItem) {
             itemBinding.medicineNameIdTv.text = category.nameAr
             itemBinding.priceMedicineIdTv.text = "${category.price.toInt().toString()} جنيه  "
-            // TODO: Change the Image to be the index [0] image[0]
             itemBinding.imgVMedicineId.loadUrl(category.images[0])
         }
 
@@ -132,7 +131,6 @@ class ProductHomeAdapter(
                 }
             }
         }
-
 
         private fun getQuantityInCart(cartResponse: CartResponse, productId: String): Int? {
             for (cartItem in cartResponse.cart) {
