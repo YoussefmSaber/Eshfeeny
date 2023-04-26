@@ -14,7 +14,7 @@ object MedicinsCategories {
     val menProducts = listOf(
         R.string.allMenProducts,
         R.string.shavingGel,
-        R.string.deodorant,
+        R.string.deodorantForMen,
         R.string.shavingSupplies
     )
 
@@ -28,7 +28,7 @@ object MedicinsCategories {
     val womenProducts = listOf(
         R.string.allWomenProducts,
         R.string.hairRemoval,
-        R.string.deodorant,
+        R.string.deodorantForWomen,
         R.string.sanitaryPads
     )
 

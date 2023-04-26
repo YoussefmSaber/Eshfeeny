@@ -130,9 +130,9 @@
     </fragment>
     <fragment
         android:id="@+id/medicineCategoryFragment"
-        android:name="com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.MedicineCategoryFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.ProductCategoryFragment"
         android:label="fragment_medicine_category"
-        tools:layout="@layout/fragment_medicine_category" >
+        tools:layout="@layout/fragment_product_category" >
         <action
             android:id="@+id/action_medicineCategoryFragment_to_homeFragment2"
             app:destination="@id/homeFragment2"

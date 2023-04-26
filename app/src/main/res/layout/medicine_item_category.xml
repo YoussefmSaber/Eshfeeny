@@ -116,6 +116,7 @@
                     android:id="@+id/increase_btn_id"
                     android:layout_width="28sp"
                     android:layout_height="28sp"
+                    app:cardCornerRadius="5sp"
                     android:layout_margin="8sp"
                     app:cardBackgroundColor="#FFE5CC"
                     app:cardElevation="0dp">
@@ -130,6 +131,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btn_cnt_add_item_id"
                     android:layout_width="60sp"
+                    app:cardCornerRadius="5sp"
                     android:layout_height="28sp"
                     app:cardBackgroundColor="@color/light_blue"
                     app:cardElevation="0dp">
@@ -149,6 +151,7 @@
                     android:id="@+id/decrease_btn_id"
                     android:layout_width="28sp"
                     android:layout_height="28sp"
+                    app:cardCornerRadius="5sp"
                     android:layout_margin="8sp"
                     app:cardBackgroundColor="#E5E5E5"
                     app:cardElevation="0dp">

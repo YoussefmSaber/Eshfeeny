@@ -9,10 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardBackgroundColor="#fdfdff"
         android:elevation="0dp"
         android:layoutDirection="rtl"
         android:stateListAnimator="@null"
+        app:cardBackgroundColor="#fdfdff"
         app:cardCornerRadius="10sp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -106,8 +106,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_marginVertical="10sp"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:visibility="gone">
 
@@ -117,6 +117,7 @@
                     android:layout_height="28sp"
                     android:layout_margin="8sp"
                     app:cardBackgroundColor="#FFE5CC"
+                    app:cardCornerRadius="5sp"
                     app:cardElevation="0dp">
 
                     <ImageView
@@ -131,6 +132,7 @@
                     android:layout_width="60sp"
                     android:layout_height="28sp"
                     app:cardBackgroundColor="@color/light_blue"
+                    app:cardCornerRadius="5sp"
                     app:cardElevation="0dp">
 
                     <TextView
@@ -150,6 +152,7 @@
                     android:layout_height="28sp"
                     android:layout_margin="8sp"
                     app:cardBackgroundColor="#E5E5E5"
+                    app:cardCornerRadius="5sp"
                     app:cardElevation="0dp">
 
                     <ImageView

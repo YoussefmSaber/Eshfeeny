@@ -1,7 +1,6 @@
 package com.example.eshfeenygraduationproject.eshfeeny.productsAdapter
 
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,14 +8,13 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.MedicineItemCategoryBinding
-import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.MedicineCategoryFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.ProductCategoryFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 
@@ -24,8 +22,8 @@ import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 class ProductCategoryAdapter(
     private val viewModel: ProductViewModel,
     val userId: String,
-    val favoriteProducts: ProductResponse,
-    val cartProducts: CartResponse
+    val favoriteProducts: ProductResponse?,
+    val cartProducts: CartResponse?
 ) : ListAdapter<ProductResponseItem, ProductCategoryAdapter.ViewHolder>(CategoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -66,7 +64,7 @@ class ProductCategoryAdapter(
         private fun navigate2Details(product: ProductResponseItem) {
             itemBinding.imgVMedicineId.setOnClickListener {
                 val action =
-                    MedicineCategoryFragmentDirections.actionMedicineCategoryFragmentToDetailsFragment(
+                    ProductCategoryFragmentDirections.actionMedicineCategoryFragmentToDetailsFragment(
                         product._id
                     )
                 it.findNavController().navigate(action)
@@ -74,7 +72,7 @@ class ProductCategoryAdapter(
         }
 
         private fun setFavoriteItem(product: ProductResponseItem) {
-            if (favoriteProducts.contains(product)) {
+            if (favoriteProducts?.contains(product) == true) {
                 isFavorite = true
                 itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
             }
@@ -97,7 +95,7 @@ class ProductCategoryAdapter(
 
             itemBinding.add2CartBtn.setOnClickListener {
 
-                itemCount = getQuantityInCart(cartProducts, product._id)
+                itemCount = cartProducts?.let { it1 -> getQuantityInCart(it1, product._id) }
 
                 itemBinding.add2CartBtn.visibility = View.GONE
                 itemBinding.cardFunctionalityLayout.visibility = View.VISIBLE
