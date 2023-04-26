@@ -29,14 +29,16 @@ class ProductFavoriteAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding =
-            MedicineItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        Log.i("CreateViewHolder sh8aal", itemBinding.toString())
+            MedicineItemCategoryBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         return ViewHolder(itemBinding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
-        Log.i("onBindViewHolder sh8aal", toString())
     }
 
     inner class ViewHolder(private val itemBinding: MedicineItemCategoryBinding) :
@@ -48,9 +50,9 @@ class ProductFavoriteAdapter(
         fun bind(product: ProductResponseItem) {
 
             setData2UI(product)
+            setFavoriteIcon(product)
             addProduct2Cart(product)
             navigate2Details(product)
-            setFavoriteIcon(product)
             increaseProductAmount(product)
             decreaseProductAmount(product)
         }

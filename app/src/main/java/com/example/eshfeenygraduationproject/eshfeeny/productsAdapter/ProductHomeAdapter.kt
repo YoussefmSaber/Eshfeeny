@@ -30,14 +30,16 @@ class ProductHomeAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding =
-            MedicineItemHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        Log.i("CreateViewHolder sh8aal", itemBinding.toString())
+            MedicineItemHomeBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         return ViewHolder(itemBinding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
-        Log.i("onBindViewHolder sh8aal", toString())
     }
 
     inner class ViewHolder(private val itemBinding: MedicineItemHomeBinding) :
