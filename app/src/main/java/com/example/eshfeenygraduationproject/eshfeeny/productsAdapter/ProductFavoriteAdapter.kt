@@ -9,7 +9,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.domain.entity.patchRequestVar.PatchProductId
@@ -45,7 +44,7 @@ class ProductFavoriteAdapter(
         RecyclerView.ViewHolder(itemBinding.root) {
 
         private var isFavorite = true
-        private var itemCount: Int? = 1
+        private var productCount: Int = 0
 
         fun bind(product: ProductResponseItem) {
 
@@ -63,29 +62,32 @@ class ProductFavoriteAdapter(
             itemBinding.imgVMedicineId.loadUrl(product.images[0])
         }
 
-        private fun getQuantityInCart(cartResponse: CartResponse, productId: String): Int? {
+        private fun getQuantityInCart(cartResponse: CartResponse, productId: String): Int {
             for (cartItem in cartResponse.cart) {
                 if (cartItem.product._id == productId) {
+                    Log.i("add 2 cart", "the product quantity ${cartItem.quantity}")
                     return cartItem.quantity
                 }
             }
-            return null
+            return 0
         }
 
         private fun addProduct2Cart(product: ProductResponseItem) {
 
             itemBinding.add2CartBtn.setOnClickListener {
 
-                itemCount = getQuantityInCart(cartProducts, product._id)
+                productCount = getQuantityInCart(cartProducts, product._id)
+                Log.i("Add 2 cart", productCount.toString())
 
                 itemBinding.cardFunctionalityLayout.visibility = View.VISIBLE
                 itemBinding.add2CartBtn.visibility = View.GONE
 
-                if (itemCount != null) {
-                    itemBinding.productAmount.text = itemCount.toString()
+                if (productCount != 0) {
+                    itemBinding.productAmount.text = productCount.toString()
                 } else {
+                    productCount++
                     viewModel.addProductToCart(userId, PatchProductId(product._id))
-                    itemBinding.productAmount.text = "1"
+                    itemBinding.productAmount.text = productCount.toString()
                 }
             }
         }
@@ -124,8 +126,8 @@ class ProductFavoriteAdapter(
 
             itemBinding.increaseBtnId.setOnClickListener {
 
-                itemCount = itemCount?.plus(1)
-                itemBinding.productAmount.text = itemCount.toString()
+                productCount++
+                itemBinding.productAmount.text = productCount.toString()
 
                 viewModel.incrementProductNumberInCart(userId, product._id)
             }
@@ -135,9 +137,9 @@ class ProductFavoriteAdapter(
 
             itemBinding.decreaseBtnId.setOnClickListener {
 
-                if (itemCount == 1) {
+                if (productCount == 1) {
 
-                    itemCount = itemCount?.minus(1)
+                    productCount--
 
                     itemBinding.cardFunctionalityLayout.visibility = View.GONE
                     itemBinding.add2CartBtn.visibility = View.VISIBLE
@@ -145,10 +147,10 @@ class ProductFavoriteAdapter(
                     viewModel.removeProductFromCart(userId, PatchProductId(product._id))
                 } else {
 
-                    itemCount = itemCount?.minus(1)
+                    productCount--
                     viewModel.decrementProductNumberInCart(userId, product._id)
 
-                    itemBinding.productAmount.text = itemCount.toString()
+                    itemBinding.productAmount.text = productCount.toString()
                 }
             }
         }

@@ -22,8 +22,8 @@ import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 class ProductCategoryAdapter(
     private val viewModel: ProductViewModel,
     val userId: String,
-    val favoriteProducts: ProductResponse?,
-    val cartProducts: CartResponse?
+    val favoriteProducts: ProductResponse,
+    val cartProducts: CartResponse
 ) : ListAdapter<ProductResponseItem, ProductCategoryAdapter.ViewHolder>(CategoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -43,7 +43,7 @@ class ProductCategoryAdapter(
         RecyclerView.ViewHolder(itemBinding.root) {
 
         private var isFavorite = false
-        private var itemCount: Int? = 1
+        private var itemCount: Int = 0
 
         fun bind(product: ProductResponseItem) {
 
@@ -95,33 +95,35 @@ class ProductCategoryAdapter(
 
             itemBinding.add2CartBtn.setOnClickListener {
 
-                itemCount = cartProducts?.let { it1 -> getQuantityInCart(it1, product._id) }
+                itemCount = getQuantityInCart(cartProducts, product._id)
 
                 itemBinding.add2CartBtn.visibility = View.GONE
                 itemBinding.cardFunctionalityLayout.visibility = View.VISIBLE
 
-                if (itemCount != null) {
+                if (itemCount != 0) {
                     itemBinding.productAmount.text = itemCount.toString()
                 } else {
+                    itemCount++
                     viewModel.addProductToCart(userId, PatchProductId(product._id))
-                    itemBinding.productAmount.text = "1"
+                    itemBinding.productAmount.text = itemCount.toString()
                 }
             }
         }
 
-        private fun getQuantityInCart(cartResponse: CartResponse, productId: String): Int? {
+        private fun getQuantityInCart(cartResponse: CartResponse, productId: String): Int {
             for (cartItem in cartResponse.cart) {
                 if (cartItem.product._id == productId) {
                     return cartItem.quantity
                 }
             }
-            return null
+            return 0
         }
 
         private fun incrementProductAmount(product: ProductResponseItem) {
             itemBinding.increaseBtnId.setOnClickListener {
-                itemCount = itemCount?.plus(1)
-                itemBinding.productAmount.text = itemCount?.toString()
+
+                itemCount++
+                itemBinding.productAmount.text = itemCount.toString()
                 viewModel.incrementProductNumberInCart(userId, product._id)
             }
         }
@@ -131,14 +133,14 @@ class ProductCategoryAdapter(
                 if (itemCount == 1) {
 
                     viewModel.removeProductFromCart(userId, PatchProductId(product._id))
-                    itemCount = itemCount?.minus(1)
+                    itemCount--
 
                     itemBinding.add2CartBtn.visibility = View.VISIBLE
                     itemBinding.cardFunctionalityLayout.visibility = View.GONE
                 } else {
                     viewModel.decrementProductNumberInCart(userId, product._id)
-                    itemCount = itemCount?.minus(1)
-                    itemBinding.productAmount.text = itemCount?.toString()
+                    itemCount--
+                    itemBinding.productAmount.text = itemCount.toString()
                 }
             }
         }

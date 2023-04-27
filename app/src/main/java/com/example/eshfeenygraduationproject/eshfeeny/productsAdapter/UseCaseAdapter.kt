@@ -29,7 +29,7 @@ class UseCaseAdapter(val useCase: List<String>) :
         )
 
     override fun getItemCount(): Int = useCase.size
-    override fun onBindViewHolder(holder: UseCaseAdapter.UseCaseViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: UseCaseViewHolder, position: Int) {
         val day = useCase[position]
         holder.bind(day)
     }
