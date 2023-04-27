@@ -30,21 +30,23 @@ class ProductHomeAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding =
-            MedicineItemHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        Log.i("CreateViewHolder sh8aal", itemBinding.toString())
+            MedicineItemHomeBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         return ViewHolder(itemBinding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
-        Log.i("onBindViewHolder sh8aal", toString())
     }
 
     inner class ViewHolder(private val itemBinding: MedicineItemHomeBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
         private var isFavorite = false
-        private var itemCount: Int? = null
+        private var itemCount: Int = 0
 
         fun bind(product: ProductResponseItem) {
             setData2UI(product)
@@ -58,7 +60,6 @@ class ProductHomeAdapter(
         private fun setData2UI(category: ProductResponseItem) {
             itemBinding.medicineNameIdTv.text = category.nameAr
             itemBinding.priceMedicineIdTv.text = "${category.price.toInt().toString()} جنيه  "
-            // TODO: Change the Image to be the index [0] image[0]
             itemBinding.imgVMedicineId.loadUrl(category.images[0])
         }
 
@@ -71,11 +72,12 @@ class ProductHomeAdapter(
                 itemBinding.add2CartBtn.visibility = View.GONE
                 itemBinding.cardFunctionalityLayout.visibility = View.VISIBLE
 
-                if (itemCount != null) {
+                if (itemCount != 0) {
                     itemBinding.productAmount.text = itemCount.toString()
                 } else {
+                    itemCount++
                     viewModel.addProductToCart(userId, PatchProductId(category._id))
-                    itemBinding.productAmount.text = "1"
+                    itemBinding.productAmount.text = itemCount.toString()
                 }
             }
         }
@@ -110,8 +112,8 @@ class ProductHomeAdapter(
 
         private fun incrementProductAmount(product: ProductResponseItem) {
             itemBinding.increaseBtnId.setOnClickListener {
-                itemCount = itemCount?.plus(1)
-                itemBinding.productAmount.text = itemCount?.toString()
+                itemCount++
+                itemBinding.productAmount.text = itemCount.toString()
                 viewModel.incrementProductNumberInCart(userId, product._id)
             }
         }
@@ -121,26 +123,25 @@ class ProductHomeAdapter(
                 if (itemCount == 1) {
 
                     viewModel.removeProductFromCart(userId, PatchProductId(product._id))
-                    itemCount = itemCount?.minus(1)
+                    itemCount--
 
                     itemBinding.add2CartBtn.visibility = View.VISIBLE
                     itemBinding.cardFunctionalityLayout.visibility = View.GONE
                 } else {
                     viewModel.decrementProductNumberInCart(userId, product._id)
-                    itemCount = itemCount?.minus(1)
-                    itemBinding.productAmount.text = itemCount?.toString()
+                    itemCount--
+                    itemBinding.productAmount.text = itemCount.toString()
                 }
             }
         }
 
-
-        private fun getQuantityInCart(cartResponse: CartResponse, productId: String): Int? {
+        private fun getQuantityInCart(cartResponse: CartResponse, productId: String): Int {
             for (cartItem in cartResponse.cart) {
                 if (cartItem.product._id == productId) {
                     return cartItem.quantity
                 }
             }
-            return null
+            return 0
         }
     }
 

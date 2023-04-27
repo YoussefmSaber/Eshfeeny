@@ -11,7 +11,7 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductHomeAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.*
+import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.*
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.*
 
 

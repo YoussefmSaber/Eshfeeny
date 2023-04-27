@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.data.repository.ProductRepoImpl
+import com.example.domain.entity.cart.CartResponse
 import com.example.eshfeenygraduationproject.databinding.FragmentFavoriteBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductFavoriteAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
@@ -18,6 +19,8 @@ class FavoriteFragment : Fragment() {
 
     private var binding: FragmentFavoriteBinding? = null
     private lateinit var productViewModel: ProductViewModel
+
+    private lateinit var cartProducts: CartResponse
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -31,8 +34,15 @@ class FavoriteFragment : Fragment() {
         productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
         val userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
-        userViewModel.userData.observe(viewLifecycleOwner) {
-            val userId = it._id
+        userViewModel.userData.observe(viewLifecycleOwner) { userData ->
+            val userId = userData._id
+
+            productViewModel.getUserCartItems(userId)
+            productViewModel.cartItems.observe(viewLifecycleOwner) { cartProductsResponse ->
+                cartProductsResponse?.let {
+                    cartProducts = it
+                }
+            }
 
             productViewModel.getFavoriteProducts(userId)
 
@@ -42,7 +52,7 @@ class FavoriteFragment : Fragment() {
                     binding?.noItemsLayout?.visibility = View.GONE
                     binding?.favoriteRecyclerView?.visibility = View.VISIBLE
 
-                    val adapter = ProductFavoriteAdapter(productViewModel, userId)
+                    val adapter = ProductFavoriteAdapter(productViewModel, userId, cartProducts)
                     binding?.favoriteRecyclerView?.adapter = adapter
 
                     adapter.submitList(products)

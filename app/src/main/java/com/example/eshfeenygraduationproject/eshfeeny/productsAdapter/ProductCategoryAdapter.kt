@@ -1,7 +1,6 @@
 package com.example.eshfeenygraduationproject.eshfeeny.productsAdapter
 
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,95 +8,141 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.domain.entity.patchRequestVar.PatchProductId
+import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.MedicineItemCategoryBinding
-import com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines.MedicineCategoryFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.ProductCategoryFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 
 
-class ProductCategoryAdapter(private val viewModel: ProductViewModel, val userId: String) :
-    ListAdapter<ProductResponseItem, ProductCategoryAdapter.ViewHolder>(CategoryDiffCallback()) {
+class ProductCategoryAdapter(
+    private val viewModel: ProductViewModel,
+    val userId: String,
+    val favoriteProducts: ProductResponse,
+    val cartProducts: CartResponse
+) : ListAdapter<ProductResponseItem, ProductCategoryAdapter.ViewHolder>(CategoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding =
-            MedicineItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        Log.i("CreateViewHolder sh8aal", itemBinding.toString())
+            MedicineItemCategoryBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent, false
+            )
         return ViewHolder(itemBinding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
-        Log.i("onBindViewHolder sh8aal", toString())
     }
 
     inner class ViewHolder(private val itemBinding: MedicineItemCategoryBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun bind(category: ProductResponseItem) {
+        private var isFavorite = false
+        private var itemCount: Int = 0
 
-            viewModel.getFavoriteProducts(userId)
+        fun bind(product: ProductResponseItem) {
 
-            itemBinding.medicineNameIdTv.text = category.nameAr
-            itemBinding.priceMedicineIdTv.text = "${category.price.toInt().toString()} جنيه  "
-            // TODO: Change the Image to be the index [0] image[0]
-            Glide.with(itemBinding.root.context).load(category.images[0])
-                .into(itemBinding.imgVMedicineId)
-            var cnt = 1
-            itemBinding.btnAddToCartId.setOnClickListener {
-                itemBinding.btnAddToCartId.visibility = View.GONE
-                itemBinding.increaseBtnId.visibility = View.VISIBLE
-                itemBinding.decreaseBtnId.visibility = View.VISIBLE
-                itemBinding.btnCntAddItemId.visibility = View.VISIBLE
-                itemBinding.btnCntAddItemId.text = "1"
-                cnt = 1
-            }
-            itemBinding.increaseBtnId.setOnClickListener {
-                cnt++
-                itemBinding.btnCntAddItemId.text = cnt.toString()
-            }
-            itemBinding.decreaseBtnId.setOnClickListener {
-                cnt--
-                if (cnt > 0)
-                    itemBinding.btnCntAddItemId.text = cnt.toString()
-                else {
-                    itemBinding.btnCntAddItemId.text = "1"
-                    cnt = 1
-                }
+            setData2UI(product)
+            addItemToCart(product)
+            setFavoriteItem(product)
+            navigate2Details(product)
+            incrementProductAmount(product)
+            decrementProductAmount(product)
+        }
 
-            }
-            itemBinding.btnCntAddItemId.setOnClickListener {
-                itemBinding.btnAddToCartId.visibility = View.VISIBLE
-                itemBinding.increaseBtnId.visibility = View.GONE
-                itemBinding.decreaseBtnId.visibility = View.GONE
-                itemBinding.btnCntAddItemId.visibility = View.GONE
-            }
+        private fun setData2UI(product: ProductResponseItem) {
+            itemBinding.medicineNameIdTv.text = product.nameAr
+            itemBinding.priceMedicineIdTv.text = "${product.price.toInt().toString()} جنيه  "
+            itemBinding.imgVMedicineId.loadUrl(product.images[0])
+        }
+
+        private fun navigate2Details(product: ProductResponseItem) {
             itemBinding.imgVMedicineId.setOnClickListener {
                 val action =
-                    MedicineCategoryFragmentDirections.actionMedicineCategoryFragmentToDetailsFragment(
-                        category._id
+                    ProductCategoryFragmentDirections.actionMedicineCategoryFragmentToDetailsFragment(
+                        product._id
                     )
                 it.findNavController().navigate(action)
             }
+        }
 
-            if (viewModel.favoriteProducts.value?.contains(category) == true) {
+        private fun setFavoriteItem(product: ProductResponseItem) {
+            if (favoriteProducts?.contains(product) == true) {
+                isFavorite = true
                 itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
-
-                itemBinding.heartIconId.setOnClickListener {
-                    viewModel.deleteFavoriteProduct(userId, category._id)
+            }
+            itemBinding.heartIconId.setOnClickListener {
+                if (isFavorite) {
+                    viewModel.deleteFavoriteProduct(userId, product._id)
                     itemBinding.heartIconId.setImageResource(R.drawable.favorite_notfill)
-                }
-            } else {
-                itemBinding.heartIconId.setImageResource(R.drawable.favorite_notfill)
-                itemBinding.heartIconId.setOnClickListener {
-                    viewModel.addMedicineToFavorites(userId, PatchProductId(category._id))
+                } else {
+                    viewModel.addMedicineToFavorites(
+                        userId,
+                        PatchProductId(product._id)
+                    )
                     itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
                 }
+                isFavorite = !isFavorite
             }
+        }
 
-            Log.i("ViewHolder sh8aal", toString())
+        private fun addItemToCart(product: ProductResponseItem) {
+
+            itemBinding.add2CartBtn.setOnClickListener {
+
+                itemCount = getQuantityInCart(cartProducts, product._id)
+
+                itemBinding.add2CartBtn.visibility = View.GONE
+                itemBinding.cardFunctionalityLayout.visibility = View.VISIBLE
+
+                if (itemCount != 0) {
+                    itemBinding.productAmount.text = itemCount.toString()
+                } else {
+                    itemCount++
+                    viewModel.addProductToCart(userId, PatchProductId(product._id))
+                    itemBinding.productAmount.text = itemCount.toString()
+                }
+            }
+        }
+
+        private fun getQuantityInCart(cartResponse: CartResponse, productId: String): Int {
+            for (cartItem in cartResponse.cart) {
+                if (cartItem.product._id == productId) {
+                    return cartItem.quantity
+                }
+            }
+            return 0
+        }
+
+        private fun incrementProductAmount(product: ProductResponseItem) {
+            itemBinding.increaseBtnId.setOnClickListener {
+
+                itemCount++
+                itemBinding.productAmount.text = itemCount.toString()
+                viewModel.incrementProductNumberInCart(userId, product._id)
+            }
+        }
+
+        private fun decrementProductAmount(product: ProductResponseItem) {
+            itemBinding.decreaseBtnId.setOnClickListener {
+                if (itemCount == 1) {
+
+                    viewModel.removeProductFromCart(userId, PatchProductId(product._id))
+                    itemCount--
+
+                    itemBinding.add2CartBtn.visibility = View.VISIBLE
+                    itemBinding.cardFunctionalityLayout.visibility = View.GONE
+                } else {
+                    viewModel.decrementProductNumberInCart(userId, product._id)
+                    itemCount--
+                    itemBinding.productAmount.text = itemCount.toString()
+                }
+            }
         }
     }
 

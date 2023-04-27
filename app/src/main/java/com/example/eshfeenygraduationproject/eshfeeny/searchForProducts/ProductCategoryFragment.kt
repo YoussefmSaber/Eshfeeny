@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.eshfeeny.search_for_medicines
+package com.example.eshfeenygraduationproject.eshfeeny.searchForProducts
 
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -14,8 +14,10 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.data.repository.ProductRepoImpl
+import com.example.domain.entity.cart.CartResponse
+import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
-import com.example.eshfeenygraduationproject.databinding.FragmentMedicineCategoryBinding
+import com.example.eshfeenygraduationproject.databinding.FragmentProductCategoryBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductCategoryAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.util.MedicinsCategories
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
@@ -23,11 +25,14 @@ import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.UserViewModel
 import com.google.android.material.chip.Chip
 
-class MedicineCategoryFragment : Fragment() {
+class ProductCategoryFragment : Fragment() {
 
     private var selectedChip: Chip? = null
-    private var binding: FragmentMedicineCategoryBinding? = null
-    private val args: MedicineCategoryFragmentArgs by navArgs()
+
+    private var binding: FragmentProductCategoryBinding? = null
+
+    private val args: ProductCategoryFragmentArgs by navArgs()
+
     private lateinit var productViewModel: ProductViewModel
     private lateinit var userViewModel: UserViewModel
 
@@ -36,7 +41,7 @@ class MedicineCategoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentMedicineCategoryBinding.inflate(inflater)
+        binding = FragmentProductCategoryBinding.inflate(inflater)
 
         binding?.medicineRecyclerView?.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -51,30 +56,54 @@ class MedicineCategoryFragment : Fragment() {
                 .navigate(R.id.action_medicineCategoryFragment_to_homeFragment2)
         }
 
-        userViewModel.userData.observe(viewLifecycleOwner) {
-            when (args.category) {
-                "allMeds" -> {
-                    binding?.categoryTitle?.text = "كل الادوية"
-                    setAllMeds(it._id)
-                }
-                "virusProtection" -> {
-                    binding?.categoryTitle?.text = "الحماية من الفيروسات"
-                    setVirusProtection(it._id)
-                }
-                "motherAndChild" -> {
+        var cartProducts: CartResponse
+        var favoriteProducts: ProductResponse
 
-                }
-                "womenProducts" -> {
+        userViewModel.userData.observe(viewLifecycleOwner) { userData ->
 
-                }
-                "skinAndHairCare" -> {
+            productViewModel.getUserCartItems(userData._id)
+            productViewModel.cartItems.observe(viewLifecycleOwner) { cartProductsResponse ->
+                cartProductsResponse?.let { notNullCartProducts ->
+                    cartProducts = notNullCartProducts
 
-                }
-                "dentalCareBtn" -> {
+                    productViewModel.getFavoriteProducts(userData._id)
+                    productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProductsResponse ->
+                        favoriteProductsResponse?.let { notNullFavoriteProducts ->
+                            favoriteProducts = notNullFavoriteProducts
 
-                }
-                "menProducts" -> {
+                            when (args.category) {
+                                "allMeds" -> {
+                                    binding?.categoryTitle?.text = "كل الادوية"
+                                    setAllMeds(userData._id, favoriteProducts, cartProducts)
+                                }
 
+                                "virusProtection" -> {
+                                    binding?.categoryTitle?.text = "الحماية من الفيروسات"
+                                    setVirusProtection(userData._id, favoriteProducts, cartProducts)
+                                }
+
+                                "motherAndChild" -> {
+
+                                }
+
+                                "womenProducts" -> {
+
+                                }
+
+                                "skinAndHairCare" -> {
+
+                                }
+
+                                "dentalCareBtn" -> {
+
+                                }
+
+                                "menProducts" -> {
+
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -82,17 +111,25 @@ class MedicineCategoryFragment : Fragment() {
         return binding?.root
     }
 
-    private fun setVirusProtection(userId: String) {
+    private fun setVirusProtection(
+        userId: String,
+        favoriteProducts: ProductResponse,
+        cartProducts: CartResponse
+    ) {
         for (med in MedicinsCategories.virusProtection) {
-            val newChip = createChip(getString(med), userId)
+            val newChip = createChip(getString(med), userId, favoriteProducts, cartProducts)
             binding?.medicineChipGroup?.addView(newChip)
         }
     }
 
-    private fun setAllMeds(userId: String) {
+    private fun setAllMeds(
+        userId: String,
+        favoriteProducts: ProductResponse,
+        cartProducts: CartResponse
+    ) {
         var isFirstChip = true
         for (med in MedicinsCategories.allMedicines) {
-            val newChip = createChip(getString(med), userId)
+            val newChip = createChip(getString(med), userId, favoriteProducts, cartProducts)
             binding?.medicineChipGroup?.addView(newChip)
 
             if (isFirstChip) {
@@ -105,7 +142,12 @@ class MedicineCategoryFragment : Fragment() {
                 productViewModel.getMedicineForAllMedicines()
                 productViewModel.categoriesAllProducts.observe(viewLifecycleOwner) { response ->
 
-                    val adapter = ProductCategoryAdapter(productViewModel, userId)
+                    val adapter = ProductCategoryAdapter(
+                        productViewModel,
+                        userId,
+                        favoriteProducts,
+                        cartProducts
+                    )
 
                     adapter.submitList(response)
                     binding?.medicineRecyclerView?.adapter = adapter
@@ -114,7 +156,12 @@ class MedicineCategoryFragment : Fragment() {
         }
     }
 
-    private fun createChip(name: String, userId: String): Chip {
+    private fun createChip(
+        name: String,
+        userId: String,
+        favoriteProducts: ProductResponse,
+        cartProducts: CartResponse
+    ): Chip {
         val chip = Chip(context)
         chip.text = name
 
@@ -137,7 +184,12 @@ class MedicineCategoryFragment : Fragment() {
                 productViewModel.getProductsFromRemote(name)
                 productViewModel.remoteProducts.observe(viewLifecycleOwner) { response ->
 
-                    val adapter = ProductCategoryAdapter(productViewModel, userId)
+                    val adapter = ProductCategoryAdapter(
+                        productViewModel,
+                        userId,
+                        favoriteProducts,
+                        cartProducts
+                    )
                     adapter.submitList(response.body())
 
                     binding?.medicineRecyclerView?.adapter = adapter
@@ -146,7 +198,12 @@ class MedicineCategoryFragment : Fragment() {
                     productViewModel.getMedicineForAllMedicines()
                     productViewModel.categoriesAllProducts.observe(viewLifecycleOwner) { response ->
                         Log.i("chip Test", response.toString())
-                        val adapter = ProductCategoryAdapter(productViewModel, userId)
+                        val adapter = ProductCategoryAdapter(
+                            productViewModel,
+                            userId,
+                            favoriteProducts,
+                            cartProducts
+                        )
                         adapter.submitList(response)
                         binding?.medicineRecyclerView?.adapter = adapter
                     }

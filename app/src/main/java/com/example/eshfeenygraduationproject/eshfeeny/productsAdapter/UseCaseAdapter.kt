@@ -9,23 +9,27 @@ import com.example.eshfeenygraduationproject.databinding.MedicineDetailsItemBind
 
 class UseCaseAdapter(val useCase: List<String>) :
     RecyclerView.Adapter<UseCaseAdapter.UseCaseViewHolder>() {
-    inner class UseCaseViewHolder(private val binding: MedicineDetailsItemBinding):RecyclerView.ViewHolder(binding.root){
+    inner class UseCaseViewHolder(private val binding: MedicineDetailsItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(category: String) {
             binding.txtIdDetails.text = category
         }
     }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): UseCaseViewHolder =
         UseCaseViewHolder(
-            MedicineDetailsItemBinding.inflate(LayoutInflater.from(parent.context),
+            MedicineDetailsItemBinding.inflate(
+                LayoutInflater.from(parent.context),
                 parent,
-                false)
+                false
+            )
         )
 
     override fun getItemCount(): Int = useCase.size
-    override fun onBindViewHolder(holder: UseCaseAdapter.UseCaseViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: UseCaseViewHolder, position: Int) {
         val day = useCase[position]
         holder.bind(day)
     }
