@@ -2,7 +2,7 @@ package com.example.data.remote.apis
 
 import com.example.data.remote.ProductApiService
 import com.example.data.remote.UserDataApiService
-import com.example.data.utils.Constants.Companion.BASE_URL
+import com.example.data.utils.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -10,7 +10,7 @@ object UserRetrofitInstance {
 
     private val userRetrofit by lazy {
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(Constants.ESHFEENY_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

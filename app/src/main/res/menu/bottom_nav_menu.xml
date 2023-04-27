@@ -9,7 +9,7 @@
         android:icon="@drawable/cart_icon"
         android:title="العربة" />
     <item
-        android:id="@+id/gpsFragment2"
+        android:id="@+id/mapsFragment"
         android:icon="@drawable/__icon__location_pin_"
         android:title="اقرب صيدلية" />
     <item

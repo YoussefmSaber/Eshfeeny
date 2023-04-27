@@ -13,3 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+/data/src/main/java/com/example/data/utils
