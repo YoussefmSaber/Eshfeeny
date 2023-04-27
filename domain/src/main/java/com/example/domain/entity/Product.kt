@@ -10,7 +10,7 @@ data class Product(
     val images: List<String>,
     val nameAr: String,
     val nameEn: String,
-    val price: Int,
+    val price: Float,
     val sideEffects: List<String>,
     val type: String,
     val usage: List<String>,

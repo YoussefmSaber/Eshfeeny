@@ -49,7 +49,8 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
                         _loadingToLogin.value = true
                         Log.i("test", _loadingToLogin.value.toString())
                         val intent = Intent(getApplication(), MainActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         getApplication<Application>().startActivity(intent)
                     }
                 }
@@ -82,6 +83,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
     ) {
         viewModelScope.launch {
             val response = repository.verifyLogin(userData)
+            Log.i("Login ViewModel", "${response.body()} + ${response.code()} + ${response.errorBody()}")
             _verifyUserLogin.value = response
         }
     }
