@@ -117,13 +117,13 @@
         <item>أنثى</item>
     </string-array>
 
-    <!--                     Medicine Products               -->
+    <!--                     All Products Strings              -->
 
         <!--    Dental Care items-->
         <string name="allDentalCare">كل منتجات العناية بالاسنان</string>
         <string name="mouthCare">العناية بالفم</string>
-        <string name="toothBrush">فرشاه الاسنان</string>
-        <string name="toothPaste">معجون الاسنان</string>
+        <string name="toothBrush">فرشاة الأسنان</string>
+        <string name="toothPaste">معجون الأسنان</string>
 
         <!--    Men Products items-->
         <string name="allMenProducts">كل منتجات الرجل</string>
@@ -161,7 +161,7 @@
         <string name="shampoo">شامبو</string>
         <string name="topicalPainRelievers">مسكنات الالام الموضوعية</string>
 
-        <!--    Medicines items-->
+        <!--    Products items-->
         <string name="allMedicines">كل الأدوية</string>
         <string name="coldAndFlu">البرد و السعال</string>
         <string name="painkillers">مسكنات</string>

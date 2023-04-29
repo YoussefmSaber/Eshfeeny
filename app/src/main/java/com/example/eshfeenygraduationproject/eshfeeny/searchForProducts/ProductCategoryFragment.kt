@@ -2,7 +2,6 @@ package com.example.eshfeenygraduationproject.eshfeeny.searchForProducts
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.data.local.db.user.model.UserInfo
 import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
@@ -20,9 +20,9 @@ import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentProductCategoryBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductCategoryAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.util.MedicinsCategories
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModelFactory
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.UserViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
 import com.google.android.material.chip.Chip
 
 class ProductCategoryFragment : Fragment() {
@@ -36,6 +36,7 @@ class ProductCategoryFragment : Fragment() {
     private lateinit var productViewModel: ProductViewModel
     private lateinit var userViewModel: UserViewModel
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,15 +47,8 @@ class ProductCategoryFragment : Fragment() {
         binding?.medicineRecyclerView?.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
-        val repo = ProductRepoImpl()
-        val viewModelFactory = ProductViewModelFactory(repo)
-        productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
-        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
-
-        binding?.backBtn?.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(R.id.action_medicineCategoryFragment_to_homeFragment2)
-        }
+        setupViewModel()
+        navigate2HomeFragment()
 
         var cartProducts: CartResponse
         var favoriteProducts: ProductResponse
@@ -71,37 +65,7 @@ class ProductCategoryFragment : Fragment() {
                         favoriteProductsResponse?.let { notNullFavoriteProducts ->
                             favoriteProducts = notNullFavoriteProducts
 
-                            when (args.category) {
-                                "allMeds" -> {
-                                    binding?.categoryTitle?.text = "كل الادوية"
-                                    setAllMeds(userData._id, favoriteProducts, cartProducts)
-                                }
-
-                                "virusProtection" -> {
-                                    binding?.categoryTitle?.text = "الحماية من الفيروسات"
-                                    setVirusProtection(userData._id, favoriteProducts, cartProducts)
-                                }
-
-                                "motherAndChild" -> {
-
-                                }
-
-                                "womenProducts" -> {
-
-                                }
-
-                                "skinAndHairCare" -> {
-
-                                }
-
-                                "dentalCareBtn" -> {
-
-                                }
-
-                                "menProducts" -> {
-
-                                }
-                            }
+                            setCategory(userData, favoriteProducts, cartProducts)
                         }
                     }
                 }
@@ -111,24 +75,114 @@ class ProductCategoryFragment : Fragment() {
         return binding?.root
     }
 
-    private fun setVirusProtection(
-        userId: String,
+    private fun setCategory(
+        userData: UserInfo,
         favoriteProducts: ProductResponse,
         cartProducts: CartResponse
     ) {
-        for (med in MedicinsCategories.virusProtection) {
-            val newChip = createChip(getString(med), userId, favoriteProducts, cartProducts)
-            binding?.medicineChipGroup?.addView(newChip)
+        when (args.category) {
+            "allMeds" -> {
+                binding?.categoryTitle?.text = "كل الادوية"
+                setChipSearch(
+                    userData._id,
+                    favoriteProducts,
+                    cartProducts,
+                    MedicinsCategories.allMedicines,
+                    "الأدوية"
+                )
+            }
+
+            "dentalCare" -> {
+                binding?.categoryTitle?.text = "العناية بالاسنان"
+                setChipSearch(
+                    userData._id,
+                    favoriteProducts,
+                    cartProducts,
+                    MedicinsCategories.dentalCare,
+                    "العناية بالاسنان"
+                )
+            }
+
+            "menProducts" -> {
+                binding?.categoryTitle?.text = "منتجات الرجال"
+                setChipSearch(
+                    userData._id,
+                    favoriteProducts,
+                    cartProducts,
+                    MedicinsCategories.menProducts,
+                    "منتجات الرجال"
+                )
+            }
+
+            "womenProducts" -> {
+                binding?.categoryTitle?.text = "منتجات المرأة"
+                setChipSearch(
+                    userData._id,
+                    favoriteProducts,
+                    cartProducts,
+                    MedicinsCategories.womenProducts,
+                    "منتجات المرأة"
+                )
+            }
+
+            "motherAndChild" -> {
+                binding?.categoryTitle?.text = "الأم و الطفل"
+                setChipSearch(
+                    userData._id,
+                    favoriteProducts,
+                    cartProducts,
+                    MedicinsCategories.motherAndChild,
+                    "الأم و الطفل"
+                )
+            }
+
+            "virusProtection" -> {
+                binding?.categoryTitle?.text = "الحماية من الفيروسات"
+                setChipSearch(
+                    userData._id,
+                    favoriteProducts,
+                    cartProducts,
+                    MedicinsCategories.virusProtection,
+                    "الحمايه من الفيروسات"
+                )
+            }
+
+            "skinAndHairCare" -> {
+                binding?.categoryTitle?.text = "العناية بالبشرة و الشعر"
+                setChipSearch(
+                    userData._id,
+                    favoriteProducts,
+                    cartProducts,
+                    MedicinsCategories.skinAndHair,
+                    "العناية بالبشرة و الشعر"
+                )
+            }
         }
     }
 
-    private fun setAllMeds(
+    private fun navigate2HomeFragment() {
+        binding?.backBtn?.setOnClickListener {
+            Navigation.findNavController(it)
+                .navigate(R.id.action_medicineCategoryFragment_to_homeFragment2)
+        }
+    }
+
+    private fun setupViewModel() {
+        val repo = ProductRepoImpl()
+        val viewModelFactory = ProductViewModelFactory(repo)
+        productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+    }
+
+    private fun setChipSearch(
         userId: String,
         favoriteProducts: ProductResponse,
-        cartProducts: CartResponse
+        cartProducts: CartResponse,
+        productCategories: List<Int>,
+        productType: String
     ) {
         var isFirstChip = true
-        for (med in MedicinsCategories.allMedicines) {
+        for (med in productCategories) {
             val newChip = createChip(getString(med), userId, favoriteProducts, cartProducts)
             binding?.medicineChipGroup?.addView(newChip)
 
@@ -139,8 +193,8 @@ class ProductCategoryFragment : Fragment() {
                 selectedChip = newChip
                 isFirstChip = false
 
-                productViewModel.getMedicineForAllMedicines()
-                productViewModel.categoriesAllProducts.observe(viewLifecycleOwner) { response ->
+                productViewModel.getProductType(productType)
+                productViewModel.allTypeProducts.observe(viewLifecycleOwner) { response ->
 
                     val adapter = ProductCategoryAdapter(
                         productViewModel,
@@ -181,37 +235,57 @@ class ProductCategoryFragment : Fragment() {
 
                 selectedChip = chip
 
-                productViewModel.getProductsFromRemote(name)
-                productViewModel.remoteProducts.observe(viewLifecycleOwner) { response ->
+                val adapter = ProductCategoryAdapter(
+                    productViewModel,
+                    userId,
+                    favoriteProducts,
+                    cartProducts
+                )
 
-                    val adapter = ProductCategoryAdapter(
-                        productViewModel,
-                        userId,
-                        favoriteProducts,
-                        cartProducts
-                    )
-                    adapter.submitList(response.body())
+                val chipTypes = setOf(
+                    getString(R.string.allMedicines),
+                    getString(R.string.allDentalCare),
+                    getString(R.string.allMenProducts),
+                    getString(R.string.allWomenProducts),
+                    getString(R.string.allMotherAndChild),
+                    getString(R.string.allVirusProtection),
+                    getString(R.string.allSkinAndHairProducts)
+                )
 
-                    binding?.medicineRecyclerView?.adapter = adapter
-                }
-                if (chip.text == getString(R.string.allMedicines)) {
-                    productViewModel.getMedicineForAllMedicines()
-                    productViewModel.categoriesAllProducts.observe(viewLifecycleOwner) { response ->
-                        Log.i("chip Test", response.toString())
-                        val adapter = ProductCategoryAdapter(
-                            productViewModel,
-                            userId,
-                            favoriteProducts,
-                            cartProducts
-                        )
+                if (isChipNameType(name, chipTypes)) {
+                    val typeName: String = setTypeName(name)
+                    productViewModel.getProductType(typeName)
+                    productViewModel.allTypeProducts.observe(viewLifecycleOwner) { response ->
                         adapter.submitList(response)
+                        binding?.medicineRecyclerView?.adapter = adapter
+                    }
+                } else {
+                    productViewModel.getProductsFromRemote(name)
+                    productViewModel.remoteProducts.observe(viewLifecycleOwner) { response ->
+                        adapter.submitList(response.body())
                         binding?.medicineRecyclerView?.adapter = adapter
                     }
                 }
             }
         }
-
         return chip
+    }
+
+    private fun setTypeName(name: String): String {
+        return when (name) {
+            getString(R.string.allMedicines) -> "الأدوية"
+            getString(R.string.allDentalCare) -> "العناية بالاسنان"
+            getString(R.string.allMenProducts) -> "منتجات الرجال"
+            getString(R.string.allWomenProducts) -> "منتجات المرأة"
+            getString(R.string.allMotherAndChild) -> "الأم و الطفل"
+            getString(R.string.allVirusProtection) -> "الحمايه من الفيروسات"
+
+            else -> "العناية بالبشرة و الشعر"
+        }
+    }
+
+    private fun isChipNameType(searchName: String, chipTypes: Set<String>): Boolean {
+        return chipTypes.contains(searchName)
     }
 
     private fun setChipColors(chip: Chip) {
