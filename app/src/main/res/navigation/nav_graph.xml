@@ -23,6 +23,13 @@
             app:exitAnim="@anim/nav_default_enter_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_homeFragment2_to_roshtaFragment"
+            app:destination="@id/roshtaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment2"
@@ -208,4 +215,12 @@
         android:name="com.example.eshfeenygraduationproject.eshfeeny.map.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/roshtaFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.roshta.RoshtaFragment"
+        android:label="RoshtaFragment" >
+        <action
+            android:id="@+id/action_roshtaFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
 </navigation>
