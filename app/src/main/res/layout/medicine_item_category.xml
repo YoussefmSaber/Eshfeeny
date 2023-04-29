@@ -41,8 +41,8 @@
 
             <ImageView
                 android:id="@+id/imgV_medicine_id"
-                android:layout_width="120sp"
-                android:layout_height="120sp"
+                android:layout_width="130sp"
+                android:layout_height="130sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="32sp"
                 android:layout_marginTop="5dp"
@@ -54,15 +54,18 @@
 
             <TextView
                 android:id="@+id/medicine_name_id_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="45sp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="7dp"
                 android:layout_marginEnd="8dp"
+                android:maxWidth="170sp"
+                android:gravity="fill_vertical"
+                android:maxHeight="45sp"
                 android:fontFamily="@font/cairo_semibold"
-                android:text="TextView"
+                android:text="| 75 كريم فازلين للعناية المكثفة باليدين والأظافر بالكيراتين 75 ملي"
                 android:textColor="#1F1F1F"
-                android:textSize="12dp"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
