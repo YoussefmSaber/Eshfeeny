@@ -12,7 +12,7 @@ import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductHomeAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.*
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.*
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.*
 
 
 class HomeFragment : Fragment() {
@@ -49,14 +49,14 @@ class HomeFragment : Fragment() {
             navigateToRightCategory("allMeds", it)
         }
 
-        //To open Virus Protection Fragment
-        binding?.virusProtectionBtn?.setOnClickListener {
-            navigateToRightCategory("virusProtection", it)
+        //To open Dental care Fragment
+        binding?.dentalCareBtn?.setOnClickListener {
+            navigateToRightCategory("dentalCare", it)
         }
 
-        //To open Mother and Child Fragment
-        binding?.motherAndChildBtn?.setOnClickListener {
-            navigateToRightCategory("motherAndChild", it)
+        //To open Men's products Fragment
+        binding?.menProductsBtn?.setOnClickListener {
+            navigateToRightCategory("menProducts", it)
         }
 
         //To open Women's products Fragment
@@ -64,19 +64,19 @@ class HomeFragment : Fragment() {
             navigateToRightCategory("womenProducts", it)
         }
 
+        //To open Mother and Child Fragment
+        binding?.motherAndChildBtn?.setOnClickListener {
+            navigateToRightCategory("motherAndChild", it)
+        }
+
+        //To open Virus Protection Fragment
+        binding?.virusProtectionBtn?.setOnClickListener {
+            navigateToRightCategory("virusProtection", it)
+        }
+
         //To open Skin and hair care Fragment
         binding?.skinAndHairCareBtn?.setOnClickListener {
             navigateToRightCategory("skinAndHairCare", it)
-        }
-
-        //To open Dental care Fragment
-        binding?.dentalCareBtn?.setOnClickListener {
-            navigateToRightCategory("dentalCareBtn", it)
-        }
-
-        //To open Men's products Fragment
-        binding?.menProductsBtn?.setOnClickListener {
-            navigateToRightCategory("menProducts", it)
         }
 
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
@@ -136,7 +136,6 @@ class HomeFragment : Fragment() {
             }
         }
 
-        //call recycler view for امساك
         return binding?.root
     }
 

@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.eshfeeny.viewmodel
+package com.example.eshfeenygraduationproject.eshfeeny.publicViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

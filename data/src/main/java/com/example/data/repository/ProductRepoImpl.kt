@@ -32,8 +32,8 @@ class ProductRepoImpl {
         UserRetrofitInstance.medicineApi.getMedicineDetailsFromRemote(id)
 
     //get All Medicine
-    suspend fun getMedicineFromRemoteForAllMedicines(): ProductResponse =
-        UserRetrofitInstance.medicineApi.getMedicineFromAllMedicines()
+    suspend fun getProductType(productType: String): ProductResponse =
+        UserRetrofitInstance.medicineApi.getProductType(productType)
 
     suspend fun addMedicineToFavorites(
         userId: String,

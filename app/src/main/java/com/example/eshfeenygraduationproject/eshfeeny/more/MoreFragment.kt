@@ -7,13 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.AuthenticationActivity
 import com.example.eshfeenygraduationproject.databinding.FragmentMoreBinding
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.UserViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
 
 class MoreFragment : Fragment() {
 

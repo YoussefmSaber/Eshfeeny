@@ -16,7 +16,7 @@ import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.MedicineItemCategoryBinding
 import com.example.eshfeenygraduationproject.eshfeeny.favorite.FavoriteFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
 
 
 class ProductFavoriteAdapter(

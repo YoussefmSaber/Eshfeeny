@@ -19,9 +19,9 @@ import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentDetailsBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.UseCaseAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModelFactory
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.UserViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
 
 
 class DetailsFragment : Fragment() {

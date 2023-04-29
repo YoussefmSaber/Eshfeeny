@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.eshfeeny.viewmodel
+package com.example.eshfeenygraduationproject.eshfeeny.publicViewModel
 
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
@@ -45,9 +45,9 @@ class ProductViewModel(
         get() = _categoriesM8aas
 
     //Categories For كل الادويه
-    private val _categoriesAllProducts = MutableLiveData<ProductResponse>()
-    val categoriesAllProducts: LiveData<ProductResponse>
-        get() = _categoriesAllProducts
+    private val _allTypeProducts = MutableLiveData<ProductResponse>()
+    val allTypeProducts: LiveData<ProductResponse>
+        get() = _allTypeProducts
 
     private val _favoriteProducts = MutableLiveData<ProductResponse>()
     val favoriteProducts: LiveData<ProductResponse>
@@ -128,12 +128,12 @@ class ProductViewModel(
     }
 
     @SuppressLint("LongLogTag")
-    fun getMedicineForAllMedicines() {
+    fun getProductType(productType: String) {
         viewModelScope.launch {
             try {
-                val response = repo.getMedicineFromRemoteForAllMedicines()
-                _categoriesAllProducts.value = response
-                Log.i("Chip Click Test", _categoriesAllProducts.value.toString())
+                val response = repo.getProductType(productType)
+                _allTypeProducts.value = response
+                Log.i("Chip Click Test", _allTypeProducts.value.toString())
             } catch (e: Exception) {
                 // handle error
                 Log.e(TAG, "Error fetching urls AllMedicines", e)

@@ -10,9 +10,9 @@ import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.cart.CartResponse
 import com.example.eshfeenygraduationproject.databinding.FragmentFavoriteBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductFavoriteAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModel
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.ProductViewModelFactory
-import com.example.eshfeenygraduationproject.eshfeeny.viewmodel.UserViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
 
 
 class FavoriteFragment : Fragment() {

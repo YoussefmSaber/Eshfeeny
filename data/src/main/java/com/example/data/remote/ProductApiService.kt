@@ -34,8 +34,11 @@ interface ProductApiService {
         id: String
     ): Response<ProductResponseItem>
 
-    @GET("products/type/الأدوية")
-    suspend fun getMedicineFromAllMedicines(): ProductResponse
+    @GET("products/type/{productType}")
+    suspend fun getProductType(
+        @Path("productType")
+        productType: String
+    ): ProductResponse
 
     @PATCH("users/{id}/favorites")
     suspend fun addMedicneToFavorite(
