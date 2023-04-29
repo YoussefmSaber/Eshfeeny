@@ -19,15 +19,6 @@ interface ProductApiService {
         medicines: String
     ): Response<ProductResponse>
 
-    @GET("products/category/امساك")
-    suspend fun getMedicineFromEmsaak(): ProductResponse
-
-    @GET("products/category/الكحة")
-    suspend fun getMedicineFromKo7aa(): ProductResponse
-
-    @GET("products/category/المغص")
-    suspend fun getMedicineFromM8aas(): ProductResponse
-
     @GET("products/{id}")
     suspend fun getMedicineDetailsFromRemote(
         @Path("id")

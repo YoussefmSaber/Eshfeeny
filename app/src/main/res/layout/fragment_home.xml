@@ -194,7 +194,7 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/medicine_id_rv"
+                android:id="@+id/summerNeedsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
@@ -219,7 +219,7 @@
                 android:textColor="#1F1F1F"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv" />
+                app:layout_constraintTop_toBottomOf="@+id/summerNeedsRecyclerView" />
 
             <ImageView
                 android:id="@+id/select_all_for_better_health_id"
@@ -229,11 +229,11 @@
                 android:layout_marginTop="7dp"
                 android:src="@drawable/show_all_icon"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv"
+                app:layout_constraintTop_toBottomOf="@+id/summerNeedsRecyclerView"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/medicine_id_rv2"
+                android:id="@+id/forBetterHealthRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
@@ -258,7 +258,7 @@
                 android:textColor="#1F1F1F"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv2" />
+                app:layout_constraintTop_toBottomOf="@+id/forBetterHealthRecyclerView" />
 
             <ImageView
                 android:id="@+id/select_all_alternative_to_sugar_id"
@@ -268,11 +268,11 @@
                 android:layout_marginTop="7dp"
                 android:src="@drawable/show_all_icon"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv2"
+                app:layout_constraintTop_toBottomOf="@+id/forBetterHealthRecyclerView"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/medicine_id_rv3"
+                android:id="@+id/sugarAlternativeRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
@@ -297,7 +297,7 @@
                 android:textColor="#1F1F1F"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv3" />
+                app:layout_constraintTop_toBottomOf="@+id/sugarAlternativeRecyclerView" />
 
             <ImageView
                 android:id="@+id/select_all_Markat_id"
@@ -307,7 +307,7 @@
                 android:layout_marginTop="7dp"
                 android:src="@drawable/show_all_icon"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/medicine_id_rv3"
+                app:layout_constraintTop_toBottomOf="@+id/sugarAlternativeRecyclerView"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <LinearLayout

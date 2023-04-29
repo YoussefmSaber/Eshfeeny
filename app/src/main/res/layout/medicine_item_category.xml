@@ -8,18 +8,18 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="#CCE6FF"
-        android:elevation="0dp"
-        app:cardElevation="0dp"
         android:layout_marginTop="8sp"
         android:layout_marginBottom="8sp"
+        android:background="#CCE6FF"
+        android:elevation="0dp"
         android:layoutDirection="rtl"
         android:stateListAnimator="@null"
         app:cardCornerRadius="10sp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="#e7e7e7"
         app:strokeWidth="1.4dp">
 
@@ -59,10 +59,10 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="7dp"
                 android:layout_marginEnd="8dp"
-                android:maxWidth="170sp"
-                android:gravity="fill_vertical"
-                android:maxHeight="45sp"
                 android:fontFamily="@font/cairo_semibold"
+                android:gravity="fill_vertical"
+                android:maxWidth="170sp"
+                android:maxHeight="45sp"
                 android:text="| 75 كريم فازلين للعناية المكثفة باليدين والأظافر بالكيراتين 75 ملي"
                 android:textColor="#1F1F1F"
                 android:textSize="12sp"
@@ -110,8 +110,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_marginVertical="10sp"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:visibility="gone">
 
@@ -119,9 +119,9 @@
                     android:id="@+id/increase_btn_id"
                     android:layout_width="28sp"
                     android:layout_height="28sp"
-                    app:cardCornerRadius="5sp"
                     android:layout_margin="8sp"
                     app:cardBackgroundColor="#FFE5CC"
+                    app:cardCornerRadius="5sp"
                     app:cardElevation="0dp">
 
                     <ImageView
@@ -134,9 +134,9 @@
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btn_cnt_add_item_id"
                     android:layout_width="60sp"
-                    app:cardCornerRadius="5sp"
                     android:layout_height="28sp"
                     app:cardBackgroundColor="@color/light_blue"
+                    app:cardCornerRadius="5sp"
                     app:cardElevation="0dp">
 
                     <TextView
@@ -154,9 +154,9 @@
                     android:id="@+id/decrease_btn_id"
                     android:layout_width="28sp"
                     android:layout_height="28sp"
-                    app:cardCornerRadius="5sp"
                     android:layout_margin="8sp"
                     app:cardBackgroundColor="#E5E5E5"
+                    app:cardCornerRadius="5sp"
                     app:cardElevation="0dp">
 
                     <ImageView

@@ -2,6 +2,7 @@ package com.example.eshfeenygraduationproject.eshfeeny.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.*
 import androidx.lifecycle.ViewModelProvider
@@ -9,6 +10,7 @@ import androidx.navigation.Navigation
 import com.denzcoskun.imageslider.constants.*
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.data.repository.ProductRepoImpl
+import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductHomeAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.*
@@ -90,8 +92,8 @@ class HomeFragment : Fragment() {
                 productViewModel.getUserCartItems(userID)
                 productViewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
 
-                    productViewModel.getMedicineForEmsaak()
-                    productViewModel.categoriesEmsaak.observe(viewLifecycleOwner) {
+                    productViewModel.getProductType("العناية بالبشرة و الشعر")
+                    productViewModel.allTypeProducts.observe(viewLifecycleOwner) {
 
                         val adapter = ProductHomeAdapter(
                             productViewModel,
@@ -99,38 +101,40 @@ class HomeFragment : Fragment() {
                             favoriteProducts,
                             cartItems
                         )
-                        binding?.medicineIdRv?.adapter = adapter
+                        binding?.summerNeedsRecyclerView?.adapter = adapter
 
                         adapter.submitList(it)
+
+                        Log.i("home Fragment", it.toString())
                     }
 
-                    //call recycler view for كحه
-                    productViewModel.getMedicineForKo7aa()
-                    productViewModel.categoriesKo7aa.observe(viewLifecycleOwner) {
+                    productViewModel.getProductsFromRemote(getString(R.string.vitaminsAndNutritionalSupplements))
+                    productViewModel.remoteProducts.observe(viewLifecycleOwner) {
 
-                        val adapter = ProductHomeAdapter(
+                        val adapter1 = ProductHomeAdapter(
                             productViewModel,
                             userID,
                             favoriteProducts,
                             cartItems
                         )
-                        binding?.medicineIdRv2?.adapter = adapter
+                        binding?.forBetterHealthRecyclerView?.adapter = adapter1
 
-                        adapter.submitList(it)
+                        adapter1.submitList(it.body())
+                        Log.i("home Fragment", it.body().toString())
                     }
 
-                    //call recycler view for مغص
-                    productViewModel.getMedicineForM8aas()
-                    productViewModel.categoriesM8aas.observe(viewLifecycleOwner) {
+                    productViewModel.getProductsFromRemoteAlt(getString(R.string.sugarAlternitave))
+                    productViewModel.remoteProductsAlt.observe(viewLifecycleOwner) {
 
-                        val adapter = ProductHomeAdapter(
+                        val adapter2 = ProductHomeAdapter(
                             productViewModel,
                             userID,
                             favoriteProducts,
                             cartItems
                         )
-                        binding?.medicineIdRv3?.adapter = adapter
-                        adapter.submitList(it)
+                        binding?.sugarAlternativeRecyclerView?.adapter = adapter2
+                        adapter2.submitList(it.body())
+                        Log.i("home Fragment", it.body().toString())
                     }
                 }
             }
@@ -147,8 +151,8 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding?.medicineIdRv?.adapter = null
-        binding?.medicineIdRv2?.adapter = null
-        binding?.medicineIdRv3?.adapter = null
+        binding?.summerNeedsRecyclerView?.adapter = null
+        binding?.forBetterHealthRecyclerView?.adapter = null
+        binding?.sugarAlternativeRecyclerView?.adapter = null
     }
 }
