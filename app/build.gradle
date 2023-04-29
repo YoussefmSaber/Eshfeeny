@@ -109,6 +109,9 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 
+    //map
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    
     // splash screen api
     implementation 'androidx.core:core-splashscreen:1.0.0'
     implementation project(path: ':data')
