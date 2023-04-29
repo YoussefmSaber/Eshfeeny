@@ -40,6 +40,7 @@ class UserRepoImpl(private val userDAO: UserDAO) {
         return try {
             UserRetrofitInstance.userApi.verifyLogin(userData)
         } catch (e: Exception) {
+            Log.i("Login Repo", e.toString())
             Response.error(
                 400,
                 ResponseBody.create(
