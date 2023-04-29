@@ -195,4 +195,5 @@
     <string name="noItemsInCart">يبدو أنك لم تضف أي عناصر إالى سلة التسوق الخاصة بك </string>
     <string name="priceMayChange">قد تخلتف الأسعار بين الصيدليات</string>
     <string name="continueShopping">استمر بالتسوق</string>
+    <string name="sugarAlternitave">بديل للسكر</string>
 </resources>

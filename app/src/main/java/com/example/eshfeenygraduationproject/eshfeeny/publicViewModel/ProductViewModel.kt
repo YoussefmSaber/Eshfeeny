@@ -25,24 +25,14 @@ class ProductViewModel(
     val remoteProducts: LiveData<Response<ProductResponse>>
         get() = _remoteProducts
 
+    private val _remoteProductsAlt = MutableLiveData<Response<ProductResponse>>()
+    val remoteProductsAlt: LiveData<Response<ProductResponse>>
+        get() = _remoteProductsAlt
+
     private val _productDetails = MutableLiveData<ProductResponseItem>()
     val productDetails: LiveData<ProductResponseItem>
         get() = _productDetails
 
-    //Categories For Emsaak
-    private val _categoriesEmsaak = MutableLiveData<ProductResponse>()
-    val categoriesEmsaak: LiveData<ProductResponse>
-        get() = _categoriesEmsaak
-
-    //Categories For Ko7aa
-    private val _categoriesKo7aa = MutableLiveData<ProductResponse>()
-    val categoriesKo7aa: LiveData<ProductResponse>
-        get() = _categoriesKo7aa
-
-    //Categories For M8aas
-    private val _categoriesM8aas = MutableLiveData<ProductResponse>()
-    val categoriesM8aas: LiveData<ProductResponse>
-        get() = _categoriesM8aas
 
     //Categories For كل الادويه
     private val _allTypeProducts = MutableLiveData<ProductResponse>()
@@ -70,7 +60,6 @@ class ProductViewModel(
             try {
                 val response = repo.getProductsFromRemote(medicine)
                 _remoteProducts.value = response
-                Log.i("Chip Click Test", response.toString())
             } catch (e: Exception) {
                 Log.e(TAG, "ERROR FETCHING URLS " + e)
             }
@@ -88,52 +77,23 @@ class ProductViewModel(
         }
     }
 
-    fun getMedicineForEmsaak() {
+    // this function made for the home fragment cause the data is shown twice in 2 different recycler views
+    fun getProductsFromRemoteAlt(medicine: String) {
         viewModelScope.launch {
             try {
-                val response = repo.getMedicineFromRemoteForEmsaak()
-                _categoriesEmsaak.value = response
-                Log.i("mvvm sh8aal Emsaak", toString())
+                val response = repo.getProductsFromRemote(medicine)
+                _remoteProductsAlt.value = response
             } catch (e: Exception) {
-                // handle error
-                Log.e(TAG, "Error fetching urls Emsaak", e)
+                Log.e(TAG, "ERROR FETCHING URLS " + e)
             }
         }
     }
 
-    fun getMedicineForKo7aa() {
-        viewModelScope.launch {
-            try {
-                val response = repo.getMedicineFromRemoteForKo7aa()
-                _categoriesKo7aa.value = response
-                Log.i("mvvm sh8aal Ko7aa ", toString())
-            } catch (e: Exception) {
-                // handle error
-                Log.e(TAG, "Error fetching urls Ko7aa", e)
-            }
-        }
-    }
-
-    fun getMedicineForM8aas() {
-        viewModelScope.launch {
-            try {
-                val response = repo.getMedicineFromRemoteForM8aas()
-                _categoriesM8aas.value = response
-                Log.i("mvvm sh8aal M8aas", toString())
-            } catch (e: Exception) {
-                // handle error
-                Log.e(TAG, "Error fetching urls M8ass", e)
-            }
-        }
-    }
-
-    @SuppressLint("LongLogTag")
     fun getProductType(productType: String) {
         viewModelScope.launch {
             try {
                 val response = repo.getProductType(productType)
                 _allTypeProducts.value = response
-                Log.i("Chip Click Test", _allTypeProducts.value.toString())
             } catch (e: Exception) {
                 // handle error
                 Log.e(TAG, "Error fetching urls AllMedicines", e)

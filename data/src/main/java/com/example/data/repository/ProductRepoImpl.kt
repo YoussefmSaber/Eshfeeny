@@ -16,18 +16,6 @@ class ProductRepoImpl {
     suspend fun getProductsFromRemote(medicines: String): Response<ProductResponse> =
         UserRetrofitInstance.medicineApi.getMedicineFromRemote(medicines)
 
-    //get medicine امساك
-    suspend fun getMedicineFromRemoteForEmsaak(): ProductResponse =
-        UserRetrofitInstance.medicineApi.getMedicineFromEmsaak()
-
-    //get medicine كحه
-    suspend fun getMedicineFromRemoteForKo7aa(): ProductResponse =
-        UserRetrofitInstance.medicineApi.getMedicineFromKo7aa()
-
-    //get medicine مغص
-    suspend fun getMedicineFromRemoteForM8aas(): ProductResponse =
-        UserRetrofitInstance.medicineApi.getMedicineFromM8aas()
-
     suspend fun getProductFromRemote(id: String): Response<ProductResponseItem> =
         UserRetrofitInstance.medicineApi.getMedicineDetailsFromRemote(id)
 

@@ -41,15 +41,15 @@ object MedicinsCategories {
 
     val skinAndHair = listOf(
         R.string.allSkinAndHairProducts,
-        R.string.sunProtection,
-        R.string.handAndFeetProtection,
-        R.string.skinWhitening,
+        R.string.shampoo,
+        R.string.hairConditioner,
         R.string.faceWash,
+        R.string.skinWhitening,
         R.string.faceMasks,
         R.string.makeupRemoval,
-        R.string.hairConditioner,
-        R.string.shampoo,
-        R.string.topicalPainRelievers
+        R.string.sunProtection,
+        R.string.handAndFeetProtection,
+        R.string.topicalPainRelievers,
     )
 
     val allMedicines = listOf(
@@ -65,6 +65,7 @@ object MedicinsCategories {
         R.string.topicalPainRelievers,
         R.string.immunityBooster,
         R.string.topicalAntibiotics,
-        R.string.vitaminsAndNutritionalSupplements
+        R.string.vitaminsAndNutritionalSupplements,
+        R.string.sugarAlternitave
     )
 }
