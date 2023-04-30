@@ -119,60 +119,60 @@
 
     <!--                     All Products Strings              -->
 
-        <!--    Dental Care items-->
-        <string name="allDentalCare">كل منتجات العناية بالاسنان</string>
-        <string name="mouthCare">العناية بالفم</string>
-        <string name="toothBrush">فرشاة الأسنان</string>
-        <string name="toothPaste">معجون الأسنان</string>
+    <!--    Dental Care items-->
+    <string name="allDentalCare">كل منتجات العناية بالاسنان</string>
+    <string name="mouthCare">العناية بالفم</string>
+    <string name="toothBrush">فرشاة الأسنان</string>
+    <string name="toothPaste">معجون الأسنان</string>
 
-        <!--    Men Products items-->
-        <string name="allMenProducts">كل منتجات الرجل</string>
-        <string name="shavingGel">جل الحلاقة</string>
-        <string name="deodorantForMen">مزيل العرق للرجال</string>
-        <string name="shavingSupplies">مستلزمات الحلاقة</string>
+    <!--    Men Products items-->
+    <string name="allMenProducts">كل منتجات الرجل</string>
+    <string name="shavingGel">جل الحلاقة</string>
+    <string name="deodorantForMen">مزيل العرق للرجال</string>
+    <string name="shavingSupplies">مستلزمات الحلاقة</string>
 
-        <!--    Mother and Child items-->
-        <string name="allMotherAndChild">كل منتجات الأم و الطفل</string>
-        <string name="childMilk">لبن الأطفال</string>
-        <string name="diapersAndCreams">الحفاضات و الكريمات</string>
-        <string name="motherCare">العناية بالأم</string>
+    <!--    Mother and Child items-->
+    <string name="allMotherAndChild">كل منتجات الأم و الطفل</string>
+    <string name="childMilk">لبن الأطفال</string>
+    <string name="diapersAndCreams">الحفاضات و الكريمات</string>
+    <string name="motherCare">العناية بالأم</string>
 
-        <!--    Women Products items-->
-        <string name="allWomenProducts">كل منتجات المرأة</string>
-        <string name="hairRemoval">إزالة الشعر</string>
-        <string name="deodorantForWomen">مزيل العرق للسيدات</string>
-        <string name="sanitaryPads">الفوط الصحية</string>
+    <!--    Women Products items-->
+    <string name="allWomenProducts">كل منتجات المرأة</string>
+    <string name="hairRemoval">إزالة الشعر</string>
+    <string name="deodorantForWomen">مزيل العرق للسيدات</string>
+    <string name="sanitaryPads">الفوط الصحية</string>
 
-        <!--    Virus Protection items-->
-        <string name="allVirusProtection">كل منتجات الحماية من الفيروسات</string>
-        <string name="immunityBooster">تقوية المناعة</string>
-        <string name="medicalMasksAndGloves">الكمامات و القفازات</string>
-        <string name="handSanitizers">مطهرات اليد</string>
+    <!--    Virus Protection items-->
+    <string name="allVirusProtection">كل منتجات الحماية من الفيروسات</string>
+    <string name="immunityBooster">تقوية المناعة</string>
+    <string name="medicalMasksAndGloves">الكمامات و القفازات</string>
+    <string name="handSanitizers">مطهرات اليد</string>
 
-        <!--    Skin And Hair items-->
-        <string name="allSkinAndHairProducts">كل منتجات العناية بالبشرة و الشعر</string>
-        <string name="sunProtection">الحماية من الشمس</string>
-        <string name="handAndFeetProtection">العناية باليد و القدم</string>
-        <string name="skinWhitening">تفتيح البشرة</string>
-        <string name="faceWash">غسول الوجة</string>
-        <string name="faceMasks">ماسكات الوجة</string>
-        <string name="makeupRemoval">مزيل المكياج</string>
-        <string name="hairConditioner">بلسم الشعر</string>
-        <string name="shampoo">شامبو</string>
-        <string name="topicalPainRelievers">مسكنات الالام الموضوعية</string>
+    <!--    Skin And Hair items-->
+    <string name="allSkinAndHairProducts">كل منتجات العناية بالبشرة و الشعر</string>
+    <string name="sunProtection">الحماية من الشمس</string>
+    <string name="handAndFeetProtection">العناية باليد و القدم</string>
+    <string name="skinWhitening">تفتيح البشرة</string>
+    <string name="faceWash">غسول الوجة</string>
+    <string name="faceMasks">ماسكات الوجة</string>
+    <string name="makeupRemoval">مزيل المكياج</string>
+    <string name="hairConditioner">بلسم الشعر</string>
+    <string name="shampoo">شامبو</string>
+    <string name="topicalPainRelievers">مسكنات الالام الموضوعية</string>
 
-        <!--    Products items-->
-        <string name="allMedicines">كل الأدوية</string>
-        <string name="coldAndFlu">البرد و السعال</string>
-        <string name="painkillers">مسكنات</string>
-        <string name="minorBurns">الحروق البسيطة</string>
-        <string name="virusProtection">الحماية من الفيروسات</string>
-        <string name="acidityAndPoorDigestion">الحموضة وسوء الهضم</string>
-        <string name="cough">الكحة</string>
-        <string name="colic">المغص</string>
-        <string name="constipation">الإمساك</string>
-        <string name="topicalAntibiotics">مضادات حيوية موضوعية</string>
-        <string name="vitaminsAndNutritionalSupplements">الفيتامينات و المكملات الغذائية</string>
+    <!--    Products items-->
+    <string name="allMedicines">كل الأدوية</string>
+    <string name="coldAndFlu">البرد و السعال</string>
+    <string name="painkillers">مسكنات</string>
+    <string name="minorBurns">الحروق البسيطة</string>
+    <string name="virusProtection">الحماية من الفيروسات</string>
+    <string name="acidityAndPoorDigestion">الحموضة وسوء الهضم</string>
+    <string name="cough">الكحة</string>
+    <string name="colic">المغص</string>
+    <string name="constipation">الإمساك</string>
+    <string name="topicalAntibiotics">مضادات حيوية موضوعية</string>
+    <string name="vitaminsAndNutritionalSupplements">الفيتامينات و المكملات الغذائية</string>
 
     <!--    Bmi And Bmr items-->
     <string name="CM">سم</string>
