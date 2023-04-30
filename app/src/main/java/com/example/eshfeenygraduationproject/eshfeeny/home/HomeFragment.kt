@@ -144,6 +144,9 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment2_to_roshtaFragment)
         }
 
+        binding?.insuranceCompanyBtn?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment2_to_insuranceCardFragment)
+        }
         return binding?.root
     }
 
