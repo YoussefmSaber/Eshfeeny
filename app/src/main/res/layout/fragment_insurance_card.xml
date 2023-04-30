@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:backgroundTint="#FFFFFF"
+    tools:context=".insurance_card.InsuranceCardFragment">
+
+    <TextView
+        android:id="@+id/textView0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="أختر شركة التأمين"
+        android:textColor="#1F1F1F"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="wrap_content"
+        android:layout_height="2sp"
+        android:layout_marginTop="17sp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="#4D4D4D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.737"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView0"
+        tools:ignore="SmallSp" />
+
+    <ImageView
+        android:id="@+id/backBtn22"
+        android:layout_width="27sp"
+        android:layout_height="40sp"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:src="@drawable/exit_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription,RtlHardcoded,SpeakableTextPresentCheck,TouchTargetSizeCheck"
+        android:contentDescription="@string/todo"
+        android:focusable="true" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/EgyCare_btn_id"
+        android:layout_width="160sp"
+        android:layout_height="90sp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="#F7FFFFFF"
+        android:elevation="0dp"
+        app:cardCornerRadius="10sp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider1"
+        app:strokeColor="#e5e5e5"
+        app:strokeWidth="1sp">
+
+        <ImageView
+            android:layout_width="100sp"
+            android:layout_height="75sp"
+            android:layout_gravity="center"
+            android:layout_margin="6sp"
+            android:padding="2sp"
+            android:src="@drawable/egycare"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/MetLife_btn_id"
+        android:layout_width="160sp"
+        android:layout_height="90sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="14dp"
+        android:backgroundTint="#F7FFFFFF"
+        android:elevation="0dp"
+        app:cardCornerRadius="10sp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider1"
+        app:strokeColor="#e5e5e5"
+        app:strokeWidth="1sp">
+
+        <ImageView
+            android:layout_width="100sp"
+            android:layout_height="75sp"
+            android:layout_gravity="center"
+            android:layout_margin="6sp"
+            android:padding="2sp"
+            android:src="@drawable/metlife"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/Misr_Btn_id"
+        android:layout_width="160sp"
+        android:layout_height="90sp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="20dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#F7FFFFFF"
+        android:elevation="0dp"
+        app:cardCornerRadius="10sp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EgyCare_btn_id"
+        app:strokeColor="#e5e5e5"
+        app:strokeWidth="1sp">
+
+        <ImageView
+            android:layout_width="100sp"
+            android:layout_height="75sp"
+            android:layout_gravity="center"
+            android:layout_margin="6sp"
+            android:padding="2sp"
+            android:src="@drawable/misrhealthcare"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
