@@ -30,6 +30,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_homeFragment2_to_insuranceCardFragment"
+            app:destination="@id/insuranceCardFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment2"
@@ -221,6 +228,15 @@
         android:label="RoshtaFragment" >
         <action
             android:id="@+id/action_roshtaFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/insuranceCardFragment"
+        android:name="com.example.eshfeenygraduationproject.insurance_card.InsuranceCardFragment"
+        android:label="fragment_insurance_card"
+        tools:layout="@layout/fragment_insurance_card" >
+        <action
+            android:id="@+id/action_insuranceCardFragment_to_homeFragment2"
             app:destination="@id/homeFragment2" />
     </fragment>
 </navigation>
