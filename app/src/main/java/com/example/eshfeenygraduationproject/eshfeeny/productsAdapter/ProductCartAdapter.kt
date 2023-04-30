@@ -53,7 +53,10 @@ class ProductCartAdapter(
 
             itemBinding.incrementAmountBtn.setOnClickListener {
                 viewModel.incrementProductNumberInCart(userId, cartItem.product._id)
+                //Edit functionality for counter in cart
+                if(quantitiy>=1)
                 quantitiy += 1
+                else quantitiy = 1
                 itemBinding.productAmount.text = quantitiy.toString()
                 totalProductPrice = quantitiy * cartItem.product.price
                 itemBinding.totalPriceTextView.text = "$totalProductPrice جنيه"
@@ -61,7 +64,10 @@ class ProductCartAdapter(
 
             itemBinding.decrementAmountBtn.setOnClickListener {
                 viewModel.decrementProductNumberInCart(userId, cartItem.product._id)
+                //Edit functionality for counter in cart
+                if (quantitiy>1)
                 quantitiy -= 1
+                else quantitiy = 1
                 itemBinding.productAmount.text = quantitiy.toString()
                 totalProductPrice = quantitiy * cartItem.product.price
                 itemBinding.totalPriceTextView.text = "$totalProductPrice جنيه"
