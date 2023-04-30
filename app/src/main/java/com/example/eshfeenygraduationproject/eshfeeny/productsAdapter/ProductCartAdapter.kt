@@ -63,21 +63,13 @@ class ProductCartAdapter(
             }
 
             itemBinding.decrementAmountBtn.setOnClickListener {
-                viewModel.decrementProductNumberInCart(userId, cartItem.product._id)
-                //Edit functionality for counter in cart
-                if (quantity>1)
-                quantity -= 1
-                else quantity = 1
-                itemBinding.productAmount.text = quantity.toString()
-                totalProductPrice = quantity * cartItem.product.price
-                itemBinding.totalPriceTextView.text = "$totalProductPrice جنيه"
-            }
-            //Edit functionality for counter in cart round 2
-            if(quantity<1){
-                quantity = 1
-                itemBinding.productAmount.text = quantity.toString()
-                totalProductPrice = cartItem.product.price
-                itemBinding.totalPriceTextView.text = "$totalProductPrice جنيه"
+                if (quantitiy != 1) {
+                    viewModel.decrementProductNumberInCart(userId, cartItem.product._id)
+                    quantitiy -= 1
+                    itemBinding.productAmount.text = quantitiy.toString()
+                    totalProductPrice = quantitiy * cartItem.product.price
+                    itemBinding.totalPriceTextView.text = "$totalProductPrice جنيه"
+                }
             }
             itemBinding.cartItemRemove.setOnClickListener {
                 viewModel.removeProductFromCart(userId, PatchProductId(cartItem.product._id))
