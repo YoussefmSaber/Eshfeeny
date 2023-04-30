@@ -63,11 +63,11 @@ class ProductCartAdapter(
             }
 
             itemBinding.decrementAmountBtn.setOnClickListener {
-                if (quantitiy != 1) {
+                if (quantity != 1) {
                     viewModel.decrementProductNumberInCart(userId, cartItem.product._id)
-                    quantitiy -= 1
-                    itemBinding.productAmount.text = quantitiy.toString()
-                    totalProductPrice = quantitiy * cartItem.product.price
+                    quantity -= 1
+                    itemBinding.productAmount.text = quantity.toString()
+                    totalProductPrice = quantity * cartItem.product.price
                     itemBinding.totalPriceTextView.text = "$totalProductPrice جنيه"
                 }
             }
