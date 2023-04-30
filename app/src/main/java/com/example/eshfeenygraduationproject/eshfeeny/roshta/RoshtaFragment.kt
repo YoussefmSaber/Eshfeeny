@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.fragment.findNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentRoshtaBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -68,6 +69,10 @@ class RoshtaFragment : Fragment() {
             }
             dialog.setContentView(view)
             dialog.show()
+        }
+
+        binding?.exitBtnId?.setOnClickListener {
+            findNavController().navigate(R.id.action_roshtaFragment_to_homeFragment2)
         }
         // Inflate the layout for this fragment
         return binding?.root

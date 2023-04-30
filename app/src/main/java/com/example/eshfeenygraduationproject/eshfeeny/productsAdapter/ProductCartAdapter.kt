@@ -38,7 +38,7 @@ class ProductCartAdapter(
 
         fun bind(cartItem: CartItem) {
             currentCartItem = cartItem
-            var quantitiy = cartItem.quantity
+            var quantity = cartItem.quantity
             var totalProductPrice = cartItem.quantity * cartItem.product.price
 
             itemBinding.cartItemName.text =
@@ -53,9 +53,12 @@ class ProductCartAdapter(
 
             itemBinding.incrementAmountBtn.setOnClickListener {
                 viewModel.incrementProductNumberInCart(userId, cartItem.product._id)
-                quantitiy += 1
-                itemBinding.productAmount.text = quantitiy.toString()
-                totalProductPrice = quantitiy * cartItem.product.price
+                //Edit functionality for counter in cart
+                if(quantity>=1)
+                quantity += 1
+                else quantity = 1
+                itemBinding.productAmount.text = quantity.toString()
+                totalProductPrice = quantity * cartItem.product.price
                 itemBinding.totalPriceTextView.text = "$totalProductPrice جنيه"
             }
 
@@ -68,7 +71,6 @@ class ProductCartAdapter(
                     itemBinding.totalPriceTextView.text = "$totalProductPrice جنيه"
                 }
             }
-
             itemBinding.cartItemRemove.setOnClickListener {
                 viewModel.removeProductFromCart(userId, PatchProductId(cartItem.product._id))
             }

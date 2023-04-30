@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.denzcoskun.imageslider.constants.*
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.data.repository.ProductRepoImpl
@@ -138,6 +139,9 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
+        }
+        binding?.addRoshtaPhotoId?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment2_to_roshtaFragment)
         }
 
         return binding?.root
