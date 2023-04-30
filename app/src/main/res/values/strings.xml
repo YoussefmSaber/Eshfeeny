@@ -196,4 +196,5 @@
     <string name="priceMayChange">قد تخلتف الأسعار بين الصيدليات</string>
     <string name="continueShopping">استمر بالتسوق</string>
     <string name="sugarAlternitave">بديل للسكر</string>
+    <string name="todo">TODO</string>
 </resources>
