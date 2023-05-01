@@ -9,7 +9,7 @@
     tools:context=".insurance_card.InsuranceCardFragment">
 
     <TextView
-        android:id="@+id/textView0"
+        android:id="@+id/tV2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -32,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.737"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView0"
+        app:layout_constraintTop_toBottomOf="@+id/tV2"
         tools:ignore="SmallSp" />
 
     <ImageView

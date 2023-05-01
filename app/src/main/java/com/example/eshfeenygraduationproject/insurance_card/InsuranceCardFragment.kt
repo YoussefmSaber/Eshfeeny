@@ -21,39 +21,21 @@ class InsuranceCardFragment : Fragment() {
 
         binding?.EgyCareBtnId?.setOnClickListener {
             num = 1
-//            findNavController().navigate(R.id.action_insuranceCardFragment_to_servicesInsuranceCardFragment)
             val bundle = Bundle()
             bundle.putInt("num",num)
-            val fragment = ServicesInsuranceCardFragment()
-            fragment.arguments = bundle
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragmentContainerView2, fragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            findNavController().navigate(R.id.action_insuranceCardFragment_to_servicesInsuranceCardFragment,bundle)
         }
         binding?.MetLifeBtnId?.setOnClickListener {
             num = 2
-//            findNavController().navigate(R.id.action_insuranceCardFragment_to_servicesInsuranceCardFragment)
             val bundle = Bundle()
             bundle.putInt("num",num)
-            val fragment = ServicesInsuranceCardFragment()
-            fragment.arguments = bundle
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragmentContainerView2, fragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            findNavController().navigate(R.id.action_insuranceCardFragment_to_servicesInsuranceCardFragment,bundle)
         }
         binding?.MisrBtnId?.setOnClickListener {
             num = 3
-//            findNavController().navigate(R.id.action_insuranceCardFragment_to_servicesInsuranceCardFragment)
             val bundle = Bundle()
             bundle.putInt("num",num)
-            val fragment = ServicesInsuranceCardFragment()
-            fragment.arguments = bundle
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragmentContainerView2, fragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            findNavController().navigate(R.id.action_insuranceCardFragment_to_servicesInsuranceCardFragment,bundle)
         }
 
         binding?.backBtn22?.setOnClickListener {

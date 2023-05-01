@@ -254,5 +254,21 @@
         <action
             android:id="@+id/action_servicesInsuranceCardFragment_to_insuranceCardFragment"
             app:destination="@id/insuranceCardFragment" />
+        <action
+            android:id="@+id/action_servicesInsuranceCardFragment_to_cartExistsFragment"
+            app:destination="@id/cartExistsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartExistsFragment"
+        android:name="com.example.eshfeenygraduationproject.insurance_card.CartExistsFragment"
+        android:label="fragment_cart_exists"
+        tools:layout="@layout/fragment_cart_exists" >
+        <action
+            android:id="@+id/action_cartExistsFragment_to_servicesInsuranceCardFragment"
+            app:destination="@id/servicesInsuranceCardFragment" />
     </fragment>
 </navigation>

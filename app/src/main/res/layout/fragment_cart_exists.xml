@@ -8,7 +8,7 @@
     android:backgroundTint="#FFFFFF"
     tools:context=".insurance_card.CartExistsFragment">
     <TextView
-        android:id="@+id/textView0"
+        android:id="@+id/tV2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -28,10 +28,11 @@
         android:layout_marginTop="17sp"
         android:background="?android:attr/listDivider"
         android:backgroundTint="#4D4D4D"
+        app:layout_constraintBottom_toTopOf="@+id/imageView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.737"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView0"
+        app:layout_constraintTop_toBottomOf="@+id/tV2"
         tools:ignore="SmallSp" />
 
     <ImageView
@@ -42,35 +43,54 @@
         android:layout_marginTop="13sp"
         android:layout_marginEnd="16sp"
         android:clickable="true"
+        android:contentDescription="@string/todo"
+        android:focusable="true"
         android:src="@drawable/exit_logo"
+        app:layout_constraintBottom_toTopOf="@+id/divider1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription,RtlHardcoded,SpeakableTextPresentCheck,TouchTargetSizeCheck"
-        android:contentDescription="@string/todo"
-        android:focusable="true" />
+        tools:ignore="ContentDescription,RtlHardcoded,SpeakableTextPresentCheck,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:src="@drawable/apple_icon"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/add_CartExists_Btn"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/buttonLayout"
+        android:layout_width="0sp"
+        android:layout_height="match_parent"
+        app:cardElevation="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16sp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#0583F2"
-            android:fontFamily="@font/cairo_medium"
-            android:padding="8sp"
-            android:text="إضافة كارت جديد"
-            android:textSize="18sp"
-            android:visibility="visible"
-            app:cornerRadius="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="wrap_content">
 
+            <Button
+                android:id="@+id/add_CartExists_Btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16sp"
+                android:backgroundTint="#0583F2"
+                android:fontFamily="@font/cairo_medium"
+                android:padding="8sp"
+                android:text="إضافة كارت جديد"
+                android:textSize="18sp"
+                android:visibility="visible"
+                app:cornerRadius="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
