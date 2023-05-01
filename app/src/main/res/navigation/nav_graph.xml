@@ -250,5 +250,9 @@
         android:id="@+id/servicesInsuranceCardFragment"
         android:name="com.example.eshfeenygraduationproject.insurance_card.ServicesInsuranceCardFragment"
         android:label="fragment_services_insurance_card"
-        tools:layout="@layout/fragment_services_insurance_card" />
+        tools:layout="@layout/fragment_services_insurance_card" >
+        <action
+            android:id="@+id/action_servicesInsuranceCardFragment_to_insuranceCardFragment"
+            app:destination="@id/insuranceCardFragment" />
+    </fragment>
 </navigation>

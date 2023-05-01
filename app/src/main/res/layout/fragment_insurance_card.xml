@@ -63,7 +63,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider1"
         app:strokeColor="#e5e5e5"
-        app:strokeWidth="1sp">
+        app:strokeWidth="1sp"
+        android:clickable="true">
 
         <ImageView
             android:layout_width="100sp"
@@ -92,7 +93,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider1"
         app:strokeColor="#e5e5e5"
-        app:strokeWidth="1sp">
+        app:strokeWidth="1sp"
+        android:clickable="true">
 
         <ImageView
             android:layout_width="100sp"
@@ -122,7 +124,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EgyCare_btn_id"
         app:strokeColor="#e5e5e5"
-        app:strokeWidth="1sp">
+        app:strokeWidth="1sp"
+        android:clickable="true">
 
         <ImageView
             android:layout_width="100sp"
