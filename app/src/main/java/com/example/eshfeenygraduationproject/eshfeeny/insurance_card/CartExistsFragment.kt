@@ -28,7 +28,9 @@ class CartExistsFragment : Fragment() {
         binding?.backBtn22?.setOnClickListener {
             findNavController().navigate(R.id.action_cartExistsFragment_to_servicesInsuranceCardFragment)
         }
-
+        binding?.addCartExistsBtn?.setOnClickListener {
+            findNavController().navigate(R.id.action_cartExistsFragment_to_infoInsuranceCardFragment)
+        }
         // Inflate the layout for this fragment
         return binding?.root
     }

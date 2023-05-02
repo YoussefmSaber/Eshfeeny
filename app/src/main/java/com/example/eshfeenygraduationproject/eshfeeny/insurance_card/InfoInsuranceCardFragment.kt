@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentInfoInsuranceCardBinding
 
@@ -18,6 +19,9 @@ class InfoInsuranceCardFragment : Fragment() {
         binding = FragmentInfoInsuranceCardBinding.inflate(layoutInflater)
 
 
+        binding?.backBtn22?.setOnClickListener {
+            findNavController().navigate(R.id.action_infoInsuranceCardFragment_to_cartExistsFragment)
+        }
         // Inflate the layout for this fragment
         return binding?.root
     }
