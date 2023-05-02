@@ -2,6 +2,8 @@ package com.example.data.remote
 
 import com.example.data.local.db.user.model.UserInfo
 import com.example.domain.entity.*
+import com.example.domain.entity.InsuranceCard.InsuranceCard
+import com.example.domain.entity.InsuranceCard.InsuranceCardResponse
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.patchRequestVar.ChangePassword
@@ -100,4 +102,11 @@ interface UserDataApiService {
         @Path("productId")
         productId: String
     ): Int
+
+    @GET("/users/{userId}/insuranceCards")
+    suspend fun getInsuranceCards(
+        @Path("userId")
+        userId: String,
+    ): InsuranceCardResponse
+
 }

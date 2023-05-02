@@ -2,6 +2,7 @@ package com.example.data.repository
 
 import android.util.Log
 import com.example.data.remote.apis.UserRetrofitInstance
+import com.example.domain.entity.InsuranceCard.InsuranceCardResponse
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
@@ -81,4 +82,8 @@ class ProductRepoImpl {
         Log.i("details Fragment", resp.toString())
         return resp
     }
+
+    suspend fun getInsuranceCards(
+        userId: String
+    ): InsuranceCardResponse = UserRetrofitInstance.userApi.getInsuranceCards(userId)
 }

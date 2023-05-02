@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.insurance_card
+package com.example.eshfeenygraduationproject.eshfeeny.insurance_card
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -24,11 +24,17 @@ class ServicesInsuranceCardFragment : Fragment() {
             3 -> binding?.TVId?.text = "Misr"
             else -> binding?.TVId?.text = "${num.toString()}"
         }
+        var number = num
 
-
-
+        binding?.monthlyMedicationId?.setOnClickListener {
+            val bundle = Bundle()
+            if (number != null) {
+                bundle.putInt("num2",number)
+            }
+            findNavController().navigate(R.id.action_servicesInsuranceCardFragment_to_cartExistsFragment,bundle)
+      }
         binding?.backBtn22?.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
+            findNavController().navigate(R.id.action_servicesInsuranceCardFragment_to_insuranceCardFragment)
         }
         // Inflate the layout for this fragment
         return binding?.root
