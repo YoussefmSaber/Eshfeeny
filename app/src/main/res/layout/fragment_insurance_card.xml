@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:backgroundTint="#FFFFFF"
-    tools:context=".insurance_card.InsuranceCardFragment">
+    tools:context=".eshfeeny.insurance_card.InsuranceCardFragment">
 
     <TextView
         android:id="@+id/tV2"

@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.ProductRepoImpl
+import com.example.domain.entity.InsuranceCard.InsuranceCardResponse
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.patchRequestVar.PatchProductId
@@ -55,6 +56,9 @@ class ProductViewModel(
     val productNumber: LiveData<Int>
         get() = _productNumber
 
+    private val _insuranceCardItems:MutableLiveData<InsuranceCardResponse> = MutableLiveData()
+    val insuranceCardItems: LiveData<InsuranceCardResponse>
+        get() = _insuranceCardItems
     fun getProductsFromRemote(medicine: String) {
         viewModelScope.launch {
             try {
@@ -212,6 +216,16 @@ class ProductViewModel(
                 Log.i("details", _productNumber.value.toString())
             } catch (e: Exception) {
                 Log.e("cart", "Error getting the product number")
+            }
+        }
+    }
+
+    fun getInsuranceCards(userId: String){
+        viewModelScope.launch {
+            try {
+                _insuranceCardItems.value = repo.getInsuranceCards(userId)
+            }catch (e:Exception){
+                Log.e("insuranceCard","Error fetching the insuranceCard items")
             }
         }
     }

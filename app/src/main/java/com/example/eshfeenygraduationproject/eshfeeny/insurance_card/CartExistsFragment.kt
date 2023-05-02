@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.insurance_card
+package com.example.eshfeenygraduationproject.eshfeeny.insurance_card
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

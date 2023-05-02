@@ -232,7 +232,7 @@
     </fragment>
     <fragment
         android:id="@+id/insuranceCardFragment"
-        android:name="com.example.eshfeenygraduationproject.insurance_card.InsuranceCardFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.insurance_card.InsuranceCardFragment"
         android:label="fragment_insurance_card"
         tools:layout="@layout/fragment_insurance_card" >
         <action
@@ -248,7 +248,7 @@
     </fragment>
     <fragment
         android:id="@+id/servicesInsuranceCardFragment"
-        android:name="com.example.eshfeenygraduationproject.insurance_card.ServicesInsuranceCardFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.insurance_card.ServicesInsuranceCardFragment"
         android:label="fragment_services_insurance_card"
         tools:layout="@layout/fragment_services_insurance_card" >
         <action
@@ -264,7 +264,7 @@
     </fragment>
     <fragment
         android:id="@+id/cartExistsFragment"
-        android:name="com.example.eshfeenygraduationproject.insurance_card.CartExistsFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.insurance_card.CartExistsFragment"
         android:label="fragment_cart_exists"
         tools:layout="@layout/fragment_cart_exists" >
         <action
