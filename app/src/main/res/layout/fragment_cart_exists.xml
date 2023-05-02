@@ -33,7 +33,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tV2"
         tools:ignore="SmallSp" />
-
     <ImageView
         android:id="@+id/backBtn22"
         android:layout_width="27sp"
