@@ -2,9 +2,9 @@ package com.example.data.remote
 
 import com.example.data.local.db.user.model.UserInfo
 import com.example.domain.entity.*
-import com.example.domain.entity.InsuranceCard.InsuranceCard
-import com.example.domain.entity.InsuranceCard.InsuranceCardResponse
+import com.example.domain.entity.insuranceCard.InsuranceCardResponse
 import com.example.domain.entity.cart.CartResponse
+import com.example.domain.entity.insuranceCard.InsuranceCard
 import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.patchRequestVar.ChangePassword
 import com.example.domain.entity.patchresponse.PatchRequestResponse
@@ -76,7 +76,7 @@ interface UserDataApiService {
         @Path("userId")
         userId: String,
         @Path("productId")
-        productId: PatchProductId
+        productId: String
     ): PatchRequestResponse
 
     @PATCH("users/{userId}/cart/{productId}/1")
@@ -109,4 +109,11 @@ interface UserDataApiService {
         userId: String,
     ): InsuranceCardResponse
 
+    @PATCH("users/{userId}/insuranceCards")
+    suspend fun addInsuranceCard(
+        @Path("userId")
+        userId: String,
+        @Body
+        card: InsuranceCard
+    ): PatchRequestResponse
 }

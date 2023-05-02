@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentBmiAndBmrBinding
@@ -50,10 +51,7 @@ class BmiAndBmrFragment : Fragment() {
                 bundle.putString("Gender",gender1)
                 val fragment = VerifyDataFragment()
                 fragment.arguments = bundle
-                val transaction = requireActivity().supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.fragmentContainerView2, fragment)
-                transaction.addToBackStack(null)
-                transaction.commit()
+                Navigation.findNavController(it).navigate(R.id.action_bmiAndBmrFragment_to_verifyDataFragment)
             }
         }
         binding.backBtn22.setOnClickListener {

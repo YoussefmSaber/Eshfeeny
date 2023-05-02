@@ -1,6 +1,5 @@
 package com.example.eshfeenygraduationproject.eshfeeny.publicViewModel
 
-import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -8,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.ProductRepoImpl
-import com.example.domain.entity.InsuranceCard.InsuranceCardResponse
+import com.example.domain.entity.insuranceCard.InsuranceCardResponse
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.patchRequestVar.PatchProductId
@@ -48,6 +47,10 @@ class ProductViewModel(
     val deleteFavoriteProduct: LiveData<PatchRequestResponse>
         get() = _deleteFavoriteProduct
 
+    private val _deleteCartProduct = MutableLiveData<PatchRequestResponse>()
+    val deleteCartProduct: LiveData<PatchRequestResponse>
+        get() = _deleteCartProduct
+
     private val _cartItems: MutableLiveData<CartResponse> = MutableLiveData()
     val cartItems: LiveData<CartResponse>
         get() = _cartItems
@@ -56,9 +59,10 @@ class ProductViewModel(
     val productNumber: LiveData<Int>
         get() = _productNumber
 
-    private val _insuranceCardItems:MutableLiveData<InsuranceCardResponse> = MutableLiveData()
+    private val _insuranceCardItems: MutableLiveData<InsuranceCardResponse> = MutableLiveData()
     val insuranceCardItems: LiveData<InsuranceCardResponse>
         get() = _insuranceCardItems
+
     fun getProductsFromRemote(medicine: String) {
         viewModelScope.launch {
             try {
@@ -169,13 +173,15 @@ class ProductViewModel(
 
     fun removeProductFromCart(
         userId: String,
-        productId: PatchProductId
+        productId: String
     ) {
         viewModelScope.launch {
             try {
-                repo.removeProductFromCart(userId, productId)
+                val response = repo.removeProductFromCart(userId, productId)
+                _deleteCartProduct.value = response
+                Log.i("cart", _deleteCartProduct.toString())
             } catch (e: Exception) {
-                Log.e("cart", "Error removing product from cart")
+                Log.e("cart", "Error removing product from cart $e")
             }
         }
     }
@@ -220,12 +226,12 @@ class ProductViewModel(
         }
     }
 
-    fun getInsuranceCards(userId: String){
+    fun getInsuranceCards(userId: String) {
         viewModelScope.launch {
             try {
                 _insuranceCardItems.value = repo.getInsuranceCards(userId)
-            }catch (e:Exception){
-                Log.e("insuranceCard","Error fetching the insuranceCard items")
+            } catch (e: Exception) {
+                Log.e("insuranceCard", "Error fetching the insuranceCard items")
             }
         }
     }

@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentCartBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductCartAdapter
@@ -43,9 +46,9 @@ class CartFragment : Fragment() {
                 } else {
                     binding?.cartImageLayout?.visibility = View.GONE
                     binding?.cartRecyclerView?.visibility = View.VISIBLE
-                    val adapter = ProductCartAdapter(productViewModel, userDetails._id)
+                    val adapter =
+                        ProductCartAdapter(productViewModel, userDetails._id, viewLifecycleOwner)
                     binding?.cartRecyclerView?.adapter = adapter
-                    Log.i("cart", it.cart.toString())
                     adapter.submitList(it.cart)
                 }
             }
