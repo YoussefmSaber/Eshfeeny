@@ -1,6 +1,7 @@
 package com.example.eshfeenygraduationproject.eshfeeny.insurance_card
 
 import android.os.Bundle
+import android.text.InputType
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,8 +18,7 @@ class InfoInsuranceCardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentInfoInsuranceCardBinding.inflate(layoutInflater)
-
-
+        binding?.CardNumEditText?.inputType = InputType.TYPE_CLASS_NUMBER
         binding?.backBtn22?.setOnClickListener {
             findNavController().navigate(R.id.action_infoInsuranceCardFragment_to_cartExistsFragment)
         }
