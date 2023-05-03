@@ -5,14 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentInsuranceCardBinding
 
 
 class InsuranceCardFragment : Fragment() {
-    private var binding:FragmentInsuranceCardBinding? = null
-    private var num = 0
+    private var binding: FragmentInsuranceCardBinding? = null
+    private var insuranceCardName = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -20,22 +21,16 @@ class InsuranceCardFragment : Fragment() {
         binding = FragmentInsuranceCardBinding.inflate(layoutInflater)
 
         binding?.EgyCareBtnId?.setOnClickListener {
-            num = 1
-            val bundle = Bundle()
-            bundle.putInt("num",num)
-            findNavController().navigate(R.id.action_insuranceCardFragment_to_servicesInsuranceCardFragment,bundle)
+            insuranceCardName = "EgyCare"
+            onInsuranceCardButtonClick(insuranceCardName)
         }
         binding?.MetLifeBtnId?.setOnClickListener {
-            num = 2
-            val bundle = Bundle()
-            bundle.putInt("num",num)
-            findNavController().navigate(R.id.action_insuranceCardFragment_to_servicesInsuranceCardFragment,bundle)
+            insuranceCardName = "MetLife"
+            onInsuranceCardButtonClick(insuranceCardName)
         }
         binding?.MisrBtnId?.setOnClickListener {
-            num = 3
-            val bundle = Bundle()
-            bundle.putInt("num",num)
-            findNavController().navigate(R.id.action_insuranceCardFragment_to_servicesInsuranceCardFragment,bundle)
+            insuranceCardName = "Misr"
+            onInsuranceCardButtonClick(insuranceCardName)
         }
 
         binding?.backBtn22?.setOnClickListener {
@@ -44,5 +39,18 @@ class InsuranceCardFragment : Fragment() {
 
         // Inflate the layout for this fragment
         return binding?.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
+    private fun onInsuranceCardButtonClick(insuranceCardName: String) {
+        val action =
+            InsuranceCardFragmentDirections.actionInsuranceCardFragmentToServicesInsuranceCardFragment(
+                insuranceCardName
+            )
+        findNavController().navigate(action)
     }
 }
