@@ -96,6 +96,7 @@ class HomeFragment : Fragment() {
                     productViewModel.getProductType("العناية بالبشرة و الشعر")
                     productViewModel.allTypeProducts.observe(viewLifecycleOwner) {
 
+                        stopShimmerLayout()
                         val adapter = ProductHomeAdapter(
                             productViewModel,
                             userID,
@@ -148,6 +149,12 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment2_to_insuranceCardFragment)
         }
         return binding?.root
+    }
+
+    private fun stopShimmerLayout() {
+        binding?.shimmerLayoutHome?.stopShimmer()
+        binding?.shimmerLayoutHome?.visibility = View.GONE
+        binding?.homePage?.visibility = View.VISIBLE
     }
 
     private fun navigateToRightCategory(categoryName: String, view: View) {

@@ -59,7 +59,10 @@ class DetailsFragment : Fragment() {
                 productViewModel.getProductFromRemote(productId)
                 productViewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
 
-                    stopShimmer()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        stopShimmer()
+                    }, 5000)
+
 
                     setFavoriteItem(productDetails, favoriteProducts, userData)
 
