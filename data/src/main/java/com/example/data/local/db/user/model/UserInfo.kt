@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.domain.entity.Alarm
 import com.example.domain.entity.cart.Cart
-import com.example.domain.entity.InsuranceCardX
+import com.example.domain.entity.insuranceCard.InsuranceCardX
 import com.example.domain.entity.OrderHistory
 
 @Entity("user_details")

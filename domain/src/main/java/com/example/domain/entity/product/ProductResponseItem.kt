@@ -8,6 +8,7 @@ data class ProductResponseItem(
     val category: List<String>,
     val description: String,
     val images: List<String>,
+    val manufacturer: String,
     val nameAr: String,
     val nameEn: String,
     val price: Double,

@@ -4,7 +4,7 @@ import com.example.data.local.db.user.model.UserInfo
 import com.example.domain.entity.*
 import com.example.domain.entity.insuranceCard.InsuranceCardResponse
 import com.example.domain.entity.cart.CartResponse
-import com.example.domain.entity.insuranceCard.InsuranceCard
+import com.example.domain.entity.insuranceCard.InsuranceCardX
 import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.patchRequestVar.ChangePassword
 import com.example.domain.entity.patchresponse.PatchRequestResponse
@@ -114,6 +114,6 @@ interface UserDataApiService {
         @Path("userId")
         userId: String,
         @Body
-        card: InsuranceCard
+        card: InsuranceCardX
     ): PatchRequestResponse
 }

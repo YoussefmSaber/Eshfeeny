@@ -52,4 +52,10 @@ interface ProductApiService {
         @Path("productId")
         productId: String
     ): PatchRequestResponse
+
+    @GET("products/alternatives/{productId}")
+    suspend fun getAlternatives(
+        @Path("productId")
+        productId: String
+    ): ProductResponse
 }

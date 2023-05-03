@@ -8,7 +8,7 @@
         android:id="@+id/homeFragment2"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment2_to_medicineCategoryFragment"
             app:destination="@id/medicineCategoryFragment"
@@ -42,20 +42,20 @@
         android:id="@+id/cartFragment2"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.cart.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" >
+        tools:layout="@layout/fragment_cart">
         <action
             android:id="@+id/action_cartFragment2_to_detailsFragment"
             app:destination="@id/detailsFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/moreFragment2"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.more.MoreFragment"
         android:label="fragment_more"
-        tools:layout="@layout/fragment_more" >
+        tools:layout="@layout/fragment_more">
         <action
             android:id="@+id/action_moreFragment2_to_alarmFragment"
             app:destination="@id/alarmFragment"
@@ -82,20 +82,20 @@
         android:id="@+id/favoriteFragment2"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.favorite.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" >
+        tools:layout="@layout/fragment_favorite">
         <action
             android:id="@+id/action_favoriteFragment2_to_detailsFragment"
             app:destination="@id/detailsFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/alarmFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment.AlarmFragment"
         android:label="fragment_alarm"
-        tools:layout="@layout/fragment_alarm" >
+        tools:layout="@layout/fragment_alarm">
         <action
             android:id="@+id/action_alarmFragment_to_moreFragment2"
             app:destination="@id/moreFragment2"
@@ -115,7 +115,7 @@
         android:id="@+id/setAlarmFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment.SetAlarmFragment"
         android:label="fragment_set_alarm"
-        tools:layout="@layout/fragment_set_alarm" >
+        tools:layout="@layout/fragment_set_alarm">
         <action
             android:id="@+id/action_setAlarmFragment_to_alarmFragment"
             app:destination="@id/alarmFragment"
@@ -128,7 +128,7 @@
         android:id="@+id/myAccountFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.myaccount.MyAccountFragment"
         android:label="fragment_my_account"
-        tools:layout="@layout/fragment_my_account" >
+        tools:layout="@layout/fragment_my_account">
         <action
             android:id="@+id/action_myAccountFragment_to_moreFragment2"
             app:destination="@id/moreFragment2"
@@ -141,7 +141,7 @@
         android:id="@+id/medicineCategoryFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.ProductCategoryFragment"
         android:label="fragment_medicine_category"
-        tools:layout="@layout/fragment_product_category" >
+        tools:layout="@layout/fragment_product_category">
         <action
             android:id="@+id/action_medicineCategoryFragment_to_homeFragment2"
             app:destination="@id/homeFragment2"
@@ -158,8 +158,8 @@
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.eshfeenygraduationproject.eshfeeny.details.DetailsFragment"
-        android:label="DetailsFragment" >
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.details.fragment.DetailsFragment"
+        android:label="DetailsFragment">
         <action
             android:id="@+id/action_detailsFragment_to_homeFragment2"
             app:destination="@id/homeFragment2"
@@ -170,33 +170,37 @@
         <argument
             android:name="Id"
             app:argType="string" />
+
+        <deepLink
+            android:id="@+id/productDetailsDeepLink"
+            app:uri="https://eshfeeny.live/product/{Id}" />
         <action
             android:id="@+id/action_detailsFragment_to_medicineCategoryFragment"
             app:destination="@id/medicineCategoryFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_detailsFragment_to_favoriteFragment2"
             app:destination="@id/favoriteFragment2"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_detailsFragment_to_cartFragment2"
             app:destination="@id/cartFragment2"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/bmiAndBmrFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.bmiandbmr.BmiAndBmrFragment"
         android:label="fragment_bmi_and_bmr"
-        tools:layout="@layout/fragment_bmi_and_bmr" >
+        tools:layout="@layout/fragment_bmi_and_bmr">
         <action
             android:id="@+id/action_bmiAndBmrFragment_to_moreFragment2"
             app:destination="@id/moreFragment2" />
@@ -212,7 +216,7 @@
         android:id="@+id/verifyDataFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.bmiandbmr.VerifyDataFragment"
         android:label="fragment_verify_data"
-        tools:layout="@layout/fragment_verify_data" >
+        tools:layout="@layout/fragment_verify_data">
         <action
             android:id="@+id/action_verifyDataFragment_to_bmiAndBmrFragment"
             app:destination="@id/bmiAndBmrFragment" />
@@ -225,7 +229,7 @@
     <fragment
         android:id="@+id/roshtaFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.roshta.RoshtaFragment"
-        android:label="RoshtaFragment" >
+        android:label="RoshtaFragment">
         <action
             android:id="@+id/action_roshtaFragment_to_homeFragment2"
             app:destination="@id/homeFragment2" />
@@ -234,7 +238,7 @@
         android:id="@+id/insuranceCardFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.insurance_card.InsuranceCardFragment"
         android:label="fragment_insurance_card"
-        tools:layout="@layout/fragment_insurance_card" >
+        tools:layout="@layout/fragment_insurance_card">
         <action
             android:id="@+id/action_insuranceCardFragment_to_homeFragment2"
             app:destination="@id/homeFragment2" />
@@ -250,7 +254,7 @@
         android:id="@+id/servicesInsuranceCardFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.insurance_card.ServicesInsuranceCardFragment"
         android:label="fragment_services_insurance_card"
-        tools:layout="@layout/fragment_services_insurance_card" >
+        tools:layout="@layout/fragment_services_insurance_card">
         <action
             android:id="@+id/action_servicesInsuranceCardFragment_to_insuranceCardFragment"
             app:destination="@id/insuranceCardFragment" />
@@ -269,7 +273,7 @@
         android:id="@+id/cartExistsFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.insurance_card.CartExistsFragment"
         android:label="fragment_cart_exists"
-        tools:layout="@layout/fragment_cart_exists" >
+        tools:layout="@layout/fragment_cart_exists">
         <action
             android:id="@+id/action_cartExistsFragment_to_servicesInsuranceCardFragment"
             app:destination="@id/servicesInsuranceCardFragment" />
@@ -288,7 +292,7 @@
         android:id="@+id/infoInsuranceCardFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.insurance_card.InfoInsuranceCardFragment"
         android:label="fragment_info_insurance_card"
-        tools:layout="@layout/fragment_info_insurance_card" >
+        tools:layout="@layout/fragment_info_insurance_card">
         <action
             android:id="@+id/action_infoInsuranceCardFragment_to_cartExistsFragment"
             app:destination="@id/cartExistsFragment" />

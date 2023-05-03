@@ -2,11 +2,8 @@ package com.example.data.repository
 
 import android.util.Log
 import com.example.data.remote.apis.UserRetrofitInstance
-import com.example.domain.entity.insuranceCard.InsuranceCardResponse
 import com.example.domain.entity.cart.CartResponse
-import com.example.domain.entity.insuranceCard.InsuranceCard
-import com.example.domain.entity.product.ProductResponse
-import com.example.domain.entity.product.ProductResponseItem
+import com.example.domain.entity.product.*
 import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import retrofit2.Response
@@ -14,31 +11,31 @@ import retrofit2.Response
 class ProductRepoImpl {
 
     suspend fun getProductsFromRemote(medicines: String): Response<ProductResponse> =
-        UserRetrofitInstance.medicineApi.getMedicineFromRemote(medicines)
+        UserRetrofitInstance.productApi.getMedicineFromRemote(medicines)
 
     suspend fun getProductFromRemote(id: String): Response<ProductResponseItem> =
-        UserRetrofitInstance.medicineApi.getMedicineDetailsFromRemote(id)
+        UserRetrofitInstance.productApi.getMedicineDetailsFromRemote(id)
 
     //get All Medicine
     suspend fun getProductType(productType: String): ProductResponse =
-        UserRetrofitInstance.medicineApi.getProductType(productType)
+        UserRetrofitInstance.productApi.getProductType(productType)
 
     suspend fun addMedicineToFavorites(
         userId: String,
         productId: PatchProductId
     ): PatchRequestResponse =
-        UserRetrofitInstance.medicineApi.addMedicneToFavorite(userId, productId)
+        UserRetrofitInstance.productApi.addMedicneToFavorite(userId, productId)
 
     suspend fun getFavoriteProducts(
         userId: String
     ): ProductResponse =
-        UserRetrofitInstance.medicineApi.getFavoriteProducts(userId)
+        UserRetrofitInstance.productApi.getFavoriteProducts(userId)
 
     suspend fun deleteFavoriteProduct(
         userId: String,
         productId: String
     ): PatchRequestResponse =
-        UserRetrofitInstance.medicineApi.deleteFavoriteProduct(userId, productId)
+        UserRetrofitInstance.productApi.deleteFavoriteProduct(userId, productId)
 
     suspend fun getUserCartItems(
         userId: String
@@ -82,12 +79,6 @@ class ProductRepoImpl {
         return resp
     }
 
-    suspend fun getInsuranceCards(
-        userId: String
-    ): InsuranceCardResponse = UserRetrofitInstance.userApi.getInsuranceCards(userId)
-
-    suspend fun addInsuranceCard(
-        userId: String,
-        card: InsuranceCard
-    ): PatchRequestResponse = UserRetrofitInstance.userApi.addInsuranceCard(userId, card)
+    suspend fun getAlternativeProducts(productId: String): ProductResponse =
+        UserRetrofitInstance.productApi.getAlternatives(productId)
 }

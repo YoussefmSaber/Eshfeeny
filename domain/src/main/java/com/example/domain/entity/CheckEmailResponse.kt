@@ -1,5 +1,7 @@
 package com.example.domain.entity
 
+import com.example.domain.entity.insuranceCard.InsuranceCardX
+
 data class CheckEmailResponse(
     val _id: String,
     val age: String,

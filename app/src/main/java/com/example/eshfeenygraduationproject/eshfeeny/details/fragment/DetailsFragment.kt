@@ -1,12 +1,14 @@
-package com.example.eshfeenygraduationproject.eshfeeny.details
+package com.example.eshfeenygraduationproject.eshfeeny.details.fragment
 
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
@@ -17,6 +19,7 @@ import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentDetailsBinding
+import com.example.eshfeenygraduationproject.eshfeeny.details.viewmodel.DetailsViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.UseCaseAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
@@ -27,7 +30,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewMo
 class DetailsFragment : Fragment() {
 
     private var binding: FragmentDetailsBinding? = null
-    private lateinit var viewModel: ProductViewModel
+    private lateinit var productViewModel: ProductViewModel
 
     private val args by navArgs<DetailsFragmentArgs>()
     private lateinit var userViewModel: UserViewModel
@@ -42,15 +45,21 @@ class DetailsFragment : Fragment() {
 
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
+        var productId = arguments?.getString("productId")
+
+        if (productId == null) {
+            productId = args.Id
+        }
+
         initializeViewModels()
 
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
 
-            viewModel.getFavoriteProducts(userData._id)
-            viewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
+            productViewModel.getFavoriteProducts(userData._id)
+            productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
 
-                viewModel.getProductFromRemote(args.Id)
-                viewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
+                productViewModel.getProductFromRemote(productId)
+                productViewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
 
                     setFavoriteItem(productDetails, favoriteProducts, userData)
 
@@ -75,13 +84,16 @@ class DetailsFragment : Fragment() {
         return binding?.root
     }
 
+
+
     private fun initializeViewModels() {
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
         val repo = ProductRepoImpl()
         val productViewModelFactory = ProductViewModelFactory(repo)
 
-        viewModel = ViewModelProvider(this, productViewModelFactory)[ProductViewModel::class.java]
+        productViewModel =
+            ViewModelProvider(this, productViewModelFactory)[ProductViewModel::class.java]
     }
 
     private fun increaseItemInCart(
@@ -90,7 +102,7 @@ class DetailsFragment : Fragment() {
     ) {
         binding?.productIncrementBtn?.setOnClickListener {
             itemCount++
-            viewModel.incrementProductNumberInCart(userData._id, productDetails._id)
+            productViewModel.incrementProductNumberInCart(userData._id, productDetails._id)
             binding?.productAmount?.text = itemCount.toString()
         }
     }
@@ -103,13 +115,13 @@ class DetailsFragment : Fragment() {
             if (itemCount == 1) {
                 binding?.itemFunctionsLayout?.visibility = View.GONE
                 binding?.add2CartBtn?.visibility = View.VISIBLE
-                viewModel.removeProductFromCart(
+                productViewModel.removeProductFromCart(
                     userData._id,
                     productDetails._id
                 )
             } else {
                 itemCount--
-                viewModel.decrementProductNumberInCart(
+                productViewModel.decrementProductNumberInCart(
                     userData._id,
                     productDetails._id
                 )
@@ -120,14 +132,14 @@ class DetailsFragment : Fragment() {
 
     private fun checkItemInCart(userData: UserInfo) {
         binding?.add2CartBtn?.setOnClickListener { btn ->
-            viewModel.getNumberOfItemInCart(userData._id, args.Id)
-            viewModel.productNumber.observe(viewLifecycleOwner) { productItemCount ->
+            productViewModel.getNumberOfItemInCart(userData._id, args.Id)
+            productViewModel.productNumber.observe(viewLifecycleOwner) { productItemCount ->
                 Log.i(
                     "Details Fragment",
                     "product id: ${args.Id} and the count is: $productItemCount"
                 )
                 if (productItemCount == 0) {
-                    viewModel.addProductToCart(
+                    productViewModel.addProductToCart(
                         userData._id,
                         PatchProductId(args.Id)
                     )
@@ -165,13 +177,13 @@ class DetailsFragment : Fragment() {
         }
         binding?.favoriteImgCard?.setOnClickListener {
             if (isFavorite) {
-                viewModel.deleteFavoriteProduct(
+                productViewModel.deleteFavoriteProduct(
                     userData._id,
                     args.Id
                 )
                 binding?.favoriteImgView?.setImageResource(R.drawable.favorite_notfill)
             } else {
-                viewModel.addMedicineToFavorites(
+                productViewModel.addMedicineToFavorites(
                     userData._id,
                     PatchProductId(args.Id)
                 )
