@@ -267,7 +267,8 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <argument
             android:name="insuranceCardName"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="asd" />
     </fragment>
     <fragment
         android:id="@+id/cartExistsFragment"
@@ -286,7 +287,8 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <argument
             android:name="insuranceCardName"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="asd" />
     </fragment>
     <fragment
         android:id="@+id/infoInsuranceCardFragment"

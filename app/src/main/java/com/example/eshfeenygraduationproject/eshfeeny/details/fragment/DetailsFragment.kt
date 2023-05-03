@@ -1,14 +1,14 @@
 package com.example.eshfeenygraduationproject.eshfeeny.details.fragment
 
 
-import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
@@ -19,12 +19,11 @@ import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentDetailsBinding
-import com.example.eshfeenygraduationproject.eshfeeny.details.viewmodel.DetailsViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.UseCaseAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModelFactory
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 
 
 class DetailsFragment : Fragment() {
@@ -44,7 +43,6 @@ class DetailsFragment : Fragment() {
     ): View? {
 
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
-
         var productId = arguments?.getString("productId")
 
         if (productId == null) {
@@ -60,6 +58,8 @@ class DetailsFragment : Fragment() {
 
                 productViewModel.getProductFromRemote(productId)
                 productViewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
+
+                    stopShimmer()
 
                     setFavoriteItem(productDetails, favoriteProducts, userData)
 
@@ -84,7 +84,11 @@ class DetailsFragment : Fragment() {
         return binding?.root
     }
 
-
+    private fun stopShimmer() {
+        binding?.shimmerLayout?.stopShimmer()
+        binding?.shimmerLayout?.visibility = View.GONE
+        binding?.page?.visibility = View.VISIBLE
+    }
 
     private fun initializeViewModels() {
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
