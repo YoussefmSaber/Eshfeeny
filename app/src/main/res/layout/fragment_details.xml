@@ -9,7 +9,7 @@
         android:backgroundTint="#CCE6FF"
         android:elevation="0dp"
         android:orientation="vertical"
-        tools:context=".eshfeeny.details.fragment.DetailsFragment">
+        tools:context=".eshfeeny.details.DetailsFragment">
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmerLayout"

@@ -427,7 +427,6 @@
             android:layout_height="52sp"
             android:layout_gravity="center"
             android:layout_margin="16sp"
-            android:layout_marginBottom="16dp"
             app:cardBackgroundColor="#d2d2d2"
             app:cardCornerRadius="10sp" />
     </com.google.android.material.card.MaterialCardView>

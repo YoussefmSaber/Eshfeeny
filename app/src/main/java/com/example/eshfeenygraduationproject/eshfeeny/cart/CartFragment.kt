@@ -1,15 +1,11 @@
 package com.example.eshfeenygraduationproject.eshfeeny.cart
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentCartBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductCartAdapter
@@ -40,6 +36,9 @@ class CartFragment : Fragment() {
             productViewModel.getUserCartItems(userDetails._id)
 
             productViewModel.cartItems.observe(viewLifecycleOwner) {
+
+                stopShimmer()
+
                 if (it.cart.isEmpty()) {
                     binding?.cartImageLayout?.visibility = View.VISIBLE
                     binding?.cartRecyclerView?.visibility = View.GONE
@@ -55,6 +54,12 @@ class CartFragment : Fragment() {
         }
 
         return binding?.root
+    }
+
+    private fun stopShimmer() {
+        binding?.shimmerLayoutCart?.stopShimmer()
+        binding?.shimmerLayoutCart?.visibility = View.GONE
+        binding?.cartPage?.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {

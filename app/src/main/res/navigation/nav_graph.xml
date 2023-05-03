@@ -158,7 +158,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.eshfeenygraduationproject.eshfeeny.details.fragment.DetailsFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.details.DetailsFragment"
         android:label="DetailsFragment">
         <action
             android:id="@+id/action_detailsFragment_to_homeFragment2"

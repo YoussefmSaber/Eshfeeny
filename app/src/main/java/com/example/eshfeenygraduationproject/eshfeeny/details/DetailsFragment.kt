@@ -1,10 +1,9 @@
-package com.example.eshfeenygraduationproject.eshfeeny.details.fragment
+package com.example.eshfeenygraduationproject.eshfeeny.details
 
 
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +30,7 @@ class DetailsFragment : Fragment() {
     private var binding: FragmentDetailsBinding? = null
     private lateinit var productViewModel: ProductViewModel
 
-    private val args by navArgs<DetailsFragmentArgs>()
+    private val args: DetailsFragmentArgs by navArgs()
     private lateinit var userViewModel: UserViewModel
 
     private var isFavorite = false
@@ -43,11 +42,7 @@ class DetailsFragment : Fragment() {
     ): View? {
 
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
-        var productId = arguments?.getString("productId")
 
-        if (productId == null) {
-            productId = args.Id
-        }
 
         initializeViewModels()
 
@@ -56,7 +51,7 @@ class DetailsFragment : Fragment() {
             productViewModel.getFavoriteProducts(userData._id)
             productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
 
-                productViewModel.getProductFromRemote(productId)
+                productViewModel.getProductFromRemote(args.Id)
                 productViewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
 
                     Handler(Looper.getMainLooper()).postDelayed({
@@ -141,10 +136,6 @@ class DetailsFragment : Fragment() {
         binding?.add2CartBtn?.setOnClickListener { btn ->
             productViewModel.getNumberOfItemInCart(userData._id, args.Id)
             productViewModel.productNumber.observe(viewLifecycleOwner) { productItemCount ->
-                Log.i(
-                    "Details Fragment",
-                    "product id: ${args.Id} and the count is: $productItemCount"
-                )
                 if (productItemCount == 0) {
                     productViewModel.addProductToCart(
                         userData._id,
