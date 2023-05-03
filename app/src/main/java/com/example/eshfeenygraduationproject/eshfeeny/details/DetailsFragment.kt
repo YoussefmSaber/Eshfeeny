@@ -105,7 +105,7 @@ class DetailsFragment : Fragment() {
                 binding?.add2CartBtn?.visibility = View.VISIBLE
                 viewModel.removeProductFromCart(
                     userData._id,
-                    PatchProductId(productDetails._id)
+                    productDetails._id
                 )
             } else {
                 itemCount--

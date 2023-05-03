@@ -1,4 +1,4 @@
-package com.example.domain.entity.InsuranceCard
+package com.example.domain.entity.insuranceCard
 
 data class InsuranceCard(
     val name: String,

@@ -144,7 +144,7 @@ class ProductFavoriteAdapter(
                     itemBinding.cardFunctionalityLayout.visibility = View.GONE
                     itemBinding.add2CartBtn.visibility = View.VISIBLE
 
-                    viewModel.removeProductFromCart(userId, PatchProductId(product._id))
+                    viewModel.removeProductFromCart(userId, product._id)
                 } else {
 
                     productCount--

@@ -121,7 +121,7 @@ class ProductHomeAdapter(
             itemBinding.decreaseBtnId.setOnClickListener {
                 if (itemCount == 1) {
 
-                    viewModel.removeProductFromCart(userId, PatchProductId(product._id))
+                    viewModel.removeProductFromCart(userId, product._id)
                     itemCount--
 
                     itemBinding.add2CartBtn.visibility = View.VISIBLE

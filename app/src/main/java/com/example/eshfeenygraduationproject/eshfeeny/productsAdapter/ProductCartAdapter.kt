@@ -3,6 +3,7 @@ package com.example.eshfeenygraduationproject.eshfeeny.productsAdapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductVie
 class ProductCartAdapter(
     private val viewModel: ProductViewModel,
     private val userId: String,
+    private val lifecycleOwner: LifecycleOwner
 ) : ListAdapter<CartItem, ProductCartAdapter.ViewHolder>(ProductCartDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -72,7 +74,13 @@ class ProductCartAdapter(
                 }
             }
             itemBinding.cartItemRemove.setOnClickListener {
-                viewModel.removeProductFromCart(userId, PatchProductId(cartItem.product._id))
+                Log.i("cart", "Item removed")
+                viewModel.removeProductFromCart(userId, cartItem.product._id)
+                viewModel.getUserCartItems(userId)
+                viewModel.cartItems.observe(lifecycleOwner) {
+                    submitList(it.cart)
+                }
+                notifyItemChanged(adapterPosition, "remove")
             }
         }
     }

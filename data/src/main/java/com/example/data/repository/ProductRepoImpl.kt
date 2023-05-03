@@ -2,14 +2,13 @@ package com.example.data.repository
 
 import android.util.Log
 import com.example.data.remote.apis.UserRetrofitInstance
-import com.example.domain.entity.InsuranceCard.InsuranceCardResponse
+import com.example.domain.entity.insuranceCard.InsuranceCardResponse
 import com.example.domain.entity.cart.CartResponse
+import com.example.domain.entity.insuranceCard.InsuranceCard
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.patchresponse.PatchRequestResponse
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.ResponseBody
 import retrofit2.Response
 
 class ProductRepoImpl {
@@ -52,7 +51,7 @@ class ProductRepoImpl {
 
     suspend fun removeProductFromCart(
         userId: String,
-        productId: PatchProductId
+        productId: String
     ): PatchRequestResponse {
         return try {
             UserRetrofitInstance.userApi.removeProductFromCart(userId, productId)
@@ -86,4 +85,9 @@ class ProductRepoImpl {
     suspend fun getInsuranceCards(
         userId: String
     ): InsuranceCardResponse = UserRetrofitInstance.userApi.getInsuranceCards(userId)
+
+    suspend fun addInsuranceCard(
+        userId: String,
+        card: InsuranceCard
+    ): PatchRequestResponse = UserRetrofitInstance.userApi.addInsuranceCard(userId, card)
 }

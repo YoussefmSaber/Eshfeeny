@@ -72,7 +72,7 @@ class ProductCategoryAdapter(
         }
 
         private fun setFavoriteItem(product: ProductResponseItem) {
-            if (favoriteProducts?.contains(product) == true) {
+            if (favoriteProducts.contains(product)) {
                 isFavorite = true
                 itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
             }
@@ -132,7 +132,7 @@ class ProductCategoryAdapter(
             itemBinding.decreaseBtnId.setOnClickListener {
                 if (itemCount == 1) {
 
-                    viewModel.removeProductFromCart(userId, PatchProductId(product._id))
+                    viewModel.removeProductFromCart(userId, product._id)
                     itemCount--
 
                     itemBinding.add2CartBtn.visibility = View.VISIBLE
