@@ -10,14 +10,18 @@
         android:id="@+id/shimmerLayoutCart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:shimmer_direction="top_to_bottom"
         app:shimmer_highlight_alpha="1"
         app:shimmer_tilt="45">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layoutDirection="rtl"
             android:layout_height="match_parent"
+            android:layoutDirection="rtl"
             android:orientation="vertical">
 
             <include layout="@layout/shimmer_effect_cart_title" />
@@ -28,8 +32,20 @@
 
             <include layout="@layout/shimmer_effect_cart_item" />
 
-            <include layout="@layout/shimmer_effect_cart_button" />
+            <include layout="@layout/shimmer_effect_cart_item" />
         </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="40dp"
+            android:layout_gravity="bottom">
+            <include
+                layout="@layout/shimmer_effect_cart_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.card.MaterialCardView>
+
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
