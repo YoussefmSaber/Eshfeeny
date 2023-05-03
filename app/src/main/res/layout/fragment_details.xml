@@ -16,7 +16,7 @@
         android:backgroundTint="#CCE6FF"
         android:elevation="0dp"
         android:orientation="vertical"
-        tools:context=".eshfeeny.details.DetailsFragment">
+        tools:context=".eshfeeny.details.fragment.DetailsFragment">
 
         <TextView
             android:id="@+id/textView121"
@@ -104,7 +104,7 @@
                     app:cardBackgroundColor="#f7f7f7"
                     app:cardCornerRadius="15sp"
                     app:cardElevation="2dp"
-                    app:layout_constraintBottom_toTopOf="@id/id_btn_replacement_details"
+                    app:layout_constraintBottom_toTopOf="@id/productAlternativeCard"
                     app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -122,7 +122,7 @@
 
                 <com.google.android.material.card.MaterialCardView
 
-                    android:id="@+id/id_btn_replacement_details"
+                    android:id="@+id/productAlternativeCard"
                     android:layout_width="30sp"
                     android:layout_height="30sp"
                     android:layout_marginStart="16sp"
@@ -130,7 +130,7 @@
                     app:cardBackgroundColor="#f7f7f7"
                     app:cardCornerRadius="15sp"
                     app:cardElevation="3dp"
-                    app:layout_constraintBottom_toTopOf="@id/id_btn_gps_details"
+                    app:layout_constraintBottom_toTopOf="@id/productLocationCard"
                     app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -145,7 +145,7 @@
 
                 <com.google.android.material.card.MaterialCardView
 
-                    android:id="@+id/id_btn_gps_details"
+                    android:id="@+id/productLocationCard"
                     android:layout_width="30sp"
                     android:layout_height="30sp"
                     android:layout_marginStart="16sp"
@@ -153,11 +153,11 @@
                     app:cardBackgroundColor="#f7f7f7"
                     app:cardCornerRadius="15sp"
                     app:cardElevation="4dp"
-                    app:layout_constraintBottom_toTopOf="@id/id_btn_share_details"
+                    app:layout_constraintBottom_toTopOf="@id/shareProductCard"
                     app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_btn_replacement_details">
+                    app:layout_constraintTop_toBottomOf="@+id/productAlternativeCard">
 
                     <ImageView
                         android:layout_width="18sp"
@@ -168,7 +168,7 @@
 
                 <com.google.android.material.card.MaterialCardView
 
-                    android:id="@+id/id_btn_share_details"
+                    android:id="@+id/shareProductCard"
                     android:layout_width="30sp"
                     android:layout_height="30sp"
                     android:layout_marginStart="16sp"
@@ -180,7 +180,7 @@
                     app:layout_constraintEnd_toStartOf="@id/id_img_Medicine_details"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_btn_gps_details">
+                    app:layout_constraintTop_toBottomOf="@+id/productLocationCard">
 
                     <ImageView
                         android:layout_width="18sp"

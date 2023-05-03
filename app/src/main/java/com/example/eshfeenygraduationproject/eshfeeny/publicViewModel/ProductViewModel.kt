@@ -63,6 +63,10 @@ class ProductViewModel(
     val insuranceCardItems: LiveData<InsuranceCardResponse>
         get() = _insuranceCardItems
 
+    private val _alternativeProducts = MutableLiveData<ProductResponse>()
+    val alternativeProducts: LiveData<ProductResponse>
+        get() = _alternativeProducts
+
     fun getProductsFromRemote(medicine: String) {
         viewModelScope.launch {
             try {
@@ -226,12 +230,12 @@ class ProductViewModel(
         }
     }
 
-    fun getInsuranceCards(userId: String) {
+    fun getAlternativeProducts(productId: String) {
         viewModelScope.launch {
             try {
-                _insuranceCardItems.value = repo.getInsuranceCards(userId)
+                _alternativeProducts.value = repo.getAlternativeProducts(productId)
             } catch (e: Exception) {
-                Log.e("insuranceCard", "Error fetching the insuranceCard items")
+                Log.i("Details Fragment", "Error fetching alternatives: $e")
             }
         }
     }

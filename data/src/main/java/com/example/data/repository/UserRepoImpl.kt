@@ -6,9 +6,9 @@ import com.example.data.local.db.user.UserDAO
 import com.example.data.local.db.user.model.UserInfo
 import com.example.data.remote.apis.UserRetrofitInstance
 import com.example.domain.entity.*
-import com.example.domain.entity.cart.CartResponse
-import com.example.domain.entity.patchRequestVar.ChangePassword
-import com.example.domain.entity.patchRequestVar.PatchProductId
+import com.example.domain.entity.insuranceCard.InsuranceCardResponse
+import com.example.domain.entity.insuranceCard.InsuranceCardX
+import com.example.domain.entity.patchRequestVar.*
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
@@ -89,4 +89,13 @@ class UserRepoImpl(private val userDAO: UserDAO) {
     }
 
     suspend fun getUserData(): UserInfo = userDAO.getUserData()
+
+    suspend fun getInsuranceCards(
+        userId: String
+    ): InsuranceCardResponse = UserRetrofitInstance.userApi.getInsuranceCards(userId)
+
+    suspend fun addInsuranceCard(
+        userId: String,
+        card: InsuranceCardX
+    ): PatchRequestResponse = UserRetrofitInstance.userApi.addInsuranceCard(userId, card)
 }

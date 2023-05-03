@@ -1,6 +1,7 @@
 package com.example.domain.entity
 
 import com.example.domain.entity.cart.Cart
+import com.example.domain.entity.insuranceCard.InsuranceCardX
 
 data class UserResponse(
     val _id: String,

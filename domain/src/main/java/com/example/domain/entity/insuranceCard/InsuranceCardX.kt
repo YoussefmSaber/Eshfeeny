@@ -1,4 +1,4 @@
-package com.example.domain.entity
+package com.example.domain.entity.insuranceCard
 
 data class InsuranceCardX(
     val imageURL: String,

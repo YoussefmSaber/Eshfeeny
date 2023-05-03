@@ -18,7 +18,7 @@ object UserRetrofitInstance {
     val userApi: UserDataApiService by lazy {
         userRetrofit.create(UserDataApiService::class.java)
     }
-    val medicineApi: ProductApiService by lazy {
+    val productApi: ProductApiService by lazy {
         userRetrofit.create(ProductApiService::class.java)
     }
 }
