@@ -24,7 +24,7 @@
             android:layoutDirection="rtl"
             android:orientation="vertical">
 
-            <include layout="@layout/shimmer_effect_cart_title" />
+            <include layout="@layout/shimmer_effect_title" />
 
             <include layout="@layout/shimmer_effect_cart_item" />
 

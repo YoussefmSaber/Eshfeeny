@@ -1,10 +1,10 @@
 package com.example.eshfeenygraduationproject.eshfeeny.favorite
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.cart.CartResponse
@@ -48,6 +48,8 @@ class FavoriteFragment : Fragment() {
 
             productViewModel.favoriteProducts.observe(viewLifecycleOwner) { products ->
 
+                stopShimmer()
+
                 if (products != null) {
                     binding?.noItemsLayout?.visibility = View.GONE
                     binding?.favoriteRecyclerView?.visibility = View.VISIBLE
@@ -60,6 +62,12 @@ class FavoriteFragment : Fragment() {
             }
         }
         return binding?.root
+    }
+
+    private fun stopShimmer() {
+        binding?.shimmerLayoutFavorite?.stopShimmer()
+        binding?.shimmerLayoutFavorite?.visibility = View.GONE
+        binding?.favoritePage?.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {
