@@ -98,7 +98,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
-        tools:listitem="@layout/medicine_item_category"
+        tools:listitem="@layout/product_item_category"
         app:layout_constraintHeight_max="0dp"
         app:layout_constraintHeight_default="wrap"/>
 

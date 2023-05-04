@@ -13,7 +13,7 @@ import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.eshfeenygraduationproject.R
-import com.example.eshfeenygraduationproject.databinding.MedicineItemCategoryBinding
+import com.example.eshfeenygraduationproject.databinding.ProductItemCategoryBinding
 import com.example.eshfeenygraduationproject.eshfeeny.favorite.FavoriteFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
@@ -28,7 +28,7 @@ class ProductFavoriteAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding =
-            MedicineItemCategoryBinding.inflate(
+            ProductItemCategoryBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -40,7 +40,7 @@ class ProductFavoriteAdapter(
         holder.bind(getItem(position))
     }
 
-    inner class ViewHolder(private val itemBinding: MedicineItemCategoryBinding) :
+    inner class ViewHolder(private val itemBinding: ProductItemCategoryBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
         private var isFavorite = true

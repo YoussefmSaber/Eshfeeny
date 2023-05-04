@@ -1,14 +1,11 @@
-package com.example.eshfeenygraduationproject.eshfeeny.details.fragment
+package com.example.eshfeenygraduationproject.eshfeeny.details
 
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
@@ -19,12 +16,11 @@ import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentDetailsBinding
-import com.example.eshfeenygraduationproject.eshfeeny.details.viewmodel.DetailsViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.UseCaseAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModelFactory
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 
 
 class DetailsFragment : Fragment() {
@@ -32,7 +28,7 @@ class DetailsFragment : Fragment() {
     private var binding: FragmentDetailsBinding? = null
     private lateinit var productViewModel: ProductViewModel
 
-    private val args by navArgs<DetailsFragmentArgs>()
+    private val args: DetailsFragmentArgs by navArgs()
     private lateinit var userViewModel: UserViewModel
 
     private var isFavorite = false
@@ -45,11 +41,6 @@ class DetailsFragment : Fragment() {
 
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
-        var productId = arguments?.getString("productId")
-
-        if (productId == null) {
-            productId = args.Id
-        }
 
         initializeViewModels()
 
@@ -58,8 +49,10 @@ class DetailsFragment : Fragment() {
             productViewModel.getFavoriteProducts(userData._id)
             productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
 
-                productViewModel.getProductFromRemote(productId)
+                productViewModel.getProductFromRemote(args.Id)
                 productViewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
+
+                    stopShimmer()
 
                     setFavoriteItem(productDetails, favoriteProducts, userData)
 
@@ -84,7 +77,11 @@ class DetailsFragment : Fragment() {
         return binding?.root
     }
 
-
+    private fun stopShimmer() {
+        binding?.shimmerLayout?.stopShimmer()
+        binding?.shimmerLayout?.visibility = View.GONE
+        binding?.page?.visibility = View.VISIBLE
+    }
 
     private fun initializeViewModels() {
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
@@ -134,10 +131,6 @@ class DetailsFragment : Fragment() {
         binding?.add2CartBtn?.setOnClickListener { btn ->
             productViewModel.getNumberOfItemInCart(userData._id, args.Id)
             productViewModel.productNumber.observe(viewLifecycleOwner) { productItemCount ->
-                Log.i(
-                    "Details Fragment",
-                    "product id: ${args.Id} and the count is: $productItemCount"
-                )
                 if (productItemCount == 0) {
                     productViewModel.addProductToCart(
                         userData._id,

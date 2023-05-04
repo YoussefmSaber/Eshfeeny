@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--    Bottom Button   -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/buttonCardLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/test"
+            android:layout_width="match_parent"
+            android:layout_height="52sp"
+            android:layout_gravity="center"
+            android:layout_margin="16sp"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/shimmer_load_color"
+            app:cardCornerRadius="10sp" />
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

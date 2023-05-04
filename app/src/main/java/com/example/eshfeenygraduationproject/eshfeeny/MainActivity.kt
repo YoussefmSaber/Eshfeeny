@@ -1,16 +1,11 @@
 package com.example.eshfeenygraduationproject.eshfeeny
 
-import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.ActivityMainBinding
-import com.example.eshfeenygraduationproject.eshfeeny.details.fragment.DetailsFragment
-import com.example.eshfeenygraduationproject.eshfeeny.details.fragment.DetailsFragmentDirections
 
 class MainActivity : AppCompatActivity() {
 

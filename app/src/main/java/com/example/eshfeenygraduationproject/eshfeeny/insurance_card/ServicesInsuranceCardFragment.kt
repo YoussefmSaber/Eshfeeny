@@ -8,12 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentServicesInsuranceCardBinding
 
 
 class ServicesInsuranceCardFragment : Fragment() {
-    private var binding:FragmentServicesInsuranceCardBinding? = null
+    private var binding: FragmentServicesInsuranceCardBinding? = null
     private val args: ServicesInsuranceCardFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,11 +28,16 @@ class ServicesInsuranceCardFragment : Fragment() {
         }
 
         binding?.monthlyMedicationId?.setOnClickListener {
-            val action = ServicesInsuranceCardFragmentDirections.actionServicesInsuranceCardFragmentToCartExistsFragment(args.insuranceCardName)
+            val action =
+                ServicesInsuranceCardFragmentDirections.actionServicesInsuranceCardFragmentToCartExistsFragment(
+                    args.insuranceCardName
+                )
             findNavController().navigate(action)
-      }
+        }
         binding?.backBtn22?.setOnClickListener {
-            findNavController().navigate(R.id.action_servicesInsuranceCardFragment_to_insuranceCardFragment)
+            val action =
+                ServicesInsuranceCardFragmentDirections.actionServicesInsuranceCardFragmentToInsuranceCardFragment()
+            findNavController().navigate(action)
         }
         // Inflate the layout for this fragment
         return binding?.root
