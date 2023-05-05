@@ -22,13 +22,13 @@
 
             <include layout="@layout/shimmer_effect_title" />
 
-            <include layout="@layout/shimmer_effect_favorite_item" />
+            <include layout="@layout/shimmer_effect_item" />
 
-            <include layout="@layout/shimmer_effect_favorite_item" />
+            <include layout="@layout/shimmer_effect_item" />
 
-            <include layout="@layout/shimmer_effect_favorite_item" />
+            <include layout="@layout/shimmer_effect_item" />
 
-            <include layout="@layout/shimmer_effect_favorite_item" />
+            <include layout="@layout/shimmer_effect_item" />
 
         </LinearLayout>
 

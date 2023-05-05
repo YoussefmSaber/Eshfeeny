@@ -1,105 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".eshfeeny.searchForProducts.ProductCategoryFragment">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cartCard"
-        android:layout_width="40sp"
-        android:layout_height="40sp"
-        android:layout_gravity="center_vertical|start"
-        android:layout_marginStart="16sp"
-        android:layout_marginTop="12sp"
-        app:cardCornerRadius="20sp"
-        app:layout_constraintEnd_toStartOf="@id/categoryTitle"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerProductCategoryChip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:shimmer_direction="top_to_bottom"
+        app:shimmer_highlight_alpha="1"
+        app:shimmer_tilt="45">
 
-        <ImageView
+        <include layout="@layout/shimmer_effect_category_chips" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <LinearLayout
+        android:id="@+id/pageCategory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_margin="8sp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/cart_small_icon" />
-    </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/categoryTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/cairo_semibold"
-        android:text="العناية بالاسنان"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@id/backBtn"
-        app:layout_constraintStart_toEndOf="@id/cartCard"
-        app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cartCard"
+                android:layout_width="46sp"
+                android:layout_height="46sp"
+                android:layout_margin="8sp"
+                app:cardCornerRadius="23sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/categoryTitle"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/backBtn"
-        android:layout_width="27sp"
-        android:layout_height="40sp"
-        android:layout_gravity="center_vertical|right"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="12sp"
-        android:src="@drawable/exit_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/categoryTitle"
-        app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/cart_icon" />
+            </com.google.android.material.card.MaterialCardView>
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16sp"
-        android:background="@drawable/search_background"
-        android:layoutDirection="rtl"
-        app:defaultQueryHint="ما الذي تبحث عنه؟"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/categoryTitle"
-        app:queryHint="ما الذي تبحث عنه؟"
-        app:searchIcon="@drawable/__icon__search_" />
+            <TextView
+                android:id="@+id/categoryTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cairo_semibold"
+                android:text="العناية بالاسنان"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/backBtn"
+                app:layout_constraintStart_toEndOf="@id/cartCard"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <HorizontalScrollView
-        android:id="@+id/chipGroupParent"
-        android:layout_width="match_parent"
-        android:layout_margin="8sp"
-        android:layout_height="wrap_content"
-        android:layoutDirection="rtl"
-        android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchView">
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="27sp"
+                android:layout_height="27sp"
+                android:layout_margin="8sp"
+                android:src="@drawable/exit_logo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/categoryTitle"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/medicineChipGroup"
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollHorizontally="true"
-            app:itemSpacing="16sp"
-            app:singleLine="true"
-            app:singleSelection="true">
+            android:layout_marginVertical="16sp"
+            android:layout_marginHorizontal="16sp"
+            android:background="@drawable/search_background"
+            android:layoutDirection="rtl"
+            app:defaultQueryHint="ما الذي تبحث عنه؟"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/categoryTitle"
+            app:queryHint="ما الذي تبحث عنه؟"
+            app:searchIcon="@drawable/__icon__search_" />
 
-        </com.google.android.material.chip.ChipGroup>
-    </HorizontalScrollView>
+        <HorizontalScrollView
+            android:id="@+id/chipGroupParent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8sp"
+            android:layoutDirection="rtl"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchView">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/medicineRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layoutDirection="rtl"
-        app:layout_constraintTop_toBottomOf="@id/chipGroupParent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        tools:listitem="@layout/product_item_category"
-        app:layout_constraintHeight_max="0dp"
-        app:layout_constraintHeight_default="wrap"/>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/medicineChipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollHorizontally="true"
+                app:itemSpacing="16sp"
+                app:singleLine="true"
+                app:singleSelection="true" />
+        </HorizontalScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/medicineRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutDirection="rtl"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_default="wrap"
+            app:layout_constraintHeight_max="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chipGroupParent"
+            app:spanCount="2"
+            tools:listitem="@layout/product_item_category" />
+
+    </LinearLayout>
+</LinearLayout>
