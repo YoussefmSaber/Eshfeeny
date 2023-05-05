@@ -20,13 +20,25 @@
         android:id="@+id/tempSlide"
         android:layout_width="match_parent"
         android:layout_height="150sp"
-        android:layout_margin="20sp"
+        android:layout_margin="16sp"
         app:cardBackgroundColor="@color/shimmer_load_color"
         app:cardCornerRadius="15sp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tempSearch" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/tempInsuranceCard"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:layout_margin="16sp"
+        app:cardBackgroundColor="@color/shimmer_load_color"
+        app:cardCornerRadius="15sp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tempSlide"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/tempText1"
@@ -39,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tempSlide" />
+        app:layout_constraintTop_toBottomOf="@id/tempInsuranceCard" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/tempBox1"
