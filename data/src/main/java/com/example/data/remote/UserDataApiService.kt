@@ -103,7 +103,7 @@ interface UserDataApiService {
         productId: String
     ): Int
 
-    @GET("/users/{userId}/insuranceCards")
+    @GET("users/{userId}/insuranceCards")
     suspend fun getInsuranceCards(
         @Path("userId")
         userId: String,

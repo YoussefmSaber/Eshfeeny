@@ -34,7 +34,7 @@ class InsuranceCardAdapter()
 
         fun bind(insuranceCardItem: InsuranceCardX) {
             currentCartItem = insuranceCardItem
-            itemBinding.nameICId.text = insuranceCardItem.name
+            itemBinding.nameICId.text = insuranceCardItem.nameOnCard
             itemBinding.numICId.text = insuranceCardItem.number
             Glide.with(itemBinding.root.context).load(insuranceCardItem.imageURL)
                 .into(itemBinding.imgIDIC)

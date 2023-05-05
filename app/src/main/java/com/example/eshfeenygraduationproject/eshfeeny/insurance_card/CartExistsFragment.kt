@@ -34,7 +34,7 @@ class CartExistsFragment : Fragment() {
             userViewModel.getInsuranceCards(userDetails._id)
             userViewModel.insuranceCardItems.observe(viewLifecycleOwner){
                 val adapter = InsuranceCardAdapter()
-                adapter.submitList(it.insuranceCard)
+                adapter.submitList(it)
                 binding?.existsCardRvId?.adapter = adapter
             }
         }
