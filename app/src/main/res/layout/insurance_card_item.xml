@@ -12,14 +12,14 @@
         android:background="#CCE6FF"
         android:elevation="0dp"
         android:stateListAnimator="@null"
-        app:cardBackgroundColor="#FFE5CC"
+        app:cardBackgroundColor="#fdfdff"
         app:cardCornerRadius="10sp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="#F99D1C"
+        app:strokeColor="#E5E7EB"
         app:strokeWidth="2.5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,6 +68,7 @@
                 android:layout_height="24dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="35dp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_point" />
