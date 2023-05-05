@@ -24,7 +24,7 @@ class ProductRepoImpl {
         userId: String,
         productId: PatchProductId
     ): PatchRequestResponse =
-        UserRetrofitInstance.productApi.addMedicneToFavorite(userId, productId)
+        UserRetrofitInstance.productApi.addProductToFavorite(userId, productId)
 
     suspend fun getFavoriteProducts(
         userId: String

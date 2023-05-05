@@ -32,7 +32,7 @@ interface ProductApiService {
     ): ProductResponse
 
     @PATCH("users/{id}/favorites")
-    suspend fun addMedicneToFavorite(
+    suspend fun addProductToFavorite(
         @Path("id")
         id: String,
         @Body
