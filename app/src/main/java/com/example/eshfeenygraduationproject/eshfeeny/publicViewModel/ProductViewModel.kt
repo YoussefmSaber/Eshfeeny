@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.ProductRepoImpl
+import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.insuranceCard.InsuranceCardResponse
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
@@ -59,9 +60,7 @@ class ProductViewModel(
     val productNumber: LiveData<Int>
         get() = _productNumber
 
-    private val _insuranceCardItems: MutableLiveData<InsuranceCardResponse> = MutableLiveData()
-    val insuranceCardItems: LiveData<InsuranceCardResponse>
-        get() = _insuranceCardItems
+
 
     private val _alternativeProducts = MutableLiveData<ProductResponse>()
     val alternativeProducts: LiveData<ProductResponse>
@@ -239,4 +238,5 @@ class ProductViewModel(
             }
         }
     }
+
 }

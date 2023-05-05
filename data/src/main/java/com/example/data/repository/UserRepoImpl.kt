@@ -92,7 +92,14 @@ class UserRepoImpl(private val userDAO: UserDAO) {
 
     suspend fun getInsuranceCards(
         userId: String
-    ): InsuranceCardResponse = UserRetrofitInstance.userApi.getInsuranceCards(userId)
+    ): InsuranceCardResponse {
+       try {
+            return UserRetrofitInstance.userApi.getInsuranceCards(userId)
+       } catch (e:Exception){
+           Log.e("card", "Error fetching the insurance card items $e")
+           return UserRetrofitInstance.userApi.getInsuranceCards(userId)
+       }
+    }
 
     suspend fun addInsuranceCard(
         userId: String,
