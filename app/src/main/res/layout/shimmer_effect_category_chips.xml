@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="rtl"
+    android:orientation="horizontal">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="96sp"
+        android:layout_height="32sp"
+        android:layout_marginHorizontal="8sp"
+        android:layout_marginVertical="16sp"
+        app:cardBackgroundColor="@color/shimmer_load_color"
+        app:cardCornerRadius="16sp"
+        app:cardElevation="0dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="96sp"
+        android:layout_height="32sp"
+        android:layout_marginHorizontal="8sp"
+        android:layout_marginVertical="16sp"
+        app:cardBackgroundColor="@color/shimmer_load_color"
+        app:cardCornerRadius="16sp"
+        app:cardElevation="0dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="96sp"
+        android:layout_height="32sp"
+        android:layout_marginHorizontal="8sp"
+        android:layout_marginVertical="16sp"
+        app:cardBackgroundColor="@color/shimmer_load_color"
+        app:cardCornerRadius="16sp"
+        app:cardElevation="0dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="96sp"
+        android:layout_height="32sp"
+        android:layout_marginHorizontal="8sp"
+        android:layout_marginVertical="16sp"
+        app:cardBackgroundColor="@color/shimmer_load_color"
+        app:cardCornerRadius="16sp"
+        app:cardElevation="0dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="96sp"
+        android:layout_height="32sp"
+        android:layout_marginHorizontal="8sp"
+        android:layout_marginVertical="16sp"
+        app:cardBackgroundColor="@color/shimmer_load_color"
+        app:cardCornerRadius="16sp"
+        app:cardElevation="0dp" />
+
+
+</LinearLayout>
