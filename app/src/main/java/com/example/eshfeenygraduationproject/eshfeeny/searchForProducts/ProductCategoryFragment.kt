@@ -3,11 +3,11 @@ package com.example.eshfeenygraduationproject.eshfeeny.searchForProducts
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.TypedValue
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
@@ -19,10 +19,10 @@ import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentProductCategoryBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductCategoryAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.util.MedicinsCategories
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModelFactory
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.util.MedicinsCategories
 import com.google.android.material.chip.Chip
 
 class ProductCategoryFragment : Fragment() {
@@ -43,6 +43,7 @@ class ProductCategoryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentProductCategoryBinding.inflate(inflater)
+        setCategoryTitle(args.category)
 
         binding?.medicineRecyclerView?.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -54,7 +55,6 @@ class ProductCategoryFragment : Fragment() {
         var favoriteProducts: ProductResponse
 
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
-
             productViewModel.getUserCartItems(userData._id)
             productViewModel.cartItems.observe(viewLifecycleOwner) { cartProductsResponse ->
                 cartProductsResponse?.let { notNullCartProducts ->
@@ -75,6 +75,31 @@ class ProductCategoryFragment : Fragment() {
         return binding?.root
     }
 
+    private fun setCategoryTitle(categoryType: String) {
+        when (categoryType) {
+            "allMeds" ->
+                binding?.categoryTitle?.text = "كل الادوية"
+
+            "dentalCare" ->
+                binding?.categoryTitle?.text = "العناية بالاسنان"
+
+            "menProducts" ->
+                binding?.categoryTitle?.text = "منتجات الرجال"
+
+            "womenProducts" ->
+                binding?.categoryTitle?.text = "منتجات المرأة"
+
+            "motherAndChild" ->
+                binding?.categoryTitle?.text = "الأم و الطفل"
+
+            "virusProtection" ->
+                binding?.categoryTitle?.text = "الحماية من الفيروسات"
+
+            "skinAndHairCare" ->
+                binding?.categoryTitle?.text = "العناية بالبشرة و الشعر"
+        }
+    }
+
     private fun setCategory(
         userData: UserInfo,
         favoriteProducts: ProductResponse,
@@ -82,7 +107,6 @@ class ProductCategoryFragment : Fragment() {
     ) {
         when (args.category) {
             "allMeds" -> {
-                binding?.categoryTitle?.text = "كل الادوية"
                 setChipSearch(
                     userData._id,
                     favoriteProducts,
@@ -93,7 +117,6 @@ class ProductCategoryFragment : Fragment() {
             }
 
             "dentalCare" -> {
-                binding?.categoryTitle?.text = "العناية بالاسنان"
                 setChipSearch(
                     userData._id,
                     favoriteProducts,
@@ -104,7 +127,6 @@ class ProductCategoryFragment : Fragment() {
             }
 
             "menProducts" -> {
-                binding?.categoryTitle?.text = "منتجات الرجال"
                 setChipSearch(
                     userData._id,
                     favoriteProducts,
@@ -115,7 +137,6 @@ class ProductCategoryFragment : Fragment() {
             }
 
             "womenProducts" -> {
-                binding?.categoryTitle?.text = "منتجات المرأة"
                 setChipSearch(
                     userData._id,
                     favoriteProducts,
@@ -126,7 +147,6 @@ class ProductCategoryFragment : Fragment() {
             }
 
             "motherAndChild" -> {
-                binding?.categoryTitle?.text = "الأم و الطفل"
                 setChipSearch(
                     userData._id,
                     favoriteProducts,
@@ -137,7 +157,6 @@ class ProductCategoryFragment : Fragment() {
             }
 
             "virusProtection" -> {
-                binding?.categoryTitle?.text = "الحماية من الفيروسات"
                 setChipSearch(
                     userData._id,
                     favoriteProducts,
@@ -148,7 +167,6 @@ class ProductCategoryFragment : Fragment() {
             }
 
             "skinAndHairCare" -> {
-                binding?.categoryTitle?.text = "العناية بالبشرة و الشعر"
                 setChipSearch(
                     userData._id,
                     favoriteProducts,
@@ -170,7 +188,8 @@ class ProductCategoryFragment : Fragment() {
     private fun setupViewModel() {
         val repo = ProductRepoImpl()
         val viewModelFactory = ProductViewModelFactory(repo)
-        productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
+        productViewModel =
+            ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
     }
 
@@ -195,20 +214,20 @@ class ProductCategoryFragment : Fragment() {
 
                 productViewModel.getProductType(productType)
                 productViewModel.allTypeProducts.observe(viewLifecycleOwner) { response ->
-
+                    stopShimmerLoading()
                     val adapter = ProductCategoryAdapter(
                         productViewModel,
                         userId,
                         favoriteProducts,
                         cartProducts
                     )
-
                     adapter.submitList(response)
                     binding?.medicineRecyclerView?.adapter = adapter
                 }
             }
         }
     }
+
 
     private fun createChip(
         name: String,
@@ -256,12 +275,15 @@ class ProductCategoryFragment : Fragment() {
                     val typeName: String = setTypeName(name)
                     productViewModel.getProductType(typeName)
                     productViewModel.allTypeProducts.observe(viewLifecycleOwner) { response ->
+                        stopShimmerLoading()
                         adapter.submitList(response)
                         binding?.medicineRecyclerView?.adapter = adapter
                     }
                 } else {
+
                     productViewModel.getProductsFromRemote(name)
                     productViewModel.remoteProducts.observe(viewLifecycleOwner) { response ->
+                        stopShimmerLoading()
                         adapter.submitList(response.body())
                         binding?.medicineRecyclerView?.adapter = adapter
                     }
@@ -271,7 +293,14 @@ class ProductCategoryFragment : Fragment() {
         return chip
     }
 
-    private fun setTypeName(name: String): String {
+    private fun stopShimmerLoading() {
+        binding?.shimmerProductCategoryChip?.stopShimmer()
+        binding?.shimmerProductCategoryChip?.visibility = View.GONE
+        binding?.pageCategory?.visibility = View.VISIBLE
+    }
+
+    private fun setTypeName(name: String)
+            : String {
         return when (name) {
             getString(R.string.allMedicines) -> "الأدوية"
             getString(R.string.allDentalCare) -> "العناية بالاسنان"
@@ -284,7 +313,10 @@ class ProductCategoryFragment : Fragment() {
         }
     }
 
-    private fun isChipNameType(searchName: String, chipTypes: Set<String>): Boolean {
+    private fun isChipNameType(
+        searchName: String, chipTypes: Set<String>
+    )
+            : Boolean {
         return chipTypes.contains(searchName)
     }
 
