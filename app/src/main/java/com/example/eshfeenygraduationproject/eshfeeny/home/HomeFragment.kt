@@ -105,9 +105,7 @@ class HomeFragment : Fragment() {
                         )
                         binding?.summerNeedsRecyclerView?.adapter = adapter
 
-                        adapter.submitList(it)
-
-                        Log.i("home Fragment", it.toString())
+                        adapter.submitList(it.take(12))
                     }
 
                     productViewModel.getProductsFromRemote(getString(R.string.vitaminsAndNutritionalSupplements))
@@ -122,7 +120,6 @@ class HomeFragment : Fragment() {
                         binding?.forBetterHealthRecyclerView?.adapter = adapter1
 
                         adapter1.submitList(it.body())
-                        Log.i("home Fragment", it.body().toString())
                     }
 
                     productViewModel.getProductsFromRemoteAlt(getString(R.string.sugarAlternitave))
@@ -136,7 +133,6 @@ class HomeFragment : Fragment() {
                         )
                         binding?.sugarAlternativeRecyclerView?.adapter = adapter2
                         adapter2.submitList(it.body())
-                        Log.i("home Fragment", it.body().toString())
                     }
                 }
             }
