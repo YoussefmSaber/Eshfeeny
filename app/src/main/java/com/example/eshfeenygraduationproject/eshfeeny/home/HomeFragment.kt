@@ -16,7 +16,7 @@ import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductHomeAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.*
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.*
-
+import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 
 class HomeFragment : Fragment() {
 
@@ -31,59 +31,11 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater)
 
-        val medicineRepo = ProductRepoImpl()
-        val viewModelFactory = ProductViewModelFactory(medicineRepo)
+        viewModelsInitlization()
 
+        settingImagesForImageSlider()
 
-        val imgList = ArrayList<SlideModel>()
-        imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318089572432/flip_img1.png"))
-        imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318370586674/flip_img2.png"))
-        imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318664192031/flip_img3.png"))
-        imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318932623361/flip_img4.png"))
-        imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498319305912380/flip_img5.png"))
-
-        binding?.imageSLider?.setImageList(imgList, ScaleTypes.FIT)
-        binding?.imageSLider?.setSlideAnimation(AnimationTypes.DEPTH_SLIDE)
-
-        //To open Roshta fragment
-
-        //To open Search Medicine Fragment
-        binding?.searchForMedsBtn?.setOnClickListener {
-            navigateToRightCategory("allMeds", it)
-        }
-
-        //To open Dental care Fragment
-        binding?.dentalCareBtn?.setOnClickListener {
-            navigateToRightCategory("dentalCare", it)
-        }
-
-        //To open Men's products Fragment
-        binding?.menProductsBtn?.setOnClickListener {
-            navigateToRightCategory("menProducts", it)
-        }
-
-        //To open Women's products Fragment
-        binding?.womenProductsBtn?.setOnClickListener {
-            navigateToRightCategory("womenProducts", it)
-        }
-
-        //To open Mother and Child Fragment
-        binding?.motherAndChildBtn?.setOnClickListener {
-            navigateToRightCategory("motherAndChild", it)
-        }
-
-        //To open Virus Protection Fragment
-        binding?.virusProtectionBtn?.setOnClickListener {
-            navigateToRightCategory("virusProtection", it)
-        }
-
-        //To open Skin and hair care Fragment
-        binding?.skinAndHairCareBtn?.setOnClickListener {
-            navigateToRightCategory("skinAndHairCare", it)
-        }
-
-        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
-        productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
+        navigateToCategories()
 
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
             val userID = userData._id
@@ -137,6 +89,7 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+
         binding?.addRoshtaPhotoId?.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment2_to_roshtaFragment)
         }
@@ -145,6 +98,62 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment2_to_insuranceCardFragment)
         }
         return binding?.root
+    }
+
+    private fun navigateToCategories() {
+        binding?.searchForMedsBtn?.setOnClickListener {
+            navigateToRightCategory("allMeds", it)
+        }
+
+        binding?.dentalCareBtn?.setOnClickListener {
+            navigateToRightCategory("dentalCare", it)
+        }
+
+        binding?.menProductsBtn?.setOnClickListener {
+            navigateToRightCategory("menProducts", it)
+        }
+
+        binding?.womenProductsBtn?.setOnClickListener {
+            navigateToRightCategory("womenProducts", it)
+        }
+
+        binding?.motherAndChildBtn?.setOnClickListener {
+            navigateToRightCategory("motherAndChild", it)
+        }
+
+        binding?.virusProtectionBtn?.setOnClickListener {
+            navigateToRightCategory("virusProtection", it)
+        }
+
+        binding?.skinAndHairCareBtn?.setOnClickListener {
+            navigateToRightCategory("skinAndHairCare", it)
+        }
+    }
+
+    private fun settingImagesForImageSlider() {
+        val imgList = ArrayList<SlideModel>()
+        imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318089572432/flip_img1.png"))
+        imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318370586674/flip_img2.png"))
+        imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318664192031/flip_img3.png"))
+        imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318932623361/flip_img4.png"))
+        imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498319305912380/flip_img5.png"))
+
+        binding?.imageSLider?.setImageList(imgList, ScaleTypes.FIT)
+        binding?.imageSLider?.setSlideAnimation(AnimationTypes.DEPTH_SLIDE)
+
+        binding?.dentalCareImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104449020455288832/Dental_Care.png")
+        binding?.menProductsImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104450147393482822/Men_Products.png")
+        binding?.womenProductsImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104429226066710538/women_products.png")
+        binding?.motherAndChildImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104430798427394098/mother_and_child.png")
+        binding?.virusProtectionImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104442581686943845/virus_protection.png")
+        binding?.skinAndHairCareImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104444095985893416/Skin_And_Hair_Care.png")
+    }
+
+    private fun viewModelsInitlization() {
+        val medicineRepo = ProductRepoImpl()
+        val viewModelFactory = ProductViewModelFactory(medicineRepo)
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
     }
 
     private fun stopShimmerLayout() {

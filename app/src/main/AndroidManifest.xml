@@ -26,6 +26,7 @@
 
         <activity
             android:name=".eshfeeny.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:theme="@style/Theme.EshfeenyGraduationProject">
             <intent-filter android:autoVerify="true">
@@ -43,6 +44,7 @@
         <activity
             android:name=".authentication.AuthenticationActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
