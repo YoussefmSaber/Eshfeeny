@@ -1,4 +1,6 @@
 package com.example.domain.entity
 
-class Brands {
-}
+data class Brands (
+    val name: String,
+    val imageUrl: String
+        )
