@@ -33,7 +33,7 @@
                 android:id="@+id/shimmerLayoutHome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,12 +49,11 @@
                 android:id="@+id/homePage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/logo">
-
 
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchView"
@@ -169,7 +168,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/insuranceCompanyBtn" />
 
-
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/add_roshta_photo_id"
                     android:layout_width="0dp"
@@ -228,7 +226,6 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </com.google.android.material.card.MaterialCardView>
-
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/searchForMedsBtn"
@@ -755,11 +752,11 @@
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/beesline_btn_id"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/select_all_Markat_id"
+                    app:layout_constraintStart_toEndOf="@id/showAllBrands"
                     app:layout_constraintTop_toBottomOf="@+id/sugarAlternativeRecyclerView" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/select_all_Markat_id"
+                    android:id="@+id/showAllBrands"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -792,16 +789,16 @@
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toStartOf="@id/vichy_btn_id"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/select_all_Markat_id"
+                    app:layout_constraintTop_toBottomOf="@id/showAllBrands"
                     app:strokeColor="#e5e5e5"
                     app:strokeWidth="1sp">
 
                     <ImageView
+                        android:id="@+id/beeslineImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="6sp"
-                        android:src="@drawable/vichy_laboratories_logo_vector" />
+                        android:layout_margin="6sp" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
@@ -814,16 +811,16 @@
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toStartOf="@id/laRoche_btn_id"
                     app:layout_constraintStart_toEndOf="@id/beesline_btn_id"
-                    app:layout_constraintTop_toBottomOf="@id/select_all_Markat_id"
+                    app:layout_constraintTop_toBottomOf="@id/showAllBrands"
                     app:strokeColor="#e5e5e5"
                     app:strokeWidth="1sp">
 
                     <ImageView
+                        android:id="@+id/vichyImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="6sp"
-                        android:src="@drawable/vichy_laboratories_logo_vector" />
+                        android:layout_margin="6sp" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
@@ -836,17 +833,17 @@
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/vichy_btn_id"
-                    app:layout_constraintTop_toBottomOf="@id/select_all_Markat_id"
+                    app:layout_constraintTop_toBottomOf="@id/showAllBrands"
 
                     app:strokeColor="#e5e5e5"
                     app:strokeWidth="1sp">
 
                     <ImageView
+                        android:id="@+id/larochImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="6sp"
-                        android:src="@drawable/la_roche_posay_brand" />
+                        android:layout_margin="6sp" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
@@ -865,11 +862,11 @@
                     app:strokeWidth="1sp">
 
                     <ImageView
+                        android:id="@+id/johnsonsImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="6sp"
-                        android:src="@drawable/pngwing_com" />
+                        android:layout_margin="6sp" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
@@ -888,11 +885,11 @@
                     app:strokeWidth="1sp">
 
                     <ImageView
+                        android:id="@+id/garenierImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="6sp"
-                        android:src="@drawable/garnier_logo" />
+                        android:layout_margin="6sp"/>
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
@@ -911,11 +908,11 @@
                     app:strokeWidth="1sp">
 
                     <ImageView
+                        android:id="@+id/axeImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="6sp"
-                        android:src="@drawable/axe_logo_2021" />
+                        android:layout_margin="6sp" />
                 </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

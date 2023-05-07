@@ -38,9 +38,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun initializingFragment() {
-        settingImagesForImageSlider()
+        loadingImages()
         fragmentNavigation()
-        viewModelsInitlization()
+        viewModelsInitialization()
         getUserId()
     }
 
@@ -48,6 +48,13 @@ class HomeFragment : Fragment() {
         navigateToCategories()
         navigate2InsuranceCompany()
         navigateToRoshtaFragment()
+        navigateToBrandsFragment()
+    }
+
+    private fun navigateToBrandsFragment() {
+        binding?.showAllBrands?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment2_to_brandsFragment)
+        }
     }
 
     private fun navigateToRoshtaFragment() {
@@ -186,7 +193,22 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun settingImagesForImageSlider() {
+    private fun loadingImages() {
+        loadingSliderImages()
+        loadingImagesForCategorires()
+        loadingImagesForBrands()
+    }
+
+    private fun loadingImagesForBrands() {
+        binding?.axeImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104897970945663067/AXE_logo_2021_1.png")
+        binding?.vichyImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104898149547511828/VICHY.png")
+        binding?.beeslineImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104898180971237396/Beesline.png")
+        binding?.garenierImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104897978579300352/Garnier-logo_1.png")
+        binding?.larochImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104898166580576388/La_Roche-Posay.png")
+        binding?.johnsonsImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104898132699009054/johnsons.png")
+    }
+
+    private fun loadingSliderImages() {
         val imgList = ArrayList<SlideModel>()
         imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318089572432/flip_img1.png"))
         imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318370586674/flip_img2.png"))
@@ -196,7 +218,9 @@ class HomeFragment : Fragment() {
 
         binding?.imageSLider?.setImageList(imgList, ScaleTypes.FIT)
         binding?.imageSLider?.setSlideAnimation(AnimationTypes.DEPTH_SLIDE)
+    }
 
+    private fun loadingImagesForCategorires() {
         binding?.dentalCareImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104449020455288832/Dental_Care.png")
         binding?.menProductsImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104450147393482822/Men_Products.png")
         binding?.womenProductsImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104429226066710538/women_products.png")
@@ -205,7 +229,7 @@ class HomeFragment : Fragment() {
         binding?.skinAndHairCareImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104444095985893416/Skin_And_Hair_Care.png")
     }
 
-    private fun viewModelsInitlization() {
+    private fun viewModelsInitialization() {
         val medicineRepo = ProductRepoImpl()
         val viewModelFactory = ProductViewModelFactory(medicineRepo)
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
