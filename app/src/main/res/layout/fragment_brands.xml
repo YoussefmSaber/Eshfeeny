@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".eshfeeny.brands.BrandsFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/brandsTopCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="16sp">
+
+            <ImageView
+                android:id="@+id/backButtonBrand"
+                android:layout_width="45sp"
+                android:layout_height="45sp"
+                android:layout_margin="16sp"
+                android:src="@drawable/arrow_right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@id/brandsTitle"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/brandsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16sp"
+                android:fontFamily="@font/cairo_semibold"
+                android:text="الماركات"
+                android:textColor="@color/text_main"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toStartOf="@id/backButtonBrand"
+                app:layout_constraintStart_toEndOf="@id/cartBrands"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cartBrands"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16sp"
+                app:cardBackgroundColor="@color/app_background"
+                app:cardCornerRadius="30sp"
+                app:cardElevation="5sp"
+                app:layout_constraintEnd_toStartOf="@id/brandsTitle"
+                app:layout_constraintHorizontal_bias="0.61"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="12sp"
+                    android:src="@drawable/cart_icon" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:id="@+id/divider6"
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_marginTop="16sp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintTop_toBottomOf="@id/brandsTitle" />
+
+            <androidx.appcompat.widget.SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16sp"
+                android:background="@drawable/search_background"
+                android:layoutDirection="rtl"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider6"
+                app:queryHint="ما الذي تبحث عنه؟"
+                app:searchIcon="@drawable/__icon__search_" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/brandsRecyclerView"
+        android:layout_marginTop="8sp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/brandsTopCard"
+        app:layout_constraintVertical_bias="0"
+        android:layoutDirection="rtl"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:listitem="@layout/brands_item"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

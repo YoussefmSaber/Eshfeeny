@@ -10,7 +10,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.util.Days
 
 // a class to set the days in the calender view
 class DaysAdapter(
-    val daysList: List<Days>,
+    private val daysList: List<Days>,
     private val onMonthNameChange: (String, String) -> Unit
 ) : RecyclerView.Adapter<DaysAdapter.DaysViewHolder>() {
 
