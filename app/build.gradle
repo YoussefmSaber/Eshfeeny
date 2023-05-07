@@ -114,6 +114,9 @@ dependencies {
 
     // Gradle dependency on Shimmer for Android
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    // Spark button animation
+    implementation 'com.github.varunest:sparkbutton:1.0.6'
     
     // splash screen api
     implementation 'androidx.core:core-splashscreen:1.0.1'
