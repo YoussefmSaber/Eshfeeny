@@ -86,21 +86,82 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/searchView" />
 
-                <ImageView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/insuranceCompanyBtn"
                     android:layout_width="match_parent"
-                    android:layout_height="150sp"
-                    android:src="@drawable/insurance_card"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16sp"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/imageSLider"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    app:strokeColor="#e7e7e7"
+                    app:strokeWidth="1.5sp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/insuranceImageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16sp"
+                            android:src="@drawable/insuranceimage"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/InsuranceTextLayout"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:id="@+id/InsuranceTextLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16sp"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/insuranceImageView"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:fontFamily="@font/cairo_semibold"
+                                android:text="@string/useInsuranceCard"
+                                android:textColor="@color/text_main"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:fontFamily="@font/cairo_regular"
+                                android:text="@string/orderEasily"
+                                android:textSize="11sp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/chooseInsuranceCompany"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40sp"
+                                android:layout_gravity="center"
+                                android:elevation="20dp"
+                                android:fontFamily="@font/cairo_medium"
+                                android:text="اختر شركة التامين"
+                                android:textSize="11sp"
+                                app:cornerRadius="20sp" />
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
+                    android:layout_margin="16sp"
                     android:fontFamily="@font/cairo_semibold"
                     android:text="سهلنا الطلب عليك"
                     android:textColor="@color/text_main"
@@ -114,14 +175,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="16sp"
-                    app:cardBackgroundColor="@color/app_background"
                     app:cardCornerRadius="10sp"
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/searchForMedsBtn"
                     app:layout_constraintTop_toBottomOf="@+id/textView5"
                     app:strokeColor="#e8e8e8"
-                    app:strokeWidth="1dp">
+                    app:strokeWidth="1.5sp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -143,8 +203,8 @@
                             android:id="@+id/roshetaTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
                             android:layout_margin="8sp"
+                            android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/roshetaImageView"
@@ -153,17 +213,17 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/cairo_semibold"
-                                android:textColor="@color/blue_main"
                                 android:layout_gravity="end"
-                                android:text="أضف" />
+                                android:fontFamily="@font/cairo_semibold"
+                                android:text="أضف"
+                                android:textColor="@color/blue_main" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/cairo_semibold"
-                                android:textColor="@color/blue_main"
-                                android:text="الروشتة" />
+                                android:text="الروشتة"
+                                android:textColor="@color/blue_main" />
                         </LinearLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -175,14 +235,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="16sp"
-                    app:cardBackgroundColor="@color/app_background"
                     app:cardCornerRadius="10sp"
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toStartOf="@+id/add_roshta_photo_id"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView5"
                     app:strokeColor="#e8e8e8"
-                    app:strokeWidth="1dp">
+                    app:strokeWidth="1.5sp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -204,8 +263,8 @@
                             android:id="@+id/searchProductTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
                             android:layout_margin="8sp"
+                            android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/searchProductImageView"
@@ -214,17 +273,17 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/cairo_semibold"
-                                android:textColor="@color/blue_main"
                                 android:layout_gravity="end"
-                                android:text="@string/search" />
+                                android:fontFamily="@font/cairo_semibold"
+                                android:text="@string/search"
+                                android:textColor="@color/blue_main" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/cairo_semibold"
-                                android:textColor="@color/blue_main"
-                                android:text="@string/forMedicine" />
+                                android:text="@string/forMedicine"
+                                android:textColor="@color/blue_main" />
                         </LinearLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -234,11 +293,11 @@
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
+                    android:layout_margin="16sp"
                     android:fontFamily="@font/cairo_semibold"
-                    android:text="تصفح الأقسام"
+                    android:text="@string/searchCategories"
                     android:textColor="#1F1F1F"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/searchForMedsBtn" />
 
@@ -568,9 +627,8 @@
                     android:id="@+id/summerNeedsRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="16sp"
+                    android:layout_marginHorizontal="8sp"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -622,9 +680,8 @@
                     android:id="@+id/forBetterHealthRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="16sp"
+                    android:layout_marginHorizontal="8sp"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -676,9 +733,8 @@
                     android:id="@+id/sugarAlternativeRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="16sp"
+                    android:layout_marginHorizontal="8sp"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -692,13 +748,13 @@
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="16sp"
                     android:fontFamily="@font/cairo_semibold"
                     android:text="تصفح الماركات"
                     android:textColor="#1F1F1F"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/beesline_btn_id"
-                    app:layout_constraintEnd_toEndOf="@+id/textView6"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/select_all_Markat_id"
                     app:layout_constraintTop_toBottomOf="@+id/sugarAlternativeRecyclerView" />
 
@@ -730,7 +786,7 @@
                     android:id="@+id/beesline_btn_id"
                     android:layout_width="0dp"
                     android:layout_height="80sp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="8sp"
                     android:elevation="0dp"
                     app:cardCornerRadius="10sp"
                     app:cardElevation="0dp"
@@ -752,9 +808,8 @@
                     android:id="@+id/vichy_btn_id"
                     android:layout_width="0dp"
                     android:layout_height="80sp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="8sp"
                     android:elevation="0dp"
-                    android:padding="6dp"
                     app:cardCornerRadius="10sp"
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toStartOf="@id/laRoche_btn_id"
@@ -775,9 +830,8 @@
                     android:id="@+id/laRoche_btn_id"
                     android:layout_width="0dp"
                     android:layout_height="80sp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="8sp"
                     android:elevation="0dp"
-                    android:padding="6dp"
                     app:cardCornerRadius="10sp"
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -799,9 +853,8 @@
                     android:id="@+id/johnsons_btn_id"
                     android:layout_width="0dp"
                     android:layout_height="80sp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="8sp"
                     android:elevation="0dp"
-                    android:padding="6dp"
                     app:cardCornerRadius="10sp"
                     app:cardElevation="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -823,9 +876,8 @@
                     android:id="@+id/garnier_btn_id"
                     android:layout_width="0dp"
                     android:layout_height="80sp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="8sp"
                     android:elevation="0dp"
-                    android:padding="6dp"
                     app:cardCornerRadius="10sp"
                     app:cardElevation="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -847,9 +899,8 @@
                     android:id="@+id/Axe_btn_id"
                     android:layout_width="0dp"
                     android:layout_height="80sp"
-                    android:layout_margin="8dp"
+                    android:layout_margin="8sp"
                     android:elevation="0dp"
-                    android:padding="6dp"
                     app:cardCornerRadius="10sp"
                     app:cardElevation="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"

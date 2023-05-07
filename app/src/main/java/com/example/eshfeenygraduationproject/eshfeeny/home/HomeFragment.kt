@@ -2,20 +2,21 @@ package com.example.eshfeenygraduationproject.eshfeeny.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.*
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.denzcoskun.imageslider.constants.*
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.data.repository.ProductRepoImpl
+import com.example.domain.entity.cart.CartResponse
+import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductHomeAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.*
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.*
+import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.*
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 
 class HomeFragment : Fragment() {
@@ -31,73 +32,128 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater)
 
-        viewModelsInitlization()
+        initializingFragment()
 
+        return binding?.root
+    }
+
+    private fun initializingFragment() {
         settingImagesForImageSlider()
+        fragmentNavigation()
+        viewModelsInitlization()
+        getUserId()
+    }
 
+    private fun fragmentNavigation() {
         navigateToCategories()
+        navigate2InsuranceCompany()
+        navigateToRoshtaFragment()
+    }
 
-        userViewModel.userData.observe(viewLifecycleOwner) { userData ->
-            val userID = userData._id
-            productViewModel.getFavoriteProducts(userID)
-            productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
-
-                productViewModel.getUserCartItems(userID)
-                productViewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
-
-                    productViewModel.getProductType("العناية بالبشرة و الشعر")
-                    productViewModel.allTypeProducts.observe(viewLifecycleOwner) {
-
-                        stopShimmerLayout()
-                        val adapter = ProductHomeAdapter(
-                            productViewModel,
-                            userID,
-                            favoriteProducts,
-                            cartItems
-                        )
-                        binding?.summerNeedsRecyclerView?.adapter = adapter
-
-                        adapter.submitList(it.take(12))
-                    }
-
-                    productViewModel.getProductsFromRemote(getString(R.string.vitaminsAndNutritionalSupplements))
-                    productViewModel.remoteProducts.observe(viewLifecycleOwner) {
-
-                        val adapter1 = ProductHomeAdapter(
-                            productViewModel,
-                            userID,
-                            favoriteProducts,
-                            cartItems
-                        )
-                        binding?.forBetterHealthRecyclerView?.adapter = adapter1
-
-                        adapter1.submitList(it.body())
-                    }
-
-                    productViewModel.getProductsFromRemoteAlt(getString(R.string.sugarAlternitave))
-                    productViewModel.remoteProductsAlt.observe(viewLifecycleOwner) {
-
-                        val adapter2 = ProductHomeAdapter(
-                            productViewModel,
-                            userID,
-                            favoriteProducts,
-                            cartItems
-                        )
-                        binding?.sugarAlternativeRecyclerView?.adapter = adapter2
-                        adapter2.submitList(it.body())
-                    }
-                }
-            }
-        }
-
+    private fun navigateToRoshtaFragment() {
         binding?.addRoshtaPhotoId?.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment2_to_roshtaFragment)
+        }
+    }
+
+    private fun getUserId() {
+        userViewModel.userData.observe(viewLifecycleOwner) { userData ->
+            val userID = userData._id
+            getFavoriteProducts(userID)
+        }
+    }
+
+    private fun getFavoriteProducts(userID: String) {
+        productViewModel.getFavoriteProducts(userID)
+        productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
+
+            getCartItems(userID, favoriteProducts)
+        }
+    }
+
+    private fun getCartItems(
+        userID: String,
+        favoriteProducts: ProductResponse
+    ) {
+        productViewModel.getUserCartItems(userID)
+        productViewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
+
+            setSummerNeedsRecyclerView(userID, favoriteProducts, cartItems)
+
+            setForBetterHealthRecyclerView(userID, favoriteProducts, cartItems)
+
+            setSugarAlternativeRecyclerView(userID, favoriteProducts, cartItems)
+        }
+    }
+
+    private fun setSugarAlternativeRecyclerView(
+        userID: String,
+        favoriteProducts: ProductResponse,
+        cartItems: CartResponse
+    ) {
+        productViewModel.getProductsFromRemoteAlt(getString(R.string.sugarAlternitave))
+        productViewModel.remoteProductsAlt.observe(viewLifecycleOwner) {
+
+            val adapter2 = ProductHomeAdapter(
+                productViewModel,
+                userID,
+                favoriteProducts,
+                cartItems
+            )
+            binding?.sugarAlternativeRecyclerView?.adapter = adapter2
+            adapter2.submitList(it.body())
+        }
+    }
+
+    private fun setForBetterHealthRecyclerView(
+        userID: String,
+        favoriteProducts: ProductResponse,
+        cartItems: CartResponse
+    ) {
+        productViewModel.getProductsFromRemote(getString(R.string.vitaminsAndNutritionalSupplements))
+        productViewModel.remoteProducts.observe(viewLifecycleOwner) {
+
+            val adapter1 = ProductHomeAdapter(
+                productViewModel,
+                userID,
+                favoriteProducts,
+                cartItems
+            )
+            binding?.forBetterHealthRecyclerView?.adapter = adapter1
+
+            adapter1.submitList(it.body())
+        }
+    }
+
+    private fun setSummerNeedsRecyclerView(
+        userID: String,
+        favoriteProducts: ProductResponse,
+        cartItems: CartResponse
+    ) {
+        productViewModel.getProductType("العناية بالبشرة و الشعر")
+        productViewModel.allTypeProducts.observe(viewLifecycleOwner) {
+
+            stopShimmerLayout()
+            val adapter = ProductHomeAdapter(
+                productViewModel,
+                userID,
+                favoriteProducts,
+                cartItems
+            )
+            binding?.summerNeedsRecyclerView?.adapter = adapter
+
+            adapter.submitList(it.take(12))
+        }
+    }
+
+    private fun navigate2InsuranceCompany() {
+        binding?.chooseInsuranceCompany?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment2_to_insuranceCardFragment)
         }
 
         binding?.insuranceCompanyBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment2_to_insuranceCardFragment)
         }
-        return binding?.root
     }
 
     private fun navigateToCategories() {
