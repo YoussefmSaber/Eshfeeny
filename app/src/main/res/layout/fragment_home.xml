@@ -457,6 +457,7 @@
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/menProductsBtn"
+                    app:rippleColor="@color/orange_main"
                     app:strokeColor="@color/orange_main"
                     tools:ignore="SpeakableTextPresentCheck" />
 
@@ -510,6 +511,7 @@
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/summerNeedsRecyclerView"
+                    app:rippleColor="@color/orange_main"
                     app:strokeColor="@color/orange_main"
                     tools:ignore="SpeakableTextPresentCheck" />
 
@@ -563,6 +565,7 @@
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/forBetterHealthRecyclerView"
+                    app:rippleColor="@color/orange_main"
                     app:strokeColor="@color/orange_main"
                     tools:ignore="SpeakableTextPresentCheck" />
 
@@ -616,6 +619,7 @@
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sugarAlternativeRecyclerView"
+                    app:rippleColor="@color/orange_main"
                     app:strokeColor="@color/orange_main"
                     tools:ignore="SpeakableTextPresentCheck" />
 
