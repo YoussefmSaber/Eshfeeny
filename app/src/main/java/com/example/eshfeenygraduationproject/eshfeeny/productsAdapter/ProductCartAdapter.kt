@@ -17,7 +17,7 @@ class ProductCartAdapter(
     private val viewModel: ProductViewModel,
     private val userId: String,
     private val lifecycleOwner: LifecycleOwner
-) : ListAdapter<CartItem, ProductCartAdapter.ViewHolder>(ProductCartDiffCallBack()) {
+): ListAdapter<CartItem, ProductCartAdapter.ViewHolder>(ProductCartDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding =
