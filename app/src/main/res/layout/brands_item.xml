@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/brandImageView"
             android:layout_width="wrap_content"
-            android:layout_height="70sp"
+            android:layout_height="65sp"
             android:layout_margin="16sp"
             android:layout_gravity="center"
             android:src="@drawable/garnier_logo"/>
