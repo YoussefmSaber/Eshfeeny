@@ -33,7 +33,7 @@
                 android:id="@+id/shimmerLayoutHome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,12 +49,11 @@
                 android:id="@+id/homePage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/logo">
-
 
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchView"
@@ -86,21 +85,82 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/searchView" />
 
-                <ImageView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/insuranceCompanyBtn"
                     android:layout_width="match_parent"
-                    android:layout_height="150sp"
-                    android:src="@drawable/insurance_card"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16sp"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/imageSLider"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    app:strokeColor="#e7e7e7"
+                    app:strokeWidth="1.5sp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/insuranceImageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16sp"
+                            android:src="@drawable/insuranceimage"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/InsuranceTextLayout"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:id="@+id/InsuranceTextLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16sp"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/insuranceImageView"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:fontFamily="@font/cairo_semibold"
+                                android:text="@string/useInsuranceCard"
+                                android:textColor="@color/text_main"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:fontFamily="@font/cairo_regular"
+                                android:text="@string/orderEasily"
+                                android:textSize="11sp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/chooseInsuranceCompany"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40sp"
+                                android:layout_gravity="center"
+                                android:elevation="20dp"
+                                android:fontFamily="@font/cairo_medium"
+                                android:text="اختر شركة التامين"
+                                android:textSize="11sp"
+                                app:cornerRadius="20sp" />
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
+                    android:layout_margin="16sp"
                     android:fontFamily="@font/cairo_semibold"
                     android:text="سهلنا الطلب عليك"
                     android:textColor="@color/text_main"
@@ -108,124 +168,464 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/insuranceCompanyBtn" />
 
-                <ImageView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/add_roshta_photo_id"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/add_roshtaaa"
+                    android:layout_margin="16sp"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/searchForMedsBtn"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView5"
+                    app:strokeColor="#e8e8e8"
+                    app:strokeWidth="1.5sp">
 
-                <ImageView
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/roshetaImageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8sp"
+                            android:src="@drawable/rosheta"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/roshetaTextView"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:id="@+id/roshetaTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8sp"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/roshetaImageView"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:fontFamily="@font/cairo_semibold"
+                                android:text="أضف"
+                                android:textColor="@color/blue_main" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/cairo_semibold"
+                                android:text="الروشتة"
+                                android:textColor="@color/blue_main" />
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/searchForMedsBtn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:clickable="true"
-                    android:src="@drawable/search_for_medicine_home"
+                    android:layout_margin="16sp"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="0dp"
                     app:layout_constraintEnd_toStartOf="@+id/add_roshta_photo_id"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView5"
+                    app:strokeColor="#e8e8e8"
+                    app:strokeWidth="1.5sp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/searchProductImageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8sp"
+                            android:src="@drawable/search_for_product_image"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/searchProductTextView"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:id="@+id/searchProductTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8sp"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/searchProductImageView"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:fontFamily="@font/cairo_semibold"
+                                android:text="@string/search"
+                                android:textColor="@color/blue_main" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/cairo_semibold"
+                                android:text="@string/forMedicine"
+                                android:textColor="@color/blue_main" />
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
+                    android:layout_margin="16sp"
                     android:fontFamily="@font/cairo_semibold"
-                    android:text="تصفح الأقسام"
+                    android:text="@string/searchCategories"
                     android:textColor="#1F1F1F"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/searchForMedsBtn" />
 
-                <ImageView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/virusProtectionBtn"
-                    android:layout_width="117dp"
-                    android:layout_height="98dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/el_7maya_mn_el_versus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16sp"
+                    app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    app:layout_constraintStart_toEndOf="@id/motherAndChildBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6">
 
-                <ImageView
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
+
+                            <ImageView
+                                android:layout_width="70sp"
+                                android:layout_height="70sp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/red_star" />
+
+                            <ImageView
+                                android:id="@+id/virusProtectionImage"
+                                android:layout_width="50sp"
+                                android:layout_height="50sp"
+                                android:layout_gravity="center" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="70sp"
+                            android:layout_height="40sp"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/cairo_semibold"
+                            android:gravity="center"
+                            android:text="الحماية من الفيروسات"
+                            android:textColor="@color/text_color"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/motherAndChildBtn"
-                    android:layout_width="76dp"
-                    android:layout_height="101dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="44dp"
-                    android:src="@drawable/elom_w_eltfl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16sp"
+                    app:cardElevation="0dp"
                     app:layout_constraintEnd_toStartOf="@+id/virusProtectionBtn"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    app:layout_constraintStart_toEndOf="@id/womenProductsBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6">
 
-                <ImageView
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
+
+                            <ImageView
+                                android:layout_width="70sp"
+                                android:layout_height="70sp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/yellow_star" />
+
+                            <ImageView
+                                android:id="@+id/motherAndChildImage"
+                                android:layout_width="50sp"
+                                android:layout_height="50sp"
+                                android:layout_gravity="center" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="40sp"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/cairo_semibold"
+                            android:gravity="center"
+
+                            android:text="الأم والطفل"
+                            android:textColor="@color/text_color"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/womenProductsBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="60dp"
-                    android:src="@drawable/montgat_el_mr2aa"
+                    android:layout_marginTop="16sp"
+                    app:cardElevation="0dp"
                     app:layout_constraintEnd_toStartOf="@+id/motherAndChildBtn"
-                    app:layout_constraintTop_toTopOf="@+id/motherAndChildBtn" />
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView6">
 
-                <ImageView
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
+
+                            <ImageView
+                                android:layout_width="70sp"
+                                android:layout_height="70sp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/blue_star" />
+
+                            <ImageView
+                                android:id="@+id/womenProductsImage"
+                                android:layout_width="50sp"
+                                android:layout_height="50sp"
+                                android:layout_gravity="center" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="40sp"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/cairo_semibold"
+                            android:gravity="center"
+                            android:text="منتجات المرأه"
+                            android:textColor="@color/text_color"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/skinAndHairCareBtn"
-                    android:layout_width="115dp"
-                    android:layout_height="101dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/el_3naya_bl_bshraa"
-                    app:layout_constraintEnd_toEndOf="@+id/virusProtectionBtn"
-                    app:layout_constraintTop_toBottomOf="@+id/virusProtectionBtn" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16sp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/dentalCareBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/virusProtectionBtn">
 
-                <ImageView
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
+
+                            <ImageView
+                                android:layout_width="70sp"
+                                android:layout_height="70sp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/blue_star" />
+
+                            <ImageView
+                                android:id="@+id/skinAndHairCareImage"
+                                android:layout_width="50sp"
+                                android:layout_height="50sp"
+                                android:layout_gravity="center" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="70sp"
+                            android:layout_height="40sp"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/cairo_semibold"
+                            android:gravity="center"
+                            android:text="العناية بالبشرة والشعر"
+                            android:textColor="@color/text_color"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/dentalCareBtn"
-                    android:layout_width="79dp"
-                    android:layout_height="98dp"
-                    android:layout_marginEnd="44dp"
-                    android:src="@drawable/el_3naya_bl_asnaan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16sp"
+                    app:cardElevation="0dp"
                     app:layout_constraintEnd_toStartOf="@+id/skinAndHairCareBtn"
-                    app:layout_constraintTop_toTopOf="@+id/skinAndHairCareBtn" />
+                    app:layout_constraintStart_toEndOf="@id/menProductsBtn"
+                    app:layout_constraintTop_toBottomOf="@id/virusProtectionBtn">
 
-                <ImageView
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
+
+                            <ImageView
+                                android:layout_width="70sp"
+                                android:layout_height="70sp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/red_star" />
+
+                            <ImageView
+                                android:id="@+id/dentalCareImage"
+                                android:layout_width="50sp"
+                                android:layout_height="50sp"
+                                android:layout_gravity="center" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="40sp"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/cairo_semibold"
+                            android:gravity="center"
+                            android:text="العناية بالأسنان"
+                            android:textColor="@color/text_color"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/menProductsBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="60dp"
-                    android:src="@drawable/montgat_el_rgaal"
-                    app:layout_constraintEnd_toStartOf="@+id/dentalCareBtn"
-                    app:layout_constraintTop_toTopOf="@+id/dentalCareBtn" />
+                    android:layout_marginTop="16sp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toStartOf="@id/dentalCareBtn"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/virusProtectionBtn">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
+
+                            <ImageView
+                                android:layout_width="70sp"
+                                android:layout_height="70sp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/yellow_star" />
+
+                            <ImageView
+                                android:id="@+id/menProductsImage"
+                                android:layout_width="50sp"
+                                android:layout_height="50sp"
+                                android:layout_gravity="center" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="40sp"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/cairo_semibold"
+                            android:gravity="center"
+                            android:text="منتجات الرجال"
+                            android:textColor="@color/text_color"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_margin="16sp"
                     android:fontFamily="@font/cairo_semibold"
                     android:text="احتياجات الصيف"
                     android:textColor="#1F1F1F"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView6"
+                    app:layout_constraintBottom_toTopOf="@id/summerNeedsRecyclerView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/select_all_summer_needs_id"
                     app:layout_constraintTop_toBottomOf="@+id/skinAndHairCareBtn" />
 
-                <ImageView
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/select_all_summer_needs_id"
-                    android:layout_width="86dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:src="@drawable/show_all_icon"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16sp"
+                    android:fontFamily="@font/cairo_semibold"
+                    android:foregroundGravity="center"
+                    android:gravity="center"
+                    android:text="@string/showAll"
+                    android:textColor="@color/orange_main"
+                    android:textSize="12sp"
+                    app:cornerRadius="8sp"
+                    app:icon="@drawable/arrow_left"
+                    app:iconSize="20sp"
+                    app:iconTint="@color/orange_main"
+                    app:layout_constraintBottom_toTopOf="@id/summerNeedsRecyclerView"
+                    app:layout_constraintEnd_toStartOf="@id/textView7"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/skinAndHairCareBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/menProductsBtn"
+                    app:rippleColor="@color/orange_main"
+                    app:strokeColor="@color/orange_main"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/summerNeedsRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="16sp"
+                    android:layout_marginHorizontal="8sp"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -239,32 +639,46 @@
                     android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_margin="16sp"
                     android:fontFamily="@font/cairo_semibold"
                     android:text="لصحة أفضل"
                     android:textColor="#1F1F1F"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView6"
+                    app:layout_constraintBottom_toTopOf="@id/forBetterHealthRecyclerView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/select_all_for_better_health_id"
                     app:layout_constraintTop_toBottomOf="@+id/summerNeedsRecyclerView" />
 
-                <ImageView
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/select_all_for_better_health_id"
-                    android:layout_width="86dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="7dp"
-                    android:src="@drawable/show_all_icon"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16sp"
+                    android:fontFamily="@font/cairo_semibold"
+                    android:text="@string/showAll"
+                    android:textColor="@color/orange_main"
+                    android:textSize="12sp"
+                    app:cornerRadius="10sp"
+                    app:icon="@drawable/arrow_left"
+                    app:iconGravity="start"
+                    app:iconSize="20sp"
+                    app:iconTint="@color/orange_main"
+                    app:layout_constraintBottom_toTopOf="@id/forBetterHealthRecyclerView"
+                    app:layout_constraintEnd_toStartOf="@id/textView8"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/summerNeedsRecyclerView"
+                    app:rippleColor="@color/orange_main"
+                    app:strokeColor="@color/orange_main"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/forBetterHealthRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="16sp"
+                    android:layout_marginHorizontal="8sp"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -278,32 +692,46 @@
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_margin="16sp"
                     android:fontFamily="@font/cairo_semibold"
                     android:text="بديل للسكر"
                     android:textColor="#1F1F1F"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView6"
+                    app:layout_constraintBottom_toTopOf="@id/sugarAlternativeRecyclerView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/select_all_alternative_to_sugar_id"
                     app:layout_constraintTop_toBottomOf="@+id/forBetterHealthRecyclerView" />
 
-                <ImageView
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/select_all_alternative_to_sugar_id"
-                    android:layout_width="86dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="7dp"
-                    android:src="@drawable/show_all_icon"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16sp"
+                    android:fontFamily="@font/cairo_semibold"
+                    android:text="@string/showAll"
+                    android:textColor="@color/orange_main"
+                    android:textSize="12sp"
+                    app:cornerRadius="10sp"
+                    app:icon="@drawable/arrow_left"
+                    app:iconGravity="start"
+                    app:iconSize="20sp"
+                    app:iconTint="@color/orange_main"
+                    app:layout_constraintBottom_toTopOf="@id/sugarAlternativeRecyclerView"
+                    app:layout_constraintEnd_toStartOf="@id/textView9"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/forBetterHealthRecyclerView"
+                    app:rippleColor="@color/orange_main"
+                    app:strokeColor="@color/orange_main"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/sugarAlternativeRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="16sp"
+                    android:layout_marginHorizontal="8sp"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -317,193 +745,175 @@
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="16sp"
                     android:fontFamily="@font/cairo_semibold"
                     android:text="تصفح الماركات"
                     android:textColor="#1F1F1F"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView6"
+                    app:layout_constraintBottom_toTopOf="@+id/beesline_btn_id"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/showAllBrands"
                     app:layout_constraintTop_toBottomOf="@+id/sugarAlternativeRecyclerView" />
 
-                <ImageView
-                    android:id="@+id/select_all_Markat_id"
-                    android:layout_width="86dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="7dp"
-                    android:src="@drawable/show_all_icon"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/showAllBrands"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16sp"
+                    android:fontFamily="@font/cairo_semibold"
+                    android:text="@string/showAll"
+                    android:textColor="@color/orange_main"
+                    android:textSize="12sp"
+                    app:cornerRadius="10sp"
+                    app:icon="@drawable/arrow_left"
+                    app:iconGravity="start"
+                    app:iconSize="20sp"
+                    app:iconTint="@color/orange_main"
+                    app:layout_constraintBottom_toTopOf="@id/beesline_btn_id"
+                    app:layout_constraintEnd_toStartOf="@id/textView10"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sugarAlternativeRecyclerView"
+                    app:rippleColor="@color/orange_main"
+                    app:strokeColor="@color/orange_main"
                     tools:ignore="SpeakableTextPresentCheck" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="8dp"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/beesline_btn_id"
+                    android:layout_width="0dp"
+                    android:layout_height="80sp"
+                    android:layout_margin="8sp"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toStartOf="@id/vichy_btn_id"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textView10">
+                    app:layout_constraintTop_toBottomOf="@id/showAllBrands"
+                    app:strokeColor="#e5e5e5"
+                    app:strokeWidth="1sp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:id="@+id/beeslineImage"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                        android:layout_gravity="center"
+                        android:layout_margin="6sp" />
+                </com.google.android.material.card.MaterialCardView>
 
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/beesline_btn_id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:backgroundTint="#F7FFFFFF"
-                            android:elevation="0dp"
-                            android:padding="6dp"
-                            app:cardCornerRadius="10sp"
-                            app:cardElevation="0dp"
-                            app:strokeColor="#e5e5e5"
-                            app:strokeWidth="1sp">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/vichy_btn_id"
+                    android:layout_width="0dp"
+                    android:layout_height="80sp"
+                    android:layout_margin="8sp"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toStartOf="@id/laRoche_btn_id"
+                    app:layout_constraintStart_toEndOf="@id/beesline_btn_id"
+                    app:layout_constraintTop_toBottomOf="@id/showAllBrands"
+                    app:strokeColor="#e5e5e5"
+                    app:strokeWidth="1sp">
 
-                            <ImageView
-                                android:layout_width="100sp"
-                                android:layout_height="75sp"
-                                android:layout_margin="6sp"
-                                android:src="@drawable/vichy_laboratories_logo_vector"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/vichy_btn_id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:backgroundTint="#F7FFFFFF"
-                            android:elevation="0dp"
-                            android:padding="6dp"
-                            app:cardCornerRadius="10sp"
-                            app:cardElevation="0dp"
-                            app:strokeColor="#e5e5e5"
-                            app:strokeWidth="1sp">
-
-                            <ImageView
-                                android:layout_width="100sp"
-                                android:layout_height="75sp"
-                                android:layout_margin="6sp"
-                                android:src="@drawable/vichy_laboratories_logo_vector"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/laRoche_btn_id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:backgroundTint="#F7FFFFFF"
-                            android:elevation="0dp"
-                            android:padding="6dp"
-                            app:cardCornerRadius="10sp"
-                            app:cardElevation="0dp"
-                            app:strokeColor="#e5e5e5"
-                            app:strokeWidth="1sp">
-
-                            <ImageView
-                                android:layout_width="100sp"
-                                android:layout_height="75sp"
-                                android:layout_margin="6sp"
-                                android:src="@drawable/la_roche_posay_brand"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </com.google.android.material.card.MaterialCardView>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:id="@+id/vichyImage"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                        android:layout_gravity="center"
+                        android:layout_margin="6sp" />
+                </com.google.android.material.card.MaterialCardView>
 
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/johnsons_btn_id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:backgroundTint="#F7FFFFFF"
-                            android:elevation="0dp"
-                            android:padding="6dp"
-                            app:cardCornerRadius="10sp"
-                            app:cardElevation="0dp"
-                            app:strokeColor="#e5e5e5"
-                            app:strokeWidth="1sp">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/laRoche_btn_id"
+                    android:layout_width="0dp"
+                    android:layout_height="80sp"
+                    android:layout_margin="8sp"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/vichy_btn_id"
+                    app:layout_constraintTop_toBottomOf="@id/showAllBrands"
 
-                            <ImageView
-                                android:layout_width="100sp"
-                                android:layout_height="75sp"
-                                android:layout_margin="6sp"
-                                android:src="@drawable/pngwing_com"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </com.google.android.material.card.MaterialCardView>
+                    app:strokeColor="#e5e5e5"
+                    app:strokeWidth="1sp">
 
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/garnier_btn_id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:backgroundTint="#F7FFFFFF"
-                            android:elevation="0dp"
-                            android:padding="6dp"
-                            app:cardCornerRadius="10sp"
-                            app:cardElevation="0dp"
-                            app:strokeColor="#e5e5e5"
-                            app:strokeWidth="1sp">
+                    <ImageView
+                        android:id="@+id/larochImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="6sp" />
+                </com.google.android.material.card.MaterialCardView>
 
-                            <ImageView
-                                android:layout_width="100sp"
-                                android:layout_height="75sp"
-                                android:layout_margin="6sp"
-                                android:src="@drawable/garnier_logo"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/johnsons_btn_id"
+                    android:layout_width="0dp"
+                    android:layout_height="80sp"
+                    android:layout_margin="8sp"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/garnier_btn_id"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/beesline_btn_id"
+                    app:strokeColor="#e5e5e5"
+                    app:strokeWidth="1sp">
 
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/Axe_btn_id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:backgroundTint="#F7FFFFFF"
-                            android:elevation="0dp"
-                            android:padding="6dp"
-                            app:cardCornerRadius="10sp"
-                            app:cardElevation="0dp"
-                            app:strokeColor="#e5e5e5"
-                            app:strokeWidth="1sp">
+                    <ImageView
+                        android:id="@+id/johnsonsImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="6sp" />
+                </com.google.android.material.card.MaterialCardView>
 
-                            <ImageView
-                                android:layout_width="100sp"
-                                android:layout_height="75sp"
-                                android:layout_margin="6sp"
-                                android:src="@drawable/axe_logo_2021"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </com.google.android.material.card.MaterialCardView>
-                    </LinearLayout>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/garnier_btn_id"
+                    android:layout_width="0dp"
+                    android:layout_height="80sp"
+                    android:layout_margin="8sp"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/Axe_btn_id"
+                    app:layout_constraintStart_toEndOf="@id/johnsons_btn_id"
+                    app:layout_constraintTop_toBottomOf="@id/vichy_btn_id"
+                    app:strokeColor="#e5e5e5"
+                    app:strokeWidth="1sp">
 
-                </LinearLayout>
+                    <ImageView
+                        android:id="@+id/garenierImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="6sp"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/Axe_btn_id"
+                    android:layout_width="0dp"
+                    android:layout_height="80sp"
+                    android:layout_margin="8sp"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/garnier_btn_id"
+                    app:layout_constraintTop_toBottomOf="@id/vichy_btn_id"
+                    app:strokeColor="#e5e5e5"
+                    app:strokeWidth="1sp">
+
+                    <ImageView
+                        android:id="@+id/axeImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="6sp" />
+                </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,6 @@
 		<li>Set reminder alarm for treatment dates</li>
 		<li>Calculate body mass index and basic metabolic rate</li>
 		<li>Search for medicine through prescription or image recognition</li>
-		<li>AI for patient diagnosis and medication recommendation</li>
 	</ul>
 	<h2>Installation</h2>
 	<p>To install the Eshfeeny Android App, follow the steps below:</p>

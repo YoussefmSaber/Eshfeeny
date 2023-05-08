@@ -197,4 +197,13 @@
     <string name="continueShopping">استمر بالتسوق</string>
     <string name="sugarAlternitave">بديل للسكر</string>
     <string name="todo">TODO</string>
+    <string name="showAll">عرض الكل</string>
+    <string name="searchForProduct">أبحث
+        عن الأدوية</string>
+    <string name="search">أبحث</string>
+    <string name="forMedicine">عن الأدوية</string>
+    <string name="image_for_search_for_medicine">Image For Search for medicine</string>
+    <string name="useInsuranceCard">استخدم كارت التامين</string>
+    <string name="orderEasily">و اطلب ادويتك بسهوله الأن</string>
+    <string name="searchCategories">تصفح الأقسام</string>
 </resources>

@@ -2,21 +2,22 @@ package com.example.eshfeenygraduationproject.eshfeeny.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.*
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.denzcoskun.imageslider.constants.*
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.data.repository.ProductRepoImpl
+import com.example.domain.entity.cart.CartResponse
+import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductHomeAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.*
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.*
-
+import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.*
+import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 
 class HomeFragment : Fragment() {
 
@@ -31,10 +32,183 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater)
 
-        val medicineRepo = ProductRepoImpl()
-        val viewModelFactory = ProductViewModelFactory(medicineRepo)
+        initializingFragment()
 
+        return binding?.root
+    }
 
+    private fun initializingFragment() {
+        loadingImages()
+        fragmentNavigation()
+        viewModelsInitialization()
+        getUserId()
+    }
+
+    private fun fragmentNavigation() {
+        navigateToCategories()
+        navigate2InsuranceCompany()
+        navigateToRoshtaFragment()
+        navigateToBrandsFragment()
+    }
+
+    private fun navigateToBrandsFragment() {
+        binding?.showAllBrands?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment2_to_brandsFragment)
+        }
+    }
+
+    private fun navigateToRoshtaFragment() {
+        binding?.addRoshtaPhotoId?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment2_to_roshtaFragment)
+        }
+    }
+
+    private fun getUserId() {
+        userViewModel.userData.observe(viewLifecycleOwner) { userData ->
+            val userID = userData._id
+            getFavoriteProducts(userID)
+        }
+    }
+
+    private fun getFavoriteProducts(userID: String) {
+        productViewModel.getFavoriteProducts(userID)
+        productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
+
+            getCartItems(userID, favoriteProducts)
+        }
+    }
+
+    private fun getCartItems(
+        userID: String,
+        favoriteProducts: ProductResponse
+    ) {
+        productViewModel.getUserCartItems(userID)
+        productViewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
+
+            setSummerNeedsRecyclerView(userID, favoriteProducts, cartItems)
+
+            setForBetterHealthRecyclerView(userID, favoriteProducts, cartItems)
+
+            setSugarAlternativeRecyclerView(userID, favoriteProducts, cartItems)
+        }
+    }
+
+    private fun setSugarAlternativeRecyclerView(
+        userID: String,
+        favoriteProducts: ProductResponse,
+        cartItems: CartResponse
+    ) {
+        productViewModel.getProductsFromRemoteAlt(getString(R.string.sugarAlternitave))
+        productViewModel.remoteProductsAlt.observe(viewLifecycleOwner) {
+
+            val adapter2 = ProductHomeAdapter(
+                productViewModel,
+                userID,
+                favoriteProducts,
+                cartItems
+            )
+            binding?.sugarAlternativeRecyclerView?.adapter = adapter2
+            adapter2.submitList(it.body())
+        }
+    }
+
+    private fun setForBetterHealthRecyclerView(
+        userID: String,
+        favoriteProducts: ProductResponse,
+        cartItems: CartResponse
+    ) {
+        productViewModel.getProductsFromRemote(getString(R.string.vitaminsAndNutritionalSupplements))
+        productViewModel.remoteProducts.observe(viewLifecycleOwner) {
+
+            val adapter1 = ProductHomeAdapter(
+                productViewModel,
+                userID,
+                favoriteProducts,
+                cartItems
+            )
+            binding?.forBetterHealthRecyclerView?.adapter = adapter1
+
+            adapter1.submitList(it.body())
+        }
+    }
+
+    private fun setSummerNeedsRecyclerView(
+        userID: String,
+        favoriteProducts: ProductResponse,
+        cartItems: CartResponse
+    ) {
+        productViewModel.getProductType("العناية بالبشرة و الشعر")
+        productViewModel.allTypeProducts.observe(viewLifecycleOwner) {
+
+            stopShimmerLayout()
+            val adapter = ProductHomeAdapter(
+                productViewModel,
+                userID,
+                favoriteProducts,
+                cartItems
+            )
+            binding?.summerNeedsRecyclerView?.adapter = adapter
+
+            adapter.submitList(it.take(12))
+        }
+    }
+
+    private fun navigate2InsuranceCompany() {
+        binding?.chooseInsuranceCompany?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment2_to_insuranceCardFragment)
+        }
+
+        binding?.insuranceCompanyBtn?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment2_to_insuranceCardFragment)
+        }
+    }
+
+    private fun navigateToCategories() {
+        binding?.searchForMedsBtn?.setOnClickListener {
+            navigateToRightCategory("allMeds", it)
+        }
+
+        binding?.dentalCareBtn?.setOnClickListener {
+            navigateToRightCategory("dentalCare", it)
+        }
+
+        binding?.menProductsBtn?.setOnClickListener {
+            navigateToRightCategory("menProducts", it)
+        }
+
+        binding?.womenProductsBtn?.setOnClickListener {
+            navigateToRightCategory("womenProducts", it)
+        }
+
+        binding?.motherAndChildBtn?.setOnClickListener {
+            navigateToRightCategory("motherAndChild", it)
+        }
+
+        binding?.virusProtectionBtn?.setOnClickListener {
+            navigateToRightCategory("virusProtection", it)
+        }
+
+        binding?.skinAndHairCareBtn?.setOnClickListener {
+            navigateToRightCategory("skinAndHairCare", it)
+        }
+    }
+
+    private fun loadingImages() {
+        loadingSliderImages()
+        loadingImagesForCategorires()
+        loadingImagesForBrands()
+    }
+
+    private fun loadingImagesForBrands() {
+        binding?.axeImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104897970945663067/AXE_logo_2021_1.png")
+        binding?.vichyImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104898149547511828/VICHY.png")
+        binding?.beeslineImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104898180971237396/Beesline.png")
+        binding?.garenierImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104897978579300352/Garnier-logo_1.png")
+        binding?.larochImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104898166580576388/La_Roche-Posay.png")
+        binding?.johnsonsImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104898132699009054/johnsons.png")
+    }
+
+    private fun loadingSliderImages() {
         val imgList = ArrayList<SlideModel>()
         imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318089572432/flip_img1.png"))
         imgList.add(SlideModel("https://cdn.discordapp.com/attachments/981587143094845490/1095498318370586674/flip_img2.png"))
@@ -44,107 +218,22 @@ class HomeFragment : Fragment() {
 
         binding?.imageSLider?.setImageList(imgList, ScaleTypes.FIT)
         binding?.imageSLider?.setSlideAnimation(AnimationTypes.DEPTH_SLIDE)
+    }
 
-        //To open Roshta fragment
+    private fun loadingImagesForCategorires() {
+        binding?.dentalCareImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104449020455288832/Dental_Care.png")
+        binding?.menProductsImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104450147393482822/Men_Products.png")
+        binding?.womenProductsImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104429226066710538/women_products.png")
+        binding?.motherAndChildImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104430798427394098/mother_and_child.png")
+        binding?.virusProtectionImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104442581686943845/virus_protection.png")
+        binding?.skinAndHairCareImage?.loadUrl("https://cdn.discordapp.com/attachments/981587143094845490/1104444095985893416/Skin_And_Hair_Care.png")
+    }
 
-        //To open Search Medicine Fragment
-        binding?.searchForMedsBtn?.setOnClickListener {
-            navigateToRightCategory("allMeds", it)
-        }
-
-        //To open Dental care Fragment
-        binding?.dentalCareBtn?.setOnClickListener {
-            navigateToRightCategory("dentalCare", it)
-        }
-
-        //To open Men's products Fragment
-        binding?.menProductsBtn?.setOnClickListener {
-            navigateToRightCategory("menProducts", it)
-        }
-
-        //To open Women's products Fragment
-        binding?.womenProductsBtn?.setOnClickListener {
-            navigateToRightCategory("womenProducts", it)
-        }
-
-        //To open Mother and Child Fragment
-        binding?.motherAndChildBtn?.setOnClickListener {
-            navigateToRightCategory("motherAndChild", it)
-        }
-
-        //To open Virus Protection Fragment
-        binding?.virusProtectionBtn?.setOnClickListener {
-            navigateToRightCategory("virusProtection", it)
-        }
-
-        //To open Skin and hair care Fragment
-        binding?.skinAndHairCareBtn?.setOnClickListener {
-            navigateToRightCategory("skinAndHairCare", it)
-        }
-
+    private fun viewModelsInitialization() {
+        val medicineRepo = ProductRepoImpl()
+        val viewModelFactory = ProductViewModelFactory(medicineRepo)
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
-
-        userViewModel.userData.observe(viewLifecycleOwner) { userData ->
-            val userID = userData._id
-            productViewModel.getFavoriteProducts(userID)
-            productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
-
-                productViewModel.getUserCartItems(userID)
-                productViewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
-
-                    productViewModel.getProductType("العناية بالبشرة و الشعر")
-                    productViewModel.allTypeProducts.observe(viewLifecycleOwner) {
-
-                        stopShimmerLayout()
-                        val adapter = ProductHomeAdapter(
-                            productViewModel,
-                            userID,
-                            favoriteProducts,
-                            cartItems
-                        )
-                        binding?.summerNeedsRecyclerView?.adapter = adapter
-
-                        adapter.submitList(it.take(12))
-                    }
-
-                    productViewModel.getProductsFromRemote(getString(R.string.vitaminsAndNutritionalSupplements))
-                    productViewModel.remoteProducts.observe(viewLifecycleOwner) {
-
-                        val adapter1 = ProductHomeAdapter(
-                            productViewModel,
-                            userID,
-                            favoriteProducts,
-                            cartItems
-                        )
-                        binding?.forBetterHealthRecyclerView?.adapter = adapter1
-
-                        adapter1.submitList(it.body())
-                    }
-
-                    productViewModel.getProductsFromRemoteAlt(getString(R.string.sugarAlternitave))
-                    productViewModel.remoteProductsAlt.observe(viewLifecycleOwner) {
-
-                        val adapter2 = ProductHomeAdapter(
-                            productViewModel,
-                            userID,
-                            favoriteProducts,
-                            cartItems
-                        )
-                        binding?.sugarAlternativeRecyclerView?.adapter = adapter2
-                        adapter2.submitList(it.body())
-                    }
-                }
-            }
-        }
-        binding?.addRoshtaPhotoId?.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment2_to_roshtaFragment)
-        }
-
-        binding?.insuranceCompanyBtn?.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment2_to_insuranceCardFragment)
-        }
-        return binding?.root
     }
 
     private fun stopShimmerLayout() {

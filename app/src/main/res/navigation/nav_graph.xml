@@ -37,6 +37,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_homeFragment2_to_brandsFragment"
+            app:destination="@id/brandsFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment2"
@@ -298,5 +301,14 @@
         <action
             android:id="@+id/action_infoInsuranceCardFragment_to_cartExistsFragment"
             app:destination="@id/cartExistsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/brandsFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.brands.BrandsFragment"
+        android:label="fragment_brands"
+        tools:layout="@layout/fragment_brands" >
+        <action
+            android:id="@+id/action_brandsFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
     </fragment>
 </navigation>
