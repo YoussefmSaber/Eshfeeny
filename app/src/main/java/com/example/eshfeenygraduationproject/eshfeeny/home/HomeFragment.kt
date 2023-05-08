@@ -165,31 +165,43 @@ class HomeFragment : Fragment() {
 
     private fun navigateToCategories() {
         binding?.searchForMedsBtn?.setOnClickListener {
-            navigateToRightCategory("allMeds", it)
+            navigateToRightCategory("allMeds", "default", it)
         }
 
         binding?.dentalCareBtn?.setOnClickListener {
-            navigateToRightCategory("dentalCare", it)
+            navigateToRightCategory("dentalCare", "default", it)
         }
 
         binding?.menProductsBtn?.setOnClickListener {
-            navigateToRightCategory("menProducts", it)
+            navigateToRightCategory("menProducts", "default", it)
         }
 
         binding?.womenProductsBtn?.setOnClickListener {
-            navigateToRightCategory("womenProducts", it)
+            navigateToRightCategory("womenProducts","default", it)
         }
 
         binding?.motherAndChildBtn?.setOnClickListener {
-            navigateToRightCategory("motherAndChild", it)
+            navigateToRightCategory("motherAndChild", "default", it)
         }
 
         binding?.virusProtectionBtn?.setOnClickListener {
-            navigateToRightCategory("virusProtection", it)
+            navigateToRightCategory("virusProtection", "default", it)
         }
 
         binding?.skinAndHairCareBtn?.setOnClickListener {
-            navigateToRightCategory("skinAndHairCare", it)
+            navigateToRightCategory("skinAndHairCare", "default", it)
+        }
+
+        binding?.selectAllSummerNeedsId?.setOnClickListener {
+            navigateToRightCategory("skinAndHairCare",  "default", it)
+        }
+
+        binding?.selectAllAlternativeToSugarId?.setOnClickListener{
+            navigateToRightCategory("allMeds", "sugar", it)
+        }
+
+        binding?.selectAllForBetterHealthId?.setOnClickListener {
+            navigateToRightCategory("allMeds", "vitamins", it)
         }
     }
 
@@ -242,9 +254,9 @@ class HomeFragment : Fragment() {
         binding?.homePage?.visibility = View.VISIBLE
     }
 
-    private fun navigateToRightCategory(categoryName: String, view: View) {
+    private fun navigateToRightCategory(categoryName: String, displayType: String,view: View) {
         val action =
-            HomeFragmentDirections.actionHomeFragment2ToMedicineCategoryFragment(categoryName)
+            HomeFragmentDirections.actionHomeFragment2ToMedicineCategoryFragment(categoryName, displayType)
         Navigation.findNavController(view).navigate(action)
     }
 

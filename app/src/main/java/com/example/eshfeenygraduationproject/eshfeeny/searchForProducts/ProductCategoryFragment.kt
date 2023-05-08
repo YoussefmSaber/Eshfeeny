@@ -107,13 +107,32 @@ class ProductCategoryFragment : Fragment() {
     ) {
         when (args.category) {
             "allMeds" -> {
-                setChipSearch(
-                    userData._id,
-                    favoriteProducts,
-                    cartProducts,
-                    MedicinsCategories.allMedicines,
-                    "الأدوية"
-                )
+                when (args.chipName) {
+                    "default" -> setChipSearch(
+                        userData._id,
+                        favoriteProducts,
+                        cartProducts,
+                        MedicinsCategories.allMedicines,
+                        "الأدوية",
+                        "default"
+                    )
+                    "sugar" -> setChipSearch(
+                        userData._id,
+                        favoriteProducts,
+                        cartProducts,
+                        MedicinsCategories.allMedicines,
+                        "الأدوية",
+                        "sugar"
+                    )
+                    "vitamins" -> setChipSearch(
+                        userData._id,
+                        favoriteProducts,
+                        cartProducts,
+                        MedicinsCategories.allMedicines,
+                        "الأدوية",
+                        "vitamins"
+                    )
+                }
             }
 
             "dentalCare" -> {
@@ -122,7 +141,8 @@ class ProductCategoryFragment : Fragment() {
                     favoriteProducts,
                     cartProducts,
                     MedicinsCategories.dentalCare,
-                    "العناية بالاسنان"
+                    "العناية بالاسنان",
+                    "default"
                 )
             }
 
@@ -132,7 +152,8 @@ class ProductCategoryFragment : Fragment() {
                     favoriteProducts,
                     cartProducts,
                     MedicinsCategories.menProducts,
-                    "منتجات الرجال"
+                    "منتجات الرجال",
+                    "default"
                 )
             }
 
@@ -142,7 +163,8 @@ class ProductCategoryFragment : Fragment() {
                     favoriteProducts,
                     cartProducts,
                     MedicinsCategories.womenProducts,
-                    "منتجات المرأة"
+                    "منتجات المرأة",
+                    "default"
                 )
             }
 
@@ -152,7 +174,8 @@ class ProductCategoryFragment : Fragment() {
                     favoriteProducts,
                     cartProducts,
                     MedicinsCategories.motherAndChild,
-                    "الأم و الطفل"
+                    "الأم و الطفل",
+                    "default"
                 )
             }
 
@@ -162,7 +185,8 @@ class ProductCategoryFragment : Fragment() {
                     favoriteProducts,
                     cartProducts,
                     MedicinsCategories.virusProtection,
-                    "الحمايه من الفيروسات"
+                    "الحمايه من الفيروسات",
+                    "default"
                 )
             }
 
@@ -172,7 +196,8 @@ class ProductCategoryFragment : Fragment() {
                     favoriteProducts,
                     cartProducts,
                     MedicinsCategories.skinAndHair,
-                    "العناية بالبشرة و الشعر"
+                    "العناية بالبشرة و الشعر",
+                    "default"
                 )
             }
         }
@@ -198,31 +223,78 @@ class ProductCategoryFragment : Fragment() {
         favoriteProducts: ProductResponse,
         cartProducts: CartResponse,
         productCategories: List<Int>,
-        productType: String
+        productType: String,
+        chipName: String
     ) {
-        var isFirstChip = true
         for (med in productCategories) {
             val newChip = createChip(getString(med), userId, favoriteProducts, cartProducts)
             binding?.medicineChipGroup?.addView(newChip)
 
-            if (isFirstChip) {
-                newChip.isSelected = true
-                setChipColors(newChip)
+            when (chipName) {
+                "default" -> {
+                    if (med == productCategories.first()) {
+                        newChip.isSelected = true
+                        setChipColors(newChip)
 
-                selectedChip = newChip
-                isFirstChip = false
+                        selectedChip = newChip
 
-                productViewModel.getProductType(productType)
-                productViewModel.allTypeProducts.observe(viewLifecycleOwner) { response ->
-                    stopShimmerLoading()
-                    val adapter = ProductCategoryAdapter(
-                        productViewModel,
-                        userId,
-                        favoriteProducts,
-                        cartProducts
-                    )
-                    adapter.submitList(response)
-                    binding?.medicineRecyclerView?.adapter = adapter
+                        productViewModel.getProductType(productType)
+                        productViewModel.allTypeProducts.observe(viewLifecycleOwner) { response ->
+                            stopShimmerLoading()
+                            val adapter = ProductCategoryAdapter(
+                                productViewModel,
+                                userId,
+                                favoriteProducts,
+                                cartProducts
+                            )
+                            adapter.submitList(response)
+                            binding?.medicineRecyclerView?.adapter = adapter
+                        }
+                    }
+                }
+                "sugar" -> {
+                    if (getString(med) == getString(R.string.sugarAlternitave)) {
+                        newChip.isSelected = true
+                        setChipColors(newChip)
+
+                        selectedChip = newChip
+
+                        val adapter = ProductCategoryAdapter(
+                            productViewModel,
+                            userId,
+                            favoriteProducts,
+                            cartProducts
+                        )
+
+                        productViewModel.getProductsFromRemote(getString(med))
+                        productViewModel.remoteProducts.observe(viewLifecycleOwner) { response ->
+                            stopShimmerLoading()
+                            adapter.submitList(response.body())
+                            binding?.medicineRecyclerView?.adapter = adapter
+                        }
+                    }
+                }
+                "vitamins" -> {
+                    if (getString(med) == getString(R.string.vitaminsAndNutritionalSupplements)) {
+                        newChip.isSelected = true
+                        setChipColors(newChip)
+
+                        selectedChip = newChip
+
+                        val adapter = ProductCategoryAdapter(
+                            productViewModel,
+                            userId,
+                            favoriteProducts,
+                            cartProducts
+                        )
+
+                        productViewModel.getProductsFromRemote(getString(med))
+                        productViewModel.remoteProducts.observe(viewLifecycleOwner) { response ->
+                            stopShimmerLoading()
+                            adapter.submitList(response.body())
+                            binding?.medicineRecyclerView?.adapter = adapter
+                        }
+                    }
                 }
             }
         }

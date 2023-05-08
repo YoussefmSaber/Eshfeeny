@@ -38,6 +38,8 @@ class BrandItemsFragment : Fragment() {
         productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
         val userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
+        binding?.brandsTitle?.text = args.brandName
+
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
             val userId = userData._id
 
