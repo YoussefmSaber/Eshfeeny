@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentVerifyDataBinding
 
@@ -16,28 +16,30 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class VerifyDataFragment : Fragment() {
     private var binding: FragmentVerifyDataBinding? = null
-    private lateinit var navController: NavController
+    private val args:VerifyDataFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentVerifyDataBinding.inflate(layoutInflater)
-        val age = arguments?.getInt("Age")
-        val height = arguments?.getInt("Height")
-        val weight = arguments?.getInt("Weight")
-        val gender = arguments?.getString("Gender")
+        val age = args.age
+        val height = args.height
+        val weight = args.weight
+        val gender = args.gender
         binding?.txtAgeId?.text = "$age age"
         binding?.txtCmId?.text = "$height cm"
         binding?.txtKgId?.text = "$weight kg"
-        val height1 = height?.toFloat()
-        val weight1 = weight?.toFloat()
+        val height1 = height.toFloat()
+        val weight1 = weight.toFloat()
         if(gender == "أنثى") {
             binding?.imgManId?.visibility = View.INVISIBLE
             binding?.imgWomanId?.visibility = View.VISIBLE
         }
-//        binding?.btnEdit?.setOnClickListener {
-//            navController.navigate(R.id.action_verifyDataFragment_to_bmiAndBmrFragment)
-//        }
+        binding?.btnEdit?.setOnClickListener {
+            val action =
+                VerifyDataFragmentDirections.actionVerifyDataFragmentToBmiAndBmrFragment(age,height,weight,gender)
+            findNavController().navigate(action)
+        }
         binding?.btnCal?.setOnClickListener {
             val bmr = calcBMR(age?.toFloat(),height1,weight1,gender)
             val bmi = calcBMI(height1,weight1)

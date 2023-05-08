@@ -59,6 +59,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/existsCardRvId"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/buttonLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="wrap"
+        app:layout_constraintHeight_max="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider1"
+        app:layout_constraintVertical_bias="0"
+        tools:listitem="@layout/insurance_card_item"
+        />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/buttonLayout"
         android:layout_width="0sp"

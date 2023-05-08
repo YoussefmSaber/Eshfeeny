@@ -60,22 +60,23 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/CardNumInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="371sp"
+        android:layout_width="360sp"
         android:layout_height="57sp"
         android:layout_marginTop="8sp"
+        android:textDirection="rtl"
         app:boxCornerRadiusBottomEnd="10sp"
         app:boxCornerRadiusBottomStart="10sp"
         app:boxCornerRadiusTopEnd="10sp"
         app:boxCornerRadiusTopStart="10sp"
         app:boxStrokeColor="@color/input_layout_stroke_color"
-        android:textDirection="rtl"
+        app:boxStrokeWidth="1sp"
         app:layout_constraintEnd_toEndOf="@+id/textView22"
         app:layout_constraintTop_toBottomOf="@+id/textView22"
-        tools:ignore="InvalidId"
-        app:boxStrokeWidth="1sp">
+        tools:ignore="InvalidId">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/CardNumEditText"
@@ -100,22 +101,23 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CardNumInputLayout" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/CardNameInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="371sp"
+        android:layout_width="360sp"
         android:layout_height="57sp"
         android:layout_marginTop="8sp"
+        android:textDirection="rtl"
         app:boxCornerRadiusBottomEnd="10sp"
         app:boxCornerRadiusBottomStart="10sp"
         app:boxCornerRadiusTopEnd="10sp"
         app:boxCornerRadiusTopStart="10sp"
         app:boxStrokeColor="@color/input_layout_stroke_color"
-        android:textDirection="rtl"
+        app:boxStrokeWidth="1sp"
         app:layout_constraintEnd_toEndOf="@+id/textView25"
         app:layout_constraintTop_toBottomOf="@+id/textView25"
-        tools:ignore="InvalidId"
-        app:boxStrokeWidth="1sp">
+        tools:ignore="InvalidId">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/CardNameEditText"

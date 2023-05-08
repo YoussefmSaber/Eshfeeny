@@ -214,6 +214,18 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="age"
+            app:argType="string" />
+        <argument
+            android:name="height"
+            app:argType="string" />
+        <argument
+            android:name="weight"
+            app:argType="string" />
+        <argument
+            android:name="gender"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/verifyDataFragment"
@@ -223,6 +235,18 @@
         <action
             android:id="@+id/action_verifyDataFragment_to_bmiAndBmrFragment"
             app:destination="@id/bmiAndBmrFragment" />
+        <argument
+            android:name="age"
+            app:argType="string" />
+        <argument
+            android:name="height"
+            app:argType="string" />
+        <argument
+            android:name="weight"
+            app:argType="string" />
+        <argument
+            android:name="gender"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"

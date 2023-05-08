@@ -1,6 +1,5 @@
 package com.example.eshfeenygraduationproject.eshfeeny.bmiandbmr
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.InputType
@@ -10,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentBmiAndBmrBinding
@@ -18,8 +16,7 @@ import com.google.android.material.textfield.TextInputEditText
 
 @Suppress("DEPRECATION")
 class BmiAndBmrFragment : Fragment() {
-    private var _binding: FragmentBmiAndBmrBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentBmiAndBmrBinding
     var flagAge = false
     var flagHeight = false
     var flagWeight = false
@@ -27,11 +24,7 @@ class BmiAndBmrFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentBmiAndBmrBinding.inflate(layoutInflater)
-        return binding.root
-    }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentBmiAndBmrBinding.inflate(layoutInflater)
         forBindingId()
         forLetId()
         val gender = resources.getStringArray(R.array.Gender)
@@ -44,20 +37,13 @@ class BmiAndBmrFragment : Fragment() {
             val weight = binding.weightEditText.text.toString()
             val gender1 = binding.genderAutoComplete.text.toString()
             if (flagAge and flagHeight and flagWeight) {
-                val bundle = Bundle()
-                bundle.putInt("Age",age.toInt())
-                bundle.putInt("Height",height.toInt())
-                bundle.putInt("Weight",weight.toInt())
-                bundle.putString("Gender",gender1)
-                val fragment = VerifyDataFragment()
-                fragment.arguments = bundle
-                Navigation.findNavController(it).navigate(R.id.action_bmiAndBmrFragment_to_verifyDataFragment)
+                bmiAndBmrButtonClick(age,height,weight,gender1)
             }
         }
         binding.backBtn22.setOnClickListener {
             findNavController().navigate(R.id.action_bmiAndBmrFragment_to_moreFragment2)
         }
-
+        return binding.root
     }
     private fun setHint(view: TextInputEditText, string: Int) {
         view.setOnFocusChangeListener { v, hasFocus ->
@@ -118,5 +104,12 @@ class BmiAndBmrFragment : Fragment() {
             flagWeight = true
         }
         binding.GenderInputLayout.boxStrokeColor = resources.getColor(R.color.light_blue1)
+    }
+    private fun bmiAndBmrButtonClick(age: String, height: String, weight: String, gender: String) {
+        val action =
+            BmiAndBmrFragmentDirections.actionBmiAndBmrFragmentToVerifyDataFragment(
+                age,height,weight,gender
+            )
+        findNavController().navigate(action)
     }
 }
