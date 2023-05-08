@@ -58,4 +58,10 @@ interface ProductApiService {
         @Path("productId")
         productId: String
     ): ProductResponse
+
+    @GET("products/brand/{brandName}")
+    suspend fun getBrandItems(
+        @Path("brandName")
+        brandName: String
+    ): ProductResponse
 }

@@ -7,12 +7,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.ProductRepoImpl
-import com.example.data.repository.UserRepoImpl
-import com.example.domain.entity.insuranceCard.InsuranceCardResponse
 import com.example.domain.entity.cart.CartResponse
-import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.patchresponse.PatchRequestResponse
+import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -61,10 +59,13 @@ class ProductViewModel(
         get() = _productNumber
 
 
-
     private val _alternativeProducts = MutableLiveData<ProductResponse>()
     val alternativeProducts: LiveData<ProductResponse>
         get() = _alternativeProducts
+
+    private val _brandItems = MutableLiveData<ProductResponse>()
+    val brandItems: LiveData<ProductResponse>
+        get() = _brandItems
 
     fun getProductsFromRemote(medicine: String) {
         viewModelScope.launch {
@@ -239,4 +240,13 @@ class ProductViewModel(
         }
     }
 
+    fun getBrandItems(brandName: String) {
+        viewModelScope.launch {
+            try {
+                _brandItems.value = repo.getBrandItems(brandName)
+            } catch (e: java.lang.Exception) {
+                Log.i("Brand Fragment", "Error fetching Items: $e")
+            }
+        }
+    }
 }

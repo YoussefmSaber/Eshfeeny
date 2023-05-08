@@ -3,9 +3,10 @@ package com.example.data.repository
 import android.util.Log
 import com.example.data.remote.apis.UserRetrofitInstance
 import com.example.domain.entity.cart.CartResponse
-import com.example.domain.entity.product.*
 import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.patchresponse.PatchRequestResponse
+import com.example.domain.entity.product.ProductResponse
+import com.example.domain.entity.product.ProductResponseItem
 import retrofit2.Response
 
 class ProductRepoImpl {
@@ -81,4 +82,8 @@ class ProductRepoImpl {
 
     suspend fun getAlternativeProducts(productId: String): ProductResponse =
         UserRetrofitInstance.productApi.getAlternatives(productId)
+
+
+    suspend fun getBrandItems(brandName: String): ProductResponse =
+        UserRetrofitInstance.productApi.getBrandItems(brandName)
 }
