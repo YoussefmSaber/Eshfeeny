@@ -2,9 +2,11 @@ package com.example.eshfeenygraduationproject.eshfeeny.productsAdapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.Brands
 import com.example.eshfeenygraduationproject.databinding.BrandsItemBinding
+import com.example.eshfeenygraduationproject.eshfeeny.brands.BrandsFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 
 class BrandsAdapter(
@@ -18,6 +20,11 @@ class BrandsAdapter(
 
         fun bind(brand: Brands) {
             itemBinding.brandImageView.loadUrl(brand.imageUrl)
+            itemBinding.brandImageView.setOnClickListener {
+                val action =
+                    BrandsFragmentDirections.actionBrandsFragmentToBrandItemsFragment(brand.name)
+                it.findNavController().navigate(action)
+            }
         }
     }
 
