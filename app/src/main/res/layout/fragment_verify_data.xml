@@ -47,110 +47,171 @@
 
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="72sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnCal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/list_bmi_bmr_edit1" />
-
-    <ImageView
         android:id="@+id/imgWomanId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        android:layout_marginTop="60sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/woman_img_verify" />
 
     <ImageView
         android:id="@+id/imgManId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        android:layout_marginTop="60dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/man_img_verify" />
 
-    <TextView
-        android:id="@+id/txtKgId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="10dp"
-        android:fontFamily="@font/cairo_semibold"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView16"
-        app:layout_constraintTop_toTopOf="@+id/textView16" />
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="120sp"
+        android:layout_height="150sp"
+        app:cardCornerRadius="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/materialCardView"
+        app:layout_constraintStart_toEndOf="@+id/materialCardView2"
+        app:layout_constraintTop_toBottomOf="@id/imgManId"
+        app:strokeColor="#E7E7E7"
+        app:strokeWidth="1.7sp">
 
-    <TextView
-        android:id="@+id/txtCmId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1sp"
-        android:layout_marginEnd="10sp"
-        android:fontFamily="@font/cairo_semibold"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView15"
-        app:layout_constraintTop_toTopOf="@+id/textView15" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_gravity="bottom"
+            android:background="#0583F2" />
 
-    <TextView
-        android:id="@+id/txtAgeId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1sp"
-        android:layout_marginEnd="10sp"
-        android:fontFamily="@font/cairo_semibold"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView17"
-        app:layout_constraintTop_toTopOf="@+id/textView17" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10sp"
+            android:fontFamily="@font/cairo_regular"
+            android:gravity="bottom|right"
+            android:text="الوزن"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="95sp"
-        android:layout_marginEnd="48sp"
-        android:text="الطول"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="match_parent"
+            android:layout_height="80sp"
+            android:layout_gravity="top"
+            android:layout_margin="10sp"
+            android:src="@drawable/weight" />
+
+        <TextView
+            android:id="@+id/txtKgId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_margin="10sp"
+            android:fontFamily="@font/cairo_regular"
+            android:text="20cp"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            tools:ignore="InvalidId" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="120sp"
+        android:layout_height="150sp"
+        android:layout_marginEnd="12dp"
+        app:cardCornerRadius="10sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgWomanId" />
+        app:layout_constraintTop_toBottomOf="@id/imgManId"
+        app:strokeColor="#E7E7E7"
+        app:strokeWidth="1.7sp">
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="85sp"
-        android:text="الوزن"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView15"
-        app:layout_constraintTop_toTopOf="@+id/textView15" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_gravity="bottom"
+            android:background="#0583F2" />
 
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="200sp"
-        android:text="العمر"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toStartOf="@+id/textView15"
-        app:layout_constraintTop_toTopOf="@+id/textView15" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10sp"
+            android:fontFamily="@font/cairo_regular"
+            android:gravity="bottom|right"
+            android:text="الطول"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
 
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="match_parent"
+            android:layout_height="80sp"
+            android:layout_gravity="top"
+            android:layout_margin="10sp"
+            android:src="@drawable/height_svgrepo_com__1_" />
 
+        <TextView
+            android:id="@+id/txtCmId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_margin="10sp"
+            android:fontFamily="@font/cairo_regular"
+            android:text="20cp"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            tools:ignore="DuplicateIds" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView2"
+        android:layout_width="120sp"
+        android:layout_height="150sp"
+        android:layout_marginStart="12sp"
+        app:cardCornerRadius="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgManId"
+        app:strokeColor="#E7E7E7"
+        app:strokeWidth="1.7sp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_gravity="bottom"
+            android:background="#0583F2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10sp"
+            android:fontFamily="@font/cairo_regular"
+            android:gravity="bottom|right"
+            android:text="العمر"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="match_parent"
+            android:layout_height="80sp"
+            android:layout_gravity="top"
+            android:layout_margin="10sp"
+            android:src="@drawable/age_image" />
+
+        <TextView
+            android:id="@+id/txtAgeId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_margin="10sp"
+            android:fontFamily="@font/cairo_regular"
+            android:text="20cp"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
