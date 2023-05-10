@@ -51,10 +51,7 @@ class RoshtaFragment : Fragment() {
                 }
             }
             camera.setOnClickListener {
-                openCamera()
-                runBlocking {
-                    delay(3000)
-                }
+
                 binding?.txtChoosePhoto?.visibility = View.VISIBLE
                 binding?.addRoshtaPhoto?.visibility = View.INVISIBLE
                 binding?.btnNext?.text = "أعرف أقرب صيدلية"
@@ -104,7 +101,7 @@ class RoshtaFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == 100) {
             val imageUri = data?.data
-            binding?.takephoto?.setImageURI(data?.data)
+            binding?.takephoto?.setImageURI(imageUri)
         } else if (resultCode == Activity.RESULT_OK && requestCode == 0) {
             binding?.takephoto?.setImageURI(imageUri)
         }

@@ -6,7 +6,7 @@ import com.example.data.utils.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object UserRetrofitInstance {
+object EshfeenyApiInstance {
 
     private val userRetrofit by lazy {
         Retrofit.Builder()

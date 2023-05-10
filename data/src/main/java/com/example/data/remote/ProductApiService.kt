@@ -1,9 +1,9 @@
 package com.example.data.remote
 
-import com.example.domain.entity.product.ProductResponse
-import com.example.domain.entity.product.ProductResponseItem
 import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.patchresponse.PatchRequestResponse
+import com.example.domain.entity.product.ProductResponse
+import com.example.domain.entity.product.ProductResponseItem
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -40,7 +40,7 @@ interface ProductApiService {
     ): PatchRequestResponse
 
     @GET("products/user/{userId}/favorites")
-    suspend fun getFavoriteProducts (
+    suspend fun getFavoriteProducts(
         @Path("userId")
         id: String
     ): ProductResponse
@@ -63,5 +63,11 @@ interface ProductApiService {
     suspend fun getBrandItems(
         @Path("brandName")
         brandName: String
+    ): ProductResponse
+
+    @GET("products/search/{productName}")
+    suspend fun getSearchResults(
+        @Path("productName")
+        productName: String
     ): ProductResponse
 }

@@ -55,19 +55,36 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/logo">
 
-                <androidx.appcompat.widget.SearchView
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/searchView"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16sp"
-                    android:background="@drawable/search_background"
+                    android:hint="ما الذى تبحث عنه ؟"
                     android:layoutDirection="rtl"
-                    app:defaultQueryHint="ما الذي تبحث عنه؟"
+                    android:textColorHint="@color/grey_font"
+                    app:boxCornerRadiusBottomEnd="30sp"
+                    app:boxCornerRadiusBottomStart="30sp"
+                    app:boxCornerRadiusTopEnd="30sp"
+                    app:boxCornerRadiusTopStart="30sp"
+                    app:endIconDrawable="@drawable/camera_logo"
+                    app:endIconMode="custom"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:queryHint="ما الذي تبحث عنه؟"
-                    app:searchIcon="@drawable/__icon__search_" />
+                    app:startIconDrawable="@drawable/__icon__search_"
+                    app:startIconTint="@color/white"
+                    app:startIconTintMode="multiply">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/searchEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/search_background"
+                        android:fontFamily="@font/cairo_medium"
+                        android:textSize="12sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.denzcoskun.imageslider.ImageSlider
                     android:id="@+id/imageSLider"
@@ -624,8 +641,8 @@
                     android:id="@+id/summerNeedsRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="16sp"
                     android:layout_marginHorizontal="8sp"
+                    android:layout_marginTop="16sp"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -677,8 +694,8 @@
                     android:id="@+id/forBetterHealthRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="16sp"
                     android:layout_marginHorizontal="8sp"
+                    android:layout_marginTop="16sp"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -730,8 +747,8 @@
                     android:id="@+id/sugarAlternativeRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="16sp"
                     android:layout_marginHorizontal="8sp"
+                    android:layout_marginTop="16sp"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -889,7 +906,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="6sp"/>
+                        android:layout_margin="6sp" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView

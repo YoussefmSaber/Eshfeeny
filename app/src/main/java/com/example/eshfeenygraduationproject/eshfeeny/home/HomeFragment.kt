@@ -2,10 +2,12 @@ package com.example.eshfeenygraduationproject.eshfeeny.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.denzcoskun.imageslider.constants.*
 import com.denzcoskun.imageslider.models.SlideModel
@@ -25,7 +27,6 @@ class HomeFragment : Fragment() {
     private lateinit var productViewModel: ProductViewModel
     private var binding: FragmentHomeBinding? = null
 
-    @SuppressLint("LongLogTag")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,6 +34,12 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater)
 
         initializingFragment()
+        binding?.searchEditText?.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment2_to_searchFragment)
+        }
+        if (binding?.searchEditText?.isFocused == true || binding?.searchView?.isFocused == true) {
+            findNavController().navigate(R.id.action_homeFragment2_to_searchFragment)
+        }
 
         return binding?.root
     }

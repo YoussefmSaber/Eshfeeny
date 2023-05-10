@@ -67,6 +67,10 @@ class ProductViewModel(
     val brandItems: LiveData<ProductResponse>
         get() = _brandItems
 
+    private val _searchResults = MutableLiveData<ProductResponse>()
+    val searchResults: LiveData<ProductResponse>
+        get() = _searchResults
+
     fun getProductsFromRemote(medicine: String) {
         viewModelScope.launch {
             try {
@@ -246,6 +250,16 @@ class ProductViewModel(
                 _brandItems.value = repo.getBrandItems(brandName)
             } catch (e: java.lang.Exception) {
                 Log.i("Brand Fragment", "Error fetching Items: $e")
+            }
+        }
+    }
+
+    fun getSearchResults(productName: String) {
+        viewModelScope.launch {
+            try {
+                _searchResults.value = repo.getSearchResults(productName)
+            } catch (e: Exception) {
+                Log.i("Search Result", "Error fetching the results $e")
             }
         }
     }

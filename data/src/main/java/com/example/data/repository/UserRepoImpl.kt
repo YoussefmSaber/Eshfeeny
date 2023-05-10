@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import com.example.data.local.db.user.UserDAO
 import com.example.data.local.db.user.model.UserInfo
-import com.example.data.remote.apis.UserRetrofitInstance
+import com.example.data.remote.apis.EshfeenyApiInstance
 import com.example.domain.entity.*
 import com.example.domain.entity.insuranceCard.InsuranceCardResponse
 import com.example.domain.entity.insuranceCard.InsuranceCardX
@@ -21,7 +21,7 @@ class UserRepoImpl(private val userDAO: UserDAO) {
         email: SendToCheckEmail
     ): Response<CheckEmailResponse> {
         return try {
-            UserRetrofitInstance.userApi.checkEmail(email)
+            EshfeenyApiInstance.userApi.checkEmail(email)
         } catch (e: Exception) {
             Response.error(
                 400,
@@ -38,7 +38,7 @@ class UserRepoImpl(private val userDAO: UserDAO) {
         userData: VerifyLoginResponse
     ): Response<UserInfo> {
         return try {
-            UserRetrofitInstance.userApi.verifyLogin(userData)
+            EshfeenyApiInstance.userApi.verifyLogin(userData)
         } catch (e: Exception) {
             Log.i("Login Repo", e.toString())
             Response.error(
@@ -54,7 +54,7 @@ class UserRepoImpl(private val userDAO: UserDAO) {
     suspend fun createNewUser(
         newUser: CreateUser
     ): Response<UserInfo> =
-        UserRetrofitInstance.userApi.createNewUser(newUser)
+        EshfeenyApiInstance.userApi.createNewUser(newUser)
 
 
     @SuppressLint("LongLogTag")
@@ -62,7 +62,7 @@ class UserRepoImpl(private val userDAO: UserDAO) {
         email: String
     ): VerifyCodeResponse {
         return try {
-            val code = UserRetrofitInstance.userApi.verifyCode(email)
+            val code = EshfeenyApiInstance.userApi.verifyCode(email)
             Log.i("(UserRepoImpl)Verify code: ", email)
             Log.i("(UserRepoImpl)Verify code: ", code.toString())
             code
@@ -76,7 +76,7 @@ class UserRepoImpl(private val userDAO: UserDAO) {
         id: String,
         newPassword: ChangePassword
     ): PatchRequestResponse =
-        UserRetrofitInstance.userApi.updateUserPassword(id, newPassword)
+        EshfeenyApiInstance.userApi.updateUserPassword(id, newPassword)
 
     suspend fun addUserDataToDatabase(
         userData: UserInfo
@@ -94,15 +94,15 @@ class UserRepoImpl(private val userDAO: UserDAO) {
         userId: String
     ): InsuranceCardResponse {
        try {
-            return UserRetrofitInstance.userApi.getInsuranceCards(userId)
+            return EshfeenyApiInstance.userApi.getInsuranceCards(userId)
        } catch (e:Exception){
            Log.e("card", "Error fetching the insurance card items $e")
-           return UserRetrofitInstance.userApi.getInsuranceCards(userId)
+           return EshfeenyApiInstance.userApi.getInsuranceCards(userId)
        }
     }
 
     suspend fun addInsuranceCard(
         userId: String,
         card: InsuranceCardX
-    ): PatchRequestResponse = UserRetrofitInstance.userApi.addInsuranceCard(userId, card)
+    ): PatchRequestResponse = EshfeenyApiInstance.userApi.addInsuranceCard(userId, card)
 }
