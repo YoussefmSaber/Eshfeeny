@@ -43,7 +43,7 @@ class BmiResultFragment : Fragment() {
             binding.lineGId.visibility = View.VISIBLE
             binding.lineGId.translationX = (bmi * 2.5).toFloat()
         }
-        else if (bmi >= 25 && bmi < 30){
+        else if (bmi in 25..29){
             binding.txtResIdBmi.text = "وزن زائد$bmi "
             binding.txtResIdBmi.setTextColor(Color.parseColor("#FF8000"))
             binding.lineOId.visibility = View.VISIBLE
