@@ -17,8 +17,6 @@ class BmiResultFragment : Fragment() {
     ): View? {
         binding = FragmentBmiResultBinding.inflate(layoutInflater)
 
-
-
         // Inflate the layout for this fragment
         return binding?.root
     }
