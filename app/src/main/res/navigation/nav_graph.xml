@@ -268,11 +268,15 @@
             app:argType="string" />
         <action
             android:id="@+id/action_verifyDataFragment_to_bmiResultFragment2"
-            app:destination="@id/bmiResultFragment2"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/bmiResultFragment2">
+            <argument
+                android:name="bmi"
+                app:argType="float" />
+            <argument
+                android:name="gender"
+                app:argType="string" />
+
+        </action>
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -418,6 +422,12 @@
         tools:layout="@layout/fragment_bmi_result" >
         <action
             android:id="@+id/action_bmiResultFragment2_to_verifyDataFragment"
-            app:destination="@id/verifyDataFragment" />
+            app:destination="@id/verifyDataFragment"/>
+        <argument
+            android:name="bmi"
+            app:argType="float" />
+        <argument
+            android:name="gender"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -51,7 +51,8 @@ class VerifyDataFragment : Fragment() {
 
             BtnIdBmi.setOnClickListener {
                 dialog.dismiss()
-                findNavController().navigate(R.id.action_verifyDataFragment_to_bmiResultFragment2)
+                val action = VerifyDataFragmentDirections.actionVerifyDataFragmentToBmiResultFragment2(bmi, gender)
+                findNavController().navigate(action)
             }
             val txtExit = view.findViewById<TextView>(R.id.txtIdExit)
             txtExit.setOnClickListener {
