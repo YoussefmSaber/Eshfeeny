@@ -311,6 +311,8 @@ class ProductCategoryFragment : Fragment() {
         chip.text = name
 
         setChipColors(chip)
+        chip.chipCornerRadius = 50.0f
+        chip.setTextAppearance(R.style.defaultTextStyle)
 
         chip.setOnClickListener {
             if (selectedChip != it) {

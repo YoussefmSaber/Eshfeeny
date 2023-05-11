@@ -1,15 +1,18 @@
 package com.example.eshfeenygraduationproject.eshfeeny.home
 
-import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.denzcoskun.imageslider.constants.*
+import com.denzcoskun.imageslider.constants.AnimationTypes
+import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.cart.CartResponse
@@ -17,8 +20,10 @@ import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductHomeAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.*
-import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.*
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.search.SearchAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 
 class HomeFragment : Fragment() {
@@ -34,12 +39,8 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater)
 
         initializingFragment()
-        binding?.searchEditText?.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment2_to_searchFragment)
-        }
-        if (binding?.searchEditText?.isFocused == true || binding?.searchView?.isFocused == true) {
-            findNavController().navigate(R.id.action_homeFragment2_to_searchFragment)
-        }
+
+        Log.i("searchBar", "${binding?.searchBar?.childCount}")
 
         return binding?.root
     }
@@ -49,6 +50,7 @@ class HomeFragment : Fragment() {
         fragmentNavigation()
         viewModelsInitialization()
         getUserId()
+        settingSearch()
     }
 
     private fun fragmentNavigation() {
@@ -184,7 +186,7 @@ class HomeFragment : Fragment() {
         }
 
         binding?.womenProductsBtn?.setOnClickListener {
-            navigateToRightCategory("womenProducts","default", it)
+            navigateToRightCategory("womenProducts", "default", it)
         }
 
         binding?.motherAndChildBtn?.setOnClickListener {
@@ -200,10 +202,10 @@ class HomeFragment : Fragment() {
         }
 
         binding?.selectAllSummerNeedsId?.setOnClickListener {
-            navigateToRightCategory("skinAndHairCare",  "default", it)
+            navigateToRightCategory("skinAndHairCare", "default", it)
         }
 
-        binding?.selectAllAlternativeToSugarId?.setOnClickListener{
+        binding?.selectAllAlternativeToSugarId?.setOnClickListener {
             navigateToRightCategory("allMeds", "sugar", it)
         }
 
@@ -261,10 +263,62 @@ class HomeFragment : Fragment() {
         binding?.homePage?.visibility = View.VISIBLE
     }
 
-    private fun navigateToRightCategory(categoryName: String, displayType: String,view: View) {
+    private fun navigateToRightCategory(categoryName: String, displayType: String, view: View) {
         val action =
-            HomeFragmentDirections.actionHomeFragment2ToMedicineCategoryFragment(categoryName, displayType)
+            HomeFragmentDirections.actionHomeFragment2ToMedicineCategoryFragment(
+                categoryName,
+                displayType
+            )
         Navigation.findNavController(view).navigate(action)
+    }
+
+    private fun settingSearch() {
+        binding?.searchViewText?.editText?.addTextChangedListener(
+            object : TextWatcher {
+
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                    // do nothing
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    // perform search using the new text
+                    val searchText = s.toString()
+
+                    var isArabic = false
+                    var languageName = ""
+                    for (element in searchText) {
+                        if (Character.UnicodeBlock.of(element) == Character.UnicodeBlock.ARABIC) {
+                            isArabic = true
+                            break
+                        }
+                    }
+
+                    productViewModel.getSearchResults(searchText)
+                    productViewModel.searchResults.observe(viewLifecycleOwner) {
+
+                        languageName = if (isArabic) {
+                            "arabic"
+                        } else {
+                            "english"
+                        }
+
+                        Log.i("search", "$it")
+                        val adapter = SearchAdapter(languageName)
+                        adapter.submitList(it)
+                        binding?.searchResultsRecyclerView?.adapter = adapter
+                    }
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+
+                }
+            }
+        )
     }
 
     override fun onDestroyView() {
@@ -273,4 +327,5 @@ class HomeFragment : Fragment() {
         binding?.forBetterHealthRecyclerView?.adapter = null
         binding?.sugarAlternativeRecyclerView?.adapter = null
     }
+
 }
