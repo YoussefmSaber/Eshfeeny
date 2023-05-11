@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background"
     tools:context=".eshfeeny.home.HomeFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_behavior="com.google.android.material.search.SearchBar$ScrollingViewBehavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,6 +19,7 @@
                 android:id="@+id/logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="16sp"
                 android:src="@drawable/logo_eshfeeny"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -33,11 +30,12 @@
                 android:id="@+id/shimmerLayoutHome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/logo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shimmer_base_alpha="1"
                 app:shimmer_direction="top_to_bottom"
                 app:shimmer_highlight_alpha="1"
                 app:shimmer_tilt="45">
@@ -49,42 +47,12 @@
                 android:id="@+id/homePage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:layout_marginTop="50sp"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/logo">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/searchView"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16sp"
-                    android:hint="ما الذى تبحث عنه ؟"
-                    android:layoutDirection="rtl"
-                    android:textColorHint="@color/grey_font"
-                    app:boxCornerRadiusBottomEnd="30sp"
-                    app:boxCornerRadiusBottomStart="30sp"
-                    app:boxCornerRadiusTopEnd="30sp"
-                    app:boxCornerRadiusTopStart="30sp"
-                    app:endIconDrawable="@drawable/camera_logo"
-                    app:endIconMode="custom"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:startIconDrawable="@drawable/__icon__search_"
-                    app:startIconTint="@color/white"
-                    app:startIconTintMode="multiply">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/searchEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/search_background"
-                        android:fontFamily="@font/cairo_medium"
-                        android:textSize="12sp" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.denzcoskun.imageslider.ImageSlider
                     android:id="@+id/imageSLider"
@@ -100,7 +68,7 @@
                     app:layout_constraintBottom_toTopOf="@id/insuranceCompanyBtn"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/searchView" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/insuranceCompanyBtn"
@@ -164,6 +132,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="40sp"
                                 android:layout_gravity="center"
+                                android:backgroundTint="@color/blue_main"
                                 android:elevation="20dp"
                                 android:fontFamily="@font/cairo_medium"
                                 android:text="اختر شركة التامين"
@@ -323,7 +292,8 @@
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/motherAndChildBtn"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6">
+                    app:layout_constraintTop_toBottomOf="@+id/textView6"
+                    app:strokeWidth="0dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -369,7 +339,8 @@
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toStartOf="@+id/virusProtectionBtn"
                     app:layout_constraintStart_toEndOf="@id/womenProductsBtn"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6">
+                    app:layout_constraintTop_toBottomOf="@+id/textView6"
+                    app:strokeWidth="0dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -417,7 +388,8 @@
                     app:layout_constraintEnd_toStartOf="@+id/motherAndChildBtn"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textView6">
+                    app:layout_constraintTop_toBottomOf="@id/textView6"
+                    app:strokeWidth="0dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -464,7 +436,8 @@
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/dentalCareBtn"
-                    app:layout_constraintTop_toBottomOf="@+id/virusProtectionBtn">
+                    app:layout_constraintTop_toBottomOf="@+id/virusProtectionBtn"
+                    app:strokeWidth="0dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -511,7 +484,8 @@
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toStartOf="@+id/skinAndHairCareBtn"
                     app:layout_constraintStart_toEndOf="@id/menProductsBtn"
-                    app:layout_constraintTop_toBottomOf="@id/virusProtectionBtn">
+                    app:layout_constraintTop_toBottomOf="@id/virusProtectionBtn"
+                    app:strokeWidth="0dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -559,7 +533,8 @@
                     app:layout_constraintEnd_toStartOf="@id/dentalCareBtn"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/virusProtectionBtn">
+                    app:layout_constraintTop_toBottomOf="@id/virusProtectionBtn"
+                    app:strokeWidth="0dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -934,6 +909,43 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/grey_font"
+        android:layoutDirection="rtl">
+
+        <com.google.android.material.search.SearchBar
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="55sp"
+            android:backgroundTint="#D8D8D8"
+            android:hint="ما الذي تبحث عنه؟" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.search.SearchView
+        android:id="@+id/searchViewText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/black"
+        android:backgroundTintMode="add"
+        android:hint="  ما الذي تبحث عنه؟"
+        android:layoutDirection="rtl"
+        app:closeIcon="@drawable/arrow_right"
+        app:layout_anchor="@id/search_bar">
+        <!-- Search suggestions/results go here (ScrollView, RecyclerView, etc.). -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchResultsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/search_result_item" />
+
+    </com.google.android.material.search.SearchView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
