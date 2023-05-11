@@ -30,45 +30,6 @@ class SearchFragment : Fragment() {
         val viewModel =
             ViewModelProvider(this, productViewModelFactory)[ProductViewModel::class.java]
 
-        binding?.searchViewEditText?.addTextChangedListener(object : TextWatcher {
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // do nothing
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // perform search using the new text
-                val searchText = s.toString()
-
-                var isArabic = false
-                var languageName = ""
-                for (element in searchText) {
-                    if (Character.UnicodeBlock.of(element) == Character.UnicodeBlock.ARABIC) {
-                        isArabic = true
-                        break
-                    }
-                }
-
-                viewModel.getSearchResults(searchText)
-                viewModel.searchResults.observe(viewLifecycleOwner) {
-
-                    languageName = if (isArabic) {
-                        "arabic"
-                    } else {
-                        "english"
-                    }
-
-                    Log.i("search", "$it")
-                    val adapter = SearchAdapter(languageName)
-                    adapter.submitList(it)
-                    binding?.searchResultsRecyclerView?.adapter = adapter
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-
-            }
-        })
         return binding?.root
     }
 

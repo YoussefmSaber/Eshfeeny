@@ -26,12 +26,12 @@
 
         <activity
             android:name=".eshfeeny.MainActivity"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
             android:exported="true"
             android:theme="@style/Theme.EshfeenyGraduationProject">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.eshfeenygraduationproject.databinding.SearchResultItemBinding
+import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragmentDirections
 
 class SearchAdapter(
     private val language: String
@@ -37,7 +38,7 @@ class SearchAdapter(
             }
             itemBinding.searchItemTextView.setOnClickListener {
                 val action =
-                    SearchFragmentDirections.actionSearchFragmentToDetailsFragment(product._id)
+                    HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(product._id)
                 it.findNavController().navigate(action)
             }
         }

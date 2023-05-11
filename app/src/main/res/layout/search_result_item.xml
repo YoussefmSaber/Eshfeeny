@@ -15,7 +15,7 @@
             android:layout_height="20sp"
             android:layout_gravity="center"
             android:layout_margin="16sp"
-            android:src="@drawable/searchicon" />
+            android:src="@drawable/search_icon" />
 
         <TextView
             android:id="@+id/searchItemTextView"
