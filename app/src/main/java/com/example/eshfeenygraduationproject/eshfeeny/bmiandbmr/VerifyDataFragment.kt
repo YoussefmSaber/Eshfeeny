@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.eshfeenygraduationproject.R
@@ -47,6 +48,16 @@ class VerifyDataFragment : Fragment() {
             val dialog = BottomSheetDialog(requireContext())
             val BtnIdBmi = view.findViewById<Button>(R.id.btnIdCalcBmi)
             val BtnIdBmr = view.findViewById<Button>(R.id.btnIdCalcBmr)
+
+            BtnIdBmi.setOnClickListener {
+                dialog.dismiss()
+                val action = VerifyDataFragmentDirections.actionVerifyDataFragmentToBmiResultFragment2(bmi, gender)
+                findNavController().navigate(action)
+            }
+            val txtExit = view.findViewById<TextView>(R.id.txtIdExit)
+            txtExit.setOnClickListener {
+                dialog.dismiss()
+            }
             dialog.setContentView(view)
             dialog.show()
         }
