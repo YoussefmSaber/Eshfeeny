@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#CCE6FF">
+    android:backgroundTint="@color/app_background">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/titleCart"
@@ -14,11 +14,13 @@
         android:background="@color/shimmer_load_color"
         android:elevation="0dp"
         app:cardBackgroundColor="#d2d2d2"
+        app:cardCornerRadius="5sp"
         app:layout_constraintEnd_toStartOf="@id/backButtonCard"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/catdCard"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp" />
 
     <ImageView
         android:id="@+id/backButtonCard"
@@ -45,7 +47,8 @@
         app:layout_constraintEnd_toStartOf="@id/titleCart"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp" />
 
     <View
         android:id="@+id/dividerTitle"
@@ -71,7 +74,8 @@
         app:layout_constraintBottom_toTopOf="@id/nameCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dividerTitle" />
+        app:layout_constraintTop_toBottomOf="@id/dividerTitle"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/favoriteCard"
@@ -85,7 +89,8 @@
         app:layout_constraintEnd_toStartOf="@id/imageCard"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/dividerTitle" />
+        app:layout_constraintTop_toTopOf="@id/dividerTitle"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/AlternativeCard"
@@ -99,7 +104,8 @@
         app:layout_constraintEnd_toStartOf="@id/imageCard"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/favoriteCard" />
+        app:layout_constraintTop_toBottomOf="@+id/favoriteCard"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/LocationCard"
@@ -113,7 +119,8 @@
         app:layout_constraintEnd_toStartOf="@id/imageCard"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AlternativeCard" />
+        app:layout_constraintTop_toBottomOf="@+id/AlternativeCard"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/shareCard"
@@ -127,7 +134,8 @@
         app:layout_constraintEnd_toStartOf="@id/imageCard"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LocationCard" />
+        app:layout_constraintTop_toBottomOf="@+id/LocationCard"
+        app:strokeWidth="0dp" />
 
     <!-- Name And price-->
     <com.google.android.material.card.MaterialCardView
@@ -139,10 +147,12 @@
         android:layout_marginEnd="16sp"
         android:elevation="0dp"
         app:cardBackgroundColor="@color/shimmer_load_color"
+        app:cardCornerRadius="5sp"
         app:layout_constraintBottom_toTopOf="@id/priceCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageCard" />
+        app:layout_constraintTop_toBottomOf="@+id/imageCard"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/priceCard"
@@ -156,7 +166,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameCard" />
+        app:layout_constraintTop_toBottomOf="@+id/nameCard"
+        app:strokeWidth="0dp" />
 
     <View
         android:id="@+id/divider"
@@ -179,11 +190,13 @@
         android:layout_marginEnd="16sp"
         android:elevation="0dp"
         app:cardBackgroundColor="@color/shimmer_load_color"
+        app:cardCornerRadius="5sp"
         app:layout_constraintBottom_toTopOf="@id/descTextCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/divider" />
+        app:layout_constraintTop_toTopOf="@+id/divider"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/descTextCard"
@@ -193,11 +206,13 @@
         android:layout_marginEnd="16sp"
         android:elevation="0dp"
         app:cardBackgroundColor="@color/shimmer_load_color"
+        app:cardCornerRadius="5sp"
         app:layout_constraintBottom_toTopOf="@id/useCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descCard" />
+        app:layout_constraintTop_toBottomOf="@+id/descCard"
+        app:strokeWidth="0dp" />
 
     <!--    Use For Part  -->
     <com.google.android.material.card.MaterialCardView
@@ -208,11 +223,13 @@
         android:layout_marginEnd="16sp"
         android:elevation="0dp"
         app:cardBackgroundColor="@color/shimmer_load_color"
+        app:cardCornerRadius="5sp"
         app:layout_constraintBottom_toTopOf="@id/temp1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descTextCard" />
+        app:layout_constraintTop_toBottomOf="@+id/descTextCard"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/temp1"
@@ -226,7 +243,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toEndOf="@id/temp1Text"
-        app:layout_constraintTop_toBottomOf="@+id/useCard" />
+        app:layout_constraintTop_toBottomOf="@+id/useCard"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/temp1Text"
@@ -240,7 +258,8 @@
         app:layout_constraintEnd_toStartOf="@id/temp1"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/useCard" />
+        app:layout_constraintTop_toBottomOf="@+id/useCard"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/temp2"
@@ -254,7 +273,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toEndOf="@id/temp2Text"
-        app:layout_constraintTop_toBottomOf="@+id/temp1" />
+        app:layout_constraintTop_toBottomOf="@+id/temp1"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/temp2Text"
@@ -268,7 +288,8 @@
         app:layout_constraintEnd_toStartOf="@id/temp2"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/temp1Text" />
+        app:layout_constraintTop_toBottomOf="@+id/temp1Text"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/temp3"
@@ -282,7 +303,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toEndOf="@id/temp3Text"
-        app:layout_constraintTop_toBottomOf="@+id/temp2" />
+        app:layout_constraintTop_toBottomOf="@+id/temp2"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/temp3Text"
@@ -296,7 +318,8 @@
         app:layout_constraintEnd_toStartOf="@id/temp3"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/temp2Text" />
+        app:layout_constraintTop_toBottomOf="@+id/temp2Text"
+        app:strokeWidth="0dp" />
 
     <!--    Usage Part-->
 
@@ -308,11 +331,13 @@
         android:layout_marginEnd="16sp"
         android:elevation="0dp"
         app:cardBackgroundColor="@color/shimmer_load_color"
+        app:cardCornerRadius="5sp"
         app:layout_constraintBottom_toTopOf="@id/usageTemp1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/temp3" />
+        app:layout_constraintTop_toBottomOf="@+id/temp3"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/usageTemp1"
@@ -326,7 +351,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toEndOf="@id/usageTemp1Text"
-        app:layout_constraintTop_toBottomOf="@+id/usage" />
+        app:layout_constraintTop_toBottomOf="@+id/usage"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/usageTemp1Text"
@@ -340,7 +366,8 @@
         app:layout_constraintEnd_toStartOf="@id/usageTemp1"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usage" />
+        app:layout_constraintTop_toBottomOf="@+id/usage"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/usageTemp2"
@@ -354,7 +381,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toEndOf="@id/usageTemp2Text"
-        app:layout_constraintTop_toBottomOf="@+id/usageTemp1" />
+        app:layout_constraintTop_toBottomOf="@+id/usageTemp1"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/usageTemp2Text"
@@ -368,7 +396,8 @@
         app:layout_constraintEnd_toStartOf="@id/usageTemp2"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usageTemp1Text" />
+        app:layout_constraintTop_toBottomOf="@+id/usageTemp1Text"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/usageTemp3"
@@ -382,7 +411,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toEndOf="@id/usageTemp3Text"
-        app:layout_constraintTop_toBottomOf="@+id/usageTemp2" />
+        app:layout_constraintTop_toBottomOf="@+id/usageTemp2"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/usageTemp3Text"
@@ -396,7 +426,8 @@
         app:layout_constraintEnd_toStartOf="@id/usageTemp3"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usageTemp2Text" />
+        app:layout_constraintTop_toBottomOf="@+id/usageTemp2Text"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/warning"
@@ -406,20 +437,25 @@
         android:layout_marginEnd="16sp"
         android:elevation="0dp"
         app:cardBackgroundColor="@color/shimmer_load_color"
+        app:cardCornerRadius="5sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usageTemp3Text" />
+        app:layout_constraintTop_toBottomOf="@+id/usageTemp3Text"
+        app:strokeWidth="0dp" />
 
     <!--    Bottom Button   -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/buttonCardLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="0dp"
         app:cardElevation="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeWidth="0dp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/test"
@@ -428,6 +464,7 @@
             android:layout_gravity="center"
             android:layout_margin="16sp"
             app:cardBackgroundColor="#d2d2d2"
-            app:cardCornerRadius="10sp" />
+            app:cardCornerRadius="10sp"
+            app:strokeWidth="0dp" />
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
