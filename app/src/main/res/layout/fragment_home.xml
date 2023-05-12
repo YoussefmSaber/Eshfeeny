@@ -4,38 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:backgroundTint="@color/app_background"
     tools:context=".eshfeeny.home.HomeFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/app_background"
+        android:backgroundTint="@color/app_background"
         app:layout_behavior="com.google.android.material.search.SearchBar$ScrollingViewBehavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:background="@color/app_background"
+            android:backgroundTint="@color/app_background"
             android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16sp"
-                android:src="@drawable/logo_eshfeeny"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/shimmerLayoutHome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
+                android:layout_marginTop="40sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:shimmer_base_alpha="1"
                 app:shimmer_direction="top_to_bottom"
                 app:shimmer_highlight_alpha="1"
                 app:shimmer_tilt="45">
@@ -47,12 +42,14 @@
                 android:id="@+id/homePage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50sp"
-                android:visibility="visible"
+                android:layout_marginTop="120sp"
+                android:visibility="gone"
+                android:background="@color/white"
+                android:backgroundTint="@color/app_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/logo">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.denzcoskun.imageslider.ImageSlider
                     android:id="@+id/imageSLider"
@@ -77,6 +74,7 @@
                     android:layout_margin="16sp"
                     app:cardCornerRadius="10sp"
                     app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/imageSLider"
@@ -161,6 +159,7 @@
                     android:layout_margin="16sp"
                     app:cardCornerRadius="10sp"
                     app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/searchForMedsBtn"
                     app:layout_constraintTop_toBottomOf="@+id/textView5"
@@ -220,6 +219,7 @@
                     android:layout_margin="16sp"
                     app:cardCornerRadius="10sp"
                     app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:layout_constraintEnd_toStartOf="@+id/add_roshta_photo_id"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView5"
@@ -290,6 +290,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
                     app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/motherAndChildBtn"
                     app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -337,6 +338,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
                     app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:layout_constraintEnd_toStartOf="@+id/virusProtectionBtn"
                     app:layout_constraintStart_toEndOf="@id/womenProductsBtn"
                     app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -385,6 +387,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
                     app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:layout_constraintEnd_toStartOf="@+id/motherAndChildBtn"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
@@ -434,6 +437,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
                     app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/dentalCareBtn"
                     app:layout_constraintTop_toBottomOf="@+id/virusProtectionBtn"
@@ -482,6 +486,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
                     app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:layout_constraintEnd_toStartOf="@+id/skinAndHairCareBtn"
                     app:layout_constraintStart_toEndOf="@id/menProductsBtn"
                     app:layout_constraintTop_toBottomOf="@id/virusProtectionBtn"
@@ -530,6 +535,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
                     app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:layout_constraintEnd_toStartOf="@id/dentalCareBtn"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
@@ -779,6 +785,7 @@
                     android:elevation="0dp"
                     app:cardCornerRadius="10sp"
                     app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:layout_constraintEnd_toStartOf="@id/vichy_btn_id"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/showAllBrands"
@@ -801,6 +808,7 @@
                     android:elevation="0dp"
                     app:cardCornerRadius="10sp"
                     app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:layout_constraintEnd_toStartOf="@id/laRoche_btn_id"
                     app:layout_constraintStart_toEndOf="@id/beesline_btn_id"
                     app:layout_constraintTop_toBottomOf="@id/showAllBrands"
@@ -823,6 +831,7 @@
                     android:elevation="0dp"
                     app:cardCornerRadius="10sp"
                     app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/vichy_btn_id"
                     app:layout_constraintTop_toBottomOf="@id/showAllBrands"
@@ -845,6 +854,7 @@
                     android:layout_margin="8sp"
                     android:elevation="0dp"
                     app:cardCornerRadius="10sp"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:cardElevation="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/garnier_btn_id"
@@ -868,6 +878,7 @@
                     android:layout_margin="8sp"
                     android:elevation="0dp"
                     app:cardCornerRadius="10sp"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:cardElevation="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/Axe_btn_id"
@@ -890,6 +901,7 @@
                     android:layout_height="80sp"
                     android:layout_margin="8sp"
                     android:elevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
                     app:cardCornerRadius="10sp"
                     app:cardElevation="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -918,13 +930,36 @@
         android:backgroundTint="@color/grey_font"
         android:layoutDirection="rtl">
 
-        <com.google.android.material.search.SearchBar
-            android:id="@+id/search_bar"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="55sp"
-            android:backgroundTint="#D8D8D8"
-            android:hint="ما الذي تبحث عنه؟" />
+            android:layout_height="match_parent"
+            app:cardCornerRadius="0dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardElevation="20sp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16sp"
+                    android:src="@drawable/logo_eshfeeny" />
+
+                <com.google.android.material.search.SearchBar
+                    android:id="@+id/search_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:visibility="gone"
+                    android:backgroundTint="#F7F7F7"
+                    android:hint="ما الذي تبحث عنه؟" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -932,7 +967,7 @@
         android:id="@+id/searchViewText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#F7F7F7"
         android:backgroundTintMode="add"
         android:hint="  ما الذي تبحث عنه؟"
         android:layoutDirection="rtl"

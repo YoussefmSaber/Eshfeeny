@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -47,16 +48,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cartItemName"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        app:strokeWidth="0dp">
 
         <ImageView
-            android:layout_gravity="center"
-            android:layout_margin="8sp"
             android:layout_width="14sp"
             android:layout_height="14sp"
+            android:layout_gravity="center"
+            android:layout_margin="8sp"
             android:src="@drawable/clear_logo" />
     </com.google.android.material.card.MaterialCardView>
-
 
     <LinearLayout
         android:id="@+id/productNumberLayout"
@@ -65,74 +66,77 @@
         android:layout_marginTop="4sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.77"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cartItemName"
         app:layout_constraintTop_toBottomOf="@id/cartItemName">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/incrementAmountBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
             android:layout_margin="4sp"
             app:cardBackgroundColor="#ffe5cc"
             app:cardCornerRadius="8sp"
-            app:cardElevation="0dp">
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
 
             <ImageView
                 android:layout_width="20sp"
                 android:layout_height="20sp"
+                android:layout_gravity="center"
                 android:layout_margin="8sp"
                 android:src="@drawable/plus_icon" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90sp"
+            android:layout_height="40sp"
             android:layout_gravity="center"
             android:layout_margin="4sp"
             app:cardBackgroundColor="#CCE6FF"
             app:cardCornerRadius="8sp"
-            app:cardElevation="0dp">
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
 
             <TextView
                 android:id="@+id/productAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48sp"
-                android:layout_marginEnd="48sp"
+                android:layout_gravity="center"
                 android:fontFamily="@font/cairo_medium"
                 android:text="8"
                 android:textColor="@color/blue_main"
-                android:textSize="23sp" />
+                android:textSize="20sp" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/decrementAmountBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
             android:layout_margin="4sp"
             app:cardBackgroundColor="#e5e5e5"
             app:cardCornerRadius="8sp"
-            app:cardElevation="0dp">
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
 
             <ImageView
                 android:layout_width="20sp"
                 android:layout_height="20sp"
+                android:layout_gravity="center"
                 android:layout_margin="8sp"
                 android:src="@drawable/minus_icon" />
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/totalPriceTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="100sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="16sp"
+            android:gravity="center"
             android:fontFamily="@font/cairo_medium"
             android:text="55.5 جنية"
             android:textColor="@color/blue_main"
-            android:textSize="13sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/productNumberLayout"

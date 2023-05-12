@@ -13,6 +13,7 @@
         app:cardBackgroundColor="@color/shimmer_load_color"
         app:cardCornerRadius="10sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:strokeWidth="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

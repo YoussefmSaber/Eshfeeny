@@ -18,7 +18,8 @@
             android:elevation="0dp"
             app:cardBackgroundColor="@color/shimmer_load_color"
             app:cardCornerRadius="10sp"
-            app:cardElevation="0dp" />
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="190dp"
@@ -27,7 +28,8 @@
             android:elevation="0dp"
             app:cardBackgroundColor="@color/shimmer_load_color"
             app:cardCornerRadius="10sp"
-            app:cardElevation="0dp" />
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -42,7 +44,8 @@
             android:elevation="0dp"
             app:cardBackgroundColor="@color/shimmer_load_color"
             app:cardCornerRadius="10sp"
-            app:cardElevation="0dp" />
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="190dp"
@@ -51,7 +54,8 @@
             android:elevation="0dp"
             app:cardBackgroundColor="@color/shimmer_load_color"
             app:cardCornerRadius="10sp"
-            app:cardElevation="0dp" />
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -66,7 +70,8 @@
             android:elevation="0dp"
             app:cardBackgroundColor="@color/shimmer_load_color"
             app:cardCornerRadius="10sp"
-            app:cardElevation="0dp" />
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="190dp"
@@ -75,7 +80,8 @@
             android:elevation="0dp"
             app:cardBackgroundColor="@color/shimmer_load_color"
             app:cardCornerRadius="10sp"
-            app:cardElevation="0dp" />
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -90,7 +96,8 @@
             android:elevation="0dp"
             app:cardBackgroundColor="@color/shimmer_load_color"
             app:cardCornerRadius="10sp"
-            app:cardElevation="0dp" />
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="190dp"
@@ -99,7 +106,8 @@
             android:elevation="0dp"
             app:cardBackgroundColor="@color/shimmer_load_color"
             app:cardCornerRadius="10sp"
-            app:cardElevation="0dp" />
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp" />
     </LinearLayout>
 
 </LinearLayout>

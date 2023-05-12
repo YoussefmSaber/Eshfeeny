@@ -7,12 +7,12 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_height="275sp"
+        android:layout_marginHorizontal="8sp"
         android:elevation="0dp"
         android:layoutDirection="rtl"
         android:stateListAnimator="@null"
-        app:cardBackgroundColor="#fdfdff"
+        app:cardBackgroundColor="#FDFDFF"
         app:cardCornerRadius="10sp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,9 +46,6 @@
                 android:layout_marginStart="32sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="32sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/heart_icon_id"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
@@ -65,10 +62,6 @@
                 android:text="TextView"
                 android:textColor="#1F1F1F"
                 android:textSize="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgV_medicine_id"
                 tools:ignore="TextSizeCheck" />
 
             <TextView
@@ -80,48 +73,42 @@
                 android:gravity="center_vertical"
                 android:text="TextView"
                 android:textColor="#0583F2"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/medicine_name_id_tv"
-                app:layout_constraintTop_toBottomOf="@id/medicine_name_id_tv" />
+                android:textSize="14sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/add2CartBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8sp"
-                android:backgroundTint="#F99D1C"
+                android:layout_marginHorizontal="8sp"
+                android:layout_marginTop="13sp"
+                android:backgroundTint="@color/orange_main"
                 android:fontFamily="@font/cairo_semibold"
-                android:stateListAnimator="@null"
+                android:shadowColor="@android:color/transparent"
                 android:text="أضف الى العربة"
                 android:textColor="@color/white"
                 android:visibility="visible"
-                app:cornerRadius="8sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/price_medicine_id_tv"
-                tools:ignore="TouchTargetSizeCheck" />
-
+                app:cornerRadius="8sp" />
 
             <LinearLayout
                 android:id="@+id/cardFunctionalityLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginVertical="10sp"
+                android:layout_marginHorizontal="8sp"
+                android:layout_marginTop="13sp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:visibility="gone">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/increase_btn_id"
-                    android:layout_width="28sp"
-                    android:layout_height="28sp"
+                    android:layout_width="32sp"
+                    android:layout_height="32sp"
                     android:layout_margin="8sp"
                     app:cardBackgroundColor="#FFE5CC"
                     app:cardCornerRadius="5sp"
-                    app:cardElevation="0dp">
+                    app:cardElevation="0dp"
+                    app:strokeWidth="0dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -132,11 +119,12 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btn_cnt_add_item_id"
-                    android:layout_width="60sp"
-                    android:layout_height="28sp"
+                    android:layout_width="66sp"
+                    android:layout_height="32sp"
                     app:cardBackgroundColor="@color/light_blue"
                     app:cardCornerRadius="5sp"
-                    app:cardElevation="0dp">
+                    app:cardElevation="0dp"
+                    app:strokeWidth="0dp">
 
                     <TextView
                         android:id="@+id/productAmount"
@@ -145,18 +133,19 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/cairo_medium"
                         android:text="1"
+                        android:textSize="18sp"
                         android:textColor="@color/blue_main" />
                 </com.google.android.material.card.MaterialCardView>
 
-
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/decrease_btn_id"
-                    android:layout_width="28sp"
-                    android:layout_height="28sp"
+                    android:layout_width="32sp"
+                    android:layout_height="32sp"
                     android:layout_margin="8sp"
                     app:cardBackgroundColor="#E5E5E5"
                     app:cardCornerRadius="5sp"
-                    app:cardElevation="0dp">
+                    app:cardElevation="0dp"
+                    app:strokeWidth="0dp">
 
                     <ImageView
                         android:layout_width="wrap_content"

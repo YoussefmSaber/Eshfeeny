@@ -16,6 +16,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:strokeWidth="0dp"
             app:cardElevation="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,7 +35,8 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    app:strokeWidth="0dp" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cartItemName"
@@ -48,7 +50,8 @@
                     app:layout_constraintEnd_toStartOf="@id/cartItemRemove"
                     app:layout_constraintStart_toEndOf="@id/cartItemImg"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    app:strokeWidth="0dp" />
 
 
                 <com.google.android.material.card.MaterialCardView
@@ -58,12 +61,14 @@
                     android:layout_marginTop="8sp"
                     android:layout_marginEnd="8sp"
                     app:cardBackgroundColor="@color/shimmer_load_color"
+                    app:cardCornerRadius="5sp"
                     app:cardElevation="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/cartItemName"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    app:strokeWidth="0dp" />
 
                 <LinearLayout
                     android:id="@+id/productNumberLayout"
@@ -84,7 +89,8 @@
                         android:layout_margin="4sp"
                         app:cardBackgroundColor="@color/shimmer_load_color"
                         app:cardCornerRadius="8sp"
-                        app:cardElevation="0dp" />
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="76sp"
@@ -93,7 +99,8 @@
                         android:layout_margin="4sp"
                         app:cardBackgroundColor="@color/shimmer_load_color"
                         app:cardCornerRadius="8sp"
-                        app:cardElevation="0dp" />
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/decrementAmountBtn"
@@ -102,7 +109,8 @@
                         android:layout_margin="4sp"
                         app:cardBackgroundColor="#e5e5e5"
                         app:cardCornerRadius="8sp"
-                        app:cardElevation="0dp"></com.google.android.material.card.MaterialCardView>
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/totalPriceTextView"
@@ -111,10 +119,12 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="16sp"
                         app:cardBackgroundColor="@color/shimmer_load_color"
+                        app:cardCornerRadius="5sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/productNumberLayout"
-                        app:layout_constraintTop_toBottomOf="@id/cartItemName" />
+                        app:layout_constraintTop_toBottomOf="@id/cartItemName"
+                        app:strokeWidth="0dp" />
                 </LinearLayout>
 
                 <View
@@ -133,7 +143,8 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="0dp">
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -151,7 +162,8 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    app:strokeWidth="0dp" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cartItemNameTemp2"
@@ -165,7 +177,8 @@
                     app:layout_constraintEnd_toStartOf="@id/cartItemRemoveTemp2"
                     app:layout_constraintStart_toEndOf="@id/cartItemImgTemp2"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    app:strokeWidth="0dp" />
 
 
                 <com.google.android.material.card.MaterialCardView
@@ -175,12 +188,14 @@
                     android:layout_marginTop="8sp"
                     android:layout_marginEnd="8sp"
                     app:cardBackgroundColor="@color/shimmer_load_color"
+                    app:cardCornerRadius="5sp"
                     app:cardElevation="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/cartItemNameTemp2"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    app:strokeWidth="0dp" />
 
                 <LinearLayout
                     android:id="@+id/productNumberLayoutTemp2"
@@ -201,7 +216,8 @@
                         android:layout_margin="4sp"
                         app:cardBackgroundColor="@color/shimmer_load_color"
                         app:cardCornerRadius="8sp"
-                        app:cardElevation="0dp" />
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="76sp"
@@ -210,7 +226,8 @@
                         android:layout_margin="4sp"
                         app:cardBackgroundColor="@color/shimmer_load_color"
                         app:cardCornerRadius="8sp"
-                        app:cardElevation="0dp" />
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/decrementAmountBtnTemp2"
@@ -219,7 +236,8 @@
                         android:layout_margin="4sp"
                         app:cardBackgroundColor="#e5e5e5"
                         app:cardCornerRadius="8sp"
-                        app:cardElevation="0dp" />
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/totalPriceTextViewTemp2"
@@ -228,10 +246,12 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="16sp"
                         app:cardBackgroundColor="@color/shimmer_load_color"
+                        app:cardCornerRadius="5sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/productNumberLayout"
-                        app:layout_constraintTop_toBottomOf="@id/cartItemName" />
+                        app:layout_constraintTop_toBottomOf="@id/cartItemName"
+                        app:strokeWidth="0dp" />
                 </LinearLayout>
 
                 <View

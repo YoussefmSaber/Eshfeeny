@@ -261,6 +261,7 @@ class HomeFragment : Fragment() {
         binding?.shimmerLayoutHome?.stopShimmer()
         binding?.shimmerLayoutHome?.visibility = View.GONE
         binding?.homePage?.visibility = View.VISIBLE
+        binding?.searchBar?.visibility = View.VISIBLE
     }
 
     private fun navigateToRightCategory(categoryName: String, displayType: String, view: View) {
@@ -307,7 +308,6 @@ class HomeFragment : Fragment() {
                             "english"
                         }
 
-                        Log.i("search", "$it")
                         val adapter = SearchAdapter(languageName)
                         adapter.submitList(it)
                         binding?.searchResultsRecyclerView?.adapter = adapter

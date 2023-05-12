@@ -10,6 +10,7 @@
         android:id="@+id/shimmerLayoutCart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,8 +39,12 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="0dp"
             app:cardElevation="40dp"
-            android:layout_gravity="bottom">
+            app:strokeWidth="0dp">
+
             <include
                 layout="@layout/shimmer_effect_cart_button"
                 android:layout_width="match_parent"
@@ -53,33 +58,55 @@
         android:id="@+id/cartPage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/app_background"
         android:visibility="gone">
 
-
-        <TextView
-            android:id="@+id/moreTextview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16sp"
-            android:fontFamily="@font/cairo_semibold"
-            android:text="@string/cart"
-            android:textColor="@color/text_main"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toTopOf="@id/divider5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <View
-            android:id="@+id/divider5"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/titleCardView"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="16sp"
-            android:background="#e5e5e5"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white"
+            app:strokeWidth="0dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:cardCornerRadius="0dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/moreTextview" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/moreTextview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16sp"
+                    android:fontFamily="@font/cairo_semibold"
+                    android:text="@string/cart"
+                    android:textColor="@color/text_main"
+                    android:layout_gravity="center"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toTopOf="@id/divider5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <View
+                    android:id="@+id/divider5"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16sp"
+
+                    android:background="#e5e5e5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/moreTextview" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
             android:id="@+id/cartImageLayout"
@@ -90,7 +117,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider5">
+            app:layout_constraintTop_toBottomOf="@id/titleCardView">
 
             <ImageView
                 android:id="@+id/emptyCart"
@@ -130,7 +157,7 @@
             app:layout_constraintHeight_default="wrap"
             app:layout_constraintHeight_max="0dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider5"
+            app:layout_constraintTop_toBottomOf="@id/titleCardView"
             app:layout_constraintVertical_bias="0"
             tools:listitem="@layout/cart_item" />
 
@@ -140,6 +167,9 @@
             android:layout_height="wrap_content"
             android:visibility="visible"
             app:cardElevation="40dp"
+            app:cardCornerRadius="0dp"
+            app:strokeWidth="0dp"
+            app:cardBackgroundColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
