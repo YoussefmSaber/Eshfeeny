@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
@@ -27,6 +28,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductVie
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.search.SearchAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
+import com.google.android.material.appbar.AppBarLayout
 
 class HomeFragment : Fragment() {
 
@@ -44,12 +46,6 @@ class HomeFragment : Fragment() {
 
         val imageView = ImageView(requireContext())
         imageView.setImageResource(R.drawable.camera_logo)
-        imageView.layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-
-        binding?.searchBar?.addView(imageView, 2)
 
         return binding?.root
     }

@@ -924,6 +924,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="55sp"
             android:backgroundTint="#F7F7F7"
+            app:menu="@menu/search_menu"
             android:hint="ما الذي تبحث عنه؟" />
 
     </com.google.android.material.appbar.AppBarLayout>
