@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -40,7 +42,14 @@ class HomeFragment : Fragment() {
 
         initializingFragment()
 
-        Log.i("searchBar", "${binding?.searchBar?.childCount}")
+        val imageView = ImageView(requireContext())
+        imageView.setImageResource(R.drawable.camera_logo)
+        imageView.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+
+        binding?.searchBar?.addView(imageView, 2)
 
         return binding?.root
     }

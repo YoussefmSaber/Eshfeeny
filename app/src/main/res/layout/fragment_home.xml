@@ -923,7 +923,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="55sp"
-            android:backgroundTint="#D8D8D8"
+            android:backgroundTint="#F7F7F7"
             android:hint="ما الذي تبحث عنه؟" />
 
     </com.google.android.material.appbar.AppBarLayout>
