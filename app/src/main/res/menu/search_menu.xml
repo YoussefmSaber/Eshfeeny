@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/searchUsingCamera"
         android:icon="@drawable/camera_logo"
-        android:title="searchCamera" />
+        android:contentDescription="@string/camera_icon_for_search_by_image"
+        android:title="@string/searchcamera"
+        app:showAsAction="ifRoom"/>
 </menu>

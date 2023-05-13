@@ -7,10 +7,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
@@ -25,6 +28,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductVie
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.search.SearchAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
+import com.google.android.material.appbar.AppBarLayout
 
 class HomeFragment : Fragment() {
 
@@ -39,8 +43,6 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater)
 
         initializingFragment()
-
-        Log.i("searchBar", "${binding?.searchBar?.childCount}")
 
         return binding?.root
     }

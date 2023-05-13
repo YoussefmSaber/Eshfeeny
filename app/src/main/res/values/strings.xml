@@ -206,4 +206,6 @@
     <string name="useInsuranceCard">استخدم كارت التامين</string>
     <string name="orderEasily">و اطلب ادويتك بسهوله الأن</string>
     <string name="searchCategories">تصفح الأقسام</string>
+    <string name="searchcamera">searchCamera</string>
+    <string name="camera_icon_for_search_by_image">Camera icon for search by image</string>
 </resources>

@@ -957,6 +957,7 @@
                     android:layout_height="50dp"
                     android:visibility="gone"
                     android:backgroundTint="#F7F7F7"
+                    app:menu="@menu/search_menu"
                     android:hint="ما الذي تبحث عنه؟" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

@@ -8,8 +8,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8sp"
-        android:layout_marginBottom="8sp"
+        android:layout_margin="8sp"
         android:elevation="0dp"
         android:layoutDirection="rtl"
         android:stateListAnimator="@null"
@@ -26,7 +25,7 @@
         <LinearLayout
             android:id="@+id/layout"
             android:layout_width="match_parent"
-            android:layout_height="300sp"
+            android:layout_height="280sp"
             android:orientation="vertical">
 
             <ImageView
@@ -41,8 +40,8 @@
 
             <ImageView
                 android:id="@+id/imgV_medicine_id"
-                android:layout_width="130sp"
-                android:layout_height="130sp"
+                android:layout_width="110sp"
+                android:layout_height="110sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="32sp"
                 android:layout_marginTop="5dp"

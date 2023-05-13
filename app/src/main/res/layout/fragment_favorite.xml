@@ -11,6 +11,7 @@
         android:id="@+id/shimmerLayoutFavorite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         app:shimmer_direction="top_to_bottom"
         app:shimmer_highlight_alpha="1"
         app:shimmer_tilt="45">
@@ -39,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/app_background"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <TextView
             android:id="@+id/moreTextview"
@@ -72,6 +73,7 @@
             android:layout_height="wrap_content"
             android:background="@color/app_background"
             android:orientation="vertical"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +100,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layoutDirection="rtl"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
