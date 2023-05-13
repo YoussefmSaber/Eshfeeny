@@ -28,6 +28,7 @@
         android:visibility="visible"
         android:theme="@style/bottomNavigationStyle"
         app:elevation="20dp"
+        app:backgroundTint="@color/app_background"
         app:itemTextAppearanceActive="@style/CustomBottomNavigationTextAppearanceActive"
         app:itemTextAppearanceInactive="@style/CustomBottomNavigationTextAppearanceInActive"
         app:labelVisibilityMode="labeled"
