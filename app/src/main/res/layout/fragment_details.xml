@@ -15,7 +15,7 @@
             android:id="@+id/shimmerLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
+            android:visibility="visible"
             app:shimmer_direction="top_to_bottom"
             app:shimmer_highlight_alpha="1"
             app:shimmer_tilt="45">
@@ -27,7 +27,7 @@
             android:id="@+id/page"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/textView121"
@@ -121,12 +121,16 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:strokeWidth="0dp">
 
-                        <ImageView
+                        <com.varunest.sparkbutton.SparkButton
                             android:id="@+id/favoriteImgView"
-                            android:layout_width="18sp"
-                            android:layout_height="18sp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/favorite_notfill" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:sparkbutton_animationSpeed="1.5"
+                            app:sparkbutton_activeImage="@drawable/favorite_fill"
+                            app:sparkbutton_inActiveImage="@drawable/favorite_notfill"
+                            app:sparkbutton_iconSize="16sp"
+                            app:sparkbutton_primaryColor="@color/blue_main"
+                            app:sparkbutton_secondaryColor="@color/orange_main" />
 
                     </com.google.android.material.card.MaterialCardView>
 

@@ -4,19 +4,20 @@ package com.example.eshfeenygraduationproject.eshfeeny.productsAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.cart.CartResponse
+import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
-import com.example.domain.entity.patchRequestVar.PatchProductId
-import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.MedicineItemHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragmentDirections
-import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
+import com.varunest.sparkbutton.SparkEventListener
 
 
 class ProductHomeAdapter(
@@ -83,22 +84,31 @@ class ProductHomeAdapter(
 
         private fun setFavoriteItem(category: ProductResponseItem) {
             if (favoriteProducts.contains(category)) {
-                isFavorite = true
-                itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
+                itemBinding.heartIconId.isChecked = true
             }
-            itemBinding.heartIconId.setOnClickListener {
-                if (isFavorite) {
-                    viewModel.deleteFavoriteProduct(userId, category._id)
-                    itemBinding.heartIconId.setImageResource(R.drawable.favorite_notfill)
-                } else {
-                    viewModel.addMedicineToFavorites(
-                        userId,
-                        PatchProductId(category._id)
-                    )
-                    itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
+
+            itemBinding.heartIconId.setEventListener(object : SparkEventListener {
+                override fun onEvent(button: ImageView, buttonState: Boolean) {
+                    if (buttonState) {
+                        // Button is
+                        viewModel.addMedicineToFavorites(
+                            userId,
+                            PatchProductId(category._id)
+                        )
+                    } else {
+                        // Button is inactive
+                        viewModel.deleteFavoriteProduct(userId, category._id)
+                    }
                 }
-                isFavorite = !isFavorite
-            }
+
+                override fun onEventAnimationEnd(button: ImageView?, buttonState: Boolean) {
+
+                }
+
+                override fun onEventAnimationStart(button: ImageView?, buttonState: Boolean) {
+
+                }
+            })
         }
 
         private fun navigate2Details(product: ProductResponseItem) {

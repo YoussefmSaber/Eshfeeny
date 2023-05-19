@@ -7,7 +7,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
-        android:layout_height="275sp"
+        android:layout_height="270sp"
         android:layout_marginHorizontal="8sp"
         android:elevation="0dp"
         android:layoutDirection="rtl"
@@ -27,26 +27,31 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/heart_icon_id"
-                android:layout_width="18sp"
-                android:layout_height="18sp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:srcCompat="@drawable/favorite_notfill" />
+                <com.varunest.sparkbutton.SparkButton
+                    android:id="@+id/heart_icon_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:sparkbutton_animationSpeed="1.5"
+                    app:sparkbutton_activeImage="@drawable/favorite_fill"
+                    app:sparkbutton_inActiveImage="@drawable/favorite_notfill"
+                    app:sparkbutton_iconSize="16sp"
+                    app:sparkbutton_primaryColor="@color/blue_main"
+                    app:sparkbutton_secondaryColor="@color/orange_main" />
 
-            <ImageView
-                android:id="@+id/imgV_medicine_id"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="32sp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="32sp"
-                tools:srcCompat="@tools:sample/avatars" />
+                <ImageView
+                    android:id="@+id/imgV_medicine_id"
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="32sp"
+                    android:layout_marginTop="40sp"
+                    android:layout_marginEnd="32sp"
+                    tools:srcCompat="@tools:sample/avatars" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/medicine_name_id_tv"
@@ -61,7 +66,7 @@
                 android:maxHeight="45sp"
                 android:text="TextView"
                 android:textColor="#1F1F1F"
-                android:textSize="12dp"
+                android:textSize="12sp"
                 tools:ignore="TextSizeCheck" />
 
             <TextView
@@ -80,7 +85,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8sp"
-                android:layout_marginTop="13sp"
                 android:backgroundTint="@color/orange_main"
                 android:fontFamily="@font/cairo_semibold"
                 android:shadowColor="@android:color/transparent"
@@ -95,7 +99,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="8sp"
-                android:layout_marginTop="13sp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:visibility="gone">

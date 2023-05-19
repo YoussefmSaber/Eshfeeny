@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -21,6 +22,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductVie
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModelFactory
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
+import com.varunest.sparkbutton.SparkEventListener
 
 
 class DetailsFragment : Fragment() {
@@ -164,26 +166,33 @@ class DetailsFragment : Fragment() {
         favoriteProducts: ProductResponse,
         userData: UserInfo
     ) {
-        if (productDetails in favoriteProducts) {
-            isFavorite = true
-            binding?.favoriteImgView?.setImageResource(R.drawable.favorite_fill)
-        }
-        binding?.favoriteImgCard?.setOnClickListener {
-            if (isFavorite) {
-                productViewModel.deleteFavoriteProduct(
-                    userData._id,
-                    args.Id
-                )
-                binding?.favoriteImgView?.setImageResource(R.drawable.favorite_notfill)
-            } else {
-                productViewModel.addMedicineToFavorites(
-                    userData._id,
-                    PatchProductId(args.Id)
-                )
-                binding?.favoriteImgView?.setImageResource(R.drawable.favorite_fill)
+        if (productDetails in favoriteProducts)
+            binding?.favoriteImgView?.isChecked = true
+
+        binding?.favoriteImgView?.setEventListener(object : SparkEventListener {
+            override fun onEvent(button: ImageView?, buttonState: Boolean) {
+                if (buttonState) {
+                    productViewModel.addMedicineToFavorites(
+                        userData._id,
+                        PatchProductId(args.Id)
+                    )
+                } else {
+                    productViewModel.deleteFavoriteProduct(
+                        userData._id,
+                        args.Id
+                    )
+                }
             }
-            isFavorite = !isFavorite
-        }
+
+            override fun onEventAnimationEnd(button: ImageView?, buttonState: Boolean) {
+
+            }
+
+            override fun onEventAnimationStart(button: ImageView?, buttonState: Boolean) {
+
+            }
+
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

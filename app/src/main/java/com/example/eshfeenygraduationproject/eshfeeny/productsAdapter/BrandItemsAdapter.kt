@@ -3,6 +3,7 @@ package com.example.eshfeenygraduationproject.eshfeeny.productsAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -16,6 +17,7 @@ import com.example.eshfeenygraduationproject.databinding.ProductItemCategoryBind
 import com.example.eshfeenygraduationproject.eshfeeny.brands.BrandItemsFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
+import com.varunest.sparkbutton.SparkEventListener
 
 class BrandItemsAdapter(
     private val viewModel: ProductViewModel,
@@ -69,24 +71,33 @@ class BrandItemsAdapter(
             }
         }
 
-        private fun setFavoriteItem(product: ProductResponseItem) {
-            if (favoriteProducts.contains(product)) {
-                isFavorite = true
-                itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
+        private fun setFavoriteItem(category: ProductResponseItem) {
+            if (favoriteProducts.contains(category)) {
+                itemBinding.heartIconId.isChecked = true
             }
-            itemBinding.heartIconId.setOnClickListener {
-                if (isFavorite) {
-                    viewModel.deleteFavoriteProduct(userId, product._id)
-                    itemBinding.heartIconId.setImageResource(R.drawable.favorite_notfill)
-                } else {
-                    viewModel.addMedicineToFavorites(
-                        userId,
-                        PatchProductId(product._id)
-                    )
-                    itemBinding.heartIconId.setImageResource(R.drawable.favorite_fill)
+
+            itemBinding.heartIconId.setEventListener(object : SparkEventListener {
+                override fun onEvent(button: ImageView, buttonState: Boolean) {
+                    if (buttonState) {
+                        // Button is
+                        viewModel.addMedicineToFavorites(
+                            userId,
+                            PatchProductId(category._id)
+                        )
+                    } else {
+                        // Button is inactive
+                        viewModel.deleteFavoriteProduct(userId, category._id)
+                    }
                 }
-                isFavorite = !isFavorite
-            }
+
+                override fun onEventAnimationEnd(button: ImageView?, buttonState: Boolean) {
+
+                }
+
+                override fun onEventAnimationStart(button: ImageView?, buttonState: Boolean) {
+
+                }
+            })
         }
 
         private fun addItemToCart(product: ProductResponseItem) {
