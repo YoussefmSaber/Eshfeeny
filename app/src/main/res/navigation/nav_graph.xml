@@ -146,6 +146,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_myAccountFragment_to_changePasswordLogin"
+            app:destination="@id/changePasswordLogin"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/medicineCategoryFragment"
@@ -164,8 +171,13 @@
             app:argType="string" />
         <action
             android:id="@+id/action_medicineCategoryFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
-        <argument android:name="chipName"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="chipName"
             app:argType="string" />
     </fragment>
     <fragment
@@ -216,7 +228,11 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_detailsFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/bmiAndBmrFragment"
@@ -225,7 +241,11 @@
         tools:layout="@layout/fragment_bmi_and_bmr">
         <action
             android:id="@+id/action_bmiAndBmrFragment_to_moreFragment2"
-            app:destination="@id/moreFragment2" />
+            app:destination="@id/moreFragment2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_bmiAndBmrFragment_to_verifyDataFragment"
             app:destination="@id/verifyDataFragment"
@@ -253,7 +273,11 @@
         tools:layout="@layout/fragment_verify_data">
         <action
             android:id="@+id/action_verifyDataFragment_to_bmiAndBmrFragment"
-            app:destination="@id/bmiAndBmrFragment" />
+            app:destination="@id/bmiAndBmrFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <argument
             android:name="age"
             app:argType="string" />
@@ -268,7 +292,11 @@
             app:argType="string" />
         <action
             android:id="@+id/action_verifyDataFragment_to_bmiResultFragment2"
-            app:destination="@id/bmiResultFragment2">
+            app:destination="@id/bmiResultFragment2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
             <argument
                 android:name="bmi"
                 app:argType="float" />
@@ -289,7 +317,11 @@
         android:label="RoshtaFragment">
         <action
             android:id="@+id/action_roshtaFragment_to_homeFragment2"
-            app:destination="@id/homeFragment2" />
+            app:destination="@id/homeFragment2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/insuranceCardFragment"
@@ -298,7 +330,11 @@
         tools:layout="@layout/fragment_insurance_card">
         <action
             android:id="@+id/action_insuranceCardFragment_to_homeFragment2"
-            app:destination="@id/homeFragment2" />
+            app:destination="@id/homeFragment2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_insuranceCardFragment_to_servicesInsuranceCardFragment"
             app:destination="@id/servicesInsuranceCardFragment"
@@ -314,7 +350,11 @@
         tools:layout="@layout/fragment_services_insurance_card">
         <action
             android:id="@+id/action_servicesInsuranceCardFragment_to_insuranceCardFragment"
-            app:destination="@id/insuranceCardFragment" />
+            app:destination="@id/insuranceCardFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_servicesInsuranceCardFragment_to_cartExistsFragment"
             app:destination="@id/cartExistsFragment"
@@ -324,8 +364,8 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <argument
             android:name="insuranceCardName"
-            app:argType="string"
-            android:defaultValue="asd" />
+            android:defaultValue="asd"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/cartExistsFragment"
@@ -334,7 +374,11 @@
         tools:layout="@layout/fragment_cart_exists">
         <action
             android:id="@+id/action_cartExistsFragment_to_servicesInsuranceCardFragment"
-            app:destination="@id/servicesInsuranceCardFragment" />
+            app:destination="@id/servicesInsuranceCardFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_cartExistsFragment_to_infoInsuranceCardFragment"
             app:destination="@id/infoInsuranceCardFragment"
@@ -344,8 +388,8 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <argument
             android:name="insuranceCardName"
-            app:argType="string"
-            android:defaultValue="asd" />
+            android:defaultValue="asd"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/infoInsuranceCardFragment"
@@ -354,13 +398,17 @@
         tools:layout="@layout/fragment_info_insurance_card">
         <action
             android:id="@+id/action_infoInsuranceCardFragment_to_cartExistsFragment"
-            app:destination="@id/cartExistsFragment" />
+            app:destination="@id/cartExistsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/brandsFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.brands.BrandsFragment"
         android:label="fragment_brands"
-        tools:layout="@layout/fragment_brands" >
+        tools:layout="@layout/fragment_brands">
         <action
             android:id="@+id/action_brandsFragment_to_homeFragment2"
             app:destination="@id/homeFragment2"
@@ -380,7 +428,7 @@
         android:id="@+id/brandItemsFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.brands.BrandItemsFragment"
         android:label="fragment_brand_items"
-        tools:layout="@layout/fragment_brand_items" >
+        tools:layout="@layout/fragment_brand_items">
         <action
             android:id="@+id/action_brandItemsFragment_to_brandsFragment"
             app:destination="@id/brandsFragment"
@@ -403,10 +451,14 @@
         android:id="@+id/searchFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_homeFragment2"
-            app:destination="@id/homeFragment2" />
+            app:destination="@id/homeFragment2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_searchFragment_to_detailsFragment"
             app:destination="@id/detailsFragment"
@@ -419,15 +471,32 @@
         android:id="@+id/bmiResultFragment2"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.bmiandbmr.BmiResultFragment"
         android:label="fragment_bmi_result"
-        tools:layout="@layout/fragment_bmi_result" >
+        tools:layout="@layout/fragment_bmi_result">
         <action
             android:id="@+id/action_bmiResultFragment2_to_verifyDataFragment"
-            app:destination="@id/verifyDataFragment"/>
+            app:destination="@id/verifyDataFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <argument
             android:name="bmi"
             app:argType="float" />
         <argument
             android:name="gender"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordLogin"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.myaccount.ChangePasswordLogin"
+        android:label="fragment_change_password_login"
+        tools:layout="@layout/fragment_change_password_login">
+        <action
+            android:id="@+id/action_changePasswordLogin_to_myAccountFragment"
+            app:destination="@id/myAccountFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 </navigation>

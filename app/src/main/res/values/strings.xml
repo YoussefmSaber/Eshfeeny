@@ -208,4 +208,7 @@
     <string name="searchCategories">تصفح الأقسام</string>
     <string name="searchcamera">searchCamera</string>
     <string name="camera_icon_for_search_by_image">Camera icon for search by image</string>
+    <string name="confirmNewPassword">تأكيد كلمة المرور الجديدة</string>
+    <string name="newPassword">كلمة المرور الجديدة</string>
+    <string name="currentPassword">كلمة المرور الحالية</string>
 </resources>
