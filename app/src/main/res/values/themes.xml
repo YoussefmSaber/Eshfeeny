@@ -35,11 +35,22 @@
         <item name="android:textColor">@color/blue_main</item>
         <!-- Add any other text appearance attributes you want to customize -->
     </style>
+
     <style name="CustomBottomNavigationTextAppearanceInActive" parent="TextAppearance.AppCompat.Caption">
         <item name="android:fontFamily">@font/cairo_regular</item>
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/text_main</item>
         <!-- Add any other text appearance attributes you want to customize -->
+    </style>
+
+    <style name="EditTextTheme" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="colorPrimary">@color/blue_main</item>
+        <item name="colorPrimaryVariant">@color/blue_main</item>
+    </style>
+
+    <style name="DropDownItemTheme" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="colorPrimary">@color/blue_main</item>
+        <item name="colorPrimaryVariant">@color/blue_main</item>
     </style>
 
 </resources>

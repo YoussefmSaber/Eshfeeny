@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layoutDirection="rtl"
     android:layout_height="match_parent"
+    android:layoutDirection="rtl"
     tools:context=".eshfeeny.myaccount.MyAccountFragment">
 
     <TextView
         android:id="@+id/pageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16sp"
+        android:layout_marginTop="8sp"
         android:fontFamily="@font/cairo_semibold"
         android:text="الملف الشخصي"
         android:textColor="@color/text_main"
@@ -24,10 +24,10 @@
         android:id="@+id/backButton"
         android:layout_width="40sp"
         android:layout_height="40sp"
-        android:layout_marginTop="16sp"
+        android:layout_marginTop="8sp"
         android:src="@drawable/arrow_right"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,11 +47,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fullNameEditTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16sp"
-        android:hint="أدخل الإسم بالكامل"
+        android:layout_marginHorizontal="16sp"
+        android:layout_marginTop="4sp"
+        android:gravity="center"
+        android:theme="@style/EditTextTheme"
         app:boxCornerRadiusBottomEnd="10sp"
         app:boxCornerRadiusBottomStart="10sp"
         app:boxCornerRadiusTopEnd="10sp"
@@ -65,8 +66,10 @@
             android:id="@+id/nameInputEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:fontFamily="@font/cairo_semibold"
-            android:textSize="16sp" />
+            android:gravity="center_vertical"
+            android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,8 +77,8 @@
         android:id="@+id/emailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16sp"
         android:layout_marginStart="18sp"
+        android:layout_marginTop="8sp"
         android:fontFamily="@font/cairo_semibold"
         android:text="البريد الإلكترونى"
         android:textColor="@color/text_main"
@@ -87,12 +90,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailEditTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16sp"
-        android:layout_marginStart="16sp"
-        android:hint="البريد الإلكترونى"
+        android:layout_marginHorizontal="16sp"
+        android:layout_marginTop="4sp"
+        android:gravity="center"
+        android:theme="@style/EditTextTheme"
         app:boxCornerRadiusBottomEnd="10sp"
         app:boxCornerRadiusBottomStart="10sp"
         app:boxCornerRadiusTopEnd="10sp"
@@ -106,8 +109,10 @@
             android:id="@+id/emailInputEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:fontFamily="@font/cairo_semibold"
-            android:textSize="16sp" />
+            android:gravity="center_vertical"
+            android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,8 +120,8 @@
         android:id="@+id/phoneTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16sp"
         android:layout_marginStart="18sp"
+        android:layout_marginTop="8sp"
         android:fontFamily="@font/cairo_semibold"
         android:text="رقم الهاتف"
         android:textColor="@color/text_main"
@@ -128,12 +133,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/phoneEditTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16sp"
-        android:layout_marginStart="16sp"
-        android:hint="ادخل رقم هاتفك"
+        android:layout_marginHorizontal="16sp"
+        android:layout_marginTop="4sp"
+        android:gravity="center"
+        android:theme="@style/EditTextTheme"
         app:boxCornerRadiusBottomEnd="10sp"
         app:boxCornerRadiusBottomStart="10sp"
         app:boxCornerRadiusTopEnd="10sp"
@@ -147,8 +152,10 @@
             android:id="@+id/phoneInputEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:fontFamily="@font/cairo_semibold"
-            android:textSize="16sp" />
+            android:gravity="center_vertical"
+            android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,8 +163,8 @@
         android:id="@+id/genderTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16sp"
         android:layout_marginStart="18sp"
+        android:layout_marginTop="8sp"
         android:fontFamily="@font/cairo_semibold"
         android:text="الجنس"
         android:textColor="@color/text_main"
@@ -169,12 +176,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/genderEditTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16sp"
-        android:layout_marginStart="16sp"
-        android:hint="النوع"
+        android:layout_marginHorizontal="16sp"
+        android:layout_marginTop="4sp"
+        android:gravity="center_vertical"
+        android:theme="@style/DropDownItemTheme"
         app:boxCornerRadiusBottomEnd="10sp"
         app:boxCornerRadiusBottomStart="10sp"
         app:boxCornerRadiusTopEnd="10sp"
@@ -187,12 +194,62 @@
         <AutoCompleteTextView
             android:id="@+id/genderInputEditText"
             android:layout_width="match_parent"
-            android:inputType="none"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:fontFamily="@font/cairo_semibold"
-            android:textSize="16sp" />
-
+            android:gravity="center_vertical"
+            android:inputType="none"
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12sp"
+        android:background="@drawable/shadow_direction_up"
+        app:layout_constraintBottom_toTopOf="@id/buttonContainer" />
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/buttonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeWidth="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16sp"
+                android:layout_marginVertical="8sp"
+                android:fontFamily="@font/cairo_medium"
+                android:padding="8sp"
+                android:text="حفظ التغيرات"
+                android:textSize="16sp"
+                app:backgroundTint="@color/blue_main"
+                app:cornerRadius="10sp" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16sp"
+                android:layout_marginVertical="4sp"
+                android:layout_marginBottom="4sp"
+                android:fontFamily="@font/cairo_medium"
+                android:padding="8sp"
+                android:text="تغيير كلمة السر"
+                android:textColor="#1f1f1f"
+                android:textSize="16sp"
+                app:cornerRadius="10sp"
+                app:rippleColor="@color/blue_main"
+                app:strokeColor="#1f1f1f" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
