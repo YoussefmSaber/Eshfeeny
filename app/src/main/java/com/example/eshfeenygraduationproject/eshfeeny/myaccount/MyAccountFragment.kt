@@ -34,6 +34,9 @@ class MyAccountFragment : Fragment() {
         }
 
 
+        binding?.backButton?.setOnClickListener {
+            findNavController().navigate(R.id.action_myAccountFragment_to_moreFragment2)
+        }
 
         binding?.changePasswordButton?.setOnClickListener {
             findNavController().navigate(R.id.action_myAccountFragment_to_changePasswordLogin)

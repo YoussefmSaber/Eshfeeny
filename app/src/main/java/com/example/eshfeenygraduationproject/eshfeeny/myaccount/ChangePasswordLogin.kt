@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentChangePasswordLoginBinding
 
@@ -18,6 +19,10 @@ class ChangePasswordLogin : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentChangePasswordLoginBinding.inflate(inflater)
+
+        binding?.changePasswordBackButton?.setOnClickListener {
+            findNavController().navigate(R.id.action_changePasswordLogin_to_myAccountFragment)
+        }
 
         return binding?.root
     }
