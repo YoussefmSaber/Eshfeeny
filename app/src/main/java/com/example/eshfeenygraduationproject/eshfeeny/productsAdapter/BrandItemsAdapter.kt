@@ -9,10 +9,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.cart.CartResponse
-import com.example.domain.entity.patchRequestVar.PatchProductId
+import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
-import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.ProductItemCategoryBinding
 import com.example.eshfeenygraduationproject.eshfeeny.brands.BrandItemsFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
@@ -82,7 +81,7 @@ class BrandItemsAdapter(
                         // Button is
                         viewModel.addMedicineToFavorites(
                             userId,
-                            PatchProductId(category._id)
+                            PatchString(category._id)
                         )
                     } else {
                         // Button is inactive
@@ -113,7 +112,7 @@ class BrandItemsAdapter(
                     itemBinding.productAmount.text = itemCount.toString()
                 } else {
                     itemCount++
-                    viewModel.addProductToCart(userId, PatchProductId(product._id))
+                    viewModel.addProductToCart(userId, PatchString(product._id))
                     itemBinding.productAmount.text = itemCount.toString()
                 }
             }

@@ -1,6 +1,6 @@
 package com.example.data.remote
 
-import com.example.domain.entity.patchRequestVar.PatchProductId
+import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
@@ -36,7 +36,7 @@ interface ProductApiService {
         @Path("id")
         id: String,
         @Body
-        productId: PatchProductId
+        productId: PatchString
     ): PatchRequestResponse
 
     @GET("products/user/{userId}/favorites")

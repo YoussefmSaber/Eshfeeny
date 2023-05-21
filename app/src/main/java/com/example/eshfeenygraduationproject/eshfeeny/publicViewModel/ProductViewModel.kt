@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.cart.CartResponse
-import com.example.domain.entity.patchRequestVar.PatchProductId
+import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
@@ -119,7 +119,7 @@ class ProductViewModel(
 
     fun addMedicineToFavorites(
         userId: String,
-        productId: PatchProductId
+        productId: PatchString
     ) {
         viewModelScope.launch {
             try {
@@ -168,7 +168,7 @@ class ProductViewModel(
 
     fun addProductToCart(
         userId: String,
-        productId: PatchProductId
+        productId: PatchString
     ) {
         viewModelScope.launch {
             try {

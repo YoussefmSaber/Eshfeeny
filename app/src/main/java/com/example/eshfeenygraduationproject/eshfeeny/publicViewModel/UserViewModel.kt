@@ -10,6 +10,7 @@ import com.example.data.local.db.user.UserDatabase
 import com.example.data.local.db.user.model.UserInfo
 import com.example.data.repository.UserRepoImpl
 import com.example.domain.entity.insuranceCard.InsuranceCardResponse
+import com.example.domain.entity.patchRequestVar.UpdateUserData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -38,6 +39,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             repository.deleteUserData()
         }
     }
+
     fun getInsuranceCards(userId: String) {
         viewModelScope.launch {
             try {
@@ -45,6 +47,35 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             } catch (e: Exception) {
                 Log.e("card", "Error fetching the insurance card items $e")
             }
+        }
+    }
+
+    fun updateUserData(
+        userIdLocal: Int,
+        userIdRemote: String,
+        newUserData: UpdateUserData,
+        newGender: String
+    ){
+        viewModelScope.launch {
+            repository.updateUserData(
+                userIdRemote,
+                newUserData,
+                userIdLocal
+            )
+        }
+    }
+
+    fun updateUserPassword(newPassword: String, userId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateUserName(newPassword, userId)
+        }
+    }
+
+
+
+    fun updateUserGender(newGender: String, userId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateUserName(newGender, userId)
         }
     }
 }

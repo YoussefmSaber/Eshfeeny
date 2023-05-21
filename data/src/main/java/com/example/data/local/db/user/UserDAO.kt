@@ -16,4 +16,34 @@ interface UserDAO {
 
     @Query("DELETE FROM user_details")
     suspend fun deleteUserData()
+
+    @Query("UPDATE user_details SET name = :newName WHERE id = :userId")
+    suspend fun updateUserName(
+        newName: String,
+        userId: Int
+    )
+
+    @Query("UPDATE user_details SET password = :newPassword WHERE id = :userId")
+    suspend fun updateUserPassword(
+        newPassword: String,
+        userId: Int
+    )
+
+    @Query("UPDATE user_details SET phoneNumber = :newPhone WHERE id = :userId")
+    suspend fun updateUserPhoneNumber(
+        newPhone: String,
+        userId: Int
+    )
+
+    @Query("UPDATE user_details SET phoneNumber = :newEmail WHERE id = :userId")
+    suspend fun updateUserEmail(
+        newEmail: String,
+        userId: Int
+    )
+
+    @Query("UPDATE user_details SET phoneNumber = :newGender WHERE id = :userId")
+    suspend fun updateUserGender(
+        newGender: String,
+        userId: Int
+    )
 }

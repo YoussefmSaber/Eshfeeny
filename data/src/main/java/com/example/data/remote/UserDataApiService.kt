@@ -5,8 +5,10 @@ import com.example.domain.entity.*
 import com.example.domain.entity.insuranceCard.InsuranceCardResponse
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.insuranceCard.InsuranceCardX
-import com.example.domain.entity.patchRequestVar.PatchProductId
+import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.patchRequestVar.ChangePassword
+import com.example.domain.entity.patchRequestVar.UpdateUserData
+import com.example.domain.entity.patchRequestVar.UpdateUserPassword
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -26,7 +28,7 @@ interface UserDataApiService {
         email: SendToCheckEmail
     ): Response<CheckEmailResponse>
 
-    // check if the user email and password matches the ones in the db
+    // check if the user email and password in the db matches the server one
     @POST("users/verify")
     suspend fun verifyLogin(
         @Body
@@ -40,13 +42,39 @@ interface UserDataApiService {
         newUser: CreateUser
     ): Response<UserInfo>
 
-    // GET request functions
-    // get a code to check if the email exist or not
+    @GET("users/{userId}/cart")
+    suspend fun getUsersCartItems(
+        @Path("userId")
+        userId: String
+    ): CartResponse
+
     @GET("email/{email}")
     suspend fun verifyCode(
         @Path("email")
         email: String
     ): VerifyCodeResponse
+
+    @GET("products/user/{userId}/cart/{productId}")
+    suspend fun getNumberOfItemInCart(
+        @Path("userId")
+        userId: String,
+        @Path("productId")
+        productId: String
+    ): Int
+
+    @GET("users/{userId}/insuranceCards")
+    suspend fun getInsuranceCards(
+        @Path("userId")
+        userId: String,
+    ): InsuranceCardResponse
+
+    @PATCH("users/{userId}/cart")
+    suspend fun addProductToCart(
+        @Path("userId")
+        userId: String,
+        @Body
+        productId: PatchString
+    ): PatchRequestResponse
 
     // PATCH request functions
     @PATCH("users/{id}/password")
@@ -57,27 +85,6 @@ interface UserDataApiService {
         newPassword: ChangePassword
     ): PatchRequestResponse
 
-    @GET("users/{userId}/cart")
-    suspend fun getUsersCartItems(
-        @Path("userId")
-        userId: String
-    ): CartResponse
-
-    @PATCH("users/{userId}/cart")
-    suspend fun addProductToCart(
-        @Path("userId")
-        userId: String,
-        @Body
-        productId: PatchProductId
-    ): PatchRequestResponse
-
-    @DELETE("users/{userId}/cart/{productId}")
-    suspend fun removeProductFromCart(
-        @Path("userId")
-        userId: String,
-        @Path("productId")
-        productId: String
-    ): PatchRequestResponse
 
     @PATCH("users/{userId}/cart/{productId}/1")
     suspend fun incrementProductNumberInCart(
@@ -95,25 +102,44 @@ interface UserDataApiService {
         productId: String
     ): PatchRequestResponse
 
-    @GET("products/user/{userId}/cart/{productId}")
-    suspend fun getNumberOfItemInCart(
-        @Path("userId")
-        userId: String,
-        @Path("productId")
-        productId: String
-    ): Int
-
-    @GET("users/{userId}/insuranceCards")
-    suspend fun getInsuranceCards(
-        @Path("userId")
-        userId: String,
-    ): InsuranceCardResponse
-
     @PATCH("users/{userId}/insuranceCards")
     suspend fun addInsuranceCard(
         @Path("userId")
         userId: String,
         @Body
         card: InsuranceCardX
+    ): PatchRequestResponse
+
+    @PATCH("users/{userId}/profile")
+    suspend fun updateUserNameRemote(
+        @Path("userId")
+        userId: String,
+        @Body
+        userData: UpdateUserData
+    ): PatchRequestResponse
+
+    @PATCH("users/{userId}/gender")
+    suspend fun updateUserGender(
+        @Path("userId")
+        userId: String,
+        @Body
+        userGender: PatchString
+    ): PatchRequestResponse
+
+    @PATCH("users/{userId}/compareAndUpdate")
+    suspend fun compareAndUpdateUserPassword(
+        @Path("userId")
+        userId: String,
+        @Body
+        passwords: UpdateUserPassword
+    ): PatchRequestResponse
+
+    // Delete Request Functions
+    @DELETE("users/{userId}/cart/{productId}")
+    suspend fun removeProductFromCart(
+        @Path("userId")
+        userId: String,
+        @Path("productId")
+        productId: String
     ): PatchRequestResponse
 }

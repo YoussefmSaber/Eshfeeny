@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentMyAccountBinding
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
@@ -29,6 +31,12 @@ class MyAccountFragment : Fragment() {
             binding?.emailInputEditText?.setText(it.email)
             binding?.genderInputEditText?.setText(it.gender)
             binding?.phoneInputEditText?.setText(it.phoneNumber)
+        }
+
+
+
+        binding?.changePasswordButton?.setOnClickListener {
+            findNavController().navigate(R.id.action_myAccountFragment_to_changePasswordLogin)
         }
 
         return binding?.root

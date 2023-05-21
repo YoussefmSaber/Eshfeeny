@@ -12,7 +12,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.data.local.db.user.model.UserInfo
 import com.example.data.repository.ProductRepoImpl
-import com.example.domain.entity.patchRequestVar.PatchProductId
+import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.eshfeenygraduationproject.R
@@ -136,7 +136,7 @@ class DetailsFragment : Fragment() {
                 if (productItemCount == 0) {
                     productViewModel.addProductToCart(
                         userData._id,
-                        PatchProductId(args.Id)
+                        PatchString(args.Id)
                     )
                 } else {
                     itemCount = productItemCount
@@ -174,7 +174,7 @@ class DetailsFragment : Fragment() {
                 if (buttonState) {
                     productViewModel.addMedicineToFavorites(
                         userData._id,
-                        PatchProductId(args.Id)
+                        PatchString(args.Id)
                     )
                 } else {
                     productViewModel.deleteFavoriteProduct(

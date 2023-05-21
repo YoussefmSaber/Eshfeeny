@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponseItem
-import com.example.domain.entity.patchRequestVar.PatchProductId
-import com.example.eshfeenygraduationproject.R
+import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.eshfeenygraduationproject.databinding.ProductItemCategoryBinding
 import com.example.eshfeenygraduationproject.eshfeeny.favorite.FavoriteFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
@@ -86,7 +85,7 @@ class ProductFavoriteAdapter(
                     itemBinding.productAmount.text = productCount.toString()
                 } else {
                     productCount++
-                    viewModel.addProductToCart(userId, PatchProductId(product._id))
+                    viewModel.addProductToCart(userId, PatchString(product._id))
                     itemBinding.productAmount.text = productCount.toString()
                 }
             }
@@ -110,7 +109,7 @@ class ProductFavoriteAdapter(
                         // Button is active
                         viewModel.addMedicineToFavorites(
                             userId,
-                            PatchProductId(category._id)
+                            PatchString(category._id)
                         )
                     } else {
                         // Button is inactive

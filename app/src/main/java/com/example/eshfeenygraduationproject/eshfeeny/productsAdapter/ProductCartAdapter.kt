@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.domain.entity.cart.CartItem
-import com.example.domain.entity.patchRequestVar.PatchProductId
 import com.example.eshfeenygraduationproject.databinding.CartItemBinding
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
 

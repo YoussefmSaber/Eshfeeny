@@ -1,5 +1,5 @@
 package com.example.domain.entity.patchRequestVar
 
-data class PatchProductId(
+data class PatchString(
     val productId: String
 )

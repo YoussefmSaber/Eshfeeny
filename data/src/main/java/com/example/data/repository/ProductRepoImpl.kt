@@ -3,7 +3,7 @@ package com.example.data.repository
 import android.util.Log
 import com.example.data.remote.apis.EshfeenyApiInstance
 import com.example.domain.entity.cart.CartResponse
-import com.example.domain.entity.patchRequestVar.PatchProductId
+import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
@@ -23,7 +23,7 @@ class ProductRepoImpl {
 
     suspend fun addMedicineToFavorites(
         userId: String,
-        productId: PatchProductId
+        productId: PatchString
     ): PatchRequestResponse =
         EshfeenyApiInstance.productApi.addProductToFavorite(userId, productId)
 
@@ -44,7 +44,7 @@ class ProductRepoImpl {
 
     suspend fun addProductToCart(
         userId: String,
-        productId: PatchProductId
+        productId: PatchString
     ): PatchRequestResponse = EshfeenyApiInstance.userApi.addProductToCart(userId, productId)
 
     suspend fun removeProductFromCart(

@@ -56,15 +56,12 @@ class UserRepoImpl(private val userDAO: UserDAO) {
     ): Response<UserInfo> =
         EshfeenyApiInstance.userApi.createNewUser(newUser)
 
-
     @SuppressLint("LongLogTag")
     suspend fun verifyCode(
         email: String
     ): VerifyCodeResponse {
         return try {
             val code = EshfeenyApiInstance.userApi.verifyCode(email)
-            Log.i("(UserRepoImpl)Verify code: ", email)
-            Log.i("(UserRepoImpl)Verify code: ", code.toString())
             code
         } catch (e: Exception) {
             VerifyCodeResponse("Error")
@@ -72,10 +69,10 @@ class UserRepoImpl(private val userDAO: UserDAO) {
 
     }
 
-    suspend fun updateUserPassword(
+    suspend fun updateUserPasswordNotLogin(
         id: String,
         newPassword: ChangePassword
-    ): PatchRequestResponse =
+    ) =
         EshfeenyApiInstance.userApi.updateUserPassword(id, newPassword)
 
     suspend fun addUserDataToDatabase(
@@ -88,21 +85,65 @@ class UserRepoImpl(private val userDAO: UserDAO) {
         userDAO.deleteUserData()
     }
 
+    suspend fun updateUserPasswordLocal(newPassword: String, userId: Int) {
+        userDAO.updateUserPassword(newPassword, userId)
+    }
+
     suspend fun getUserData(): UserInfo = userDAO.getUserData()
 
     suspend fun getInsuranceCards(
         userId: String
     ): InsuranceCardResponse {
-       try {
-            return EshfeenyApiInstance.userApi.getInsuranceCards(userId)
-       } catch (e:Exception){
-           Log.e("card", "Error fetching the insurance card items $e")
-           return EshfeenyApiInstance.userApi.getInsuranceCards(userId)
-       }
+        return try {
+            EshfeenyApiInstance.userApi.getInsuranceCards(userId)
+        } catch (e: Exception) {
+            Log.e("card", "Error fetching the insurance card items $e")
+            EshfeenyApiInstance.userApi.getInsuranceCards(userId)
+        }
     }
 
     suspend fun addInsuranceCard(
         userId: String,
         card: InsuranceCardX
-    ): PatchRequestResponse = EshfeenyApiInstance.userApi.addInsuranceCard(userId, card)
+    ) {
+        EshfeenyApiInstance.userApi.addInsuranceCard(userId, card)
+    }
+
+    suspend fun updateUserData(
+        userId: String,
+        newUserData: UpdateUserData,
+        userIdLocal: Int
+    ) {
+        userDAO.updateUserEmail(newUserData.email, userIdLocal)
+        userDAO.updateUserPhoneNumber(newUserData.phoneNumber, userIdLocal)
+        userDAO.updateUserName(newUserData.name, userIdLocal)
+        EshfeenyApiInstance.userApi.updateUserNameRemote(userId, newUserData)
+    }
+
+    suspend fun updateUserGender(
+        userIdRemote: String,
+        newGender: String,
+        userIdLocal: Int
+    ) {
+        userDAO.updateUserGender(newGender, userIdLocal)
+        EshfeenyApiInstance.userApi.updateUserGender(userIdRemote, PatchString(newGender))
+    }
+
+    suspend fun updateAndCompareUserPassword(
+        newPassword: String,
+        oldPassword: String,
+        userId: String,
+        userIdLocal: Int
+    ) {
+        try {
+            EshfeenyApiInstance.userApi.compareAndUpdateUserPassword(
+                userId,
+                UpdateUserPassword(newPassword, oldPassword)
+            )
+            Log.i("Update user Password: ", "Operation Success!")
+        } catch (e: Exception) {
+            Log.i("Update user Password: ", "Operation Failure :'(")
+        }
+    }
+
 }

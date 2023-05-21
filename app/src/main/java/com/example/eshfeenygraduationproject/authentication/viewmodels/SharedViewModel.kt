@@ -130,7 +130,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
         newPassword: ChangePassword
     ) {
         viewModelScope.launch {
-            val response = repository.updateUserPassword(id, newPassword)
+            val response = repository.updateUserPasswordNotLogin(id, newPassword)
             _updatePassword.value = response
         }
     }
