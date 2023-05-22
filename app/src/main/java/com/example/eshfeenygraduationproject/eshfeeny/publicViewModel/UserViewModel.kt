@@ -64,18 +64,4 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             )
         }
     }
-
-    fun updateUserPassword(newPassword: String, userId: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.updateUserName(newPassword, userId)
-        }
-    }
-
-
-
-    fun updateUserGender(newGender: String, userId: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.updateUserName(newGender, userId)
-        }
-    }
 }

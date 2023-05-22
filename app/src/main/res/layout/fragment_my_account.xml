@@ -69,7 +69,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/cairo_semibold"
             android:gravity="center_vertical"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,7 +112,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/cairo_semibold"
             android:gravity="center_vertical"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -155,7 +155,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/cairo_semibold"
             android:gravity="center_vertical"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -199,7 +199,7 @@
             android:fontFamily="@font/cairo_semibold"
             android:gravity="center_vertical"
             android:inputType="none"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <View
@@ -231,9 +231,11 @@
                 android:layout_marginVertical="8sp"
                 android:fontFamily="@font/cairo_medium"
                 android:padding="8sp"
+                android:textColor="@color/text_main"
+                app:backgroundTint="@color/button_disabled"
                 android:text="حفظ التغيرات"
+                android:enabled="false"
                 android:textSize="16sp"
-                app:backgroundTint="@color/blue_main"
                 app:cornerRadius="10sp" />
 
             <com.google.android.material.button.MaterialButton
@@ -247,10 +249,10 @@
                 android:fontFamily="@font/cairo_medium"
                 android:padding="8sp"
                 android:text="تغيير كلمة السر"
-                android:textColor="#1f1f1f"
+                android:textColor="@color/text_main"
                 android:textSize="16sp"
                 app:cornerRadius="10sp"
-                app:rippleColor="@color/blue_main"
+                app:rippleColor="@android:color/transparent"
                 app:strokeColor="#1f1f1f" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

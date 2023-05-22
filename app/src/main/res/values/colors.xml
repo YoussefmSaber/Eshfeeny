@@ -31,4 +31,6 @@
     <color name="chip_stroke_notSelected">#e5e5e5</color>
     <color name="chip_stroke_selected">@color/blue_main</color>
     <color name="shimmer_load_color">#E1E0E0</color>
+    <color name="button_disabled">#6E6E6E</color>
+
 </resources>
