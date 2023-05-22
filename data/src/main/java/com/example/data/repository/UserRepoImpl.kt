@@ -114,10 +114,15 @@ class UserRepoImpl(private val userDAO: UserDAO) {
         newUserData: UpdateUserData,
         userIdLocal: Int
     ) {
-        userDAO.updateUserEmail(newUserData.email, userIdLocal)
-        userDAO.updateUserPhoneNumber(newUserData.phoneNumber, userIdLocal)
-        userDAO.updateUserName(newUserData.name, userIdLocal)
-        EshfeenyApiInstance.userApi.updateUserNameRemote(userId, newUserData)
+        try {
+            userDAO.updateUserEmail(newUserData.email, userIdLocal)
+            userDAO.updateUserPhoneNumber(newUserData.phoneNumber, userIdLocal)
+            userDAO.updateUserName(newUserData.name, userIdLocal)
+            EshfeenyApiInstance.userApi.updateUserNameRemote(userId, newUserData)
+            Log.i("Update user", "Operation Success!")
+        } catch (e: Exception) {
+            Log.i("update data Error", "$e")
+        }
     }
 
     suspend fun updateUserGender(
@@ -125,8 +130,13 @@ class UserRepoImpl(private val userDAO: UserDAO) {
         newGender: String,
         userIdLocal: Int
     ) {
-        userDAO.updateUserGender(newGender, userIdLocal)
-        EshfeenyApiInstance.userApi.updateUserGender(userIdRemote, PatchString(newGender))
+        try {
+            userDAO.updateUserGender(newGender, userIdLocal)
+            EshfeenyApiInstance.userApi.updateUserGender(userIdRemote, UpdateUserGender(newGender))
+            Log.i("Update user", "Operation Success!")
+        } catch (e: Exception) {
+            Log.i("update gender Error", "$e")
+        }
     }
 
     suspend fun updateAndCompareUserPassword(

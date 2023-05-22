@@ -55,11 +55,17 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         userIdRemote: String,
         newUserData: UpdateUserData,
         newGender: String
-    ){
+    ) {
         viewModelScope.launch {
             repository.updateUserData(
                 userIdRemote,
                 newUserData,
+                userIdLocal
+            )
+
+            repository.updateUserGender(
+                userIdRemote,
+                newGender,
                 userIdLocal
             )
         }

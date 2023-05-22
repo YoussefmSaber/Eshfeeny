@@ -8,6 +8,7 @@ import com.example.domain.entity.insuranceCard.InsuranceCardX
 import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.patchRequestVar.ChangePassword
 import com.example.domain.entity.patchRequestVar.UpdateUserData
+import com.example.domain.entity.patchRequestVar.UpdateUserGender
 import com.example.domain.entity.patchRequestVar.UpdateUserPassword
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import retrofit2.Response
@@ -123,7 +124,7 @@ interface UserDataApiService {
         @Path("userId")
         userId: String,
         @Body
-        userGender: PatchString
+        userGender: UpdateUserGender
     ): PatchRequestResponse
 
     @PATCH("users/{userId}/compareAndUpdate")

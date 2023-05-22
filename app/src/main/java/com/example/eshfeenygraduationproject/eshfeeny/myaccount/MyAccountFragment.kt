@@ -15,6 +15,7 @@ import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.domain.entity.patchRequestVar.UpdateUserData
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentMyAccountBinding
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
@@ -32,18 +33,18 @@ class MyAccountFragment : Fragment() {
         binding = FragmentMyAccountBinding.inflate(inflater)
         viewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
-        viewModel.userData.observe(viewLifecycleOwner) {
+        viewModel.userData.observe(viewLifecycleOwner) { userData ->
             binding?.apply {
-                nameInputEditText.setText(it.name)
-                emailInputEditText.setText(it.email)
-                genderInputEditText.setText(it.gender)
-                phoneInputEditText.setText(it.phoneNumber)
+                nameInputEditText.setText(userData.name)
+                emailInputEditText.setText(userData.email)
+                genderInputEditText.setText(userData.gender)
+                phoneInputEditText.setText(userData.phoneNumber)
 
 
-                isFieldChanged(nameInputEditText, it.name)
-                isFieldChanged(emailInputEditText, it.email)
-                it.gender?.let { it1 -> isFieldChanged(genderInputEditText, it1) }
-                it.phoneNumber?.let { it1 -> isFieldChanged(phoneInputEditText, it1) }
+                isFieldChanged(nameInputEditText, userData.name)
+                isFieldChanged(emailInputEditText, userData.email)
+                userData.gender?.let { it1 -> isFieldChanged(genderInputEditText, it1) }
+                userData.phoneNumber?.let { it1 -> isFieldChanged(phoneInputEditText, it1) }
 
 
                 backButton.setOnClickListener {
@@ -52,6 +53,23 @@ class MyAccountFragment : Fragment() {
 
                 changePasswordButton.setOnClickListener {
                     findNavController().navigate(R.id.action_myAccountFragment_to_changePasswordLogin)
+                }
+
+                saveChangesButton.setOnClickListener {
+                    val updatedUserData = UpdateUserData(
+                        nameInputEditText.text.toString(),
+                        emailInputEditText.text.toString(),
+                        phoneInputEditText.text.toString()
+                    )
+
+                    Log.i("update gender fragment", "${genderInputEditText.text}")
+
+                    viewModel.updateUserData(
+                        userData.id,
+                        userData._id,
+                        updatedUserData,
+                        genderInputEditText.text.toString()
+                    )
                 }
             }
         }

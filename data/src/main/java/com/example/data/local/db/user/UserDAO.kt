@@ -35,13 +35,13 @@ interface UserDAO {
         userId: Int
     )
 
-    @Query("UPDATE user_details SET phoneNumber = :newEmail WHERE id = :userId")
+    @Query("UPDATE user_details SET email = :newEmail WHERE id = :userId")
     suspend fun updateUserEmail(
         newEmail: String,
         userId: Int
     )
 
-    @Query("UPDATE user_details SET phoneNumber = :newGender WHERE id = :userId")
+    @Query("UPDATE user_details SET gender = :newGender WHERE id = :userId")
     suspend fun updateUserGender(
         newGender: String,
         userId: Int
