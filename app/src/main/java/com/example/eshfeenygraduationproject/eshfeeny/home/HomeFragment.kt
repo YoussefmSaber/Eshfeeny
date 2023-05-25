@@ -304,13 +304,7 @@ class HomeFragment : Fragment() {
                     productViewModel.getSearchResults(searchText)
                     productViewModel.searchResults.observe(viewLifecycleOwner) {
 
-                        languageName = if (isArabic) {
-                            "arabic"
-                        } else {
-                            "english"
-                        }
-
-                        val adapter = SearchAdapter(languageName)
+                        val adapter = SearchAdapter()
                         adapter.submitList(it)
                         binding?.searchResultsRecyclerView?.adapter = adapter
                     }

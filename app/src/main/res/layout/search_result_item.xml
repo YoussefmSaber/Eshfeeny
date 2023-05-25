@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/searchItemImageView"
-            android:layout_width="60sp"
-            android:layout_height="60sp"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
             android:layout_gravity="center"
             android:layout_margin="16sp"
             android:src="@drawable/search_icon" />
@@ -42,6 +42,8 @@
                 android:id="@+id/searchItemPriceTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_gravity="right"
                 android:text="23 جنية"
                 android:textColor="@color/blue_main"/>
 

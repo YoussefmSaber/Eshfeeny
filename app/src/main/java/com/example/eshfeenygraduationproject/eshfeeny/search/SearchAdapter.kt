@@ -11,9 +11,7 @@ import com.example.eshfeenygraduationproject.databinding.SearchResultItemBinding
 import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 
-class SearchAdapter(
-    private val language: String
-) :
+class SearchAdapter() :
     ListAdapter<ProductResponseItem, SearchAdapter.ViewHolder>(CategoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,12 +32,10 @@ class SearchAdapter(
 
         fun bind(product: ProductResponseItem) {
             itemBinding.searchItemImageView.loadUrl(product.images[0])
-            when (language) {
-                "arabic" -> {
-                    itemBinding.searchItemTextView.text = product.nameAr
-                }
-                "english" -> itemBinding.searchItemTextView.text = product.nameEn
-            }
+
+            itemBinding.searchItemTextView.text =
+                "${product.nameAr} | ${product.volume} | ${product.amount}"
+
             itemBinding.searchItemPriceTextView.text = "${product.price} جنية"
             itemBinding.searchItemTextView.setOnClickListener {
                 val action =
