@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.eshfeenygraduationproject.databinding.SearchResultItemBinding
 import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 
 class SearchAdapter(
     private val language: String
@@ -32,10 +33,14 @@ class SearchAdapter(
         RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(product: ProductResponseItem) {
+            itemBinding.searchItemImageView.loadUrl(product.images[0])
             when (language) {
-                "arabic" -> itemBinding.searchItemTextView.text = product.nameAr
+                "arabic" -> {
+                    itemBinding.searchItemTextView.text = product.nameAr
+                }
                 "english" -> itemBinding.searchItemTextView.text = product.nameEn
             }
+            itemBinding.searchItemPriceTextView.text = "${product.price} جنية"
             itemBinding.searchItemTextView.setOnClickListener {
                 val action =
                     HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(product._id)

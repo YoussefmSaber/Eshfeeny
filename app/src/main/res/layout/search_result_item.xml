@@ -11,24 +11,42 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="20sp"
-            android:layout_height="20sp"
+            android:id="@+id/searchItemImageView"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
             android:layout_gravity="center"
             android:layout_margin="16sp"
             android:src="@drawable/search_icon" />
 
-        <TextView
-            android:id="@+id/searchItemTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="16sp"
-            android:layout_marginVertical="16sp"
-            android:fontFamily="@font/cairo_regular"
-            android:gravity="right"
-            android:text="Panadol"
-            android:textColor="@color/text_main"
-            android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginVertical="8sp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/searchItemTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="16sp"
+                android:fontFamily="@font/cairo_regular"
+                android:gravity="right"
+                android:text="Panadol"
+                android:textColor="@color/text_main"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/searchItemPriceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="23 جنية"
+                android:textColor="@color/blue_main"/>
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
