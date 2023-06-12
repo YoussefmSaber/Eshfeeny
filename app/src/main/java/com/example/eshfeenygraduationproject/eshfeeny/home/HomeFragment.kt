@@ -55,7 +55,7 @@ class HomeFragment : Fragment() {
 
         initializingFragment()
         binding!!.searchBar.setOnMenuItemClickListener { menuItem ->
-            when(menuItem.itemId) {
+            when (menuItem.itemId) {
                 R.id.searchUsingCamera -> {
                     Log.i("image Capture", "Item Clicked")
                     takeImage()
@@ -68,7 +68,11 @@ class HomeFragment : Fragment() {
         return binding?.root
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted, launch the camera
@@ -76,12 +80,17 @@ class HomeFragment : Fragment() {
                 try {
                     startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
                 } catch (e: ActivityNotFoundException) {
-                    Toast.makeText(requireContext(), "Error: ${e.localizedMessage}", Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        requireContext(),
+                        "Error: ${e.localizedMessage}",
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                 }
             } else {
                 // Permission denied, show a message to the user
-                Toast.makeText(requireContext(), "Camera permission denied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Camera permission denied", Toast.LENGTH_SHORT)
+                    .show()
             }
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -90,11 +99,14 @@ class HomeFragment : Fragment() {
 
     private fun takeImage() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
-            != PackageManager.PERMISSION_GRANTED) {
+            != PackageManager.PERMISSION_GRANTED
+        ) {
             // Permission is not granted, request the permission
-            ActivityCompat.requestPermissions(requireActivity(),
+            ActivityCompat.requestPermissions(
+                requireActivity(),
                 arrayOf(Manifest.permission.CAMERA),
-                CAMERA_PERMISSION_REQUEST_CODE)
+                CAMERA_PERMISSION_REQUEST_CODE
+            )
         } else {
             // Permission already granted, launch the camera
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -116,8 +128,10 @@ class HomeFragment : Fragment() {
             productViewModel.uploadImage(Constants.IMAGE_UPLOAD_KEY, imgFile)
 
             productViewModel.imageResponseResult.observe(viewLifecycleOwner) {
-                Log.i("image Response", it.data.url)
-                productViewModel.getImageUrl(it.data.url)
+                val searchResultAction =
+                    HomeFragmentDirections.actionHomeFragment2ToSearchResultsFragment(it.data.url)
+                findNavController().navigate(searchResultAction)
+
             }
             Log.i("Image Capture", "Image Taken Successfully")
         } else {

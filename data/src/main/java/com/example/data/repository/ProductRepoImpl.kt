@@ -1,18 +1,23 @@
 package com.example.data.repository
 
 import android.util.Log
+import com.example.data.remote.ProductApiService
 import com.example.data.remote.apis.EshfeenyApiInstance
 import com.example.data.remote.apis.ImageUploadApiInstance
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.imageResponse.ImageResponse
+import com.example.domain.entity.imageResponse.ImageURL
 import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
+import com.google.gson.GsonBuilder
+import com.google.gson.stream.JsonReader
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Response
 import java.io.File
+import java.io.StringReader
 
 class ProductRepoImpl {
 
@@ -117,6 +122,12 @@ class ProductRepoImpl {
     suspend fun getImageData(
         imageUrl: String
     ): ProductResponse {
-        return ImageUploadApiInstance.imageApi.getImageData(imageUrl)
+        return try {
+            EshfeenyApiInstance.productApi.getImageData(ImageURL(imageUrl))
+
+        } catch (e: Exception) {
+            Log.i("error upload", e.toString())
+            EshfeenyApiInstance.productApi.getImageData(ImageURL(imageUrl))
+        }
     }
 }

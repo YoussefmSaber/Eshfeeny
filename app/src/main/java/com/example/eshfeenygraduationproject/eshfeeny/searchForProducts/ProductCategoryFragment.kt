@@ -36,7 +36,6 @@ class ProductCategoryFragment : Fragment() {
     private lateinit var productViewModel: ProductViewModel
     private lateinit var userViewModel: UserViewModel
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -3,6 +3,7 @@ package com.example.data.remote
 import com.example.domain.entity.imageResponse.ImageResponse
 import com.example.domain.entity.product.ProductResponse
 import okhttp3.MultipartBody
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -18,10 +19,4 @@ interface ImageApiService {
         @Part
         image: MultipartBody.Part
     ): ImageResponse
-
-    @POST("imageSearch/")
-    suspend fun getImageData(
-        @Body
-        imageURL: String
-    ): ProductResponse
 }
