@@ -298,7 +298,7 @@
             app:argType="string" />
         <action
             android:id="@+id/action_verifyDataFragment_to_bmiResultFragment2"
-            app:destination="@id/bmiResultFragment2"
+            app:destination="@id/bmiResultFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -310,6 +310,20 @@
                 android:name="gender"
                 app:argType="string" />
 
+        </action>
+        <action
+            android:id="@+id/action_verifyDataFragment_to_bmrResultFragment"
+            app:destination="@id/bmrResultFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="bmr"
+                app:argType="float" />
+            <argument
+                android:name="gender"
+                app:argType="string" />
         </action>
     </fragment>
     <fragment
@@ -474,7 +488,7 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
-        android:id="@+id/bmiResultFragment2"
+        android:id="@+id/bmiResultFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.bmiandbmr.BmiResultFragment"
         android:label="fragment_bmi_result"
         tools:layout="@layout/fragment_bmi_result">
@@ -506,6 +520,22 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
+        android:id="@+id/bmrResultFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.bmiandbmr.BmrResultFragment"
+        android:label="fragment_bmr_result"
+        tools:layout="@layout/fragment_bmr_result" >
+        <action
+            android:id="@+id/action_bmrResultFragment_to_verifyDataFragment"
+            app:destination="@id/verifyDataFragment" />
+        <argument
+            android:name="bmr"
+            app:argType="float" />
+        <argument
+            android:name="gender"
+            app:argType="string"/>
+      </fragment>
+
+  <fragment
         android:id="@+id/searchResultsFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.searchResults.SearchResultsFragment"
         android:label="SearchResultsFragment" >

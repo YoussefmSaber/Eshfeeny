@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/constraint"
     android:background="@color/white"
-    tools:ignore="MissingDefaultResource"
-    tools:context=".eshfeeny.bmiandbmr.BmiResultFragment">
+    tools:context=".eshfeeny.bmiandbmr.BmiResultFragment"
+    tools:ignore="MissingDefaultResource">
+
     <ImageView
         android:id="@+id/womanResIdBmi"
         android:layout_width="wrap_content"
@@ -26,6 +27,7 @@
         android:id="@+id/manResIdBmi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="80sp"
         android:src="@drawable/man_res"
         android:visibility="visible"
@@ -51,6 +53,7 @@
         android:id="@+id/txtResIdBmi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40sp"
         android:layout_marginBottom="95sp"
         android:fontFamily="@font/cairo_semibold"
         android:text="TextView"
@@ -114,9 +117,33 @@
         android:layout_width="153sp"
         android:layout_height="112sp"
         android:layout_marginEnd="16sp"
-        android:layout_marginBottom="70sp"
+        android:layout_marginBottom="50dp"
         android:src="@drawable/listres"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/backBtnBmi"
+        android:layout_width="27sp"
+        android:layout_height="27sp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/exit_logo" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text=" معدل كتلة الجسم"
+        android:textColor="#1F1F1F"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
