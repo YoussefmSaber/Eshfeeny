@@ -122,12 +122,7 @@ class ProductRepoImpl {
     suspend fun getImageData(
         imageUrl: String
     ): ProductResponse {
-        return try {
-            EshfeenyApiInstance.productApi.getImageData(ImageURL(imageUrl))
+        return EshfeenyApiInstance.productApi.getImageData(ImageURL(imageUrl))
 
-        } catch (e: Exception) {
-            Log.i("error upload", e.toString())
-            EshfeenyApiInstance.productApi.getImageData(ImageURL(imageUrl))
-        }
     }
 }
