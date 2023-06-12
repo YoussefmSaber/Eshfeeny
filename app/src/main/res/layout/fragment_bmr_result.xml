@@ -3,7 +3,158 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".eshfeeny.bmiandbmr.BmrResultFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".eshfeeny.bmiandbmr.BmrResultFragment"
+    android:background="@color/white"
+    tools:ignore="MissingDefaultResource">
+    <ImageView
+        android:id="@+id/womanResIdBmr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="250sp"
+        android:src="@drawable/woman_res"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+    <ImageView
+        android:id="@+id/manResIdBmr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="80sp"
+        android:src="@drawable/man_res"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+    <ImageView
+        android:id="@+id/terResIdBmr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="210sp"
+        android:src="@drawable/termometer_bmr"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="164sp"
+        android:layout_height="24sp"
+        android:layout_marginTop="18sp"
+        android:layout_marginEnd="18sp"
+        android:src="@drawable/your_weight_is_normal_"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/womanResIdBmr" />
 
+    <TextView
+        android:id="@+id/txtResIdBmr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40sp"
+        android:layout_marginBottom="95sp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="TextView"
+        android:textColor="#388E3C"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.623" />
+    <ImageView
+        android:id="@+id/lineBId"
+        android:layout_width="5sp"
+        android:layout_height="61sp"
+        android:layout_marginEnd="25sp"
+        android:layout_marginBottom="188dp"
+        android:src="@drawable/line"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/lineGId"
+        android:layout_width="5sp"
+        android:layout_height="61sp"
+        android:layout_marginStart="40dp"
+        android:src="@drawable/line2"
+        android:visibility="invisible"
+        android:translationX="4sp"
+        app:layout_constraintStart_toEndOf="@+id/lineBId"
+        app:layout_constraintTop_toTopOf="@+id/lineBId" />
+
+    <ImageView
+        android:id="@+id/lineOId"
+        android:layout_width="5sp"
+        android:layout_height="61sp"
+        android:layout_marginStart="40dp"
+        android:src="@drawable/line3"
+        android:translationX="4sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/lineGId"
+        app:layout_constraintTop_toTopOf="@+id/lineGId" />
+
+    <ImageView
+        android:id="@+id/lineRId"
+        android:layout_width="5sp"
+        android:layout_height="61sp"
+        android:layout_marginStart="52dp"
+        android:src="@drawable/line4"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/lineOId"
+        app:layout_constraintTop_toTopOf="@+id/lineOId" />
+
+    <ImageView
+        android:id="@+id/linePId"
+        android:layout_width="5sp"
+        android:layout_height="61sp"
+        android:layout_marginStart="40dp"
+        android:src="@drawable/line5"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/lineRId"
+        app:layout_constraintTop_toTopOf="@+id/lineRId" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="302dp"
+        android:layout_height="112dp"
+        android:layout_marginEnd="16sp"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/bmr_22"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <ImageView
+        android:id="@+id/backBtnBmr"
+        android:layout_width="27sp"
+        android:layout_height="27sp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/exit_logo" />
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/cairo_semibold"
+        android:text="معدل الحرق"
+        android:textColor="#1F1F1F"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

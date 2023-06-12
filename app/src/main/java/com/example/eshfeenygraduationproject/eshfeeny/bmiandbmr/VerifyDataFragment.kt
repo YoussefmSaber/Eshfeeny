@@ -51,13 +51,21 @@ class VerifyDataFragment : Fragment() {
 
             BtnIdBmi.setOnClickListener {
                 dialog.dismiss()
-                val action = VerifyDataFragmentDirections.actionVerifyDataFragmentToBmiResultFragment2(bmi, gender)
+                val action = VerifyDataFragmentDirections
+                    .actionVerifyDataFragmentToBmiResultFragment2(bmi, gender)
+                findNavController().navigate(action)
+            }
+            BtnIdBmr.setOnClickListener {
+                dialog.dismiss()
+                val action = VerifyDataFragmentDirections.
+                        actionVerifyDataFragmentToBmrResultFragment(bmr.toFloat(),gender)
                 findNavController().navigate(action)
             }
             val txtExit = view.findViewById<TextView>(R.id.txtIdExit)
             txtExit.setOnClickListener {
                 dialog.dismiss()
             }
+
             dialog.setContentView(view)
             dialog.show()
         }
@@ -66,7 +74,7 @@ class VerifyDataFragment : Fragment() {
     }
     fun calcBMR(age: Float?, height: Float?, weight: Float?, gender: String?) : Double {
         return if(gender != "أنثى")
-            88.362 + (13.397 * weight!!) + (4.799 * height!!) - (5.677 * age!!)
+            (10 * weight!!) + (6.25 * height!!) - (5 * age!! ) + 5
         else
             447.593  + (9.247 * weight!!) + (3.098 * height!!) - (4.330 * age!! )
     }
