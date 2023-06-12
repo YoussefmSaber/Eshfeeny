@@ -35,9 +35,7 @@ class RoshtaFragment : Fragment() {
             var camera: ImageView = view.findViewById(R.id.photoId)
             gallery.setOnClickListener {
                 pickPhotoGallery()
-                runBlocking {
-                    delay(3000)
-                }
+
                 binding?.txtChoosePhoto?.visibility = View.VISIBLE
                 binding?.addRoshtaPhoto?.visibility = View.INVISIBLE
                 binding?.btnNext?.text = "أعرف أقرب صيدلية"
@@ -51,6 +49,7 @@ class RoshtaFragment : Fragment() {
                 }
             }
             camera.setOnClickListener {
+                openCamera()
 
                 binding?.txtChoosePhoto?.visibility = View.VISIBLE
                 binding?.addRoshtaPhoto?.visibility = View.INVISIBLE
@@ -95,7 +94,7 @@ class RoshtaFragment : Fragment() {
             putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
         }
 
-        startActivityForResult(cameraIntent, 0)
+        startActivityForResult(cameraIntent, 100)
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

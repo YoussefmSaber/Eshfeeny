@@ -8,12 +8,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.cart.CartResponse
+import com.example.domain.entity.imageResponse.Image
+import com.example.domain.entity.imageResponse.ImageResponse
 import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import java.io.File
 
 
 class ProductViewModel(
@@ -70,6 +73,14 @@ class ProductViewModel(
     private val _searchResults = MutableLiveData<ProductResponse>()
     val searchResults: LiveData<ProductResponse>
         get() = _searchResults
+
+    private val _imageResponseResult = MutableLiveData<ImageResponse>()
+    val imageResponseResult: LiveData<ImageResponse>
+        get() = _imageResponseResult
+
+    private val _imageSearchResults = MutableLiveData<ProductResponse>()
+    val imageSearchResults: LiveData<ProductResponse>
+        get() = _imageSearchResults
 
     fun getProductsFromRemote(medicine: String) {
         viewModelScope.launch {
@@ -260,6 +271,32 @@ class ProductViewModel(
                 _searchResults.value = repo.getSearchResults(productName)
             } catch (e: Exception) {
                 Log.i("Search Result", "Error fetching the results $e")
+            }
+        }
+    }
+
+    fun uploadImage(
+        key: String,
+        image: File
+    ) {
+        viewModelScope.launch {
+            try {
+                _imageResponseResult.value = repo.uploadImage(key, image)
+                Log.i("image Response", "${_imageResponseResult.value}")
+            } catch (e: Exception) {
+                Log.i("Upload Image", "Error Sending The Image $e")
+            }
+        }
+    }
+
+    fun getImageUrl(
+        imageUrl: String
+    ) {
+        viewModelScope.launch {
+            try {
+                _imageSearchResults.value = repo.getImageData(imageUrl)
+            } catch (e: Exception) {
+                Log.i("Upload Image", "Error Sending The Image $e")
             }
         }
     }

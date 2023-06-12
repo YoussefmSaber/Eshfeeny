@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.cart.CartResponse
@@ -18,7 +17,6 @@ import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.ProductC
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
 import com.varunest.sparkbutton.SparkEventListener
-
 
 class ProductCategoryAdapter(
     private val viewModel: ProductViewModel,
@@ -153,22 +151,6 @@ class ProductCategoryAdapter(
                     itemBinding.productAmount.text = itemCount.toString()
                 }
             }
-        }
-    }
-
-    class CategoryDiffCallback : DiffUtil.ItemCallback<ProductResponseItem>() {
-        override fun areItemsTheSame(
-            oldItem: ProductResponseItem,
-            newItem: ProductResponseItem
-        ): Boolean {
-            return oldItem._id == newItem._id
-        }
-
-        override fun areContentsTheSame(
-            oldItem: ProductResponseItem,
-            newItem: ProductResponseItem
-        ): Boolean {
-            return oldItem == newItem
         }
     }
 }

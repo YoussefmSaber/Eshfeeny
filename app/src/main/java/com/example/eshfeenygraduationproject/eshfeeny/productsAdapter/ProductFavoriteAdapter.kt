@@ -160,20 +160,4 @@ class ProductFavoriteAdapter(
             }
         }
     }
-
-    class CategoryDiffCallback : DiffUtil.ItemCallback<ProductResponseItem>() {
-        override fun areItemsTheSame(
-            oldItem: ProductResponseItem,
-            newItem: ProductResponseItem
-        ): Boolean {
-            return oldItem._id == newItem._id
-        }
-
-        override fun areContentsTheSame(
-            oldItem: ProductResponseItem,
-            newItem: ProductResponseItem
-        ): Boolean {
-            return oldItem == newItem
-        }
-    }
 }

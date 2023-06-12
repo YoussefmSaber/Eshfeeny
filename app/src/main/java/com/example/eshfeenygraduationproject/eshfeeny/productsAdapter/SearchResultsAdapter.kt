@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.cart.CartResponse
@@ -18,19 +17,20 @@ import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductVie
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.varunest.sparkbutton.SparkEventListener
 
-class BrandItemsAdapter(
+class SearchResultsAdapter(
     private val viewModel: ProductViewModel,
     val userId: String,
     val favoriteProducts: ProductResponse,
     val cartProducts: CartResponse
-) : ListAdapter<ProductResponseItem, BrandItemsAdapter.ViewHolder>(CategoryDiffCallback()) {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemBinding =
-            ProductItemCategoryBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent, false
-            )
+) : ListAdapter<ProductResponseItem, SearchResultsAdapter.ViewHolder>(CategoryDiffCallback()) {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ViewHolder {
+        val itemBinding = ProductItemCategoryBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent, false
+        )
         return ViewHolder(itemBinding)
     }
 
@@ -40,7 +40,6 @@ class BrandItemsAdapter(
 
     inner class ViewHolder(private val itemBinding: ProductItemCategoryBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-
         private var itemCount: Int = 0
 
         fun bind(product: ProductResponseItem) {

@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment2"
@@ -233,6 +236,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_detailsFragment_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment" />
     </fragment>
     <fragment
         android:id="@+id/bmiAndBmrFragment"
@@ -526,6 +532,21 @@
             app:argType="float" />
         <argument
             android:name="gender"
+            app:argType="string"/>
+      </fragment>
+
+  <fragment
+        android:id="@+id/searchResultsFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.searchResults.SearchResultsFragment"
+        android:label="SearchResultsFragment" >
+        <action
+            android:id="@+id/action_searchResultsFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+        <action
+            android:id="@+id/action_searchResultsFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+        <argument
+            android:name="imageUrl"
             app:argType="string" />
     </fragment>
 </navigation>

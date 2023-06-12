@@ -1,5 +1,6 @@
 package com.example.data.remote
 
+import com.example.domain.entity.imageResponse.ImageURL
 import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import com.example.domain.entity.product.ProductResponse
@@ -9,6 +10,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ProductApiService {
@@ -69,5 +71,11 @@ interface ProductApiService {
     suspend fun getSearchResults(
         @Path("productName")
         productName: String
+    ): ProductResponse
+
+    @POST("imageSearch/")
+    suspend fun getImageData(
+        @Body
+        imageURL: ImageURL
     ): ProductResponse
 }
