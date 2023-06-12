@@ -1,6 +1,5 @@
 package com.example.data.repository
 
-import android.graphics.Bitmap
 import android.util.Log
 import com.example.data.remote.apis.EshfeenyApiInstance
 import com.example.data.remote.apis.ImageUploadApiInstance
@@ -10,7 +9,10 @@ import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Response
+import java.io.File
 
 class ProductRepoImpl {
 
@@ -95,6 +97,20 @@ class ProductRepoImpl {
 
     suspend fun uploadImage(
         key: String,
-        image: Bitmap
-    ): ImageResponse = ImageUploadApiInstance.imageApi.uploadImage(key, image)
+        image: File
+    ): ImageResponse {
+        val imageResponse = ImageUploadApiInstance.imageApi.uploadImage(
+            key = MultipartBody.Part.createFormData(
+                "key",
+                key
+            ),
+            image = MultipartBody.Part.createFormData(
+                "image",
+                image.name,
+                image.asRequestBody()
+            )
+        )
+        Log.i("data sent", imageResponse.toString())
+        return imageResponse
+    }
 }

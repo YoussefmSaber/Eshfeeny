@@ -1,23 +1,32 @@
 package com.example.eshfeenygraduationproject.eshfeeny.home
 
+import android.Manifest
+import android.app.Activity.RESULT_OK
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.data.repository.ProductRepoImpl
+import com.example.data.utils.Constants
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
@@ -28,13 +37,15 @@ import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductVie
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.search.SearchAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
-import com.google.android.material.appbar.AppBarLayout
+import java.io.File
 
 class HomeFragment : Fragment() {
 
     private lateinit var userViewModel: UserViewModel
     private lateinit var productViewModel: ProductViewModel
     private var binding: FragmentHomeBinding? = null
+    private val CAMERA_PERMISSION_REQUEST_CODE = 1001
+    private val REQUEST_IMAGE_CAPTURE = 100
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +54,82 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater)
 
         initializingFragment()
+        binding!!.searchBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId) {
+                R.id.searchUsingCamera -> {
+                    Log.i("image Capture", "Item Clicked")
+                    takeImage()
+                    true
+                }
 
+                else -> false
+            }
+        }
         return binding?.root
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, launch the camera
+                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                try {
+                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+                } catch (e: ActivityNotFoundException) {
+                    Toast.makeText(requireContext(), "Error: ${e.localizedMessage}", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            } else {
+                // Permission denied, show a message to the user
+                Toast.makeText(requireContext(), "Camera permission denied", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        }
+    }
+
+    private fun takeImage() {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted, request the permission
+            ActivityCompat.requestPermissions(requireActivity(),
+                arrayOf(Manifest.permission.CAMERA),
+                CAMERA_PERMISSION_REQUEST_CODE)
+        } else {
+            // Permission already granted, launch the camera
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            try {
+                startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+            } catch (e: ActivityNotFoundException) {
+                Toast.makeText(requireContext(), "Error: ${e.localizedMessage}", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            val captureImageBitMap = data?.extras?.get("data") as Bitmap
+            val imgFile = saveBitmapToFile(captureImageBitMap)
+
+            productViewModel.uploadImage(Constants.IMAGE_UPLOAD_KEY, imgFile)
+
+            productViewModel.imageResponseResult.observe(viewLifecycleOwner) {
+                Log.i("image Response", "it")
+            }
+            Log.i("Image Capture", "Image Taken Successfully")
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
+    private fun saveBitmapToFile(bitmap: Bitmap): File {
+        val file = File(requireContext().cacheDir, "image.png")
+        file.outputStream().use {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
+        }
+        return file
     }
 
     private fun initializingFragment() {

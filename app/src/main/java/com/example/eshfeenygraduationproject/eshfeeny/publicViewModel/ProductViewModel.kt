@@ -1,7 +1,6 @@
 package com.example.eshfeenygraduationproject.eshfeeny.publicViewModel
 
 import android.content.ContentValues.TAG
-import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,6 +15,7 @@ import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import java.io.File
 
 
 class ProductViewModel(
@@ -272,11 +272,12 @@ class ProductViewModel(
 
     fun uploadImage(
         key: String,
-        image: Bitmap
+        image: File
     ) {
         viewModelScope.launch {
             try {
                 _imageResponseResult.value = repo.uploadImage(key, image)
+                Log.i("image Response", "${_imageResponseResult.value}")
             } catch (e: Exception) {
                 Log.i("Upload Image", "Error Sending The Image $e")
             }
