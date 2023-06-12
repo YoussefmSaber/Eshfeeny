@@ -292,7 +292,7 @@
             app:argType="string" />
         <action
             android:id="@+id/action_verifyDataFragment_to_bmiResultFragment2"
-            app:destination="@id/bmiResultFragment2"
+            app:destination="@id/bmiResultFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -468,7 +468,7 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
-        android:id="@+id/bmiResultFragment2"
+        android:id="@+id/bmiResultFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.bmiandbmr.BmiResultFragment"
         android:label="fragment_bmi_result"
         tools:layout="@layout/fragment_bmi_result">
