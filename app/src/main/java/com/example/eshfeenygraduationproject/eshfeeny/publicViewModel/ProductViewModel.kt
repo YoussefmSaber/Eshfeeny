@@ -1,6 +1,7 @@
 package com.example.eshfeenygraduationproject.eshfeeny.publicViewModel
 
 import android.content.ContentValues.TAG
+import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.cart.CartResponse
+import com.example.domain.entity.imageResponse.ImageResponse
 import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import com.example.domain.entity.product.ProductResponse
@@ -70,6 +72,10 @@ class ProductViewModel(
     private val _searchResults = MutableLiveData<ProductResponse>()
     val searchResults: LiveData<ProductResponse>
         get() = _searchResults
+
+    private val _imageResponseResult = MutableLiveData<ImageResponse>()
+    val imageResponseResult: LiveData<ImageResponse>
+        get() = _imageResponseResult
 
     fun getProductsFromRemote(medicine: String) {
         viewModelScope.launch {
@@ -260,6 +266,19 @@ class ProductViewModel(
                 _searchResults.value = repo.getSearchResults(productName)
             } catch (e: Exception) {
                 Log.i("Search Result", "Error fetching the results $e")
+            }
+        }
+    }
+
+    fun uploadImage(
+        key: String,
+        image: Bitmap
+    ) {
+        viewModelScope.launch {
+            try {
+                _imageResponseResult.value = repo.uploadImage(key, image)
+            } catch (e: Exception) {
+                Log.i("Upload Image", "Error Sending The Image $e")
             }
         }
     }

@@ -1,8 +1,11 @@
 package com.example.data.repository
 
+import android.graphics.Bitmap
 import android.util.Log
 import com.example.data.remote.apis.EshfeenyApiInstance
+import com.example.data.remote.apis.ImageUploadApiInstance
 import com.example.domain.entity.cart.CartResponse
+import com.example.domain.entity.imageResponse.ImageResponse
 import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import com.example.domain.entity.product.ProductResponse
@@ -90,4 +93,8 @@ class ProductRepoImpl {
     suspend fun getSearchResults(productName: String): ProductResponse =
         EshfeenyApiInstance.productApi.getSearchResults(productName)
 
+    suspend fun uploadImage(
+        key: String,
+        image: Bitmap
+    ): ImageResponse = ImageUploadApiInstance.imageApi.uploadImage(key, image)
 }
