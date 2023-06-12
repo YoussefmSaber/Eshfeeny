@@ -113,4 +113,10 @@ class ProductRepoImpl {
         Log.i("data sent", imageResponse.toString())
         return imageResponse
     }
+
+    suspend fun getImageData(
+        imageUrl: String
+    ) {
+        ImageUploadApiInstance.imageApi.getImageData(imageUrl)
+    }
 }

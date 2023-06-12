@@ -283,4 +283,16 @@ class ProductViewModel(
             }
         }
     }
+
+    fun getImageUrl(
+        imageUrl: String
+    ) {
+        viewModelScope.launch {
+            try {
+                repo.getImageData(imageUrl)
+            } catch (e: Exception) {
+                Log.i("Upload Image", "Error Sending The Image $e")
+            }
+        }
+    }
 }

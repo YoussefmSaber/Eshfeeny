@@ -116,7 +116,8 @@ class HomeFragment : Fragment() {
             productViewModel.uploadImage(Constants.IMAGE_UPLOAD_KEY, imgFile)
 
             productViewModel.imageResponseResult.observe(viewLifecycleOwner) {
-                Log.i("image Response", "it")
+                Log.i("image Response", "$it")
+                productViewModel.getImageUrl(it.data.url)
             }
             Log.i("Image Capture", "Image Taken Successfully")
         } else {
