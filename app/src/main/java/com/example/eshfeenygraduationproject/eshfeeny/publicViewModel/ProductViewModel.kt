@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.cart.CartResponse
+import com.example.domain.entity.imageResponse.Image
 import com.example.domain.entity.imageResponse.ImageResponse
 import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.patchresponse.PatchRequestResponse
@@ -76,6 +77,10 @@ class ProductViewModel(
     private val _imageResponseResult = MutableLiveData<ImageResponse>()
     val imageResponseResult: LiveData<ImageResponse>
         get() = _imageResponseResult
+
+    private val _imageSearchResults = MutableLiveData<ProductResponse>()
+    val imageSearchResults: LiveData<ProductResponse>
+        get() = _imageSearchResults
 
     fun getProductsFromRemote(medicine: String) {
         viewModelScope.launch {
@@ -289,7 +294,7 @@ class ProductViewModel(
     ) {
         viewModelScope.launch {
             try {
-                repo.getImageData(imageUrl)
+                _imageSearchResults.value = repo.getImageData(imageUrl)
             } catch (e: Exception) {
                 Log.i("Upload Image", "Error Sending The Image $e")
             }

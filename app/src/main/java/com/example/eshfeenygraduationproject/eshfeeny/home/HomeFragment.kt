@@ -116,7 +116,7 @@ class HomeFragment : Fragment() {
             productViewModel.uploadImage(Constants.IMAGE_UPLOAD_KEY, imgFile)
 
             productViewModel.imageResponseResult.observe(viewLifecycleOwner) {
-                Log.i("image Response", "$it")
+                Log.i("image Response", it.data.url)
                 productViewModel.getImageUrl(it.data.url)
             }
             Log.i("Image Capture", "Image Taken Successfully")
@@ -379,7 +379,6 @@ class HomeFragment : Fragment() {
                     val searchText = s.toString()
 
                     var isArabic = false
-                    var languageName = ""
                     for (element in searchText) {
                         if (Character.UnicodeBlock.of(element) == Character.UnicodeBlock.ARABIC) {
                             isArabic = true

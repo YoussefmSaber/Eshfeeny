@@ -211,4 +211,5 @@
     <string name="confirmNewPassword">تأكيد كلمة المرور الجديدة</string>
     <string name="newPassword">كلمة المرور الجديدة</string>
     <string name="currentPassword">كلمة المرور الحالية</string>
+    <string name="searchResults">نتائج البحث</string>
 </resources>
