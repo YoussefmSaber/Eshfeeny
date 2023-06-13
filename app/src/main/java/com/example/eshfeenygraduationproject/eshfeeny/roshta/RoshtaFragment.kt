@@ -35,7 +35,6 @@ class RoshtaFragment : Fragment() {
             var camera: ImageView = view.findViewById(R.id.photoId)
             gallery.setOnClickListener {
                 pickPhotoGallery()
-
                 binding?.txtChoosePhoto?.visibility = View.VISIBLE
                 binding?.addRoshtaPhoto?.visibility = View.INVISIBLE
                 binding?.btnNext?.text = "أعرف أقرب صيدلية"

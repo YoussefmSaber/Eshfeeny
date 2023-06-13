@@ -560,5 +560,9 @@
         android:id="@+id/addPhotoICFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.insurance_card.AddPhotoICFragment"
         android:label="fragment_add_photo_i_c"
-        tools:layout="@layout/fragment_add_photo_i_c" />
+        tools:layout="@layout/fragment_add_photo_i_c" >
+        <action
+            android:id="@+id/action_addPhotoICFragment_to_infoInsuranceCardFragment"
+            app:destination="@id/infoInsuranceCardFragment" />
+    </fragment>
 </navigation>
