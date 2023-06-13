@@ -31,6 +31,8 @@ import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
+import com.example.eshfeenygraduationproject.eshfeeny.cameraBottomSheet.ImageBottomSheetFragment
+import com.example.eshfeenygraduationproject.eshfeeny.details.AlternativeFragment
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductHomeAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModelFactory
@@ -44,8 +46,6 @@ class HomeFragment : Fragment() {
     private lateinit var userViewModel: UserViewModel
     private lateinit var productViewModel: ProductViewModel
     private var binding: FragmentHomeBinding? = null
-    private val CAMERA_PERMISSION_REQUEST_CODE = 1001
-    private val REQUEST_IMAGE_CAPTURE = 100
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +58,9 @@ class HomeFragment : Fragment() {
             when (menuItem.itemId) {
                 R.id.searchUsingCamera -> {
                     Log.i("image Capture", "Item Clicked")
-                    takeImage()
+                    val bottomSheet =
+                        ImageBottomSheetFragment()
+                    bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
                     true
                 }
 
@@ -66,85 +68,6 @@ class HomeFragment : Fragment() {
             }
         }
         return binding?.root
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, launch the camera
-                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                try {
-                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
-                } catch (e: ActivityNotFoundException) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Error: ${e.localizedMessage}",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
-                }
-            } else {
-                // Permission denied, show a message to the user
-                Toast.makeText(requireContext(), "Camera permission denied", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        } else {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        }
-    }
-
-    private fun takeImage() {
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            // Permission is not granted, request the permission
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.CAMERA),
-                CAMERA_PERMISSION_REQUEST_CODE
-            )
-        } else {
-            // Permission already granted, launch the camera
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            try {
-                startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
-            } catch (e: ActivityNotFoundException) {
-                Toast.makeText(requireContext(), "Error: ${e.localizedMessage}", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val captureImageBitMap = data?.extras?.get("data") as Bitmap
-            val imgFile = saveBitmapToFile(captureImageBitMap)
-
-            productViewModel.uploadImage(Constants.IMAGE_UPLOAD_KEY, imgFile)
-
-            productViewModel.imageResponseResult.observe(viewLifecycleOwner) {
-                val searchResultAction =
-                    HomeFragmentDirections.actionHomeFragment2ToSearchResultsFragment(it.data.url)
-                findNavController().navigate(searchResultAction)
-
-            }
-            Log.i("Image Capture", "Image Taken Successfully")
-        } else {
-            super.onActivityResult(requestCode, resultCode, data)
-        }
-    }
-
-    private fun saveBitmapToFile(bitmap: Bitmap): File {
-        val file = File(requireContext().cacheDir, "image.png")
-        file.outputStream().use {
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
-        }
-        return file
     }
 
     private fun initializingFragment() {
