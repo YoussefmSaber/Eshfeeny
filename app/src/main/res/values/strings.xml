@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Eshfeeny</string>
+    <string name="app_name">MedFinder</string>
 
     <!--    OnBoarding Page Text    -->
 
@@ -33,7 +33,7 @@
 
     <!--    Welcome Page Text     -->
 
-    <string name="welcome_text">مرحبا بك في تطبيق إشفيني</string>
+    <string name="welcome_text">مرحبا بك في تطبيق MedFinder</string>
     <string name="login">تسجيل الدخول</string>
     <string name="singup">إنشاء حساب</string>
     <string name="as_guest">تصفح كضيف</string>
@@ -54,7 +54,7 @@
 
     <!--    Signup Page Text    -->
 
-    <string name="welcomeMsg">مرحبا بك في تطبيق أشفيني</string>
+    <string name="welcomeMsg">مرحبا بك في تطبيق MedFinder</string>
     <string name="createAcc">إنشاء حساب</string>
     <string name="userName">اسم المستخدم</string>
     <string name="pass">كلمة المرور</string>
