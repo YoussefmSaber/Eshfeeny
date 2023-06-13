@@ -60,8 +60,6 @@ class SearchResultsFragment : Fragment() {
                                 cartProductsResponse
                             )
 
-                            Log.i("Search Result products", it.toString())
-
                             this.searchResultsImageRecyclerView.adapter = adapter
                             adapter.submitList(it)
                         }
