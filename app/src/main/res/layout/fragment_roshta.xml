@@ -77,9 +77,7 @@
         android:id="@+id/divider14"
         android:layout_width="wrap_content"
         android:layout_height="2dp"
-
         android:layout_marginTop="27dp"
-
         android:layout_marginEnd="3dp"
         android:background="?android:attr/listDivider"
         android:backgroundTint="#4D4D4D"

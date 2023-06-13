@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.data.local.db.user.model.UserInfo
 import com.example.data.repository.ProductRepoImpl
+import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
@@ -30,26 +31,29 @@ class DetailsFragment : Fragment() {
     private var binding: FragmentDetailsBinding? = null
     private lateinit var productViewModel: ProductViewModel
 
+    private lateinit var _favoriteProducts: ProductResponse
+
     private val args: DetailsFragmentArgs by navArgs()
     private lateinit var userViewModel: UserViewModel
-
-    private var isFavorite = false
     private var itemCount = 1
+    private lateinit var userId: String
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
-
 
         initializeViewModels()
 
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
 
+            userId = userData._id
+
             productViewModel.getFavoriteProducts(userData._id)
             productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
+
+                _favoriteProducts = favoriteProducts
 
                 productViewModel.getProductFromRemote(args.Id)
                 productViewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
@@ -75,6 +79,13 @@ class DetailsFragment : Fragment() {
             }
         }
 
+        binding?.productAlternativeCard?.setOnClickListener {
+
+            val bottomSheet =
+                AlternativeFragment(args.Id, productViewModel, userId)
+            bottomSheet.show(childFragmentManager, "AlternativeFragment")
+        }
+
         // Inflate the layout for this fragment
         return binding?.root
     }
@@ -96,8 +107,7 @@ class DetailsFragment : Fragment() {
     }
 
     private fun increaseItemInCart(
-        userData: UserInfo,
-        productDetails: ProductResponseItem
+        userData: UserInfo, productDetails: ProductResponseItem
     ) {
         binding?.productIncrementBtn?.setOnClickListener {
             itemCount++
@@ -107,22 +117,19 @@ class DetailsFragment : Fragment() {
     }
 
     private fun decreaseItemFromCart(
-        userData: UserInfo,
-        productDetails: ProductResponseItem
+        userData: UserInfo, productDetails: ProductResponseItem
     ) {
         binding?.decrementBtn?.setOnClickListener {
             if (itemCount == 1) {
                 binding?.itemFunctionsLayout?.visibility = View.GONE
                 binding?.add2CartBtn?.visibility = View.VISIBLE
                 productViewModel.removeProductFromCart(
-                    userData._id,
-                    productDetails._id
+                    userData._id, productDetails._id
                 )
             } else {
                 itemCount--
                 productViewModel.decrementProductNumberInCart(
-                    userData._id,
-                    productDetails._id
+                    userData._id, productDetails._id
                 )
                 binding?.productAmount?.text = itemCount.toString()
             }
@@ -135,8 +142,7 @@ class DetailsFragment : Fragment() {
             productViewModel.productNumber.observe(viewLifecycleOwner) { productItemCount ->
                 if (productItemCount == 0) {
                     productViewModel.addProductToCart(
-                        userData._id,
-                        PatchString(args.Id)
+                        userData._id, PatchString(args.Id)
                     )
                 } else {
                     itemCount = productItemCount
@@ -152,8 +158,7 @@ class DetailsFragment : Fragment() {
         binding?.idTxtAmountVolumeDetails?.text =
             "${productDetails?.nameAr} | ${productDetails?.amount} | ${productDetails?.volume}"
 
-        binding?.idTxtPriceDetails?.text =
-            "${productDetails?.price.toString()} جنيه"
+        binding?.idTxtPriceDetails?.text = "${productDetails?.price.toString()} جنيه"
         binding?.idTxtDescrection?.text = productDetails?.description
 
         productDetails?.images?.get(0)?.let {
@@ -162,24 +167,19 @@ class DetailsFragment : Fragment() {
     }
 
     private fun setFavoriteItem(
-        productDetails: ProductResponseItem,
-        favoriteProducts: ProductResponse,
-        userData: UserInfo
+        productDetails: ProductResponseItem, favoriteProducts: ProductResponse, userData: UserInfo
     ) {
-        if (productDetails in favoriteProducts)
-            binding?.favoriteImgView?.isChecked = true
+        if (productDetails in favoriteProducts) binding?.favoriteImgView?.isChecked = true
 
         binding?.favoriteImgView?.setEventListener(object : SparkEventListener {
             override fun onEvent(button: ImageView?, buttonState: Boolean) {
                 if (buttonState) {
                     productViewModel.addMedicineToFavorites(
-                        userData._id,
-                        PatchString(args.Id)
+                        userData._id, PatchString(args.Id)
                     )
                 } else {
                     productViewModel.deleteFavoriteProduct(
-                        userData._id,
-                        args.Id
+                        userData._id, args.Id
                     )
                 }
             }
@@ -202,8 +202,7 @@ class DetailsFragment : Fragment() {
 
     private fun setupExitButton() {
         binding?.exit1BtnId?.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(R.id.action_detailsFragment_to_homeFragment2)
+            Navigation.findNavController(it).navigate(R.id.action_detailsFragment_to_homeFragment2)
         }
     }
 
