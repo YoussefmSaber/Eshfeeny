@@ -37,7 +37,6 @@ class DetailsFragment : Fragment() {
     private lateinit var userViewModel: UserViewModel
     private var itemCount = 1
     private lateinit var userId: String
-    private lateinit var cartProducts: CartResponse
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

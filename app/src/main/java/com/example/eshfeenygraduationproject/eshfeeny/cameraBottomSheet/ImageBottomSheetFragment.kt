@@ -21,12 +21,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.data.repository.ProductRepoImpl
 import com.example.data.utils.Constants
 import com.example.eshfeenygraduationproject.R
+import com.example.eshfeenygraduationproject.databinding.FragmentImageBottomSheetBinding
 import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModelFactory
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.io.File
+import java.io.FileOutputStream
 
 class ImageBottomSheetFragment : BottomSheetDialogFragment() {
 
@@ -34,14 +36,56 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
     private lateinit var productViewModel: ProductViewModel
     private val CAMERA_PERMISSION_REQUEST_CODE = 1001
     private val REQUEST_IMAGE_CAPTURE = 100
+    private val REQUEST_IMAGE_PICKER = 101
+    private var binding: FragmentImageBottomSheetBinding? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        binding = FragmentImageBottomSheetBinding.inflate(inflater)
+        viewModelsInitialization()
+
+        binding?.apply {
+            this.camera.setOnClickListener {
+                takeImage()
+            }
+            this.imagePicker.setOnClickListener {
+                pickImage()
+            }
+        }
 
 
-        return inflater.inflate(R.layout.fragment_image_bottom_sheet, container, false)
+        return binding?.root
+    }
+
+    private fun pickImage() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, REQUEST_IMAGE_PICKER)
+    }
+
+    private fun takeImage() {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Permission is not granted, request the permission
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.CAMERA),
+                CAMERA_PERMISSION_REQUEST_CODE
+            )
+        } else {
+            // Permission already granted, launch the camera
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            try {
+                startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+            } catch (e: ActivityNotFoundException) {
+                Toast.makeText(requireContext(), "Error: ${e.localizedMessage}", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -73,27 +117,6 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun takeImage() {
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            // Permission is not granted, request the permission
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.CAMERA),
-                CAMERA_PERMISSION_REQUEST_CODE
-            )
-        } else {
-            // Permission already granted, launch the camera
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            try {
-                startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
-            } catch (e: ActivityNotFoundException) {
-                Toast.makeText(requireContext(), "Error: ${e.localizedMessage}", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
@@ -107,9 +130,27 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
                 val searchResultAction =
                     HomeFragmentDirections.actionHomeFragment2ToSearchResultsFragment(it.data.url)
                 findNavController().navigate(searchResultAction)
-
             }
             Log.i("Image Capture", "Image Taken Successfully")
+        } else if (requestCode == REQUEST_IMAGE_PICKER && resultCode == Activity.RESULT_OK) {
+            val imageUri = data?.data
+            val inputStream = imageUri?.let { requireContext().contentResolver.openInputStream(it) }
+            val file = File(context?.cacheDir, "selected_image.png")
+            val outputStream = FileOutputStream(file)
+
+            inputStream?.use { input ->
+                outputStream.use { output ->
+                    input.copyTo(output)
+                }
+            }
+
+            productViewModel.uploadImage(Constants.IMAGE_UPLOAD_KEY, file)
+            productViewModel.imageResponseResult.observe(viewLifecycleOwner) {
+                val searchResultAction =
+                    HomeFragmentDirections.actionHomeFragment2ToSearchResultsFragment(it.data.url)
+                findNavController().navigate(searchResultAction)
+            }
+
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
@@ -128,5 +169,10 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
         val viewModelFactory = ProductViewModelFactory(medicineRepo)
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }
