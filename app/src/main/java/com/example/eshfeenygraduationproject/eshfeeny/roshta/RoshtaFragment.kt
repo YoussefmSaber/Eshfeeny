@@ -33,6 +33,7 @@ class RoshtaFragment : Fragment() {
             val bottomSheet =
                 ImageBottomSheetFragment()
             bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
+
         }
 
         binding?.exitBtnId?.setOnClickListener {

@@ -423,6 +423,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_infoInsuranceCardFragment_to_addPhotoICFragment"
+            app:destination="@id/addPhotoICFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/brandsFragment"
@@ -548,5 +555,14 @@
         <argument
             android:name="imageUrl"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPhotoICFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.insurance_card.AddPhotoICFragment"
+        android:label="fragment_add_photo_i_c"
+        tools:layout="@layout/fragment_add_photo_i_c" >
+        <action
+            android:id="@+id/action_addPhotoICFragment_to_infoInsuranceCardFragment"
+            app:destination="@id/infoInsuranceCardFragment" />
     </fragment>
 </navigation>
