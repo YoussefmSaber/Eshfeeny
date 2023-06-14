@@ -1,8 +1,12 @@
 package com.example.eshfeenygraduationproject.eshfeeny.productsAdapter
 
+import android.content.Context
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,9 +15,10 @@ import com.example.domain.entity.insuranceCard.InsuranceCardX
 import com.example.eshfeenygraduationproject.databinding.InsuranceCardItemBinding
 
 
+
 class InsuranceCardAdapter()
     : ListAdapter<InsuranceCardX, InsuranceCardAdapter.ViewHolder>(InsuranceCardDiffCallBack()) {
-
+    private var selectedItemPosition: Int = RecyclerView.NO_POSITION
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding =
             InsuranceCardItemBinding.inflate(
@@ -25,20 +30,44 @@ class InsuranceCardAdapter()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position),position)
     }
     inner class ViewHolder(private val itemBinding: InsuranceCardItemBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-        private var currentCartItem: InsuranceCardX? = null
-
-        fun bind(insuranceCardItem: InsuranceCardX) {
-            currentCartItem = insuranceCardItem
+        fun bind(insuranceCardItem: InsuranceCardX, position: Int) {
             itemBinding.nameICId.text = insuranceCardItem.nameOnCard
             itemBinding.numICId.text = insuranceCardItem.number
             Glide.with(itemBinding.root.context).load(insuranceCardItem.imageURL)
                 .into(itemBinding.imgIDIC)
 
+            if (selectedItemPosition == position) {
+                // Change background color and stroke for the selected item
+                itemBinding.MaterialCardIDIC.strokeColor = Color.parseColor("#F99D1C")
+                itemBinding.imageView10.visibility = View.VISIBLE
+                itemBinding.MaterialCardIDIC.setBackgroundColor(Color.parseColor("#FFE5CC"))
+            } else {
+                // Reset background color and stroke for other items
+                itemBinding.MaterialCardIDIC.setBackgroundColor(Color.parseColor("#CCE6FF"))
+                itemBinding.MaterialCardIDIC.strokeColor = Color.parseColor("#E5E7EB")
+                itemBinding.imageView10.visibility = View.INVISIBLE
+            }
+
+            itemBinding.MaterialCardIDIC.setOnClickListener {
+                // Store the clicked position
+                val previousSelectedPosition = selectedItemPosition
+                selectedItemPosition = position
+
+                // Notify the adapter about the changes
+                notifyItemChanged(previousSelectedPosition)
+                notifyItemChanged(selectedItemPosition)
+
+                Toast.makeText(
+                    itemBinding.root.context,
+                    "تم إرسال طلبك بنجاح",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 }

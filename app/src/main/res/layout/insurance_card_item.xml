@@ -6,6 +6,7 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/MaterialCardID_IC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16sp"
@@ -23,8 +24,10 @@
         app:strokeWidth="2.5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ID_ConstrainIC"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF">
 
             <ImageView
                 android:id="@+id/imgIDIC"
