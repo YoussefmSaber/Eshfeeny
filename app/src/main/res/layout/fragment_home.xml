@@ -816,7 +816,7 @@
                     app:strokeWidth="1sp">
 
                     <ImageView
-                        android:id="@+id/vichyImage"
+                        android:id="@+id/doveImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -864,7 +864,7 @@
                     app:strokeWidth="1sp">
 
                     <ImageView
-                        android:id="@+id/johnsonsImage"
+                        android:id="@+id/signalImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -912,7 +912,7 @@
                     app:strokeWidth="1sp">
 
                     <ImageView
-                        android:id="@+id/axeImage"
+                        android:id="@+id/niveaImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
