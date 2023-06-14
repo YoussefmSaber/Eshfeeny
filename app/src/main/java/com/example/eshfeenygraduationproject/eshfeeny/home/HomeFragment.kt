@@ -246,12 +246,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadingImagesForBrands() {
-        binding?.axeImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104897970945663067/AXE_logo_2021_1.png")
-        binding?.vichyImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104898149547511828/VICHY.png")
-        binding?.beeslineImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104898180971237396/Beesline.png")
-        binding?.garenierImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104897978579300352/Garnier-logo_1.png")
-        binding?.larochImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104898166580576388/La_Roche-Posay.png")
-        binding?.johnsonsImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1104898132699009054/johnsons.png")
+        binding?.niveaImage?.loadUrl("https://media.discordapp.net/attachments/1104897811494993960/1105278415440978041/Nivea.png?width=670&height=670")
+        binding?.doveImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1118528203112333322/1280px-Dove_wordmark.png")
+        binding?.beeslineImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1118528791703212102/bee_logo.png")
+        binding?.garenierImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1118528465201799320/2560px-Garnier-Logo.png")
+        binding?.larochImage?.loadUrl("https://media.discordapp.net/attachments/1104897811494993960/1105278353889558589/LA_ROCHE_POSAY.png?width=1151&height=494")
+        binding?.signalImage?.loadUrl("https://media.discordapp.net/attachments/1104897811494993960/1105278416619577344/Signal.png?width=1439&height=627")
     }
 
     private fun loadingSliderImages() {
