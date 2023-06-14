@@ -246,12 +246,37 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadingImagesForBrands() {
-        binding?.niveaImage?.loadUrl("https://media.discordapp.net/attachments/1104897811494993960/1105278415440978041/Nivea.png?width=670&height=670")
-        binding?.doveImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1118528203112333322/1280px-Dove_wordmark.png")
-        binding?.beeslineImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1118528791703212102/bee_logo.png")
-        binding?.garenierImage?.loadUrl("https://cdn.discordapp.com/attachments/1104897811494993960/1118528465201799320/2560px-Garnier-Logo.png")
-        binding?.larochImage?.loadUrl("https://media.discordapp.net/attachments/1104897811494993960/1105278353889558589/LA_ROCHE_POSAY.png?width=1151&height=494")
-        binding?.signalImage?.loadUrl("https://media.discordapp.net/attachments/1104897811494993960/1105278416619577344/Signal.png?width=1439&height=627")
+        val brands = listOf(
+            Pair(binding?.niveaImage, "Nivea"),
+            Pair(binding?.doveImage, "Dove"),
+            Pair(binding?.beeslineImage, "Beesline"),
+            Pair(binding?.garenierImage, "Garnier"),
+            Pair(binding?.larochImage, "LA ROCHE POSAY"),
+            Pair(binding?.signalImage, "Signal")
+        )
+
+        for ((imageView, brand) in brands) {
+            imageView?.apply {
+                setOnClickListener {
+                    val action = HomeFragmentDirections.actionHomeFragment2ToBrandItemsFragment(brand)
+                    findNavController().navigate(action)
+                }
+            }
+
+            val imageUrl = when (brand) {
+                "Nivea" -> "https://media.discordapp.net/attachments/1104897811494993960/1105278415440978041/Nivea.png?width=670&height=670"
+                "Dove" -> "https://cdn.discordapp.com/attachments/1104897811494993960/1118528203112333322/1280px-Dove_wordmark.png"
+                "Beesline" -> "https://cdn.discordapp.com/attachments/1104897811494993960/1118528791703212102/bee_logo.png"
+                "Garnier" -> "https://cdn.discordapp.com/attachments/1104897811494993960/1118528465201799320/2560px-Garnier-Logo.png"
+                "LA ROCHE POSAY" -> "https://media.discordapp.net/attachments/1104897811494993960/1105278353889558589/LA_ROCHE_POSAY.png?width=1151&height=494"
+                "Signal" -> "https://media.discordapp.net/attachments/1104897811494993960/1105278416619577344/Signal.png?width=1439&height=627"
+                else -> null
+            }
+
+            if (imageUrl != null) {
+                imageView?.loadUrl(imageUrl)
+            }
+        }
     }
 
     private fun loadingSliderImages() {
@@ -345,5 +370,4 @@ class HomeFragment : Fragment() {
         binding?.forBetterHealthRecyclerView?.adapter = null
         binding?.sugarAlternativeRecyclerView?.adapter = null
     }
-
 }

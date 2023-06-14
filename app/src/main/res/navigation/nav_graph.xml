@@ -50,6 +50,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_searchResultsFragment"
             app:destination="@id/searchResultsFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_brandItemsFragment"
+            app:destination="@id/brandItemsFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment2"
