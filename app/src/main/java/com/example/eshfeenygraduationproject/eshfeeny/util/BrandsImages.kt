@@ -5,116 +5,84 @@ import com.example.domain.entity.Brands
 object BrandsImages {
     val brands = listOf(
         Brands(
-            "LA ROCHE POSAY",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898166580576388/La_Roche-Posay.png"
+            "Beesline",
+            "https://cdn.discordapp.com/attachments/1104897811494993960/1118528791703212102/bee_logo.png"
         ),
         Brands(
-            "Nivea",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104897994366656672/Nivea.png"
+            "Bobana",
+            "https://media.discordapp.net/attachments/1104897811494993960/1105278351557533696/Bobana.png?width=536&height=512"
         ),
         Brands(
-            "Sensodyne",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898003875151882/Sensodyne.png"
-        ),
-        Brands(
-            "Garnier",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104897978579300352/Garnier-logo_1.png"
-        ),
-        Brands(
-            "Eva",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104897947612741672/Eva_Cosmetics.png"
-        ),
-        Brands(
-            "L'Oréal Paris",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898085441769482/loreoal_paris.png"
+            "Clean Clear",
+            "https://media.discordapp.net/attachments/1104897811494993960/1105278351905665074/CleanClear.png?width=893&height=670"
         ),
         Brands(
             "Close Up",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104897929984090292/Close_up.png"
-        ),
-        Brands(
-            "VICHY Laboratoires",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898149547511828/VICHY.png"
-        ),
-        Brands(
-            "Beesline",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898180971237396/Beesline.png"
-        ),
-        Brands(
-            "Pampers",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898174105161748/Pampers.png"
-        ),
-        Brands(
-            "Cera Ve",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898012209233990/CeraVe.png"
-        ),
-        Brands(
-            "NUXE PARIS",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898189011722300/NUXE.png"
-        ),
-        Brands(
-            "AXE",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104897970945663067/AXE_logo_2021_1.png"
-        ),
-        Brands(
-            "Johunson's",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898132699009054/johnsons.png"
-        ),
-        Brands(
-            "always",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898141767094302/Always.png"
-        ),
-        Brands(
-            "BIODERMA",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104897962951319643/Bioderma.png"
-        ),
-        Brands(
-            "Oral B",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898124658516028/ORAL_B.png"
-        ),
-        Brands(
-            "LUX",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104897957859434496/Lux.png"
-        ),
-        Brands(
-            "Hero",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898114428616724/hero_ag.png"
-        ),
-        Brands(
-            "durex",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898104362291200/Durex_logo.png"
-        ),
-        Brands(
-            "Signal",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898095420014682/Signal.png"
-        ),
-        Brands(
-            "head and shoulders",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104897939467415633/Head_and_Shoulders.png"
+            "https://media.discordapp.net/attachments/1104897811494993960/1105278352203456633/Close_up.png?width=1367&height=476"
         ),
         Brands(
             "Dove",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898075077644468/Dove.png"
+            "https://cdn.discordapp.com/attachments/1104897811494993960/1118528203112333322/1280px-Dove_wordmark.png"
         ),
         Brands(
-            "Palette",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898050188644422/Palette.png"
+            "Eva",
+            "https://media.discordapp.net/attachments/1104897811494993960/1105278352929075201/eva.png?width=1232&height=670"
         ),
         Brands(
-            "Vatika",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898066479333396/Vatika.png"
+            "Garnier",
+            "https://cdn.discordapp.com/attachments/1104897811494993960/1118528465201799320/2560px-Garnier-Logo.png"
         ),
         Brands(
-            "molfix",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898031888912444/Molfix.png"
+            "Herbal Essences",
+            "https://media.discordapp.net/attachments/1104897811494993960/1105278353533054976/HerbalEssences.png?width=1191&height=670"
         ),
         Brands(
-            "mustela",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898042378858608/Mustela.png"
+            "L'Oréal Paris",
+            "https://media.discordapp.net/attachments/1104897811494993960/1105278414828609647/LOreal_Paris.png?width=809&height=449"
         ),
         Brands(
-            "Veet",
-            "https://cdn.discordapp.com/attachments/1104897811494993960/1104898024406270002/Veet.png"
+            "LA ROCHE POSAY",
+            "https://media.discordapp.net/attachments/1104897811494993960/1105278353889558589/LA_ROCHE_POSAY.png?width=1151&height=494"
+        ),
+        Brands(
+            "Listerine",
+            "https://media.discordapp.net/attachments/1104897811494993960/1105278351037431920/Listerine.png?width=1151&height=213"
+        ),
+        Brands(
+            "Neutrogena",
+            "https://cdn.discordapp.com/attachments/1104897811494993960/1118539953564037221/image_1.png"
+        ),
+        Brands(
+            "Nivea",
+            "https://media.discordapp.net/attachments/1104897811494993960/1105278415440978041/Nivea.png?width=670&height=670"
+        ),
+        Brands(
+            "Oral-B",
+            "https://cdn.discordapp.com/attachments/1104897811494993960/1118539706683113472/image.png"
+        ),
+        Brands(
+            "Purederm",
+            "https://purederm.com.au/wp-content/uploads/2017/05/Purederm.png"
+        ),
+        Brands(
+            "Sensodyne",
+            "https://cdn.discordapp.com/attachments/1104897811494993960/1118540926625783828/image_3.png"
+        ),
+        Brands(
+            "Signal",
+            "https://media.discordapp.net/attachments/1104897811494993960/1105278416619577344/Signal.png?width=1439&height=627"
+        ),
+        Brands(
+            "Tresemme",
+            "https://cdn.discordapp.com/attachments/1104897811494993960/1118540717942374500/image_2.png"
+        ),
+        Brands(
+            "VITADOSE",
+            "https://media.discordapp.net/attachments/1104897811494993960/1105278417953378444/Vitadose.png?width=269&height=96"
+        ),
+        Brands(
+            "Vaseline",
+            "https://cdn.discordapp.com/attachments/1104897811494993960/1118538174285746177/2560px-Vaseline_Logo.png"
         )
     )
 }
