@@ -1,14 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Material3.BottomSheet"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".eshfeeny.more.LogoutBottomSheetFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:src="@drawable/logout_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16sp"
+            android:text="@string/sure_about_signout"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cancel_button"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="140sp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16sp"
+                android:text="@string/cancel"
+                android:textColor="@color/red_text"
+                android:fontFamily="@font/cairo_medium"
+                android:textSize="16sp"
+                app:cornerRadius="10sp"
+                app:strokeColor="@color/red_text" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/signout_button"
+                android:layout_width="140sp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16sp"
+                android:text="@string/signout_button"
+                android:fontFamily="@font/cairo_medium"
+                app:backgroundTint="@color/red_text"
+                android:textSize="16sp"
+                app:cornerRadius="10sp" />
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>
