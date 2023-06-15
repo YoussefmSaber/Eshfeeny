@@ -1,5 +1,8 @@
 package com.example.eshfeenygraduationproject.authentication.signinFragments.signup
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -16,6 +19,7 @@ class SignupFragment : Fragment() {
 
     private var binding: FragmentSignupBinding? = null
     private lateinit var viewModel: SharedViewModel
+    private var loadingDialog: Dialog? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,12 +30,14 @@ class SignupFragment : Fragment() {
         viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
         binding?.confirmButtonSignup?.setOnClickListener { button ->
+            showLoadingDialog()
             val password = binding?.passwordSignup?.text.toString()
             val confPassword = binding?.confirmPassSignup?.text.toString()
             val email = binding?.emailSignup?.text.toString()
             val name = binding?.nameSignup?.text.toString()
 
             if (password != confPassword) {
+                hideLoadingDialog()
                 binding?.passwordSignup?.error = getString(R.string.passwordNotMatch)
                 binding?.confirmPassSignup?.error = getString(R.string.passwordNotMatch)
 
@@ -39,7 +45,7 @@ class SignupFragment : Fragment() {
                 val sendEmail = SendToCheckEmail(email)
                 viewModel.checkEmailExist(sendEmail)
                 Log.i("Test", "No Error Here")
-                viewModel.emailFound.observe(viewLifecycleOwner){ emailFound ->
+                viewModel.emailFound.observe(viewLifecycleOwner) { emailFound ->
                     Log.i("Test", "No Error Here")
                     if (emailFound.body() != null) {
                         Log.i("Test", "No Error Here")
@@ -51,6 +57,7 @@ class SignupFragment : Fragment() {
                             email,
                             password
                         )
+                        hideLoadingDialog()
                         Navigation.findNavController(button).navigate(action)
                     }
                 }
@@ -62,6 +69,22 @@ class SignupFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.Signup2Login)
         }
         return binding?.root
+    }
+
+    private fun showLoadingDialog() {
+        if (loadingDialog == null) {
+            loadingDialog = Dialog(requireContext())
+            loadingDialog!!.setContentView(R.layout.loading_dialog)
+            loadingDialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+            loadingDialog!!.setCancelable(false)
+        }
+        loadingDialog!!.show()
+    }
+
+    private fun hideLoadingDialog() {
+        if (loadingDialog != null && loadingDialog!!.isShowing) {
+            loadingDialog!!.dismiss()
+        }
     }
 
     override fun onDestroy() {

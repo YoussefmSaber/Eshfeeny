@@ -1,6 +1,9 @@
 package com.example.eshfeenygraduationproject.authentication.signinFragments.signup
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,6 +14,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.domain.entity.CreateUser
+import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
 import com.example.eshfeenygraduationproject.databinding.FragmentVerifyBinding
 import com.example.eshfeenygraduationproject.eshfeeny.MainActivity
@@ -21,6 +25,7 @@ class VerifyFragment : Fragment() {
 
     private var binding: FragmentVerifyBinding? = null
     private lateinit var viewModel: SharedViewModel
+    private var loadingDialog: Dialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +45,7 @@ class VerifyFragment : Fragment() {
         viewModel.verifyCode(newUser.email)
 
         binding?.otpCheckButton?.setOnClickListener {
+            showLoadingDialog()
             Log.i("Verify code: ", "Clicked")
 
             val inputCode = binding?.otpView?.text.toString()
@@ -47,6 +53,7 @@ class VerifyFragment : Fragment() {
             viewModel.areCodesTheSame(inputCode)
             viewModel.areBothSame.observe(viewLifecycleOwner) {
                 if (it) {
+                    hideLoadingDialog()
                     Toast.makeText(
                         requireContext(),
                         "You have verified your account",
@@ -67,6 +74,7 @@ class VerifyFragment : Fragment() {
                         }
                     }
                 } else {
+                    hideLoadingDialog()
                     binding?.otpWrongMessage?.visibility = View.VISIBLE
                 }
             }
@@ -76,6 +84,23 @@ class VerifyFragment : Fragment() {
         }
 
         return binding?.root
+    }
+
+
+    private fun showLoadingDialog() {
+        if (loadingDialog == null) {
+            loadingDialog = Dialog(requireContext())
+            loadingDialog!!.setContentView(R.layout.loading_dialog)
+            loadingDialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+            loadingDialog!!.setCancelable(false)
+        }
+        loadingDialog!!.show()
+    }
+
+    private fun hideLoadingDialog() {
+        if (loadingDialog != null && loadingDialog!!.isShowing) {
+            loadingDialog!!.dismiss()
+        }
     }
 
     override fun onDestroyView() {
