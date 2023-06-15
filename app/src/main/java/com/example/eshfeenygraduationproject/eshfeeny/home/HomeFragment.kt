@@ -1,23 +1,12 @@
 package com.example.eshfeenygraduationproject.eshfeeny.home
 
-import android.Manifest
-import android.app.Activity.RESULT_OK
-import android.content.ActivityNotFoundException
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -26,20 +15,17 @@ import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.data.repository.ProductRepoImpl
-import com.example.data.utils.Constants
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentHomeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.cameraBottomSheet.ImageBottomSheetFragment
-import com.example.eshfeenygraduationproject.eshfeeny.details.AlternativeFragment
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductHomeAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModelFactory
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelFactory.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.search.SearchAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
-import java.io.File
 
 class HomeFragment : Fragment() {
 

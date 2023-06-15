@@ -13,7 +13,7 @@ import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.eshfeenygraduationproject.databinding.ProductItemCategoryBinding
 import com.example.eshfeenygraduationproject.eshfeeny.brands.BrandItemsFragmentDirections
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.varunest.sparkbutton.SparkEventListener
 

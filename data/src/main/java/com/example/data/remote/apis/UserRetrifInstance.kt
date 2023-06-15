@@ -1,5 +1,6 @@
 package com.example.data.remote.apis
 
+import com.example.data.remote.PharmaciesApiService
 import com.example.data.remote.ProductApiService
 import com.example.data.remote.UserDataApiService
 import com.example.data.utils.Constants
@@ -20,5 +21,8 @@ object EshfeenyApiInstance {
     }
     val productApi: ProductApiService by lazy {
         userRetrofit.create(ProductApiService::class.java)
+    }
+    val pharmacyApi: PharmaciesApiService by lazy {
+        userRetrofit.create(PharmaciesApiService::class.java)
     }
 }

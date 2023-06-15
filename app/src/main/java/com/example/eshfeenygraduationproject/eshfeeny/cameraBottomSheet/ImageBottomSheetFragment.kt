@@ -9,7 +9,6 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,12 +19,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.data.repository.ProductRepoImpl
 import com.example.data.utils.Constants
-import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentImageBottomSheetBinding
 import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragmentDirections
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModelFactory
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelFactory.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.io.File
 import java.io.FileOutputStream

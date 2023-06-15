@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.cart.CartResponse
@@ -16,7 +15,7 @@ import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.eshfeenygraduationproject.databinding.ProductItemCategoryBinding
 import com.example.eshfeenygraduationproject.eshfeeny.favorite.FavoriteFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
 import com.varunest.sparkbutton.SparkEventListener
 
 
