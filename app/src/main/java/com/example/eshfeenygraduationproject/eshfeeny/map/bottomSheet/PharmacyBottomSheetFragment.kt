@@ -1,5 +1,7 @@
 package com.example.eshfeenygraduationproject.eshfeeny.map.bottomSheet
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,8 +32,20 @@ class PharmacyBottomSheetFragment(val pharmacy: PharmacyResponseItem) :
                 this.pharmacyAddressTextView.text = pharmacy.address
             }
             this.pharmacyPhoneTextView.text = pharmacy.phoneNumber
+
+            this.navigateToPharmacy.setOnClickListener {
+                openGoogleMapsDirections()
+            }
         }
         return binding?.root
+    }
+
+    private fun openGoogleMapsDirections() {
+        val gmmIntentUri =
+            Uri.parse("google.navigation:q=${pharmacy.geoLocation.lat},${pharmacy.geoLocation.lng}")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        startActivity(mapIntent)
     }
 
     override fun onDestroyView() {

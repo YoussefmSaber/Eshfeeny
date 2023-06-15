@@ -59,11 +59,23 @@ class MapsFragment : Fragment() {
         mapFragment?.getMapAsync(callback)
     }
 
+    override fun onResume() {
+        super.onResume()
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        mapFragment?.getMapAsync(callback)
+    }
+
+    private val markers = mutableListOf<Marker>()
+
     private val callback = OnMapReadyCallback { map ->
         googleMap = map // assign the map to the variable
 
         viewModel.getAllPharmacies()
         viewModel.allPharmacies.observe(viewLifecycleOwner) { pharmacyResponse ->
+            // Clear all the markers from the map
+            markers.forEach { it.remove() }
+            markers.clear()
+
             pharmacyResponse.forEach { pharmacy ->
                 Log.d("pharmacy data", pharmacy.name)
                 val marker = googleMap.addMarker(
@@ -73,6 +85,9 @@ class MapsFragment : Fragment() {
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.pharmacy_pin))
                 )
                 marker?.tag = pharmacy // Attach pharmacy data to marker tag
+                if (marker != null) {
+                    markers.add(marker)
+                } // Add the marker to the list of markers
 
                 googleMap.setOnMarkerClickListener { clickedMarker ->
                     // Retrieve pharmacy data from clicked marker tag
