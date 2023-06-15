@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.eshfeeny.publicViewModel
+package com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel
 
 import android.app.Application
 import android.util.Log

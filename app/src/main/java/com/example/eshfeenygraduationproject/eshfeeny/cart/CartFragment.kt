@@ -9,9 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentCartBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductCartAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModelFactory
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelFactory.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 
 
 class CartFragment : Fragment() {

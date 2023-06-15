@@ -1,9 +1,6 @@
 package com.example.eshfeenygraduationproject.eshfeeny.search
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.databinding.FragmentSearchBinding
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelFactory.ProductViewModelFactory
 
 
 class SearchFragment : Fragment() {

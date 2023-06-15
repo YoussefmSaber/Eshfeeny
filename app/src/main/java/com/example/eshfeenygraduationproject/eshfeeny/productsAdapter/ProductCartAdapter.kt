@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.domain.entity.cart.CartItem
 import com.example.eshfeenygraduationproject.databinding.CartItemBinding
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
 
 class ProductCartAdapter(
     private val viewModel: ProductViewModel,

@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.domain.entity.cart.CartResponse
-import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.databinding.FragmentAlternativeBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductCategoryAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class AlternativeFragment(

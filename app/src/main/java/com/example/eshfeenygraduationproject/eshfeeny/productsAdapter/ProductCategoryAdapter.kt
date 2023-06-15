@@ -15,7 +15,7 @@ import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.databinding.ProductItemCategoryBinding
 import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.ProductCategoryFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
 import com.varunest.sparkbutton.SparkEventListener
 
 class ProductCategoryAdapter(

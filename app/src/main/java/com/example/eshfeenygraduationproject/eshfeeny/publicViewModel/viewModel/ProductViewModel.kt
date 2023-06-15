@@ -1,4 +1,4 @@
-package com.example.eshfeenygraduationproject.eshfeeny.publicViewModel
+package com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel
 
 import android.content.ContentValues.TAG
 import android.util.Log
@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.cart.CartResponse
-import com.example.domain.entity.imageResponse.Image
 import com.example.domain.entity.imageResponse.ImageResponse
 import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.patchresponse.PatchRequestResponse

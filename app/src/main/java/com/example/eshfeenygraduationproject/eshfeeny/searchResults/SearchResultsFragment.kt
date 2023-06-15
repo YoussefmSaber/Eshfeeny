@@ -11,16 +11,12 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.data.repository.ProductRepoImpl
-import com.example.domain.entity.cart.CartResponse
-import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
-import com.example.eshfeenygraduationproject.databinding.FragmentSearchBinding
 import com.example.eshfeenygraduationproject.databinding.FragmentSearchResultsBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.SearchResultsAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModel
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.ProductViewModelFactory
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
-import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.ProductCategoryFragmentArgs
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelFactory.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 
 class SearchResultsFragment : Fragment() {
 

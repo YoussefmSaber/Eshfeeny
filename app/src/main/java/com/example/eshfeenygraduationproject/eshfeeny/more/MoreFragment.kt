@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.AuthenticationActivity
 import com.example.eshfeenygraduationproject.databinding.FragmentMoreBinding
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.UserViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 
 class MoreFragment : Fragment() {
 
