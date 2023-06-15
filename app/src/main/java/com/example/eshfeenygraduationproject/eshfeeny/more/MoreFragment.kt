@@ -38,13 +38,9 @@ class MoreFragment : Fragment() {
             findNavController().navigate(R.id.action_moreFragment2_to_bmiAndBmrFragment)
         }
         binding?.logoutButton?.setOnClickListener {
-            viewModel.deleteUserFromDatabase()
-            val intent = Intent(
-                activity,
-                AuthenticationActivity::class.java
-            )
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
+            val bottomSheet =
+                LogoutBottomSheetFragment(viewModel)
+            bottomSheet.show(childFragmentManager, "LogoutBottomSheetFragment")
         }
 
         return binding?.root

@@ -212,4 +212,7 @@
     <string name="newPassword">كلمة المرور الجديدة</string>
     <string name="currentPassword">كلمة المرور الحالية</string>
     <string name="searchResults">نتائج البحث</string>
+    <string name="sure_about_signout">هل أنت متأكد من تسجيل الخروج ؟</string>
+    <string name="cancel">إلغاء</string>
+    <string name="signout_button">تسجيل الخروج</string>
 </resources>
