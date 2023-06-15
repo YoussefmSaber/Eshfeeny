@@ -2,13 +2,27 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".eshfeeny.map.PharmacyBottomSheetFragment">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".eshfeeny.map.bottomSheet.PharmacyBottomSheetFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        app:tabTextAppearance="@style/tabItemStyle"
+        android:theme="@style/tabItemStyle">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="بيانات" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="منتجات" />
+    </com.google.android.material.tabs.TabLayout>
 
 </FrameLayout>

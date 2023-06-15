@@ -53,4 +53,10 @@
         <item name="colorPrimaryVariant">@color/blue_main</item>
     </style>
 
+    <style name="tabItemStyle" parent="TextAppearance.AppCompat.Caption">
+        <item name="colorPrimary">@color/blue_main</item>
+        <item name="android:fontFamily">@font/cairo_regular</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>
