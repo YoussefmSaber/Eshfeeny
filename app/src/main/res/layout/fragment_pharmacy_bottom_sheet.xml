@@ -1,28 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:maxHeight="450sp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".eshfeeny.map.bottomSheet.PharmacyBottomSheetFragment">
 
-
-
-    <com.google.android.material.tabs.TabLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabTextAppearance="@style/tabItemStyle"
-        android:theme="@style/tabItemStyle">
+        android:orientation="vertical">
 
-        <com.google.android.material.tabs.TabItem
+        <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/pharmacyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="بيانات" />
+            android:layout_gravity="right"
+            android:layout_marginHorizontal="8sp"
+            android:text="test" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/pharmacyTabLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="منتجات" />
-    </com.google.android.material.tabs.TabLayout>
+            android:theme="@style/tabItemStyle"
+            app:tabTextAppearance="@style/tabItemFont">
 
-</FrameLayout>
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="بيانات" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="منتجات" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pharmacyViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
