@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.domain.entity.pharmacyResponse.PharmacyDetails
 import com.example.domain.entity.pharmacyResponse.PharmacyResponseItem
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentPharmacyBottomSheetBinding
@@ -24,7 +25,9 @@ class PharmacyBottomSheetFragment(val pharmacy: PharmacyResponseItem) : BottomSh
 
         binding = FragmentPharmacyBottomSheetBinding.inflate(inflater)
 
-        val adapter = PharmacyViewPagerAdapter(childFragmentManager, lifecycle)
+        val pharmacyDetails = PharmacyDetails(pharmacy.address, pharmacy.phoneNumber)
+
+        val adapter = PharmacyViewPagerAdapter(childFragmentManager, lifecycle, pharmacyDetails, pharmacy.products)
 
         binding?.apply {
 

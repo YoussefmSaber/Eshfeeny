@@ -5,9 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.domain.entity.pharmacyResponse.ProductX
 import com.example.eshfeenygraduationproject.R
 
-class PharmacyProductsFragment : Fragment() {
+class PharmacyProductsFragment(val pharmacyProducts: List<ProductX>) : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
