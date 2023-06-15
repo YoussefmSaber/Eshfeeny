@@ -2,7 +2,7 @@ package com.example.domain.entity.pharmacyResponse
 
 data class PharmacyResponseItem(
     val _id: String,
-    val address: String,
+    val address: String?,
     val cart: List<Cart>,
     val email: String,
     val favorites: List<String>,

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layoutDirection="rtl"
     android:maxHeight="450sp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".eshfeeny.map.bottomSheet.PharmacyBottomSheetFragment">
@@ -11,42 +12,99 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16sp"
         android:orientation="vertical">
 
         <com.google.android.material.bottomsheet.BottomSheetDragHandleView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/pharmacyName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginHorizontal="8sp"
-            android:text="test" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/pharmacyTabLayout"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/tabItemStyle"
-            app:tabTextAppearance="@style/tabItemFont">
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="16sp"
+            android:gravity="center_vertical"
+            android:layoutDirection="rtl">
 
-            <com.google.android.material.tabs.TabItem
+            <ImageView
+                android:layout_width="28sp"
+                android:layout_height="28sp"
+                android:src="@drawable/infowindowpharmacy" />
+
+            <TextView
+                android:id="@+id/pharmacyName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="بيانات" />
+                android:layout_marginHorizontal="8sp"
+                android:text="test"
+                android:textSize="20sp" />
+        </LinearLayout>
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="منتجات" />
-        </com.google.android.material.tabs.TabLayout>
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/pharmacyViewPager"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16sp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/infowindowlocation" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8sp"
+                android:text="العنوان:"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/pharmacyAddressTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16sp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/infowindowphone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8sp"
+                android:text="الهاتف:"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/pharmacyPhoneTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/navigateToPharmacy"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="الحصول على الاتجاهات"
+            android:padding="8sp"
+            app:backgroundTint="@color/blue_main"
+            app:cornerRadius="10sp" />
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
