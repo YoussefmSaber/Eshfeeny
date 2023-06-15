@@ -1,6 +1,9 @@
 package com.example.eshfeenygraduationproject.authentication.signinFragments.login
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -13,10 +16,12 @@ import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.viewmodels.SharedViewModel
 import com.example.eshfeenygraduationproject.databinding.FragmentLoginBinding
 import com.example.eshfeenygraduationproject.eshfeeny.MainActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class LoginFragment : Fragment() {
     private var binding: FragmentLoginBinding? = null
     private lateinit var viewModel: SharedViewModel
+    private var loadingDialog: Dialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +33,8 @@ class LoginFragment : Fragment() {
         viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
         binding?.confirmButtonSignin?.setOnClickListener {
+            showLoadingDialog()
+
             val userData = VerifyLoginResponse(
                 binding?.nameSignin?.text.toString(),
                 binding?.passwordSignup?.text.toString()
@@ -35,8 +42,10 @@ class LoginFragment : Fragment() {
 
             viewModel.verifyLogin(userData)
             viewModel.verifyUserLogin.observe(viewLifecycleOwner) {
+
                 Log.i("login", "${it.body()} + ${it.code()}")
                 if (it.body() != null) {
+                    hideLoadingDialog()
                     Log.i("login", it.body().toString())
                     Toast.makeText(
                         requireContext(),
@@ -52,10 +61,12 @@ class LoginFragment : Fragment() {
                             MainActivity::class.java
                         )
                         Log.i("Login", intent.toString())
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(intent)
                     }
                 } else {
+                    hideLoadingDialog()
                     Toast.makeText(requireContext(), "Check your data", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -70,6 +81,22 @@ class LoginFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.Login2Signup)
         }
         return binding?.root
+    }
+
+    private fun showLoadingDialog() {
+        if (loadingDialog == null) {
+            loadingDialog = Dialog(requireContext())
+            loadingDialog!!.setContentView(R.layout.loading_dialog)
+            loadingDialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+            loadingDialog!!.setCancelable(false)
+        }
+        loadingDialog!!.show()
+    }
+
+    private fun hideLoadingDialog() {
+        if (loadingDialog != null && loadingDialog!!.isShowing) {
+            loadingDialog!!.dismiss()
+        }
     }
 
     override fun onDestroy() {

@@ -119,6 +119,9 @@ dependencies {
 
     // Spark button animation
     implementation 'com.github.varunest:sparkbutton:1.0.6'
+
+    def lottieVersion = "3.4.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
     
     // splash screen api
     implementation 'androidx.core:core-splashscreen:1.0.1'

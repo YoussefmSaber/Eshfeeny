@@ -12,8 +12,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16sp"
         android:layout_marginHorizontal="16sp"
+        android:layout_marginBottom="16sp"
         android:orientation="vertical">
 
         <com.google.android.material.bottomsheet.BottomSheetDragHandleView
@@ -99,11 +99,11 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/navigateToPharmacy"
-            android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="الحصول على الاتجاهات"
             android:padding="8sp"
+            android:text="الحصول على الاتجاهات"
+            android:textSize="18sp"
             app:backgroundTint="@color/blue_main"
             app:cornerRadius="10sp" />
     </LinearLayout>
