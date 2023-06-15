@@ -87,7 +87,7 @@ class LoginFragment : Fragment() {
         if (loadingDialog == null) {
             loadingDialog = Dialog(requireContext())
             loadingDialog!!.setContentView(R.layout.loading_dialog)
-            loadingDialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+            loadingDialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             loadingDialog!!.setCancelable(false)
         }
         loadingDialog!!.show()
