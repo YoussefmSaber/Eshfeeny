@@ -326,14 +326,6 @@ class HomeFragment : Fragment() {
                     // perform search using the new text
                     val searchText = s.toString()
 
-                    var isArabic = false
-                    for (element in searchText) {
-                        if (Character.UnicodeBlock.of(element) == Character.UnicodeBlock.ARABIC) {
-                            isArabic = true
-                            break
-                        }
-                    }
-
                     productViewModel.getSearchResults(searchText)
                     productViewModel.searchResults.observe(viewLifecycleOwner) {
 
