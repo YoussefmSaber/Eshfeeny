@@ -1,6 +1,7 @@
 package com.example.eshfeenygraduationproject.eshfeeny.details
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -70,6 +71,18 @@ class DetailsFragment : Fragment() {
                     increaseItemInCart(userData, productDetails)
 
                     binding?.productAmount?.text = itemCount.toString()
+
+                    binding?.shareProductCard?.setOnClickListener {
+                        val intent = Intent(Intent.ACTION_SEND)
+                        intent.setType("text/plain")
+                        intent.putExtra(Intent.EXTRA_SUBJECT, "Check out this product")
+                        intent.putExtra(
+                            Intent.EXTRA_TEXT,
+                            "أسم المنتج: ${productDetails.nameAr}\nوصف المنتج: ${productDetails.description}\nسعر المنتج: ${productDetails.price} جنية\nلينك المنتج: https://eshfeeny.live/product/${args.Id}"
+                        )
+
+                        startActivity(Intent.createChooser(intent, "Share product via"))
+                    }
 
                     productDetails?.let { productResponse ->
                         setAdapters(productResponse)
