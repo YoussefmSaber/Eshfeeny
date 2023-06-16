@@ -1,8 +1,8 @@
 package com.example.domain.entity.insuranceCard
 
 data class InsuranceCardX(
-    val imageURL: String,
     val name: String,
+    val number: String,
     val nameOnCard: String,
-    val number: String
+    val imageURL: String
 )

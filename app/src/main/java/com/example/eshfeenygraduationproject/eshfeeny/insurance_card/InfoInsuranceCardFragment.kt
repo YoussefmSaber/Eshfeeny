@@ -1,6 +1,5 @@
 package com.example.eshfeenygraduationproject.eshfeeny.insurance_card
 
-import android.graphics.Color
 import android.os.Bundle
 import android.text.InputType
 import androidx.fragment.app.Fragment
@@ -11,7 +10,6 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentInfoInsuranceCardBinding
-import okhttp3.internal.checkDuration
 
 
 class InfoInsuranceCardFragment : Fragment() {
@@ -26,6 +24,7 @@ class InfoInsuranceCardFragment : Fragment() {
             findNavController().navigate(R.id.action_infoInsuranceCardFragment_to_cartExistsFragment)
         }
         var flag = 0
+
         binding?.addCartExistsBtn?.setOnClickListener {
             if(binding?.CardNameEditText?.text?.isEmpty()==true || binding?.CardNumEditText?.text?.isEmpty()==true)
             {
@@ -33,8 +32,15 @@ class InfoInsuranceCardFragment : Fragment() {
 
             }
             else{
-                findNavController().navigate(R.id.action_infoInsuranceCardFragment_to_addPhotoICFragment)
+                val cardName:String = binding?.CardNameEditText?.text.toString()
+                val cardNumber:String = binding?.CardNumEditText?.text.toString()
+                val action =
+                    InfoInsuranceCardFragmentDirections
+                        .actionInfoInsuranceCardFragmentToAddPhotoICFragment(cardName,cardNumber)
+                findNavController().navigate(action)
+
             }
+
         }
 
         // Inflate the layout for this fragment

@@ -419,6 +419,7 @@
         android:name="com.example.eshfeenygraduationproject.eshfeeny.insurance_card.InfoInsuranceCardFragment"
         android:label="fragment_info_insurance_card"
         tools:layout="@layout/fragment_info_insurance_card">
+
         <action
             android:id="@+id/action_infoInsuranceCardFragment_to_cartExistsFragment"
             app:destination="@id/cartExistsFragment"
@@ -432,7 +433,14 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="cardName"
+                app:argType="string" />
+            <argument
+                android:name="cardNumber"
+                app:argType="string" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/brandsFragment"
@@ -567,5 +575,14 @@
         <action
             android:id="@+id/action_addPhotoICFragment_to_infoInsuranceCardFragment"
             app:destination="@id/infoInsuranceCardFragment" />
+        <action
+            android:id="@+id/action_addPhotoICFragment_to_cartExistsFragment"
+            app:destination="@id/cartExistsFragment" />
+        <argument
+            android:name="cardName"
+            app:argType="string" />
+        <argument
+            android:name="cardNumber"
+            app:argType="string" />
     </fragment>
 </navigation>

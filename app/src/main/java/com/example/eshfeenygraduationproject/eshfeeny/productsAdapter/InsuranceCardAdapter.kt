@@ -16,57 +16,48 @@ import com.example.eshfeenygraduationproject.databinding.InsuranceCardItemBindin
 
 
 
-class InsuranceCardAdapter()
-    : ListAdapter<InsuranceCardX, InsuranceCardAdapter.ViewHolder>(InsuranceCardDiffCallBack()) {
+class InsuranceCardAdapter() : ListAdapter<InsuranceCardX, InsuranceCardAdapter.ViewHolder>(InsuranceCardDiffCallBack()) {
     private var selectedItemPosition: Int = RecyclerView.NO_POSITION
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemBinding =
-            InsuranceCardItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+        val itemBinding = InsuranceCardItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(itemBinding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position),position)
+        holder.bind(getItem(position), position)
     }
-    inner class ViewHolder(private val itemBinding: InsuranceCardItemBinding) :
-        RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun bind(insuranceCardItem: InsuranceCardX, position: Int) {
-            itemBinding.nameICId.text = insuranceCardItem.nameOnCard
-            itemBinding.numICId.text = insuranceCardItem.number
-            Glide.with(itemBinding.root.context).load(insuranceCardItem.imageURL)
-                .into(itemBinding.imgIDIC)
+    inner class ViewHolder(private val itemBinding: InsuranceCardItemBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+        fun bind(insuranceCardItem: InsuranceCardX?, position: Int) {
+            insuranceCardItem?.let { item ->
+                itemBinding.nameICId.text = item.nameOnCard
+                itemBinding.numICId.text = item.number
+                Glide.with(itemBinding.root.context).load(item.imageURL).into(itemBinding.imgIDIC)
 
-            if (selectedItemPosition == position) {
-                // Change background color and stroke for the selected item
-                itemBinding.MaterialCardIDIC.strokeColor = Color.parseColor("#F99D1C")
-                itemBinding.imageView10.visibility = View.VISIBLE
-                itemBinding.MaterialCardIDIC.setBackgroundColor(Color.parseColor("#FFE5CC"))
-            } else {
-                // Reset background color and stroke for other items
-                itemBinding.MaterialCardIDIC.setBackgroundColor(Color.parseColor("#CCE6FF"))
-                itemBinding.MaterialCardIDIC.strokeColor = Color.parseColor("#E5E7EB")
-                itemBinding.imageView10.visibility = View.INVISIBLE
-            }
+                if (selectedItemPosition == position) {
+                    // Change background color and stroke for the selected item
+                    itemBinding.MaterialCardIDIC.strokeColor = Color.parseColor("#F99D1C")
+                    itemBinding.imageView10.visibility = View.VISIBLE
+                    itemBinding.MaterialCardIDIC.setBackgroundColor(Color.parseColor("#FFE5CC"))
+                } else {
+                    // Reset background color and stroke for other items
+                    itemBinding.MaterialCardIDIC.setBackgroundColor(Color.parseColor("#CCE6FF"))
+                    itemBinding.MaterialCardIDIC.strokeColor = Color.parseColor("#E5E7EB")
+                    itemBinding.imageView10.visibility = View.INVISIBLE
+                }
 
-            itemBinding.MaterialCardIDIC.setOnClickListener {
-                // Store the clicked position
-                val previousSelectedPosition = selectedItemPosition
-                selectedItemPosition = position
+                itemBinding.MaterialCardIDIC.setOnClickListener {
+                    // Store the clicked position
+                    val previousSelectedPosition = selectedItemPosition
+                    selectedItemPosition = position
 
-                // Notify the adapter about the changes
-                notifyItemChanged(previousSelectedPosition)
-                notifyItemChanged(selectedItemPosition)
+                    // Notify the adapter about the changes
+                    notifyItemChanged(previousSelectedPosition)
+                    notifyItemChanged(selectedItemPosition)
 
-                Toast.makeText(
-                    itemBinding.root.context,
-                    "تم إرسال طلبك بنجاح",
-                    Toast.LENGTH_SHORT
-                ).show()
+                    Toast.makeText(itemBinding.root.context, "تم إرسال طلبك بنجاح", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
