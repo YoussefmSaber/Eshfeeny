@@ -12,13 +12,19 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.example.data.repository.PharmacyRepoImpl
+import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.pharmacyResponse.PharmacyResponseItem
+import com.example.domain.entity.pharmacySendRequest.FindNearestPharmacy
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentMapsBinding
 import com.example.eshfeenygraduationproject.eshfeeny.map.bottomSheet.PharmacyBottomSheetFragment
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.PharmacyViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelFactory.PharmacyViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelFactory.ProductViewModelFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -38,6 +44,11 @@ class MapsFragment : Fragment() {
     private val requestLocationPermission = 1
     private lateinit var googleMap: GoogleMap // declare the variable for the GoogleMap object
     private lateinit var viewModel: PharmacyViewModel
+    private val args: MapsFragmentArgs by navArgs()
+    private lateinit var userViewModel: UserViewModel
+    private lateinit var productViewModel: ProductViewModel
+    private lateinit var userId: String
+    private val listItems: MutableList<String> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,9 +57,16 @@ class MapsFragment : Fragment() {
     ): View? {
         binding = FragmentMapsBinding.inflate(inflater)
 
+        val productRepo = ProductRepoImpl()
+        val productViewModelFactory = ProductViewModelFactory(productRepo)
+        productViewModel =
+            ViewModelProvider(this, productViewModelFactory)[ProductViewModel::class.java]
+
         val repo = PharmacyRepoImpl()
         val viewModelFactory = PharmacyViewModelFactory(repo)
         viewModel = ViewModelProvider(this, viewModelFactory)[PharmacyViewModel::class.java]
+
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
         return binding?.root
     }
@@ -65,16 +83,29 @@ class MapsFragment : Fragment() {
         mapFragment?.getMapAsync(callback)
     }
 
-    private val markers = mutableListOf<Marker>()
 
     private val callback = OnMapReadyCallback { map ->
         googleMap = map // assign the map to the variable
 
-        viewModel.getAllPharmacies()
+        if (args.dataFrom == "nav") {
+            userViewModel.userData.observe(viewLifecycleOwner) { userData ->
+                productViewModel.getUserCartItems(userData._id)
+                productViewModel.cartItems.observe(viewLifecycleOwner) { cartResponse ->
+                    cartResponse.cart.forEach {
+                        listItems.add(it.product._id)
+                    }
+                    viewModel.availablePharmacies(FindNearestPharmacy(listItems))
+                }
+            }
+        } else {
+            if (args.listProducts != null) {
+                Log.d("Map", args.dataFrom + " " + args.listProducts.toString())
+                viewModel.availablePharmacies(args.listProducts!!)
+            }
+        }
+
         viewModel.allPharmacies.observe(viewLifecycleOwner) { pharmacyResponse ->
             // Clear all the markers from the map
-            markers.forEach { it.remove() }
-            markers.clear()
 
             pharmacyResponse.forEach { pharmacy ->
                 Log.d("pharmacy data", pharmacy.name)
@@ -85,9 +116,6 @@ class MapsFragment : Fragment() {
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.pharmacy_pin))
                 )
                 marker?.tag = pharmacy // Attach pharmacy data to marker tag
-                if (marker != null) {
-                    markers.add(marker)
-                } // Add the marker to the list of markers
 
                 googleMap.setOnMarkerClickListener { clickedMarker ->
                     // Retrieve pharmacy data from clicked marker tag

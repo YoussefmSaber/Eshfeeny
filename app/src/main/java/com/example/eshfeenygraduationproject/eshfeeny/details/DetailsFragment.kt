@@ -1,6 +1,7 @@
 package com.example.eshfeenygraduationproject.eshfeeny.details
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +10,12 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.data.local.db.user.model.UserInfo
 import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.patchRequestVar.PatchString
+import com.example.domain.entity.pharmacySendRequest.FindNearestPharmacy
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.eshfeenygraduationproject.R
@@ -71,6 +74,18 @@ class DetailsFragment : Fragment() {
 
                     binding?.productAmount?.text = itemCount.toString()
 
+                    binding?.shareProductCard?.setOnClickListener {
+                        val intent = Intent(Intent.ACTION_SEND)
+                        intent.setType("text/plain")
+                        intent.putExtra(Intent.EXTRA_SUBJECT, "Check out this product")
+                        intent.putExtra(
+                            Intent.EXTRA_TEXT,
+                            "أسم المنتج: ${productDetails.nameAr}\nوصف المنتج: ${productDetails.description}\nسعر المنتج: ${productDetails.price} جنية\nلينك المنتج: https://eshfeeny.live/product/${args.Id}"
+                        )
+
+                        startActivity(Intent.createChooser(intent, "Share product via"))
+                    }
+
                     productDetails?.let { productResponse ->
                         setAdapters(productResponse)
                     }
@@ -83,6 +98,14 @@ class DetailsFragment : Fragment() {
             val bottomSheet =
                 AlternativeFragment(args.Id, productViewModel, userId)
             bottomSheet.show(childFragmentManager, "AlternativeFragment")
+        }
+
+        binding?.productLocationCard?.setOnClickListener {
+            val listItems: List<String> = listOf(args.Id)
+            val action = DetailsFragmentDirections.actionDetailsFragmentToMapsFragment(
+                FindNearestPharmacy(listItems), "Details"
+            )
+            findNavController().navigate(action)
         }
 
         // Inflate the layout for this fragment
