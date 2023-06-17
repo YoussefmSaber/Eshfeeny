@@ -10,10 +10,12 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.data.local.db.user.model.UserInfo
 import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.patchRequestVar.PatchString
+import com.example.domain.entity.pharmacySendRequest.FindNearestPharmacy
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.eshfeenygraduationproject.R
@@ -96,6 +98,14 @@ class DetailsFragment : Fragment() {
             val bottomSheet =
                 AlternativeFragment(args.Id, productViewModel, userId)
             bottomSheet.show(childFragmentManager, "AlternativeFragment")
+        }
+
+        binding?.productLocationCard?.setOnClickListener {
+            val listItems: List<String> = listOf(args.Id)
+            val action = DetailsFragmentDirections.actionDetailsFragmentToMapsFragment(
+                FindNearestPharmacy(listItems), "Details"
+            )
+            findNavController().navigate(action)
         }
 
         // Inflate the layout for this fragment

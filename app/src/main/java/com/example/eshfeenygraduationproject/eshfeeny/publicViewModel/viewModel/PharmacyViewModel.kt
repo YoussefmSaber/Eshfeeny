@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.data.repository.PharmacyRepoImpl
 import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.pharmacyResponse.PharmacyResponse
+import com.example.domain.entity.pharmacySendRequest.FindNearestPharmacy
 import kotlinx.coroutines.launch
 
 class PharmacyViewModel(private val repo: PharmacyRepoImpl) : ViewModel() {
@@ -16,12 +17,14 @@ class PharmacyViewModel(private val repo: PharmacyRepoImpl) : ViewModel() {
     val allPharmacies: LiveData<PharmacyResponse>
         get() = _allPharmacies
 
-    fun getAllPharmacies() {
+    fun availablePharmacies(
+        listProducts: FindNearestPharmacy
+    ) {
         viewModelScope.launch {
             try {
-                _allPharmacies.value = repo.getAllPharmacies()
+                _allPharmacies.value = repo.availablePharmacies(listProducts)
             } catch (e: Exception) {
-                Log.d("getting Pharmacies", "Failed to get the Pharmacies Data")
+                Log.d("Getting Pharmacies", "Failed to get Pharmacies $e")
             }
         }
     }
