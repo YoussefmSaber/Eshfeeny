@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.data.repository.ProductRepoImpl
+import com.example.domain.entity.pharmacySendRequest.FindNearestPharmacy
 import com.example.eshfeenygraduationproject.databinding.FragmentCartBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductCartAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
@@ -35,11 +37,11 @@ class CartFragment : Fragment() {
 
             productViewModel.getUserCartItems(userDetails._id)
 
-            productViewModel.cartItems.observe(viewLifecycleOwner) {
+            productViewModel.cartItems.observe(viewLifecycleOwner) { cartResponse ->
 
                 stopShimmer()
 
-                if (it.cart.isEmpty()) {
+                if (cartResponse.cart.isEmpty()) {
                     binding?.cartImageLayout?.visibility = View.VISIBLE
                     binding?.cartRecyclerView?.visibility = View.GONE
                 } else {
@@ -48,7 +50,17 @@ class CartFragment : Fragment() {
                     val adapter =
                         ProductCartAdapter(productViewModel, userDetails._id, viewLifecycleOwner)
                     binding?.cartRecyclerView?.adapter = adapter
-                    adapter.submitList(it.cart)
+                    adapter.submitList(cartResponse.cart)
+                    binding?.findNearestPharmacyButton?.setOnClickListener {
+                        val listItems: MutableList<String> = mutableListOf()
+                        cartResponse.cart.forEach {
+                            listItems.add(it.product._id)
+                        }
+                        val action = CartFragmentDirections.actionCartFragment2ToMapsFragment(
+                            FindNearestPharmacy(listItems), "Cart"
+                        )
+                        findNavController().navigate(action)
+                    }
                 }
             }
         }

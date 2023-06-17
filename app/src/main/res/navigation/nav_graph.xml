@@ -66,6 +66,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_cartFragment2_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/moreFragment2"
@@ -242,6 +245,9 @@
         <action
             android:id="@+id/action_detailsFragment_to_searchResultsFragment"
             app:destination="@id/searchResultsFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/bmiAndBmrFragment"
@@ -333,7 +339,17 @@
         android:id="@+id/mapsFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.map.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <argument
+            android:name="listProducts"
+            app:argType="com.example.domain.entity.pharmacySendRequest.FindNearestPharmacy"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="dataFrom"
+            app:argType="string"
+            android:defaultValue="nav" />
+    </fragment>
     <fragment
         android:id="@+id/roshtaFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.roshta.RoshtaFragment"
