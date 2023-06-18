@@ -22,6 +22,8 @@ import kotlinx.coroutines.runBlocking
 
 class RoshtaFragment : Fragment() {
     private var binding: FragmentRoshtaBinding? = null
+    private var selectedPhotoUri: Uri? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +34,11 @@ class RoshtaFragment : Fragment() {
         binding?.addRoshtaPhoto?.setOnClickListener {
             val bottomSheet =
                 ImageBottomSheetFragment()
+            bottomSheet.onPhotoSelected = { photoUri ->
+                selectedPhotoUri = photoUri
+                // Set the selected photo to your ImageView or perform any other necessary actions
+                 binding?.addRoshtaPhoto?.setImageURI(photoUri)
+            }
             bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
 
         }
