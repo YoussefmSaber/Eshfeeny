@@ -38,45 +38,61 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/medcienNameLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30sp"
-        android:layoutDirection="rtl"
+        android:layout_marginHorizontal="16sp"
+        android:layout_marginTop="15sp"
         android:gravity="right"
+        android:hint="إسم الدواء"
+        android:layoutDirection="rtl"
+        android:textColorHint="@color/grey_font"
+        android:textDirection="rtl"
+        app:boxCornerRadiusBottomEnd="10sp"
+        app:boxCornerRadiusBottomStart="10sp"
+        app:boxCornerRadiusTopEnd="10sp"
+        app:boxCornerRadiusTopStart="10sp"
+        app:boxStrokeColor="@color/grey_font"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BackArrow">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/medcienNameInput"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_edit_parent"
             android:fontFamily="@font/cairo_regular"
-            android:gravity="right"
+            android:layoutDirection="rtl"
+            android:textColor="@color/text_color"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/DescriptionLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="16sp"
+        android:layout_marginTop="16dp"
+        android:hint="ملحوظات"
         android:layoutDirection="rtl"
+        android:textColorHint="@color/grey_font"
+        android:textDirection="rtl"
+        app:boxCornerRadiusBottomEnd="10sp"
+        app:boxCornerRadiusBottomStart="10sp"
+        app:boxCornerRadiusTopEnd="10sp"
+        app:boxCornerRadiusTopStart="10sp"
+        app:boxStrokeColor="@color/grey_font"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/medcienNameLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/DescriptionInput"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_edit_parent"
             android:fontFamily="@font/cairo_regular"
-            android:gravity="right"
+            android:layoutDirection="rtl"
+            android:textColor="@color/text_color"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -196,9 +212,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/cairo_regular"
             android:layoutDirection="ltr"
-            app:chipCornerRadius="50dp"
             android:text="منبه جديد"
             app:chipBackgroundColor="@color/white"
+            app:chipCornerRadius="50dp"
             app:chipIconSize="20dp"
             app:chipStrokeColor="@color/blue_main"
             app:chipStrokeWidth="1dp"
@@ -269,5 +285,32 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:src="@drawable/shadow_direction_up"
+        app:layout_constraintBottom_toTopOf="@id/buttonCard" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/buttonCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeWidth="0dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confButtonAlarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16sp"
+            android:padding="8sp"
+            android:text="تأكيد"
+            android:textSize="18sp"
+            app:backgroundTint="@color/blue_main"
+            app:cornerRadius="10sp" />
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

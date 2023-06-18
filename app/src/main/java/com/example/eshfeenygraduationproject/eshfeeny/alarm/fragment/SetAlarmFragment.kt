@@ -37,19 +37,6 @@ class SetAlarmFragment : Fragment() {
         // variable to get he number of bills per time
         var repetitionNumber = 1
 
-        // setting a navigation to the backArrow image view to go back to the calender fragment
-
-        // setting the hint attribute to both of medcienNameInput view and DescriptionInput view
-        binding?.DescriptionInput?.hint = getString(R.string.notes)
-        binding?.medcienNameInput?.hint = getString(R.string.medicenName)
-
-        // calling the setHint function to remove the and set the hint depending on the state of view
-        binding?.DescriptionInput?.let {
-            setHint(it, R.string.notes)
-        }
-        binding?.medcienNameInput?.let {
-            setHint(it, R.string.medicenName)
-        }
 
         // showing the bottom sheet to set the alarm when press on the chip
         binding?.newAlarmChip?.setOnClickListener {
@@ -147,20 +134,5 @@ class SetAlarmFragment : Fragment() {
     fun alarmRepetition(reputationState: String) {
         binding?.RepetitionStateText?.text = reputationState
         repetitionState = reputationState
-    }
-
-    // a function to set the hint to the edit text
-    private fun setHint(view: TextInputEditText, string: Int) {
-        view.setOnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                view.hint = ""
-                (v as TextInputEditText).gravity = Gravity.RIGHT
-            } else {
-                if (view.text?.isEmpty() == true) {
-                    view.hint = getString(string)
-                    (v as TextInputEditText).gravity = Gravity.RIGHT
-                }
-            }
-        }
     }
 }
