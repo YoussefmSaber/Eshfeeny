@@ -1,4 +1,4 @@
-package com.example.data.remote
+package com.example.data.remote.Service
 
 import com.example.data.local.db.user.model.UserInfo
 import com.example.domain.entity.*

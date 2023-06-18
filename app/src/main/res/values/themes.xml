@@ -20,10 +20,6 @@
         <item name="chipCornerRadius">50sp</item>
     </style>
 
-    <style name="MyBottomSheetDialog" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/bottom_sheet</item>
-    </style>
-
     <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/chip_background_color</item>
         <item name="android:textColor">@color/chips_text_color</item>
@@ -43,9 +39,20 @@
         <!-- Add any other text appearance attributes you want to customize -->
     </style>
 
-    <style name="EditTextTheme" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="EditTextTheme" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
         <item name="colorPrimary">@color/blue_main</item>
         <item name="colorPrimaryVariant">@color/blue_main</item>
+        <item name="colorOnSurface">@color/blue_main</item>
+        <item name="boxCornerRadiusBottomEnd">10sp</item>
+        <item name="boxCornerRadiusBottomStart">10sp</item>
+        <item name="boxCornerRadiusTopEnd">10sp</item>
+        <item name="boxCornerRadiusTopStart">10sp</item>
+        <item name="android:textColorHint">@color/grey_font</item>
+    </style>
+
+    <style name="EditTextInputTheme">
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="DropDownItemTheme" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">

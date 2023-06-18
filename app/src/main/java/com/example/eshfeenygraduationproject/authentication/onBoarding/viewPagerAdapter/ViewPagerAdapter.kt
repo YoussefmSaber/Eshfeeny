@@ -1,6 +1,7 @@
 package com.example.eshfeenygraduationproject.authentication.onBoarding.viewPagerAdapter
 
-import android.view.*
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eshfeenygraduationproject.authentication.util.OnBoarding
 import com.example.eshfeenygraduationproject.databinding.SliderFragmentBinding

@@ -1,8 +1,9 @@
 package com.example.data.remote.apis
 
-import com.example.data.remote.PharmaciesApiService
-import com.example.data.remote.ProductApiService
-import com.example.data.remote.UserDataApiService
+import com.example.data.remote.Service.AlarmApiService
+import com.example.data.remote.Service.PharmaciesApiService
+import com.example.data.remote.Service.ProductApiService
+import com.example.data.remote.Service.UserDataApiService
 import com.example.data.utils.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,5 +25,8 @@ object EshfeenyApiInstance {
     }
     val pharmacyApi: PharmaciesApiService by lazy {
         userRetrofit.create(PharmaciesApiService::class.java)
+    }
+    val alarmApi: AlarmApiService by lazy {
+        userRetrofit.create(AlarmApiService::class.java)
     }
 }

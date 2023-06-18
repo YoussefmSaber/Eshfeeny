@@ -1,6 +1,5 @@
 package com.example.eshfeenygraduationproject.eshfeeny.productsAdapter
 
-import android.content.Context
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,9 +13,8 @@ import com.bumptech.glide.Glide
 import com.example.domain.entity.insuranceCard.InsuranceCardX
 import com.example.eshfeenygraduationproject.databinding.InsuranceCardItemBinding
 
-
-
 class InsuranceCardAdapter() : ListAdapter<InsuranceCardX, InsuranceCardAdapter.ViewHolder>(InsuranceCardDiffCallBack()) {
+
     private var selectedItemPosition: Int = RecyclerView.NO_POSITION
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

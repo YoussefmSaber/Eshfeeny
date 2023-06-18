@@ -1,24 +1,22 @@
-package com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment
+package com.example.eshfeenygraduationproject.eshfeeny.alarm.bottomsheet
 
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TimePicker
 import androidx.annotation.RequiresApi
-import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentTimePickerBinding
+import com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment.SetAlarmFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
 
 class TimePickerFragment : BottomSheetDialogFragment() {
 
     // creating the binding variable and giving it' initial value to null
-    private var binding: FragmentTimePickerBinding ?= null
+    private var binding: FragmentTimePickerBinding? = null
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,16 +33,22 @@ class TimePickerFragment : BottomSheetDialogFragment() {
 
             // getting an instance of the calender to get the hour and minute
             val selectedTime = Calendar.getInstance()
-            if (hour != null)
+            hour?.let {
                 selectedTime.set(Calendar.HOUR_OF_DAY, hour)
-            if (minute != null)
+            }
+            minute?.let {
                 selectedTime.set(Calendar.MINUTE, minute)
+            }
+            selectedTime.set(Calendar.SECOND, 0)
+            selectedTime.set(Calendar.MILLISECOND, 0)
+
             // Format the selected time in the desired format (hour:minute am/pm)
             val timeFormat = SimpleDateFormat("h:mm a")
             val formattedTime = timeFormat.format(selectedTime.time)
 
+
             val parentFragment = parentFragment as SetAlarmFragment
-            parentFragment.onTimeSelected(formattedTime)
+            parentFragment.onTimeSelected(formattedTime, selectedTime.timeInMillis)
             dismiss()
         }
         return binding?.root

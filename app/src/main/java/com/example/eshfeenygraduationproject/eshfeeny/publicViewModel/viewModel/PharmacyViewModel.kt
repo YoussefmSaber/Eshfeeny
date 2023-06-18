@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.PharmacyRepoImpl
-import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.pharmacyResponse.PharmacyResponse
 import com.example.domain.entity.pharmacySendRequest.FindNearestPharmacy
 import kotlinx.coroutines.launch

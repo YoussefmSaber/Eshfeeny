@@ -1,7 +1,7 @@
 package com.example.data.local.db.user.model.converters
 
 import androidx.room.TypeConverter
-import com.example.domain.entity.Alarm
+import com.example.domain.entity.alarm.Alarm
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

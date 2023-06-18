@@ -1,7 +1,8 @@
 package com.example.eshfeenygraduationproject.eshfeeny.alarm.adapter
 
 import android.graphics.Color
-import android.view.*
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eshfeenygraduationproject.R
@@ -11,11 +12,13 @@ import com.example.eshfeenygraduationproject.eshfeeny.util.Days
 // a class to set the days in the calender view
 class DaysAdapter(
     private val daysList: List<Days>,
-    private val onMonthNameChange: (String, String) -> Unit
+    private val onMonthNameChange: (String, String) -> Unit,
+    private val selectedDayAlarms: (Days) -> Unit
 ) : RecyclerView.Adapter<DaysAdapter.DaysViewHolder>() {
 
     // taking the position of the selected view and giving it the default value of RecyclerView.NO_POSITION
-    var selectedPosition = RecyclerView.NO_POSITION
+    private var selectedPosition = RecyclerView.NO_POSITION
+
     // creating 2 variables to contain the month name and the year number respectively
     var currentMonthName = ""
     var currentYearNumber = ""
@@ -46,6 +49,11 @@ class DaysAdapter(
 
     // setting some attributes to the calender
     private fun DaysViewHolder.settingAttributes() {
+        if (adapterPosition == selectedPosition) {
+            val selectedDay = daysList[selectedPosition]
+            selectedDayAlarms(selectedDay)
+        }
+
         itemBinding.dayCardView.strokeColor =
             if (adapterPosition == selectedPosition) ContextCompat.getColor(
                 itemView.context,

@@ -66,9 +66,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MonthTextView"
-        tools:listitem="@layout/day_item_view"/>
+        tools:listitem="@layout/day_item_view" />
 
     <LinearLayout
+        android:id="@+id/noAlarms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -104,12 +105,18 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/alarmRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="1"
         android:visibility="gone"
+        android:layout_marginTop="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarDaySelectRV" />
+        app:layout_constraintTop_toBottomOf="@+id/calendarDaySelectRV"
+        tools:listitem="@layout/alarm_item_view" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

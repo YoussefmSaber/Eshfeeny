@@ -26,16 +26,12 @@ import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelFactory.PharmacyViewModelFactory
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelFactory.ProductViewModelFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 
 class MapsFragment : Fragment() {
@@ -47,7 +43,6 @@ class MapsFragment : Fragment() {
     private val args: MapsFragmentArgs by navArgs()
     private lateinit var userViewModel: UserViewModel
     private lateinit var productViewModel: ProductViewModel
-    private lateinit var userId: String
     private val listItems: MutableList<String> = mutableListOf()
 
     override fun onCreateView(
@@ -162,7 +157,7 @@ class MapsFragment : Fragment() {
                 // Permission granted, enable my location
                 enableMyLocation(googleMap)
             } else {
-                // Permission denied, show snackbar
+                // Permission denied, show snack-bar
                 Snackbar.make(
                     requireView(),
                     "Location permission denied",

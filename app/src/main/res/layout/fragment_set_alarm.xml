@@ -38,45 +38,55 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/medcienNameLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30sp"
-        android:layoutDirection="rtl"
+        android:layout_marginHorizontal="16sp"
+        android:layout_marginTop="15sp"
+        android:theme="@style/EditTextTheme"
         android:gravity="right"
+        android:hint="إسم الدواء"
+        android:layoutDirection="rtl"
+        android:textColorHint="@color/grey_font"
+        android:textDirection="rtl"
+        app:boxStrokeColor="@color/input_layout_stroke_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BackArrow">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/medcienNameInput"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_edit_parent"
             android:fontFamily="@font/cairo_regular"
-            android:gravity="right"
+            android:layoutDirection="rtl"
+            android:textColor="@color/text_color"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/DescriptionLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="16sp"
+        android:layout_marginTop="16dp"
+        android:hint="ملحوظات"
         android:layoutDirection="rtl"
+        android:textColorHint="@color/grey_font"
+        android:textDirection="rtl"
+        android:theme="@style/EditTextTheme"
+        app:boxStrokeColor="@color/input_layout_stroke_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/medcienNameLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/DescriptionInput"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_edit_parent"
             android:fontFamily="@font/cairo_regular"
-            android:gravity="right"
+            android:layoutDirection="rtl"
+            android:textColor="@color/text_color"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -129,7 +139,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
         app:layout_constraintEnd_toStartOf="@+id/textView2"
         app:layout_constraintHorizontal_bias="0.25"
@@ -198,6 +208,7 @@
             android:layoutDirection="ltr"
             android:text="منبه جديد"
             app:chipBackgroundColor="@color/white"
+            app:chipCornerRadius="50dp"
             app:chipIconSize="20dp"
             app:chipStrokeColor="@color/blue_main"
             app:chipStrokeWidth="1dp"
@@ -230,11 +241,12 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16sp"
             android:fontFamily="@font/cairo_medium"
             android:text="@string/repitation"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -242,8 +254,9 @@
             android:id="@+id/RepetitionState"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16sp"
             android:layoutDirection="ltr"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textView5"
             app:layout_constraintEnd_toStartOf="@+id/textView4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -266,7 +279,75 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8sp"
+            android:fontFamily="@font/cairo_medium"
+            android:text="المدة"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/durationLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="ltr"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/arrow_left" />
+
+            <TextView
+                android:id="@+id/durationTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/cairo_medium"
+                android:paddingStart="16sp"
+                android:text="اختار المدة"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:src="@drawable/shadow_direction_up"
+        app:layout_constraintBottom_toTopOf="@id/buttonCard" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/buttonCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeWidth="0dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confButtonAlarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16sp"
+            android:padding="8sp"
+            android:text="تأكيد"
+            android:textSize="18sp"
+            app:backgroundTint="@color/blue_main"
+            app:cornerRadius="10sp" />
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

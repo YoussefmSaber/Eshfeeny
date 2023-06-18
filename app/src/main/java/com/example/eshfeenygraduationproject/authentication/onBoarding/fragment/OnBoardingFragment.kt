@@ -1,15 +1,17 @@
 package com.example.eshfeenygraduationproject.authentication.onBoarding.fragment
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.viewpager2.widget.ViewPager2
 import com.example.eshfeenygraduationproject.R
-import com.example.eshfeenygraduationproject.databinding.FragmentOnBoardingBinding
-import com.example.eshfeenygraduationproject.authentication.util.BoardingList
 import com.example.eshfeenygraduationproject.authentication.onBoarding.viewPagerAdapter.ViewPagerAdapter
+import com.example.eshfeenygraduationproject.authentication.util.BoardingList
+import com.example.eshfeenygraduationproject.databinding.FragmentOnBoardingBinding
 
 
 class OnBoardingFragment : Fragment() {

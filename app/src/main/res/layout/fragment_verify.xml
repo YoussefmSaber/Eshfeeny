@@ -140,6 +140,7 @@
         android:fontFamily="@font/cairo_medium"
         android:padding="8sp"
         android:text="@string/checkOtp"
+        app:backgroundTint="@color/blue_main"
         android:textSize="18sp"
         app:cornerRadius="10sp"
         app:layout_constraintBottom_toTopOf="@+id/resendOtpButton"
