@@ -68,12 +68,10 @@
         android:layout_height="57sp"
         android:layout_marginTop="8sp"
         android:textDirection="rtl"
-        app:boxCornerRadiusBottomEnd="10sp"
-        app:boxCornerRadiusBottomStart="10sp"
-        app:boxCornerRadiusTopEnd="10sp"
-        app:boxCornerRadiusTopStart="10sp"
+        android:theme="@style/EditTextTheme"
         app:boxStrokeColor="@color/input_layout_stroke_color"
         app:boxStrokeWidth="1sp"
+        android:textColorHint="@color/grey_font"
         app:layout_constraintEnd_toEndOf="@+id/textView22"
         app:layout_constraintTop_toBottomOf="@+id/textView22"
         tools:ignore="InvalidId">
@@ -84,11 +82,12 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/cairo_regular"
             android:hint="ادخل رقم الكارت"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:textColorHint="#676767"
-            android:textSize="16sp"
+            android:textSize="14sp"
             tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <TextView
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
@@ -109,12 +108,10 @@
         android:layout_height="57sp"
         android:layout_marginTop="8sp"
         android:textDirection="rtl"
-        app:boxCornerRadiusBottomEnd="10sp"
-        app:boxCornerRadiusBottomStart="10sp"
-        app:boxCornerRadiusTopEnd="10sp"
-        app:boxCornerRadiusTopStart="10sp"
+        android:theme="@style/EditTextTheme"
         app:boxStrokeColor="@color/input_layout_stroke_color"
         app:boxStrokeWidth="1sp"
+        android:textColorHint="@color/grey_font"
         app:layout_constraintEnd_toEndOf="@+id/textView25"
         app:layout_constraintTop_toBottomOf="@+id/textView25"
         tools:ignore="InvalidId">
@@ -125,24 +122,25 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/cairo_regular"
             android:hint="ادخل الاسم"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:textColorHint="#676767"
-            android:textSize="12sp"
+            android:textSize="14sp"
             tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
-            <Button
-                android:id="@+id/add_CartExists_Btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16sp"
-                android:backgroundTint="#0583F2"
-                android:fontFamily="@font/cairo_medium"
-                android:padding="8sp"
-                android:text="التالى"
-                android:textSize="18sp"
-                android:visibility="visible"
-                app:cornerRadius="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/add_CartExists_Btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16sp"
+        android:backgroundTint="#0583F2"
+        android:fontFamily="@font/cairo_medium"
+        android:padding="8sp"
+        android:text="التالى"
+        android:textSize="18sp"
+        android:visibility="visible"
+        app:cornerRadius="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

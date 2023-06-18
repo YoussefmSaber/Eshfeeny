@@ -25,12 +25,9 @@
             android:layoutDirection="rtl"
             android:textColorHint="@color/grey_font"
             android:textDirection="rtl"
-            app:boxCornerRadiusBottomEnd="10sp"
-            app:boxCornerRadiusBottomStart="10sp"
-            app:boxCornerRadiusTopEnd="10sp"
-            app:boxStrokeWidth="1dp"
-            app:boxCornerRadiusTopStart="10sp"
-            app:boxStrokeColor="@color/grey_font">
+            android:theme="@style/EditTextTheme"
+            app:boxStrokeColor="@color/input_layout_stroke_color"
+            app:boxStrokeWidth="1dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/durationInputText"

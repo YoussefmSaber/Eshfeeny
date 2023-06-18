@@ -67,10 +67,9 @@
             android:layout_marginTop="24sp"
             android:layout_marginEnd="16sp"
             android:layoutDirection="rtl"
-            app:boxCornerRadiusBottomEnd="10sp"
-            app:boxCornerRadiusBottomStart="10sp"
-            app:boxCornerRadiusTopEnd="10sp"
-            app:boxCornerRadiusTopStart="10sp"
+            android:theme="@style/EditTextTheme"
+            app:boxStrokeColor="@color/input_layout_stroke_color"
+            android:textColorHint="@color/grey_font"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -79,6 +78,7 @@
                 android:id="@+id/nameSignin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/text_color"
                 android:fontFamily="@font/cairo_regular"
                 android:hint="@string/Email" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -92,10 +92,9 @@
             android:layout_marginTop="16sp"
             android:layout_marginEnd="16sp"
             android:layoutDirection="rtl"
-            app:boxCornerRadiusBottomEnd="10sp"
-            app:boxCornerRadiusBottomStart="10sp"
-            app:boxCornerRadiusTopEnd="10sp"
-            app:boxCornerRadiusTopStart="10sp"
+            android:theme="@style/EditTextTheme"
+            android:textColorHint="@color/grey_font"
+            app:boxStrokeColor="@color/input_layout_stroke_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
@@ -107,9 +106,9 @@
                 android:layout_height="wrap_content"
                 android:cursorVisible="true"
                 android:fontFamily="@font/cairo_regular"
+                android:textColor="@color/text_color"
                 android:hint="@string/password"
-                android:inputType="textPassword"
-                android:shadowColor="@color/blue_main" />
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
