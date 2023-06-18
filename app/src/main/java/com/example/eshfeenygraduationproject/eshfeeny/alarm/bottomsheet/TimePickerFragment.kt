@@ -40,6 +40,8 @@ class TimePickerFragment : BottomSheetDialogFragment() {
             minute?.let {
                 selectedTime.set(Calendar.MINUTE, minute)
             }
+            selectedTime.set(Calendar.SECOND, 0)
+            selectedTime.set(Calendar.MILLISECOND, 0)
 
             // Format the selected time in the desired format (hour:minute am/pm)
             val timeFormat = SimpleDateFormat("h:mm a")
