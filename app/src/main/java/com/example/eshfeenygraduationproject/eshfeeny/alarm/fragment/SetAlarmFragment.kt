@@ -5,35 +5,34 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.PendingIntent.FLAG_IMMUTABLE
-import android.app.PendingIntent.getActivities
 import android.content.Context
-import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.content.res.ColorStateList
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.data.repository.AlarmRepoImpl
+import com.example.domain.entity.alarm.AlarmPatchRequest
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentSetAlarmBinding
 import com.example.eshfeenygraduationproject.eshfeeny.alarm.bottomsheet.AlarmDurationFragment
 import com.example.eshfeenygraduationproject.eshfeeny.alarm.bottomsheet.SelectDaysFragment
 import com.example.eshfeenygraduationproject.eshfeeny.alarm.bottomsheet.TimePickerFragment
+import com.example.eshfeenygraduationproject.eshfeeny.alarm.viewModel.AlarmViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.alarm.viewModel.AlarmViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.util.AlarmReceiver
 import com.example.eshfeenygraduationproject.eshfeeny.util.channelId
-import com.example.eshfeenygraduationproject.eshfeeny.util.notificationId
 import com.google.android.material.chip.Chip
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
-import kotlin.random.Random
 
 const val titleExtra = "medicName"
 const val descExtra = "medicDesc"
@@ -46,11 +45,15 @@ class SetAlarmFragment : Fragment() {
     private lateinit var repetitionState: String
     private var alarmTime: MutableList<Long> = mutableListOf()
     private var alarmDuration: Int = 0
+    private lateinit var userId: String
+    private lateinit var viewModel: AlarmViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        initializeViewModels()
 
         // initializing the value of the binding variable
         binding = FragmentSetAlarmBinding.inflate(inflater)
@@ -60,6 +63,7 @@ class SetAlarmFragment : Fragment() {
         // variable to get he number of bills per time
         var repetitionNumber = 1
         createNotificationChannel()
+
 
         binding?.confButtonAlarm?.setOnClickListener {
 
@@ -96,6 +100,21 @@ class SetAlarmFragment : Fragment() {
         return binding?.root
     }
 
+    private fun initializeViewModels() {
+        val userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        val alarmRepo = AlarmRepoImpl()
+        val alarmViewModelFactory = AlarmViewModelFactory(alarmRepo)
+        viewModel = ViewModelProvider(this, alarmViewModelFactory)[AlarmViewModel::class.java]
+        getUserId(userViewModel)
+    }
+
+
+    private fun getUserId(userViewModel: UserViewModel) {
+        userViewModel.userData.observe(viewLifecycleOwner) { userData ->
+            userId = userData._id
+        }
+    }
+
     private fun createNotificationChannel() {
         val name = "Alarm Channel"
         val desc = "This is a channel to show alarms for MedFinder Application"
@@ -109,14 +128,19 @@ class SetAlarmFragment : Fragment() {
 
     private fun setAlarm() {
         val calendar = Calendar.getInstance()
+        val alarmName = binding?.medcienNameInput?.text.toString()
+        val alarmNote = binding?.DescriptionInput?.text.toString()
         val intent = Intent(requireContext().applicationContext, AlarmReceiver::class.java).apply {
-            putExtra(titleExtra, binding?.medcienNameInput?.text.toString())
-            putExtra(descExtra, binding?.DescriptionInput?.text.toString())
+            putExtra(titleExtra, alarmName)
+            putExtra(descExtra, alarmNote)
         }
+        val startDate = System.currentTimeMillis().toString()
+        var endDate = ""
 
         val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
         when (repetitionState) {
             getString(R.string.repetition_only_today) -> {
+                endDate = startDate
                 alarmTime.forEach {
                     alarmManager.setExactAndAllowWhileIdle(
                         AlarmManager.RTC_WAKEUP,
@@ -136,6 +160,7 @@ class SetAlarmFragment : Fragment() {
                 calendar.add(Calendar.DAY_OF_MONTH, 1)
                 val endData =
                     System.currentTimeMillis() + TimeUnit.DAYS.toMillis(alarmDuration.toLong())
+                endDate = endData.toString()
                 alarmTime.forEach {
 
                     alarmManager.setRepeating(
@@ -167,6 +192,7 @@ class SetAlarmFragment : Fragment() {
                 calendar.add(Calendar.DAY_OF_MONTH, 2)
                 val endData =
                     System.currentTimeMillis() + TimeUnit.DAYS.toMillis(alarmDuration.toLong())
+                endDate = endData.toString()
                 alarmTime.forEach {
                     alarmManager.setRepeating(
                         AlarmManager.RTC_WAKEUP,
@@ -194,6 +220,38 @@ class SetAlarmFragment : Fragment() {
             }
         }
 
+        sendAlarmToServer(
+            repetitionState,
+            alarmName,
+            alarmNote,
+            startDate,
+            endDate,
+            alarmTime,
+            binding?.repetitionNumber?.text.toString()
+        )
+        findNavController().navigate(R.id.action_setAlarmFragment_to_alarmFragment)
+    }
+
+    private fun sendAlarmToServer(
+        repetitionState: String,
+        alarmName: String,
+        alarmNote: String,
+        startDate: String,
+        endDate: String,
+        alarmTime: MutableList<Long>,
+        dose: String
+    ) {
+        viewModel.sendAlarm(
+            userId, AlarmPatchRequest(
+                alarmName,
+                alarmNote,
+                dose.toInt(),
+                repetitionState,
+                alarmTime,
+                startDate,
+                endDate
+            )
+        )
     }
 
     private fun showDurationSetter() {
