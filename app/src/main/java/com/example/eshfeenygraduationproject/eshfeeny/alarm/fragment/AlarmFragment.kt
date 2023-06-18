@@ -1,18 +1,19 @@
 package com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment
 
 import android.os.Bundle
-import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import android.view.*
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentAlarmBinding
-import com.example.eshfeenygraduationproject.eshfeeny.util.*
 import com.example.eshfeenygraduationproject.eshfeeny.alarm.adapter.DaysAdapter
+import com.example.eshfeenygraduationproject.eshfeeny.util.Days
+import com.example.eshfeenygraduationproject.eshfeeny.util.DaysList
 import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.Calendar
+import java.util.Locale
 
 class AlarmFragment : Fragment() {
 

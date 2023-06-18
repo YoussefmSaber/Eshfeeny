@@ -9,13 +9,13 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.cart.CartResponse
-import com.example.domain.entity.product.ProductResponseItem
 import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.product.ProductResponse
+import com.example.domain.entity.product.ProductResponseItem
 import com.example.eshfeenygraduationproject.databinding.ProductItemCategoryBinding
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.ProductCategoryFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
 import com.varunest.sparkbutton.SparkEventListener
 
 class ProductCategoryAdapter(

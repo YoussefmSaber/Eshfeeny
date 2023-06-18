@@ -3,27 +3,22 @@ package com.example.eshfeenygraduationproject.eshfeeny.details
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
+import androidx.navigation.fragment.*
 import com.example.data.local.db.user.model.UserInfo
 import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.pharmacySendRequest.FindNearestPharmacy
-import com.example.domain.entity.product.ProductResponse
-import com.example.domain.entity.product.ProductResponseItem
+import com.example.domain.entity.product.*
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentDetailsBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.UseCaseAdapter
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.*
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelFactory.ProductViewModelFactory
-import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.varunest.sparkbutton.SparkEventListener
 

@@ -1,7 +1,8 @@
 package com.example.eshfeenygraduationproject.eshfeeny.alarm.adapter
 
 import android.graphics.Color
-import android.view.*
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eshfeenygraduationproject.R
