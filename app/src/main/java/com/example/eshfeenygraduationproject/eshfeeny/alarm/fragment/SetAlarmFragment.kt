@@ -134,13 +134,13 @@ class SetAlarmFragment : Fragment() {
             putExtra(titleExtra, alarmName)
             putExtra(descExtra, alarmNote)
         }
-        val startDate = System.currentTimeMillis().toString()
+        val startDate = System.currentTimeMillis()
         var endDate = ""
 
         val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
         when (repetitionState) {
             getString(R.string.repetition_only_today) -> {
-                endDate = startDate
+                endDate = (startDate + TimeUnit.DAYS.toMillis(1)).toString()
                 alarmTime.forEach {
                     alarmManager.setExactAndAllowWhileIdle(
                         AlarmManager.RTC_WAKEUP,
@@ -224,7 +224,7 @@ class SetAlarmFragment : Fragment() {
             repetitionState,
             alarmName,
             alarmNote,
-            startDate,
+            startDate.toString(),
             endDate,
             alarmTime,
             binding?.repetitionNumber?.text.toString()

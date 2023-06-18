@@ -1,5 +1,6 @@
 package com.example.data.remote.Service
 
+import com.example.domain.entity.alarm.Alarm
 import com.example.domain.entity.alarm.AlarmPatchRequest
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import retrofit2.http.Body
@@ -14,7 +15,7 @@ interface AlarmApiService {
     suspend fun getUserAlarms(
         @Path("userId")
         id: String
-    )
+    ): List<Alarm>
 
     @PATCH("users/{userId}/alarms/")
     suspend fun sendAlarm(

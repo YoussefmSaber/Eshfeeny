@@ -1,24 +1,33 @@
 package com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.data.repository.AlarmRepoImpl
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentAlarmBinding
 import com.example.eshfeenygraduationproject.eshfeeny.alarm.adapter.DaysAdapter
+import com.example.eshfeenygraduationproject.eshfeeny.alarm.viewModel.AlarmViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.alarm.viewModel.AlarmViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.util.Days
 import com.example.eshfeenygraduationproject.eshfeeny.util.DaysList
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import java.util.TimeZone
 
 class AlarmFragment : Fragment() {
 
     // Creating the binding variable and setting it default value to null
     var binding: FragmentAlarmBinding? = null
+    private lateinit var userId: String
+    private lateinit var viewModel: AlarmViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,17 +35,46 @@ class AlarmFragment : Fragment() {
     ): View? {
         // initializing the binding variable to FragmentALarmBinding
         binding = FragmentAlarmBinding.inflate(inflater)
+        initializeViewModels()
         // initializing the adapter variable and changing the value of the month and year
         // if it's value changed in the calendar
-        val adapter = DaysAdapter(DaysList.daysList) { month, year ->
+        var selectedDayInMilli: Long = 0
+        val adapter = DaysAdapter(DaysList.daysList, { month, year ->
+            if (month.isEmpty()) {
+                val calendar = Calendar.getInstance()
+                calendar.timeInMillis = System.currentTimeMillis()
+                val monthDateFormat = SimpleDateFormat("MMMM", Locale.getDefault())
+                val monthName = monthDateFormat.format(calendar.time)
+                val yearNumber = calendar.get(Calendar.YEAR)
+                binding?.MonthTextView?.text = "${monthName} ,${yearNumber}"
+            }
             binding?.MonthTextView?.text = "${month} ,${year}"
-        }
+        }, { selectedDay ->
+            selectedDayInMilli = selectedDay.dayInMilli
+            Log.d("Alarm", selectedDayInMilli.toString())
+            viewModel.getAlarm(userId)
+            viewModel.alarms.observe(viewLifecycleOwner) { listAlarm ->
+                if (listAlarm.isEmpty()) {
+                    Log.d("Alarm", listAlarm.toString())
+                }
+                listAlarm.forEach { alarm ->
+                    val start = alarm.startDate.toLong()
+                    val end = alarm.endDate.toLong()
+
+                    if (selectedDayInMilli >= start && selectedDayInMilli <= end) {
+                        Log.d("Alarm", "$alarm $selectedDayInMilli")
+                    }
+                }
+            }
+        })
+
         // initializing the adapter of the recycler view
         binding?.calendarDaySelectRV?.adapter = adapter
         // adding a navigation to the add button to go to Set alarm page
         binding?.addAlarmBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_alarmFragment_to_setAlarmFragment)
         }
+
         return binding?.root
     }
 
@@ -44,6 +82,20 @@ class AlarmFragment : Fragment() {
         super.onDestroy()
         // setting the binding to null to prevent any memory leak
         binding = null
+    }
+
+    private fun initializeViewModels() {
+        val userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        val alarmRepo = AlarmRepoImpl()
+        val alarmViewModelFactory = AlarmViewModelFactory(alarmRepo)
+        viewModel = ViewModelProvider(this, alarmViewModelFactory)[AlarmViewModel::class.java]
+        getUserId(userViewModel)
+    }
+
+    private fun getUserId(userViewModel: UserViewModel) {
+        userViewModel.userData.observe(viewLifecycleOwner) { userData ->
+            userId = userData._id
+        }
     }
 
     companion object {
@@ -72,7 +124,8 @@ class AlarmFragment : Fragment() {
                         formatDay.format(calendar.time),
                         formatMonth.format(calendar.time),
                         formatYear.format(calendar.time),
-                        formatDayID.format(calendar.time)
+                        formatDayID.format(calendar.time),
+                        calendar.timeInMillis
                     )
                 )
                 // making the calender goes to the next day

@@ -6,5 +6,6 @@ data class Days(
     val dayName: String,
     val monthName: String,
     val yearNumber: String,
-    val dayID: String
+    val dayID: String,
+    val dayInMilli: Long
 )
