@@ -29,14 +29,25 @@ class ServicesInsuranceCardFragment : Fragment() {
 
         binding?.monthlyMedicationId?.setOnClickListener {
             val action =
-                ServicesInsuranceCardFragmentDirections.actionServicesInsuranceCardFragmentToCartExistsFragment(
+                ServicesInsuranceCardFragmentDirections
+                    .actionServicesInsuranceCardFragmentToCartExistsFragment(
                     args.insuranceCardName
                 )
             findNavController().navigate(action)
         }
+        binding?.addRoshtaId?.setOnClickListener {
+            val action =
+                ServicesInsuranceCardFragmentDirections
+                    .actionServicesInsuranceCardFragmentToAddRoshtaICFragment(
+                    args.insuranceCardName
+                )
+            findNavController().navigate(action)
+        }
+
         binding?.backBtn22?.setOnClickListener {
             val action =
-                ServicesInsuranceCardFragmentDirections.actionServicesInsuranceCardFragmentToInsuranceCardFragment()
+                ServicesInsuranceCardFragmentDirections
+                    .actionServicesInsuranceCardFragmentToInsuranceCardFragment()
             findNavController().navigate(action)
         }
         // Inflate the layout for this fragment

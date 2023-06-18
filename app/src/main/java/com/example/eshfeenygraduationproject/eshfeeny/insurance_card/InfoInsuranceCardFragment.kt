@@ -24,6 +24,7 @@ class InfoInsuranceCardFragment : Fragment() {
             findNavController().navigate(R.id.action_infoInsuranceCardFragment_to_cartExistsFragment)
         }
         var flag = 0
+
         binding?.addCartExistsBtn?.setOnClickListener {
             if(binding?.CardNameEditText?.text?.isEmpty()==true || binding?.CardNumEditText?.text?.isEmpty()==true)
             {
@@ -31,8 +32,15 @@ class InfoInsuranceCardFragment : Fragment() {
 
             }
             else{
-                findNavController().navigate(R.id.action_infoInsuranceCardFragment_to_addPhotoICFragment)
+                val cardName:String = binding?.CardNameEditText?.text.toString()
+                val cardNumber:String = binding?.CardNumEditText?.text.toString()
+                val action =
+                    InfoInsuranceCardFragmentDirections
+                        .actionInfoInsuranceCardFragmentToAddPhotoICFragment(cardName,cardNumber)
+                findNavController().navigate(action)
+
             }
+
         }
 
         // Inflate the layout for this fragment

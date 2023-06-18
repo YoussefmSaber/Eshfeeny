@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -36,7 +37,7 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
     private val REQUEST_IMAGE_CAPTURE = 100
     private val REQUEST_IMAGE_PICKER = 101
     private var binding: FragmentImageBottomSheetBinding? = null
-
+    var onPhotoSelected: ((Uri) -> Unit)? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -135,7 +136,9 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
             val inputStream = imageUri?.let { requireContext().contentResolver.openInputStream(it) }
             val file = File(context?.cacheDir, "selected_image.png")
             val outputStream = FileOutputStream(file)
-
+            if (imageUri != null) {
+                onPhotoSelected?.invoke(imageUri)
+            }
             inputStream?.use { input ->
                 outputStream.use { output ->
                     input.copyTo(output)
