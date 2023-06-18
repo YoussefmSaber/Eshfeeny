@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.alarm.Alarm
 import com.example.eshfeenygraduationproject.databinding.AlarmItemViewBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class AlarmAdapter : ListAdapter<Alarm, AlarmAdapter.ViewHolder>(AlarmDiffCallback()) {
 
@@ -26,7 +29,10 @@ class AlarmAdapter : ListAdapter<Alarm, AlarmAdapter.ViewHolder>(AlarmDiffCallba
 
         fun bind(alarm: Alarm) {
             // Bind alarm data to the view
-            itemBinding.timeTextView.text = alarm.alarmTime[0].toString()
+            val pattern = "hh:mm a" // Desired time format
+            val sdf = SimpleDateFormat(pattern, Locale.getDefault())
+            val formattedTime = sdf.format(Date(alarm.alarmTime[0]))
+            itemBinding.timeTextView.text = formattedTime
             itemBinding.MedicineNameTextView.text = alarm.name
             itemBinding.MedicineDescTextView.text = alarm.notes
         }

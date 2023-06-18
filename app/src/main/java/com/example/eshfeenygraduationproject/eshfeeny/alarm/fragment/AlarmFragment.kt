@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.data.repository.AlarmRepoImpl
+import com.example.domain.entity.alarm.Alarm
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentAlarmBinding
+import com.example.eshfeenygraduationproject.eshfeeny.alarm.adapter.AlarmAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.alarm.adapter.DaysAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.alarm.viewModel.AlarmViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.alarm.viewModel.AlarmViewModelFactory
@@ -39,6 +41,8 @@ class AlarmFragment : Fragment() {
         // initializing the adapter variable and changing the value of the month and year
         // if it's value changed in the calendar
         var selectedDayInMilli: Long = 0
+
+
         val adapter = DaysAdapter(DaysList.daysList, { month, year ->
             if (month.isEmpty()) {
                 val calendar = Calendar.getInstance()
@@ -54,16 +58,28 @@ class AlarmFragment : Fragment() {
             Log.d("Alarm", selectedDayInMilli.toString())
             viewModel.getAlarm(userId)
             viewModel.alarms.observe(viewLifecycleOwner) { listAlarm ->
+                val availableAlarms: MutableList<Alarm> = mutableListOf()
                 if (listAlarm.isEmpty()) {
                     Log.d("Alarm", listAlarm.toString())
-                }
-                listAlarm.forEach { alarm ->
-                    val start = alarm.startDate.toLong()
-                    val end = alarm.endDate.toLong()
+                } else {
+                    Log.d("Alarm Test", listAlarm.toString())
+                    listAlarm.forEach { alarm ->
+                        val start = alarm.startDate.toLong()
+                        val end = alarm.endDate.toLong()
 
-                    if (selectedDayInMilli >= start && selectedDayInMilli <= end) {
-                        Log.d("Alarm", "$alarm $selectedDayInMilli")
+                        if (selectedDayInMilli in start..end) {
+                            Log.d("Alarm", "$alarm $selectedDayInMilli")
+                            binding?.alarmRecyclerView?.visibility = View.VISIBLE
+                            binding?.noAlarms?.visibility = View.GONE
+                            availableAlarms.add(alarm)
+                        } else {
+                            binding?.alarmRecyclerView?.visibility = View.GONE
+                            binding?.noAlarms?.visibility = View.VISIBLE
+                        }
                     }
+                    val alarmAdapter = AlarmAdapter()
+                    binding?.alarmRecyclerView?.adapter = alarmAdapter
+                    alarmAdapter.submitList(availableAlarms)
                 }
             }
         })
