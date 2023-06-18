@@ -215,4 +215,8 @@
     <string name="sure_about_signout">هل أنت متأكد من تسجيل الخروج ؟</string>
     <string name="cancel">إلغاء</string>
     <string name="signout_button">تسجيل الخروج</string>
+
+    <string name="repetition_only_today">اليوم الحالي فقط</string>
+    <string name="repetition_every_day">كل يوم</string>
+    <string name="repetition_day_and_day">يوم و يوم</string>
 </resources>

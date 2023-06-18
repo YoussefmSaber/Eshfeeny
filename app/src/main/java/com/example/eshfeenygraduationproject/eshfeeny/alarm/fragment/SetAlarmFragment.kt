@@ -164,6 +164,10 @@ class SetAlarmFragment : Fragment() {
         return chip
     }
 
+    fun alarmDuration(duration: Int) {
+
+    }
+
     fun alarmRepetition(reputationState: String) {
         binding?.RepetitionStateText?.text = reputationState
         repetitionState = reputationState
