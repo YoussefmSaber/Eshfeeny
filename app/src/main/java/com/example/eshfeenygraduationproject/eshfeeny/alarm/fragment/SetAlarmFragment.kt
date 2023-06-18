@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.PendingIntent.FLAG_IMMUTABLE
+import android.app.PendingIntent.getActivities
 import android.content.Context
 import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
@@ -30,6 +31,8 @@ import com.example.eshfeenygraduationproject.eshfeeny.util.AlarmReceiver
 import com.example.eshfeenygraduationproject.eshfeeny.util.channelId
 import com.example.eshfeenygraduationproject.eshfeeny.util.notificationId
 import com.google.android.material.chip.Chip
+import java.util.Calendar
+import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 const val titleExtra = "medicName"
@@ -99,32 +102,98 @@ class SetAlarmFragment : Fragment() {
         val importance = NotificationManager.IMPORTANCE_HIGH
         val channel = NotificationChannel(channelId, name, importance)
         channel.description = desc
-        val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager =
+            requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)
     }
 
     private fun setAlarm() {
+        val calendar = Calendar.getInstance()
+        val intent = Intent(requireContext().applicationContext, AlarmReceiver::class.java).apply {
+            putExtra(titleExtra, binding?.medcienNameInput?.text.toString())
+            putExtra(descExtra, binding?.DescriptionInput?.text.toString())
+        }
 
-        alarmTime.forEach {
-
-            val intent = Intent(requireContext().applicationContext, AlarmReceiver::class.java).apply {
-                putExtra(titleExtra, binding?.medcienNameInput?.text.toString())
-                putExtra(descExtra, binding?.DescriptionInput?.text.toString())
+        val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        when (repetitionState) {
+            getString(R.string.repetition_only_today) -> {
+                alarmTime.forEach {
+                    alarmManager.setExactAndAllowWhileIdle(
+                        AlarmManager.RTC_WAKEUP,
+                        it,
+                        PendingIntent.getBroadcast(
+                            requireContext(),
+                            it.hashCode(),
+                            intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
+                        )
+                    )
+                }
             }
 
-            val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            getString(R.string.repetition_every_day) -> {
 
-            alarmManager.setExactAndAllowWhileIdle(
-                AlarmManager.RTC_WAKEUP,
-                it,
-                PendingIntent.getBroadcast(
-                    requireContext(),
-                    it.hashCode(),
-                    intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
-                )
-            )
+                calendar.add(Calendar.DAY_OF_MONTH, 1)
+                val endData =
+                    System.currentTimeMillis() + TimeUnit.DAYS.toMillis(alarmDuration.toLong())
+                alarmTime.forEach {
+
+                    alarmManager.setRepeating(
+                        AlarmManager.RTC_WAKEUP,
+                        it,
+                        calendar.timeInMillis,
+                        PendingIntent.getBroadcast(
+                            requireContext(),
+                            it.hashCode(),
+                            intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
+                        )
+                    )
+
+                    alarmManager.set(
+                        AlarmManager.RTC_WAKEUP,
+                        endData,
+                        PendingIntent.getBroadcast(
+                            requireContext(),
+                            it.hashCode(),
+                            Intent(requireContext().applicationContext, AlarmReceiver::class.java),
+                            PendingIntent.FLAG_NO_CREATE or FLAG_IMMUTABLE
+                        )
+                    )
+                }
+            }
+
+            getString(R.string.repetition_day_and_day) -> {
+                calendar.add(Calendar.DAY_OF_MONTH, 2)
+                val endData =
+                    System.currentTimeMillis() + TimeUnit.DAYS.toMillis(alarmDuration.toLong())
+                alarmTime.forEach {
+                    alarmManager.setRepeating(
+                        AlarmManager.RTC_WAKEUP,
+                        it,
+                        calendar.timeInMillis,
+                        PendingIntent.getBroadcast(
+                            requireContext(),
+                            it.hashCode(),
+                            intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
+                        )
+                    )
+
+                    alarmManager.set(
+                        AlarmManager.RTC_WAKEUP,
+                        endData,
+                        PendingIntent.getBroadcast(
+                            requireContext(),
+                            it.hashCode(),
+                            Intent(requireContext().applicationContext, AlarmReceiver::class.java),
+                            PendingIntent.FLAG_NO_CREATE or FLAG_IMMUTABLE
+                        )
+                    )
+                }
+            }
         }
+
     }
 
     private fun showDurationSetter() {

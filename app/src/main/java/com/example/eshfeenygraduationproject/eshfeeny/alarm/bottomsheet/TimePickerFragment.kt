@@ -17,7 +17,6 @@ class TimePickerFragment : BottomSheetDialogFragment() {
     // creating the binding variable and giving it' initial value to null
     private var binding: FragmentTimePickerBinding? = null
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
