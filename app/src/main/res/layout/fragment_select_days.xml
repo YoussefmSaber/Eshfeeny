@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layoutDirection="rtl"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    tools:context=".eshfeeny.alarm.fragment.SelectDaysFragment">
+    tools:context=".eshfeeny.alarm.bottomsheet.SelectDaysFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

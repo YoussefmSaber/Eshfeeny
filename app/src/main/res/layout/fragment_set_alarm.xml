@@ -247,11 +247,12 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16sp"
             android:fontFamily="@font/cairo_medium"
             android:text="@string/repitation"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -259,8 +260,9 @@
             android:id="@+id/RepetitionState"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16sp"
             android:layoutDirection="ltr"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textView5"
             app:layout_constraintEnd_toStartOf="@+id/textView4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -279,6 +281,45 @@
                 android:fontFamily="@font/cairo_medium"
                 android:paddingStart="16sp"
                 android:text="@string/JustToday"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8sp"
+            android:fontFamily="@font/cairo_medium"
+            android:text="المدة"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/durationLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="ltr"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/arrow_left" />
+
+            <TextView
+                android:id="@+id/durationTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/cairo_medium"
+                android:paddingStart="16sp"
+                android:text="اختار المدة"
                 android:textColor="@color/black" />
 
         </LinearLayout>

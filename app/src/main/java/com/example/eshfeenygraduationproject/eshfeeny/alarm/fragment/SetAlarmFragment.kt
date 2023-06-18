@@ -1,11 +1,14 @@
 package com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +17,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentSetAlarmBinding
+import com.example.eshfeenygraduationproject.eshfeeny.alarm.bottomsheet.AlarmDurationFragment
+import com.example.eshfeenygraduationproject.eshfeeny.alarm.bottomsheet.SelectDaysFragment
+import com.example.eshfeenygraduationproject.eshfeeny.alarm.bottomsheet.TimePickerFragment
+import com.example.eshfeenygraduationproject.eshfeeny.util.AlarmReceiver
 import com.google.android.material.chip.Chip
-import com.google.android.material.textfield.TextInputEditText
+import kotlin.random.Random
+
 
 class SetAlarmFragment : Fragment() {
 
@@ -24,7 +32,7 @@ class SetAlarmFragment : Fragment() {
     private var binding: FragmentSetAlarmBinding? = null
     private var repetitionState = "onlyToday"
     private var alarmTime: MutableList<Long> = mutableListOf()
-
+    private var alarmDuration: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +45,26 @@ class SetAlarmFragment : Fragment() {
         // variable to get he number of bills per time
         var repetitionNumber = 1
 
+        binding?.confButtonAlarm?.setOnClickListener {
+
+            alarmTime.forEach {
+
+                val requestCode = Random.nextInt(1002, 100000)
+                val intent = Intent(requireContext(), AlarmReceiver::class.java)
+                intent.putExtra("medicName", binding?.medcienNameInput?.text)
+                intent.putExtra("medicDesc", binding?.DescriptionInput?.text)
+                val pendingIntent = PendingIntent.getBroadcast(
+                    requireContext(),
+                    requestCode,
+                    intent,
+                    PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+                )
+                val alarmManager =
+                    requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                alarmManager.set(AlarmManager.RTC_WAKEUP, it, pendingIntent)
+                Log.i("testTest", it.toString())
+            }
+        }
 
         // showing the bottom sheet to set the alarm when press on the chip
         binding?.newAlarmChip?.setOnClickListener {
@@ -46,6 +74,11 @@ class SetAlarmFragment : Fragment() {
         binding?.RepetitionStateText?.setOnClickListener {
             val bottomSheet = SelectDaysFragment()
             bottomSheet.show(childFragmentManager, "SelectDaysFragment")
+        }
+
+        binding?.durationTextView?.setOnClickListener {
+            val bottomSheet = AlarmDurationFragment()
+            bottomSheet.show(childFragmentManager, "AlarmDurationFragment")
         }
 
         // increasing and decreasing the number of bills that will be taken in a time depending on
