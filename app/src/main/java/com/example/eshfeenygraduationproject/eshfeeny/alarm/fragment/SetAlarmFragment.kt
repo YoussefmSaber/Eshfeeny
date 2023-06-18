@@ -56,6 +56,11 @@ class SetAlarmFragment : Fragment() {
             showTimePicker()
         }
 
+        binding?.RepetitionStateText?.setOnClickListener {
+            val bottomSheet = SelectDaysFragment()
+            bottomSheet.show(childFragmentManager, "SelectDaysFragment")
+        }
+
         // increasing and decreasing the number of bills that will be taken in a time depending on
         // which button is pressed
         binding?.plusIcon?.setOnClickListener {

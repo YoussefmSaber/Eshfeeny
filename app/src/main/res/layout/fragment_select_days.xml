@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16sp"
+            android:layout_marginHorizontal="24sp"
             android:layout_marginBottom="16sp"
             android:text="التكرار"
             android:textSize="20sp" />
@@ -30,13 +30,14 @@
             android:id="@+id/divider7"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="?android:attr/listDivider" />
+            android:background="#A8A8A8" />
 
         <TextView
             android:id="@+id/onlyToday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16sp"
+            android:layout_marginHorizontal="24sp"
+            android:layout_marginVertical="16sp"
             android:text="اليوم الحالي فقط"
             android:textSize="16sp" />
 
@@ -44,7 +45,7 @@
             android:id="@+id/dayAndDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16sp"
+            android:layout_marginHorizontal="24sp"
             android:text="يوم و يوم"
             android:textSize="16sp" />
 
@@ -52,10 +53,9 @@
             android:id="@+id/everyDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16sp"
+            android:layout_marginHorizontal="24sp"
+            android:layout_marginVertical="16sp"
             android:text="كل يوم"
             android:textSize="16sp" />
-
     </LinearLayout>
-
 </FrameLayout>
