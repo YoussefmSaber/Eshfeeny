@@ -47,7 +47,6 @@ class MapsFragment : Fragment() {
     private val args: MapsFragmentArgs by navArgs()
     private lateinit var userViewModel: UserViewModel
     private lateinit var productViewModel: ProductViewModel
-    private lateinit var userId: String
     private val listItems: MutableList<String> = mutableListOf()
 
     override fun onCreateView(
@@ -162,7 +161,7 @@ class MapsFragment : Fragment() {
                 // Permission granted, enable my location
                 enableMyLocation(googleMap)
             } else {
-                // Permission denied, show snackbar
+                // Permission denied, show snack-bar
                 Snackbar.make(
                     requireView(),
                     "Location permission denied",

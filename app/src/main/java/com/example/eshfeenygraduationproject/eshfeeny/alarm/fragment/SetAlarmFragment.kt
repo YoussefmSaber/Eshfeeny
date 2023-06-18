@@ -53,11 +53,6 @@ class SetAlarmFragment : Fragment() {
 
         // showing the bottom sheet to set the alarm when press on the chip
         binding?.newAlarmChip?.setOnClickListener {
-//            val dialog = BottomSheetDialog(requireContext())
-//
-//            val view = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_time_picker, null)
-//            dialog.setContentView(view)
-//            dialog.show()
             showTimePicker()
         }
 
@@ -99,11 +94,11 @@ class SetAlarmFragment : Fragment() {
     }
 
     // a function that create the chips when the time is selected
-    @RequiresApi(Build.VERSION_CODES.M)
     private fun createChip(time: String): Chip {
         // creating a chip variable and setting the text of the chip to the time
         val chip = Chip(context)
         chip.text = time
+        chip.chipCornerRadius = 50f
         // making the chip direction in Left to right mode
         chip.layoutDirection = View.LAYOUT_DIRECTION_LTR
         // setting the chip stroke width to 1dp

@@ -196,6 +196,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/cairo_regular"
             android:layoutDirection="ltr"
+            app:chipCornerRadius="50dp"
             android:text="منبه جديد"
             app:chipBackgroundColor="@color/white"
             app:chipIconSize="20dp"
