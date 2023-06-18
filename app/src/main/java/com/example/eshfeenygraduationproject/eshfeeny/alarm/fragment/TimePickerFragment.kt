@@ -14,7 +14,7 @@ import java.util.Calendar
 class TimePickerFragment : BottomSheetDialogFragment() {
 
     // creating the binding variable and giving it' initial value to null
-    private var binding: FragmentTimePickerBinding ?= null
+    private var binding: FragmentTimePickerBinding? = null
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
@@ -33,16 +33,20 @@ class TimePickerFragment : BottomSheetDialogFragment() {
 
             // getting an instance of the calender to get the hour and minute
             val selectedTime = Calendar.getInstance()
-            if (hour != null)
+            hour?.let {
                 selectedTime.set(Calendar.HOUR_OF_DAY, hour)
-            if (minute != null)
+            }
+            minute?.let {
                 selectedTime.set(Calendar.MINUTE, minute)
+            }
+
             // Format the selected time in the desired format (hour:minute am/pm)
             val timeFormat = SimpleDateFormat("h:mm a")
             val formattedTime = timeFormat.format(selectedTime.time)
 
+
             val parentFragment = parentFragment as SetAlarmFragment
-            parentFragment.onTimeSelected(formattedTime)
+            parentFragment.onTimeSelected(formattedTime, selectedTime.timeInMillis)
             dismiss()
         }
         return binding?.root

@@ -3,6 +3,7 @@ package com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -21,6 +22,9 @@ class SetAlarmFragment : Fragment() {
     // Creating the binding variable to access the views in the SetAlarm Fragment
     // and setting it's intial value to null
     private var binding: FragmentSetAlarmBinding? = null
+    private var repetitionState = "onlyToday"
+    private var alarmTime: MutableList<Long> = mutableListOf()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -88,8 +92,10 @@ class SetAlarmFragment : Fragment() {
 
     // a function that set that pass the time to the chip while creating it
     @RequiresApi(Build.VERSION_CODES.M)
-    fun onTimeSelected(time: String) {
-        val newChip = createChip(time)
+    fun onTimeSelected(timeString: String, timeMillis: Long) {
+        alarmTime.add(timeMillis)
+        Log.d("alarm", alarmTime.toString())
+        val newChip = createChip(timeString)
         // adding the chip to the chipGroup
         binding?.alarmChipsGroup?.addView(newChip)
     }
@@ -140,6 +146,7 @@ class SetAlarmFragment : Fragment() {
 
     fun alarmRepetition(reputationState: String) {
         binding?.RepetitionStateText?.text = reputationState
+        repetitionState = reputationState
     }
 
     // a function to set the hint to the edit text
