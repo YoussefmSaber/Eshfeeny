@@ -11,14 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.DialogFragment
-import androidx.navigation.Navigation
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentSetAlarmBinding
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
 import com.google.android.material.textfield.TextInputEditText
-import java.util.*
 
 class SetAlarmFragment : Fragment() {
 
@@ -140,6 +136,10 @@ class SetAlarmFragment : Fragment() {
             binding?.alarmChipsGroup?.removeView(it)
         }
         return chip
+    }
+
+    fun alarmRepetition(reputationState: String) {
+        binding?.RepetitionStateText?.text = reputationState
     }
 
     // a function to set the hint to the edit text
