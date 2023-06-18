@@ -30,7 +30,7 @@ class SetAlarmFragment : Fragment() {
     // Creating the binding variable to access the views in the SetAlarm Fragment
     // and setting it's intial value to null
     private var binding: FragmentSetAlarmBinding? = null
-    private var repetitionState = "onlyToday"
+    private lateinit var repetitionState: String
     private var alarmTime: MutableList<Long> = mutableListOf()
     private var alarmDuration: Int = 0
 
@@ -41,6 +41,8 @@ class SetAlarmFragment : Fragment() {
 
         // initializing the value of the binding variable
         binding = FragmentSetAlarmBinding.inflate(inflater)
+        repetitionState =
+            getString(com.example.eshfeenygraduationproject.R.string.repetition_only_today)
 
         // variable to get he number of bills per time
         var repetitionNumber = 1
@@ -165,11 +167,33 @@ class SetAlarmFragment : Fragment() {
     }
 
     fun alarmDuration(duration: Int) {
+        alarmDuration = duration
+        when (alarmDuration) {
+            0 -> {
+                binding?.durationTextView?.text = "اختار المدة"
+            }
 
+            else -> {
+                binding?.durationTextView?.text = "$alarmDuration يوم"
+            }
+        }
     }
 
     fun alarmRepetition(reputationState: String) {
         binding?.RepetitionStateText?.text = reputationState
         repetitionState = reputationState
+
+        when (reputationState) {
+            getString(R.string.repetition_only_today) -> {
+                alarmDuration = 0
+                binding?.textView5?.visibility = View.GONE
+                binding?.durationLayout?.visibility = View.GONE
+            }
+
+            else -> {
+                binding?.textView5?.visibility = View.VISIBLE
+                binding?.durationLayout?.visibility = View.VISIBLE
+            }
+        }
     }
 }

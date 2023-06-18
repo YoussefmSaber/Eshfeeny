@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24sp"
             android:layout_marginBottom="16sp"
+            android:fontFamily="@font/cairo_medium"
             android:text="التكرار"
             android:textSize="20sp" />
 
@@ -38,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24sp"
             android:layout_marginVertical="16sp"
+            android:fontFamily="@font/cairo_medium"
             android:text="اليوم الحالي فقط"
             android:textSize="16sp" />
 
@@ -46,6 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24sp"
+            android:fontFamily="@font/cairo_medium"
             android:text="يوم و يوم"
             android:textSize="16sp" />
 
@@ -55,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24sp"
             android:layout_marginVertical="16sp"
+            android:fontFamily="@font/cairo_medium"
             android:text="كل يوم"
             android:textSize="16sp" />
     </LinearLayout>
