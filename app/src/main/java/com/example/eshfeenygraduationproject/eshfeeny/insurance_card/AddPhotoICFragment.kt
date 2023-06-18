@@ -12,28 +12,48 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.example.domain.entity.insuranceCard.InsuranceCardX
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentAddPhotoICBinding
+import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.InsuranceCardAdapter
+import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
 class AddPhotoICFragment : Fragment() {
     private var binding:FragmentAddPhotoICBinding?= null
+    private lateinit var userViewModel: UserViewModel
+    private val args:AddPhotoICFragmentArgs by navArgs()
+    private lateinit var userId: String
+    private lateinit var adapter: InsuranceCardAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAddPhotoICBinding.inflate(layoutInflater)
-        // Inflate the layout for this fragment
+        binding = FragmentAddPhotoICBinding.inflate(inflater, container, false)
+        userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
+
+
+
+
 
         binding?.backBtn22?.setOnClickListener {
             findNavController().navigate(R.id.action_addPhotoICFragment_to_infoInsuranceCardFragment)
         }
+
+
+
+        //For open camera or gallery
         val view: View = inflater.inflate(R.layout.bottomsheetlayout, null)
         val dialog = BottomSheetDialog(requireContext())
         val gallery: ImageView = view.findViewById(R.id.galleryId)
         var camera: ImageView = view.findViewById(R.id.photoId)
+        var flag = 0
         binding?.addphotoICId?.setOnClickListener {
 
             gallery.setOnClickListener {
@@ -56,6 +76,7 @@ class AddPhotoICFragment : Fragment() {
             }
             dialog.setContentView(view)
             dialog.show()
+            flag = 1
 
         }
         binding?.ReUploadCardId?.setOnClickListener {
@@ -67,6 +88,24 @@ class AddPhotoICFragment : Fragment() {
             }
             dialog.setContentView(view)
             dialog.show()
+            flag = 1
+        }
+        //For User View Model
+        userViewModel.userData.observe(viewLifecycleOwner){ userData ->
+            userId = userData._id
+            val userCard =
+                InsuranceCardX("","2598","Madaa","")
+            userViewModel.addInsuranceCard(userId,userCard)
+        }
+        binding?.addCartExistsBtn?.setOnClickListener {
+            if(flag == 0){
+                Toast.makeText(context,"قم برفع الصورة", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                findNavController()
+                    .navigate(R.id.action_addPhotoICFragment_to_cartExistsFragment)
+            }
+
         }
 
         return binding?.root
