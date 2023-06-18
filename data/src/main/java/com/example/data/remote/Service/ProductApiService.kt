@@ -1,4 +1,4 @@
-package com.example.data.remote
+package com.example.data.remote.Service
 
 import com.example.domain.entity.imageResponse.ImageURL
 import com.example.domain.entity.patchRequestVar.PatchString

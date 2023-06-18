@@ -1,6 +1,6 @@
 package com.example.data.remote.apis
 
-import com.example.data.remote.ImageApiService
+import com.example.data.remote.Service.ImageApiService
 import com.example.data.utils.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
