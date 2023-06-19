@@ -46,7 +46,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
         viewModelScope.launch {
             Log.i("test viewModel", _loadingToLogin.value.toString())
             val userData = repository.getUserData()
-            if (userData.email != null) {
+            if (userData != null && userData.email != null) {
                 _userData.value = userData
                 val userCredentials = VerifyLoginResponse(
                     _userData.value?.email!!,
@@ -66,7 +66,6 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
             _loadingToLogin.value = true
         }
     }
-
 
     private val _createUserResponse: MutableLiveData<Response<UserInfo>> = MutableLiveData()
     val createUserResponse: LiveData<Response<UserInfo>>

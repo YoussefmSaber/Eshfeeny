@@ -1,5 +1,8 @@
 package com.example.eshfeenygraduationproject.eshfeeny.cart
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.pharmacySendRequest.FindNearestPharmacy
+import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentCartBinding
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductCartAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
@@ -19,6 +23,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelF
 class CartFragment : Fragment() {
 
     private var binding: FragmentCartBinding? = null
+    private var loadingDialog: Dialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,40 +40,55 @@ class CartFragment : Fragment() {
 
         userViewModel.userData.observe(viewLifecycleOwner) { userDetails ->
 
-            userDetails._id?.let { productViewModel.getUserCartItems(it) }
+            if (userDetails.state != "guest") {
+                userDetails._id?.let { productViewModel.getUserCartItems(it) }
 
-            productViewModel.cartItems.observe(viewLifecycleOwner) { cartResponse ->
+                productViewModel.cartItems.observe(viewLifecycleOwner) { cartResponse ->
 
-                stopShimmer()
+                    stopShimmer()
 
-                if (cartResponse.cart.isEmpty()) {
-                    binding?.cartImageLayout?.visibility = View.VISIBLE
-                    binding?.cartRecyclerView?.visibility = View.GONE
-                } else {
-                    binding?.cartImageLayout?.visibility = View.GONE
-                    binding?.cartRecyclerView?.visibility = View.VISIBLE
-                    val adapter =
-                        userDetails._id?.let {
-                            ProductCartAdapter(productViewModel,
-                                it, viewLifecycleOwner)
+                    if (cartResponse.cart.isEmpty()) {
+                        binding?.cartImageLayout?.visibility = View.VISIBLE
+                        binding?.cartRecyclerView?.visibility = View.GONE
+                    } else {
+                        binding?.cartImageLayout?.visibility = View.GONE
+                        binding?.cartRecyclerView?.visibility = View.VISIBLE
+                        val adapter =
+                            userDetails._id?.let {
+                                ProductCartAdapter(productViewModel,
+                                    it, viewLifecycleOwner)
+                            }
+                        binding?.cartRecyclerView?.adapter = adapter
+                        adapter?.submitList(cartResponse.cart)
+                        binding?.findNearestPharmacyButton?.setOnClickListener {
+                            val listItems: MutableList<String> = mutableListOf()
+                            cartResponse.cart.forEach {
+                                listItems.add(it.product._id)
+                            }
+                            val action = CartFragmentDirections.actionCartFragment2ToMapsFragment(
+                                FindNearestPharmacy(listItems), "Cart"
+                            )
+                            findNavController().navigate(action)
                         }
-                    binding?.cartRecyclerView?.adapter = adapter
-                    adapter?.submitList(cartResponse.cart)
-                    binding?.findNearestPharmacyButton?.setOnClickListener {
-                        val listItems: MutableList<String> = mutableListOf()
-                        cartResponse.cart.forEach {
-                            listItems.add(it.product._id)
-                        }
-                        val action = CartFragmentDirections.actionCartFragment2ToMapsFragment(
-                            FindNearestPharmacy(listItems), "Cart"
-                        )
-                        findNavController().navigate(action)
                     }
                 }
+            } else {
+                showLoadingDialog()
             }
+
         }
 
         return binding?.root
+    }
+
+    private fun showLoadingDialog() {
+        if (loadingDialog == null) {
+            loadingDialog = Dialog(requireContext())
+            loadingDialog!!.setContentView(R.layout.guest_warning)
+            loadingDialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            loadingDialog!!.setCancelable(true)
+        }
+        loadingDialog!!.show()
     }
 
     private fun stopShimmer() {
