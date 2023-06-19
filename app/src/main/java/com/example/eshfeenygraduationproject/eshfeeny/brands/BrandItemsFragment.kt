@@ -62,24 +62,31 @@ class BrandItemsFragment : Fragment() {
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
             val userId = userData._id
 
-            productViewModel.getUserCartItems(userId)
+            if (userId != null) {
+                productViewModel.getUserCartItems(userId)
+            }
             productViewModel.cartItems.observe(viewLifecycleOwner) { cartProductsResponse ->
                 cartProductsResponse?.let {
                     cartProducts = it
                 }
             }
 
-            productViewModel.getFavoriteProducts(userId)
+            if (userId != null) {
+                productViewModel.getFavoriteProducts(userId)
+            }
 
             productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
 
                 productViewModel.getBrandItems(args.brandName)
                 productViewModel.brandItems.observe(viewLifecycleOwner) {
                     val adapter =
-                        BrandItemsAdapter(productViewModel, userId, favoriteProducts, cartProducts)
+                        userId?.let { it1 ->
+                            BrandItemsAdapter(productViewModel,
+                                it1, favoriteProducts, cartProducts)
+                        }
                     binding?.brandsRecyclerView?.adapter = adapter
 
-                    adapter.submitList(it)
+                    adapter?.submitList(it)
                 }
             }
         }

@@ -73,12 +73,12 @@ class ProductCategoryFragment : Fragment() {
         var favoriteProducts: ProductResponse
 
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
-            productViewModel.getUserCartItems(userData._id)
+            userData._id?.let { productViewModel.getUserCartItems(it) }
             productViewModel.cartItems.observe(viewLifecycleOwner) { cartProductsResponse ->
                 cartProductsResponse?.let { notNullCartProducts ->
                     cartProducts = notNullCartProducts
 
-                    productViewModel.getFavoriteProducts(userData._id)
+                    userData._id?.let { productViewModel.getFavoriteProducts(it) }
                     productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProductsResponse ->
                         favoriteProductsResponse?.let { notNullFavoriteProducts ->
                             favoriteProducts = notNullFavoriteProducts
@@ -126,97 +126,115 @@ class ProductCategoryFragment : Fragment() {
         when (args.category) {
             "allMeds" -> {
                 when (args.chipName) {
-                    "default" -> setChipSearch(
-                        userData._id,
-                        favoriteProducts,
-                        cartProducts,
-                        MedicinsCategories.allMedicines,
-                        "الأدوية",
-                        "default"
-                    )
-                    "sugar" -> setChipSearch(
-                        userData._id,
-                        favoriteProducts,
-                        cartProducts,
-                        MedicinsCategories.allMedicines,
-                        "الأدوية",
-                        "sugar"
-                    )
-                    "vitamins" -> setChipSearch(
-                        userData._id,
-                        favoriteProducts,
-                        cartProducts,
-                        MedicinsCategories.allMedicines,
-                        "الأدوية",
-                        "vitamins"
-                    )
+                    "default" -> userData._id?.let {
+                        setChipSearch(
+                            it,
+                            favoriteProducts,
+                            cartProducts,
+                            MedicinsCategories.allMedicines,
+                            "الأدوية",
+                            "default"
+                        )
+                    }
+                    "sugar" -> userData._id?.let {
+                        setChipSearch(
+                            it,
+                            favoriteProducts,
+                            cartProducts,
+                            MedicinsCategories.allMedicines,
+                            "الأدوية",
+                            "sugar"
+                        )
+                    }
+                    "vitamins" -> userData._id?.let {
+                        setChipSearch(
+                            it,
+                            favoriteProducts,
+                            cartProducts,
+                            MedicinsCategories.allMedicines,
+                            "الأدوية",
+                            "vitamins"
+                        )
+                    }
                 }
             }
 
             "dentalCare" -> {
-                setChipSearch(
-                    userData._id,
-                    favoriteProducts,
-                    cartProducts,
-                    MedicinsCategories.dentalCare,
-                    "العناية بالاسنان",
-                    "default"
-                )
+                userData._id?.let {
+                    setChipSearch(
+                        it,
+                        favoriteProducts,
+                        cartProducts,
+                        MedicinsCategories.dentalCare,
+                        "العناية بالاسنان",
+                        "default"
+                    )
+                }
             }
 
             "menProducts" -> {
-                setChipSearch(
-                    userData._id,
-                    favoriteProducts,
-                    cartProducts,
-                    MedicinsCategories.menProducts,
-                    "منتجات الرجال",
-                    "default"
-                )
+                userData._id?.let {
+                    setChipSearch(
+                        it,
+                        favoriteProducts,
+                        cartProducts,
+                        MedicinsCategories.menProducts,
+                        "منتجات الرجال",
+                        "default"
+                    )
+                }
             }
 
             "womenProducts" -> {
-                setChipSearch(
-                    userData._id,
-                    favoriteProducts,
-                    cartProducts,
-                    MedicinsCategories.womenProducts,
-                    "منتجات المرأة",
-                    "default"
-                )
+                userData._id?.let {
+                    setChipSearch(
+                        it,
+                        favoriteProducts,
+                        cartProducts,
+                        MedicinsCategories.womenProducts,
+                        "منتجات المرأة",
+                        "default"
+                    )
+                }
             }
 
             "motherAndChild" -> {
-                setChipSearch(
-                    userData._id,
-                    favoriteProducts,
-                    cartProducts,
-                    MedicinsCategories.motherAndChild,
-                    "الأم و الطفل",
-                    "default"
-                )
+                userData._id?.let {
+                    setChipSearch(
+                        it,
+                        favoriteProducts,
+                        cartProducts,
+                        MedicinsCategories.motherAndChild,
+                        "الأم و الطفل",
+                        "default"
+                    )
+                }
             }
 
             "virusProtection" -> {
-                setChipSearch(
-                    userData._id,
-                    favoriteProducts,
-                    cartProducts,
-                    MedicinsCategories.virusProtection,
-                    "الحمايه من الفيروسات",
-                    "default"
-                )
+                userData._id?.let {
+                    setChipSearch(
+                        it,
+                        favoriteProducts,
+                        cartProducts,
+                        MedicinsCategories.virusProtection,
+                        "الحمايه من الفيروسات",
+                        "default"
+                    )
+                }
             }
 
             "skinAndHairCare" -> {
-                setChipSearch(
-                    userData._id,
-                    favoriteProducts,
-                    cartProducts,
-                    MedicinsCategories.skinAndHair,
-                    "العناية بالبشرة و الشعر",
-                    "default"
-                )
+                userData._id?.let {
+                    setChipSearch(
+                        it,
+                        favoriteProducts,
+                        cartProducts,
+                        MedicinsCategories.skinAndHair,
+                        "العناية بالبشرة و الشعر",
+                        "default"
+                    )
+                }
             }
         }
     }

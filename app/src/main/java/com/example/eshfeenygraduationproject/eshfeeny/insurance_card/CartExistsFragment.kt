@@ -27,7 +27,7 @@ class CartExistsFragment : Fragment() {
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
         userViewModel.userData.observe(viewLifecycleOwner) { userDetails ->
-            userViewModel.getInsuranceCards(userDetails._id)
+            userDetails._id?.let { userViewModel.getInsuranceCards(it) }
             userViewModel.insuranceCardItems.observe(viewLifecycleOwner) {
                 Log.d("Insurance Card", it.toString())
                 val adapter = InsuranceCardAdapter()

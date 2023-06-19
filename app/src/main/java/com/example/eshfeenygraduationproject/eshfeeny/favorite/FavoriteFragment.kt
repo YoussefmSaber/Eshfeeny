@@ -37,14 +37,18 @@ class FavoriteFragment : Fragment() {
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
             val userId = userData._id
 
-            productViewModel.getUserCartItems(userId)
+            if (userId != null) {
+                productViewModel.getUserCartItems(userId)
+            }
             productViewModel.cartItems.observe(viewLifecycleOwner) { cartProductsResponse ->
                 cartProductsResponse?.let {
                     cartProducts = it
                 }
             }
 
-            productViewModel.getFavoriteProducts(userId)
+            if (userId != null) {
+                productViewModel.getFavoriteProducts(userId)
+            }
 
             productViewModel.favoriteProducts.observe(viewLifecycleOwner) { products ->
 
@@ -54,10 +58,11 @@ class FavoriteFragment : Fragment() {
                     binding?.noItemsLayout?.visibility = View.GONE
                     binding?.favoriteRecyclerView?.visibility = View.VISIBLE
 
-                    val adapter = ProductFavoriteAdapter(productViewModel, userId, cartProducts)
+                    val adapter =
+                        userId?.let { ProductFavoriteAdapter(productViewModel, it, cartProducts) }
                     binding?.favoriteRecyclerView?.adapter = adapter
 
-                    adapter.submitList(products)
+                    adapter?.submitList(products)
                 }
             }
         }

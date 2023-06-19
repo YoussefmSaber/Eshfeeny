@@ -35,7 +35,7 @@ class CartFragment : Fragment() {
 
         userViewModel.userData.observe(viewLifecycleOwner) { userDetails ->
 
-            productViewModel.getUserCartItems(userDetails._id)
+            userDetails._id?.let { productViewModel.getUserCartItems(it) }
 
             productViewModel.cartItems.observe(viewLifecycleOwner) { cartResponse ->
 
@@ -48,9 +48,12 @@ class CartFragment : Fragment() {
                     binding?.cartImageLayout?.visibility = View.GONE
                     binding?.cartRecyclerView?.visibility = View.VISIBLE
                     val adapter =
-                        ProductCartAdapter(productViewModel, userDetails._id, viewLifecycleOwner)
+                        userDetails._id?.let {
+                            ProductCartAdapter(productViewModel,
+                                it, viewLifecycleOwner)
+                        }
                     binding?.cartRecyclerView?.adapter = adapter
-                    adapter.submitList(cartResponse.cart)
+                    adapter?.submitList(cartResponse.cart)
                     binding?.findNearestPharmacyButton?.setOnClickListener {
                         val listItems: MutableList<String> = mutableListOf()
                         cartResponse.cart.forEach {

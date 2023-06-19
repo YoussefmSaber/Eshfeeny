@@ -86,7 +86,9 @@ class HomeFragment : Fragment() {
     private fun getUserId() {
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
             val userID = userData._id
-            getFavoriteProducts(userID)
+            if (userID != null) {
+                getFavoriteProducts(userID)
+            }
         }
     }
 

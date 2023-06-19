@@ -45,9 +45,9 @@ class DetailsFragment : Fragment() {
 
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
 
-            userId = userData._id
+            userId = userData._id.toString()
 
-            productViewModel.getFavoriteProducts(userData._id)
+            userData._id?.let { productViewModel.getFavoriteProducts(it) }
             productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
 
                 _favoriteProducts = favoriteProducts
@@ -128,7 +128,7 @@ class DetailsFragment : Fragment() {
     ) {
         binding?.productIncrementBtn?.setOnClickListener {
             itemCount++
-            productViewModel.incrementProductNumberInCart(userData._id, productDetails._id)
+            userData._id?.let { it1 -> productViewModel.incrementProductNumberInCart(it1, productDetails._id) }
             binding?.productAmount?.text = itemCount.toString()
         }
     }
@@ -140,14 +140,18 @@ class DetailsFragment : Fragment() {
             if (itemCount == 1) {
                 binding?.itemFunctionsLayout?.visibility = View.GONE
                 binding?.add2CartBtn?.visibility = View.VISIBLE
-                productViewModel.removeProductFromCart(
-                    userData._id, productDetails._id
-                )
+                userData._id?.let { it1 ->
+                    productViewModel.removeProductFromCart(
+                        it1, productDetails._id
+                    )
+                }
             } else {
                 itemCount--
-                productViewModel.decrementProductNumberInCart(
-                    userData._id, productDetails._id
-                )
+                userData._id?.let { it1 ->
+                    productViewModel.decrementProductNumberInCart(
+                        it1, productDetails._id
+                    )
+                }
                 binding?.productAmount?.text = itemCount.toString()
             }
         }
@@ -155,12 +159,14 @@ class DetailsFragment : Fragment() {
 
     private fun checkItemInCart(userData: UserInfo) {
         binding?.add2CartBtn?.setOnClickListener { btn ->
-            productViewModel.getNumberOfItemInCart(userData._id, args.Id)
+            userData._id?.let { productViewModel.getNumberOfItemInCart(it, args.Id) }
             productViewModel.productNumber.observe(viewLifecycleOwner) { productItemCount ->
                 if (productItemCount == 0) {
-                    productViewModel.addProductToCart(
-                        userData._id, PatchString(args.Id)
-                    )
+                    userData._id?.let {
+                        productViewModel.addProductToCart(
+                            it, PatchString(args.Id)
+                        )
+                    }
                 } else {
                     itemCount = productItemCount
                     binding?.productAmount?.text = itemCount.toString()
@@ -191,13 +197,17 @@ class DetailsFragment : Fragment() {
         binding?.favoriteImgView?.setEventListener(object : SparkEventListener {
             override fun onEvent(button: ImageView?, buttonState: Boolean) {
                 if (buttonState) {
-                    productViewModel.addMedicineToFavorites(
-                        userData._id, PatchString(args.Id)
-                    )
+                    userData._id?.let {
+                        productViewModel.addMedicineToFavorites(
+                            it, PatchString(args.Id)
+                        )
+                    }
                 } else {
-                    productViewModel.deleteFavoriteProduct(
-                        userData._id, args.Id
-                    )
+                    userData._id?.let {
+                        productViewModel.deleteFavoriteProduct(
+                            it, args.Id
+                        )
+                    }
                 }
             }
 

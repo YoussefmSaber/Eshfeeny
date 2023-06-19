@@ -61,21 +61,23 @@ class SearchResultsFragment : Fragment() {
             Log.i("search Result", args.imageUrl)
             productViewModel.imageSearchResults.observe(viewLifecycleOwner) {
                 userViewModel.userData.observe(viewLifecycleOwner) { userData ->
-                    productViewModel.getUserCartItems(userData._id)
+                    userData._id?.let { it1 -> productViewModel.getUserCartItems(it1) }
                     productViewModel.cartItems.observe(viewLifecycleOwner) { cartProductsResponse ->
 
-                        productViewModel.getFavoriteProducts(userData._id)
+                        userData._id?.let { it1 -> productViewModel.getFavoriteProducts(it1) }
                         productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProductsResponse ->
 
-                            val adapter = SearchResultsAdapter(
-                                productViewModel,
-                                userData._id,
-                                favoriteProductsResponse,
-                                cartProductsResponse
-                            )
+                            val adapter = userData._id?.let { it1 ->
+                                SearchResultsAdapter(
+                                    productViewModel,
+                                    it1,
+                                    favoriteProductsResponse,
+                                    cartProductsResponse
+                                )
+                            }
 
                             this.searchResultsImageRecyclerView.adapter = adapter
-                            adapter.submitList(it)
+                            adapter?.submitList(it)
                         }
                     }
                 }
