@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,9 +13,8 @@ import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.eshfeenygraduationproject.databinding.ProductItemCategoryBinding
-import com.example.eshfeenygraduationproject.eshfeeny.details.AlternativeFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.details.DetailsFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
-import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.ProductCategoryFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.varunest.sparkbutton.SparkEventListener
 
@@ -22,7 +22,8 @@ class AlternativeAdapter(
     private val viewModel: ProductViewModel,
     val userId: String,
     val favoriteProducts: ProductResponse,
-    val cartProducts: CartResponse
+    val cartProducts: CartResponse,
+    private val navController: NavController
 ) : ListAdapter<ProductResponseItem, AlternativeAdapter.ViewHolder>(CategoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,7 +32,16 @@ class AlternativeAdapter(
                 LayoutInflater.from(parent.context),
                 parent, false
             )
-        return ViewHolder(itemBinding)
+        return ViewHolder(itemBinding).apply {
+            itemView.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val product = getItem(position)
+                    val action = DetailsFragmentDirections.actionDetailsFragmentSelf(product._id)
+                    it.findNavController().navigate(action)
+                }
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -41,7 +51,6 @@ class AlternativeAdapter(
     inner class ViewHolder(private val itemBinding: ProductItemCategoryBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-        private var isFavorite = false
         private var itemCount: Int = 0
 
         fun bind(product: ProductResponseItem) {
@@ -49,26 +58,25 @@ class AlternativeAdapter(
             setData2UI(product)
             addItemToCart(product)
             setFavoriteItem(product)
-            navigate2Details(product)
             incrementProductAmount(product)
             decrementProductAmount(product)
-        }
-
-        private fun setData2UI(product: ProductResponseItem) {
-            itemBinding.medicineNameIdTv.text = product.nameAr
-            itemBinding.priceMedicineIdTv.text = "${product.price.toInt().toString()} جنيه  "
-            itemBinding.imgVMedicineId.loadUrl(product.images[0])
+            navigate2Details(product)
         }
 
         private fun navigate2Details(product: ProductResponseItem) {
             itemBinding.imgVMedicineId.setOnClickListener {
                 val action =
-                    AlternativeFragmentDirections.actionAlternativeFragmentToDetailsFragment(
-                        product._id
-                    )
-                it.findNavController().navigate(action)
+                    DetailsFragmentDirections.actionDetailsFragmentSelf(product._id)
+                navController.navigate(action) // Use the NavController passed to the constructor
             }
         }
+
+        private fun setData2UI(product: ProductResponseItem) {
+            itemBinding.medicineNameIdTv.text = product.nameAr
+            itemBinding.priceMedicineIdTv.text = "${product.price.toInt()} جنيه  "
+            itemBinding.imgVMedicineId.loadUrl(product.images[0])
+        }
+
 
         private fun setFavoriteItem(category: ProductResponseItem) {
             if (favoriteProducts.contains(category)) {

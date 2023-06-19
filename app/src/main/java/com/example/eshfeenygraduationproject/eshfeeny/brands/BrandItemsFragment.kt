@@ -65,7 +65,7 @@ class BrandItemsFragment : Fragment() {
             }
         }
 
-        binding?.backButtonBrand?.setOnClickListener {
+        binding?.backBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_brandItemsFragment_to_brandsFragment)
         }
 

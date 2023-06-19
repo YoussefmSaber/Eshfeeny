@@ -2,6 +2,7 @@ package com.example.eshfeenygraduationproject.eshfeeny.alarm.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.alarm.Alarm
@@ -38,7 +39,8 @@ class AlarmAdapter : ListAdapter<Alarm, AlarmAdapter.ViewHolder>(AlarmDiffCallba
             itemBinding.MedicineDescTextView.text = alarm.notes
 
             itemBinding.cardVew.setOnClickListener {
-
+                val action = AlarmFragmentDirections.actionAlarmFragmentToEditAlarmFragment(alarm)
+                it.findNavController().navigate(action)
             }
         }
     }

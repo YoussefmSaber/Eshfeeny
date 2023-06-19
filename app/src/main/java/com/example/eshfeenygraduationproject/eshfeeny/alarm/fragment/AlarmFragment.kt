@@ -42,6 +42,9 @@ class AlarmFragment : Fragment() {
         // initializing the adapter variable and changing the value of the month and year
         // if it's value changed in the calendar
         var selectedDayInMilli = Long.valueOf(0)
+        binding?.backBtn?.setOnClickListener {
+            findNavController().navigate(R.id.action_alarmFragment_to_moreFragment2)
+        }
 
 
         val adapter = DaysAdapter(DaysList.daysList, { month, year ->

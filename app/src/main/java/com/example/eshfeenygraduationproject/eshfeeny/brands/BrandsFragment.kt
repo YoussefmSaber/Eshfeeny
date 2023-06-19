@@ -20,7 +20,7 @@ class BrandsFragment : Fragment() {
     ): View? {
         binding = FragmentBrandsBinding.inflate(layoutInflater)
 
-        binding?.backButtonBrand?.setOnClickListener {
+        binding?.backBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_brandsFragment_to_homeFragment2)
         }
 

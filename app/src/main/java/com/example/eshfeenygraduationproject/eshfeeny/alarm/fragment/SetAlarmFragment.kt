@@ -68,6 +68,9 @@ class SetAlarmFragment : Fragment() {
             setAlarm()
         }
 
+        binding?.BackArrow?.setOnClickListener {
+            findNavController().navigate(R.id.action_setAlarmFragment_to_alarmFragment)
+        }
         // showing the bottom sheet to set the alarm when press on the chip
         binding?.newAlarmChip?.setOnClickListener {
             showTimePicker()

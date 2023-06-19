@@ -84,6 +84,10 @@ class EditAlarmFragment : Fragment() {
             setAlarm()
         }
 
+        binding?.BackArrow?.setOnClickListener {
+            findNavController().navigate(R.id.action_editAlarmFragment_to_alarmFragment)
+        }
+
         binding?.newAlarmChip?.setOnClickListener {
             showTimePicker()
         }
