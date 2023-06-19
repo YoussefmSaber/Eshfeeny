@@ -41,7 +41,7 @@ class VerifyDataFragment : Fragment() {
             findNavController().navigate(action)
         }
         binding?.btnCal?.setOnClickListener {
-            val bmr = calcBMR(age?.toFloat(),height1,weight1,gender)
+            val bmr = calcBMR(age.toFloat(),height1,weight1,gender)
             val bmi = calcBMI(height1,weight1)
             val view: View = layoutInflater.inflate(R.layout.bottom_sheet_to_calculate_bmi_bmr, null)
             val dialog = BottomSheetDialog(requireContext())

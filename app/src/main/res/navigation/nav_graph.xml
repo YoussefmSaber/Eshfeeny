@@ -45,9 +45,6 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_homeFragment2_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
             android:id="@+id/action_homeFragment2_to_searchResultsFragment"
             app:destination="@id/searchResultsFragment" />
         <action
@@ -129,6 +126,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_alarmFragment_to_editAlarmFragment"
+            app:destination="@id/editAlarmFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/setAlarmFragment"
@@ -188,6 +192,13 @@
         <argument
             android:name="chipName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_medicineCategoryFragment_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -236,18 +247,18 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_detailsFragment_to_searchFragment"
-            app:destination="@id/searchFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
             android:id="@+id/action_detailsFragment_to_searchResultsFragment"
             app:destination="@id/searchResultsFragment" />
         <action
             android:id="@+id/action_detailsFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_self"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/bmiAndBmrFragment"
@@ -361,6 +372,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_roshtaFragment_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment" />
     </fragment>
     <fragment
         android:id="@+id/insuranceCardFragment"
@@ -469,6 +483,9 @@
                 android:name="cardNumber"
                 app:argType="string" />
         </action>
+        <argument
+            android:name="insuranceCardName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/brandsFragment"
@@ -489,6 +506,16 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_brandsFragment_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_brandsFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/brandItemsFragment"
@@ -512,22 +539,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-    </fragment>
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.example.eshfeenygraduationproject.eshfeeny.search.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search">
         <action
-            android:id="@+id/action_searchFragment_to_homeFragment2"
-            app:destination="@id/homeFragment2"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_searchFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment"
+            android:id="@+id/action_brandItemsFragment_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -594,7 +608,14 @@
         <argument
             android:name="imageUrl"
             app:argType="string" />
-    </fragment>
+      <action
+          android:id="@+id/action_searchResultsFragment_self"
+          app:destination="@id/searchResultsFragment"
+          app:enterAnim="@anim/nav_default_enter_anim"
+          app:exitAnim="@anim/nav_default_exit_anim"
+          app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+          app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+  </fragment>
     <fragment
         android:id="@+id/addPhotoICFragment"
         android:name="com.example.eshfeenygraduationproject.eshfeeny.insurance_card.AddPhotoICFragment"
@@ -612,6 +633,9 @@
         <argument
             android:name="cardNumber"
             app:argType="string" />
+        <argument
+            android:name="InsuranceCardName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addRoshtaICFragment"
@@ -625,5 +649,21 @@
             android:name="insuranceCardName"
             android:defaultValue="asd"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/editAlarmFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment.EditAlarmFragment"
+        android:label="fragment_edit_alarm"
+        tools:layout="@layout/fragment_edit_alarm" >
+        <action
+            android:id="@+id/action_editAlarmFragment_to_alarmFragment"
+            app:destination="@id/alarmFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="alarm"
+            app:argType="com.example.domain.entity.alarm.Alarm" />
     </fragment>
 </navigation>

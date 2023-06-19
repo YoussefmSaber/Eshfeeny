@@ -2,10 +2,12 @@ package com.example.eshfeenygraduationproject.eshfeeny.alarm.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.alarm.Alarm
 import com.example.eshfeenygraduationproject.databinding.AlarmItemViewBinding
+import com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment.AlarmFragmentDirections
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -35,6 +37,11 @@ class AlarmAdapter : ListAdapter<Alarm, AlarmAdapter.ViewHolder>(AlarmDiffCallba
             itemBinding.timeTextView.text = formattedTime
             itemBinding.MedicineNameTextView.text = alarm.name
             itemBinding.MedicineDescTextView.text = alarm.notes
+
+            itemBinding.cardVew.setOnClickListener {
+                val action = AlarmFragmentDirections.actionAlarmFragmentToEditAlarmFragment(alarm)
+                it.findNavController().navigate(action)
+            }
         }
     }
 }

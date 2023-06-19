@@ -4,24 +4,24 @@ import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.data.repository.AlarmRepoImpl
 import com.example.domain.entity.alarm.AlarmPatchRequest
 import com.example.eshfeenygraduationproject.R
-import com.example.eshfeenygraduationproject.databinding.FragmentSetAlarmBinding
+import com.example.eshfeenygraduationproject.databinding.FragmentEditAlarmBinding
 import com.example.eshfeenygraduationproject.eshfeeny.alarm.bottomsheet.AlarmDurationFragment
 import com.example.eshfeenygraduationproject.eshfeeny.alarm.bottomsheet.SelectDaysFragment
 import com.example.eshfeenygraduationproject.eshfeeny.alarm.bottomsheet.TimePickerFragment
@@ -31,47 +31,63 @@ import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.
 import com.example.eshfeenygraduationproject.eshfeeny.util.AlarmReceiver
 import com.example.eshfeenygraduationproject.eshfeeny.util.channelId
 import com.google.android.material.chip.Chip
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
-const val titleExtra = "medicName"
-const val descExtra = "medicDesc"
+class EditAlarmFragment : Fragment() {
 
-class SetAlarmFragment : Fragment() {
-
-    // Creating the binding variable to access the views in the SetAlarm Fragment
-    // and setting it's intial value to null
-    private var binding: FragmentSetAlarmBinding? = null
-    private lateinit var repetitionState: String
+    private val args: EditAlarmFragmentArgs by navArgs()
+    private var binding: FragmentEditAlarmBinding? = null
     private var alarmTime: MutableList<Long> = mutableListOf()
-    private var alarmDuration: Int = 0
+    private var alarmDuration = 0
+    private var dose = 1
+    private lateinit var repetitionState: String
     private lateinit var userId: String
     private lateinit var viewModel: AlarmViewModel
+    private lateinit var name: String
+    private lateinit var desc: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        // Inflate the layout for this fragment
+        binding = FragmentEditAlarmBinding.inflate(inflater)
         initializeViewModels()
-
-        // initializing the value of the binding variable
-        binding = FragmentSetAlarmBinding.inflate(inflater)
-        repetitionState =
-            getString(com.example.eshfeenygraduationproject.R.string.repetition_only_today)
-
-        // variable to get he number of bills per time
-        var repetitionNumber = 1
+        settingAlarmValues()
         createNotificationChannel()
+        buttonsClickListeners()
+        setDataToUI()
 
+        return binding?.root
+    }
+
+    private fun setDataToUI() {
+        binding?.apply {
+            this.medcienNameInput.setText(args.alarm.name)
+            this.DescriptionInput.setText(args.alarm.notes)
+            this.durationTextView.text = alarmDuration.toString()
+            args.alarm.alarmTime.forEach {
+                val pattern = "hh:mm a" // Desired time format
+                val sdf = SimpleDateFormat(pattern, Locale.getDefault())
+                val formattedTime = sdf.format(Date(it))
+                onTimeSelected(formattedTime, it)
+            }
+        }
+    }
+
+    private fun buttonsClickListeners() {
         binding?.confButtonAlarm?.setOnClickListener {
             setAlarm()
         }
 
         binding?.BackArrow?.setOnClickListener {
-            findNavController().navigate(R.id.action_setAlarmFragment_to_alarmFragment)
+            findNavController().navigate(R.id.action_editAlarmFragment_to_alarmFragment)
         }
-        // showing the bottom sheet to set the alarm when press on the chip
+
         binding?.newAlarmChip?.setOnClickListener {
             showTimePicker()
         }
@@ -84,47 +100,17 @@ class SetAlarmFragment : Fragment() {
             showDurationSetter()
         }
 
-        // increasing and decreasing the number of bills that will be taken in a time depending on
-        // which button is pressed
         binding?.plusIcon?.setOnClickListener {
-            repetitionNumber += 1
-            binding?.repetitionNumber?.text = repetitionNumber.toString()
+            alarmDuration += 1
+            binding?.repetitionNumber?.text = alarmDuration.toString()
         }
-        // in case of decreasing the minimum amount of bills is 1
+
         binding?.minusIcon?.setOnClickListener {
-            if (repetitionNumber > 1) {
-                repetitionNumber -= 1
-                binding?.repetitionNumber?.text = repetitionNumber.toString()
+            if (alarmDuration > 1) {
+                alarmDuration -= 1
+                binding?.repetitionNumber?.text = alarmDuration.toString()
             }
         }
-
-        return binding?.root
-    }
-
-    private fun initializeViewModels() {
-        val userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
-        val alarmRepo = AlarmRepoImpl()
-        val alarmViewModelFactory = AlarmViewModelFactory(alarmRepo)
-        viewModel = ViewModelProvider(this, alarmViewModelFactory)[AlarmViewModel::class.java]
-        getUserId(userViewModel)
-    }
-
-
-    private fun getUserId(userViewModel: UserViewModel) {
-        userViewModel.userData.observe(viewLifecycleOwner) { userData ->
-            userId = userData._id
-        }
-    }
-
-    private fun createNotificationChannel() {
-        val name = "Alarm Channel"
-        val desc = "This is a channel to show alarms for MedFinder Application"
-        val importance = NotificationManager.IMPORTANCE_HIGH
-        val channel = NotificationChannel(channelId, name, importance)
-        channel.description = desc
-        val notificationManager =
-            requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
     }
 
     private fun setAlarm() {
@@ -150,7 +136,7 @@ class SetAlarmFragment : Fragment() {
                             requireContext(),
                             it.hashCode(),
                             intent,
-                            PendingIntent.FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
+                            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                         )
                     )
                 }
@@ -172,7 +158,7 @@ class SetAlarmFragment : Fragment() {
                             requireContext(),
                             it.hashCode(),
                             intent,
-                            PendingIntent.FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
+                            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                         )
                     )
 
@@ -183,7 +169,7 @@ class SetAlarmFragment : Fragment() {
                             requireContext(),
                             it.hashCode(),
                             Intent(requireContext().applicationContext, AlarmReceiver::class.java),
-                            PendingIntent.FLAG_NO_CREATE or FLAG_IMMUTABLE
+                            PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE
                         )
                     )
                 }
@@ -203,7 +189,7 @@ class SetAlarmFragment : Fragment() {
                             requireContext(),
                             it.hashCode(),
                             intent,
-                            PendingIntent.FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
+                            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                         )
                     )
 
@@ -214,14 +200,14 @@ class SetAlarmFragment : Fragment() {
                             requireContext(),
                             it.hashCode(),
                             Intent(requireContext().applicationContext, AlarmReceiver::class.java),
-                            PendingIntent.FLAG_NO_CREATE or FLAG_IMMUTABLE
+                            PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE
                         )
                     )
                 }
             }
         }
 
-        sendAlarmToServer(
+        updateAlarmToServer(
             repetitionState,
             alarmName,
             alarmNote,
@@ -233,7 +219,7 @@ class SetAlarmFragment : Fragment() {
         findNavController().navigate(R.id.action_setAlarmFragment_to_alarmFragment)
     }
 
-    private fun sendAlarmToServer(
+    private fun updateAlarmToServer(
         repetitionState: String,
         alarmName: String,
         alarmNote: String,
@@ -242,8 +228,10 @@ class SetAlarmFragment : Fragment() {
         alarmTime: MutableList<Long>,
         dose: String
     ) {
-        viewModel.sendAlarm(
-            userId, AlarmPatchRequest(
+        viewModel.editAlarm(
+            userId,
+            args.alarm._id,
+            AlarmPatchRequest(
                 alarmName,
                 alarmNote,
                 dose.toInt(),
@@ -255,29 +243,59 @@ class SetAlarmFragment : Fragment() {
         )
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        // setting the binding variable to null to ensure there is no memory leak
+    override fun onDestroyView() {
+        super.onDestroyView()
         binding = null
     }
 
+    private fun createNotificationChannel() {
+        val name = "Alarm Channel"
+        val desc = "This is a channel to show alarms for MedFinder Application"
+        val importance = NotificationManager.IMPORTANCE_HIGH
+        val channel = NotificationChannel(channelId, name, importance)
+        channel.description = desc
+        val notificationManager =
+            requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
+    }
+
+    private fun settingAlarmValues() {
+        alarmDuration = args.alarm.days?.toInt() ?: 0
+        repetitionState = args.alarm.repetition
+        name = args.alarm.name
+        desc = args.alarm.notes.toString()
+        dose = args.alarm.dose
+    }
+
+    private fun initializeViewModels() {
+        val userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        val alarmRepo = AlarmRepoImpl()
+        val alarmViewModelFactory = AlarmViewModelFactory(alarmRepo)
+        viewModel = ViewModelProvider(this, alarmViewModelFactory)[AlarmViewModel::class.java]
+        getUserId(userViewModel)
+    }
+
+    private fun getUserId(userViewModel: UserViewModel) {
+        userViewModel.userData.observe(viewLifecycleOwner) { userData ->
+            userId = userData._id
+        }
+    }
+
     private fun showDurationSetter() {
-        val bottomSheet = AlarmDurationFragment("set")
+        val bottomSheet = AlarmDurationFragment("edit")
         bottomSheet.show(childFragmentManager, "AlarmDurationFragment")
     }
 
     private fun showSelectRepetition() {
-        val bottomSheet = SelectDaysFragment("set")
+        val bottomSheet = SelectDaysFragment("edit")
         bottomSheet.show(childFragmentManager, "SelectDaysFragment")
     }
 
-    // a function to show the timePicker bottom sheet
     private fun showTimePicker() {
-        val timePickerFragment = TimePickerFragment("set")
+        val timePickerFragment = TimePickerFragment("edit")
         timePickerFragment.show(childFragmentManager, "TimePickerFragment")
     }
 
-    // a function that set that pass the time to the chip while creating it
     fun onTimeSelected(timeString: String, timeMillis: Long) {
         alarmTime.add(timeMillis)
         Log.d("alarm", alarmTime.toString())
@@ -286,7 +304,6 @@ class SetAlarmFragment : Fragment() {
         binding?.alarmChipsGroup?.addView(newChip)
     }
 
-    // a function that create the chips when the time is selected
     private fun createChip(time: String): Chip {
         // creating a chip variable and setting the text of the chip to the time
         val chip = Chip(context)

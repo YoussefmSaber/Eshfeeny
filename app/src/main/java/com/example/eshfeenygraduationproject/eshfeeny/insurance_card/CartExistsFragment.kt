@@ -16,7 +16,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.
 
 
 class CartExistsFragment : Fragment() {
-    private var binding:FragmentCartExistsBinding? = null
+    private var binding: FragmentCartExistsBinding? = null
     private lateinit var userViewModel: UserViewModel
     private val args: CartExistsFragmentArgs by navArgs()
     override fun onCreateView(
@@ -26,9 +26,10 @@ class CartExistsFragment : Fragment() {
         binding = FragmentCartExistsBinding.inflate(layoutInflater)
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
-        userViewModel.userData.observe(viewLifecycleOwner){ userDetails ->
+        userViewModel.userData.observe(viewLifecycleOwner) { userDetails ->
             userViewModel.getInsuranceCards(userDetails._id)
-            userViewModel.insuranceCardItems.observe(viewLifecycleOwner){
+            userViewModel.insuranceCardItems.observe(viewLifecycleOwner) {
+                Log.d("Insurance Card", it.toString())
                 val adapter = InsuranceCardAdapter()
                 adapter.submitList(it)
                 binding?.existsCardRvId?.adapter = adapter
@@ -45,7 +46,11 @@ class CartExistsFragment : Fragment() {
             findNavController().navigate(R.id.action_cartExistsFragment_to_servicesInsuranceCardFragment)
         }
         binding?.addCartExistsBtn?.setOnClickListener {
-            findNavController().navigate(R.id.action_cartExistsFragment_to_infoInsuranceCardFragment)
+            val action =
+                CartExistsFragmentDirections.actionCartExistsFragmentToInfoInsuranceCardFragment(
+                    args.insuranceCardName
+                )
+            findNavController().navigate(action)
         }
         // Inflate the layout for this fragment
         return binding?.root

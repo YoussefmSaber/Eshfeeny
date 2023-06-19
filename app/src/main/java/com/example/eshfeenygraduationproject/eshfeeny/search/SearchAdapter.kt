@@ -8,10 +8,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.eshfeenygraduationproject.databinding.SearchResultItemBinding
+import com.example.eshfeenygraduationproject.eshfeeny.brands.BrandItemsFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.brands.BrandsFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.ProductCategoryFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.searchResults.SearchResultsFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 
-class SearchAdapter() :
+class SearchAdapter(private val searchFrom: String) :
     ListAdapter<ProductResponseItem, SearchAdapter.ViewHolder>(CategoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,8 +42,15 @@ class SearchAdapter() :
 
             itemBinding.searchItemPriceTextView.text = "${product.price} جنية"
             itemBinding.searchItemTextView.setOnClickListener {
-                val action =
-                    HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(product._id)
+                val action = when (searchFrom) {
+                    "category" -> ProductCategoryFragmentDirections.actionMedicineCategoryFragmentToDetailsFragment(product._id)
+                    "home" -> HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(product._id)
+                    "brands" -> BrandsFragmentDirections.actionBrandsFragmentToDetailsFragment(product._id)
+                    "brandItems" -> BrandItemsFragmentDirections.actionBrandItemsFragmentToDetailsFragment(product._id)
+                    "search" -> SearchResultsFragmentDirections.actionSearchResultsFragmentToDetailsFragment(product._id)
+                    else -> ProductCategoryFragmentDirections.actionMedicineCategoryFragmentToDetailsFragment(product._id)
+                }
+
                 it.findNavController().navigate(action)
             }
         }

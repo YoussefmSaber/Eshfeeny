@@ -21,15 +21,20 @@ import androidx.navigation.fragment.findNavController
 import com.example.data.repository.ProductRepoImpl
 import com.example.data.utils.Constants
 import com.example.eshfeenygraduationproject.databinding.FragmentImageBottomSheetBinding
+import com.example.eshfeenygraduationproject.eshfeeny.brands.BrandItemsFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.brands.BrandsFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelFactory.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.roshta.RoshtaFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.ProductCategoryFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.searchResults.SearchResultsFragmentDirections
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.io.File
 import java.io.FileOutputStream
 
-class ImageBottomSheetFragment : BottomSheetDialogFragment() {
+class ImageBottomSheetFragment(private val imageFrom: String) : BottomSheetDialogFragment() {
 
     private lateinit var userViewModel: UserViewModel
     private lateinit var productViewModel: ProductViewModel
@@ -37,7 +42,7 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
     private val REQUEST_IMAGE_CAPTURE = 100
     private val REQUEST_IMAGE_PICKER = 101
     private var binding: FragmentImageBottomSheetBinding? = null
-    var onPhotoSelected: ((Uri) -> Unit)? = null
+    var onPhotoSelected: ((Uri, String) -> Unit)? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,7 +59,6 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
                 pickImage()
             }
         }
-
 
         return binding?.root
     }
@@ -126,8 +130,13 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
             productViewModel.uploadImage(Constants.IMAGE_UPLOAD_KEY, imgFile)
 
             productViewModel.imageResponseResult.observe(viewLifecycleOwner) {
-                val searchResultAction =
-                    HomeFragmentDirections.actionHomeFragment2ToSearchResultsFragment(it.data.url)
+                val searchResultAction = when (imageFrom) {
+                    "home" -> HomeFragmentDirections.actionHomeFragment2ToSearchResultsFragment(it.data.url)
+                    "category" -> ProductCategoryFragmentDirections.actionMedicineCategoryFragmentToSearchResultsFragment(it.data.url)
+                    "brandItems" -> BrandItemsFragmentDirections.actionBrandItemsFragmentToSearchResultsFragment(it.data.url)
+                    "brands"-> BrandsFragmentDirections.actionBrandsFragmentToSearchResultsFragment(it.data.url)
+                    else -> SearchResultsFragmentDirections.actionSearchResultsFragmentSelf(it.data.url)
+                }
                 findNavController().navigate(searchResultAction)
             }
             Log.i("Image Capture", "Image Taken Successfully")
@@ -136,9 +145,7 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
             val inputStream = imageUri?.let { requireContext().contentResolver.openInputStream(it) }
             val file = File(context?.cacheDir, "selected_image.png")
             val outputStream = FileOutputStream(file)
-            if (imageUri != null) {
-                onPhotoSelected?.invoke(imageUri)
-            }
+
             inputStream?.use { input ->
                 outputStream.use { output ->
                     input.copyTo(output)
@@ -147,8 +154,16 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
 
             productViewModel.uploadImage(Constants.IMAGE_UPLOAD_KEY, file)
             productViewModel.imageResponseResult.observe(viewLifecycleOwner) {
-                val searchResultAction =
-                    HomeFragmentDirections.actionHomeFragment2ToSearchResultsFragment(it.data.url)
+                if (imageUri != null) {
+                    onPhotoSelected?.invoke(imageUri, it.data.url)
+                }
+                val searchResultAction = when (imageFrom) {
+                    "home" -> HomeFragmentDirections.actionHomeFragment2ToSearchResultsFragment(it.data.url)
+                    "category" -> ProductCategoryFragmentDirections.actionMedicineCategoryFragmentToSearchResultsFragment(it.data.url)
+                    "brandItems" -> BrandItemsFragmentDirections.actionBrandItemsFragmentToSearchResultsFragment(it.data.url)
+                    "brands"-> BrandsFragmentDirections.actionBrandsFragmentToSearchResultsFragment(it.data.url)
+                    else -> SearchResultsFragmentDirections.actionSearchResultsFragmentSelf(it.data.url)
+                }
                 findNavController().navigate(searchResultAction)
             }
 

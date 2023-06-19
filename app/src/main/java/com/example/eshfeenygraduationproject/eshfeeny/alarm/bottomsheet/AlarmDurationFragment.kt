@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentAlarmDurationBinding
+import com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment.EditAlarmFragment
 import com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment.SetAlarmFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class AlarmDurationFragment : BottomSheetDialogFragment() {
+class AlarmDurationFragment(private val alarmState: String) : BottomSheetDialogFragment() {
 
     private var binding: FragmentAlarmDurationBinding? = null
 
@@ -23,9 +24,19 @@ class AlarmDurationFragment : BottomSheetDialogFragment() {
 
         binding?.apply {
             this.durationConfButton.setOnClickListener {
-                val parentFragment = parentFragment as SetAlarmFragment
-                parentFragment.alarmDuration(this.durationInputText.text.toString().toInt())
-                dismiss()
+                when (alarmState) {
+                    "set" -> {
+                        val parentFragment = parentFragment as SetAlarmFragment
+                        parentFragment.alarmDuration(this.durationInputText.text.toString().toInt())
+                        dismiss()
+                    }
+                    "edit" -> {
+                        val parentFragment = parentFragment as EditAlarmFragment
+                        parentFragment.alarmDuration(this.durationInputText.text.toString().toInt())
+                        dismiss()
+                    }
+                }
+
             }
         }
 

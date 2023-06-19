@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
                 R.id.searchUsingCamera -> {
                     Log.i("image Capture", "Item Clicked")
                     val bottomSheet =
-                        ImageBottomSheetFragment()
+                        ImageBottomSheetFragment("home")
                     bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
                     true
                 }
@@ -329,7 +329,7 @@ class HomeFragment : Fragment() {
                     productViewModel.getSearchResults(searchText)
                     productViewModel.searchResults.observe(viewLifecycleOwner) {
 
-                        val adapter = SearchAdapter()
+                        val adapter = SearchAdapter("home")
                         adapter.submitList(it)
                         binding?.searchResultsRecyclerView?.adapter = adapter
                     }

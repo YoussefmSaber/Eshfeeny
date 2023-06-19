@@ -25,14 +25,11 @@
         android:id="@+id/addRoshtaPhoto"
         android:layout_width="wrap_content"
         android:layout_height="128sp"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="20dp"
         android:clickable="true"
         android:contentDescription="TODO"
         android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textRoshta"
         app:srcCompat="@drawable/add3" />
@@ -102,10 +99,8 @@
         android:id="@+id/imageView"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtAww"
         app:srcCompat="@drawable/pen" />
@@ -114,14 +109,12 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/cairo_semibold"
         android:text="اكتب طلبك "
         android:textColor="#1F1F1F"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -129,9 +122,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="40dp"
         android:fontFamily="@font/cairo_semibold"
         android:text="اكتب هنا اسم الدواء او المنتج الذى تريد طلبه من الصيدلية "
         android:textColor="#868686"
@@ -142,10 +133,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/TxtFieldTakeMid"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="8dp"
+        android:layout_margin="16sp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -154,12 +144,13 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtFieldTakeMid"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="361dp"
-            android:layout_height="119dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/custom_edit5"
             android:fontFamily="@font/cairo_semibold"
             android:hint="مثال : علبة بنادول و بامبرز مقاس 4 "
-            android:textColor="#868686" />
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/grey_font" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -196,19 +187,6 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textRoshta" />
-
-    <ImageView
-        android:id="@+id/takephoto"
-        android:layout_width="147dp"
-        android:layout_height="141dp"
-        android:layout_marginTop="35dp"
-        android:contentDescription="TODO"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textRoshta"
-        app:srcCompat="@android:drawable/divider_horizontal_dark"
-        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/exit_btn_id"

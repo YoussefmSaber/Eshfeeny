@@ -13,38 +13,29 @@ import com.bumptech.glide.Glide
 import com.example.domain.entity.insuranceCard.InsuranceCardX
 import com.example.eshfeenygraduationproject.databinding.InsuranceCardItemBinding
 
-class InsuranceCardAdapter() : ListAdapter<InsuranceCardX, InsuranceCardAdapter.ViewHolder>(InsuranceCardDiffCallBack()) {
+class InsuranceCardAdapter() :
+    ListAdapter<InsuranceCardX, InsuranceCardAdapter.ViewHolder>(InsuranceCardDiffCallBack()) {
 
     private var selectedItemPosition: Int = RecyclerView.NO_POSITION
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemBinding = InsuranceCardItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding =
+            InsuranceCardItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(itemBinding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position), position)
+        holder.bind(getItem(position))
     }
 
-    inner class ViewHolder(private val itemBinding: InsuranceCardItemBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(insuranceCardItem: InsuranceCardX?, position: Int) {
+    inner class ViewHolder(val itemBinding: InsuranceCardItemBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
+        fun bind(insuranceCardItem: InsuranceCardX?) {
             insuranceCardItem?.let { item ->
                 itemBinding.nameICId.text = item.nameOnCard
                 itemBinding.numICId.text = item.number
                 Glide.with(itemBinding.root.context).load(item.imageURL).into(itemBinding.imgIDIC)
-
-                if (selectedItemPosition == position) {
-                    // Change background color and stroke for the selected item
-                    itemBinding.MaterialCardIDIC.strokeColor = Color.parseColor("#F99D1C")
-                    itemBinding.imageView10.visibility = View.VISIBLE
-                    itemBinding.MaterialCardIDIC.setBackgroundColor(Color.parseColor("#FFE5CC"))
-                } else {
-                    // Reset background color and stroke for other items
-                    itemBinding.MaterialCardIDIC.setBackgroundColor(Color.parseColor("#CCE6FF"))
-                    itemBinding.MaterialCardIDIC.strokeColor = Color.parseColor("#E5E7EB")
-                    itemBinding.imageView10.visibility = View.INVISIBLE
-                }
-
+                changingTheBorder()
                 itemBinding.MaterialCardIDIC.setOnClickListener {
                     // Store the clicked position
                     val previousSelectedPosition = selectedItemPosition
@@ -54,9 +45,27 @@ class InsuranceCardAdapter() : ListAdapter<InsuranceCardX, InsuranceCardAdapter.
                     notifyItemChanged(previousSelectedPosition)
                     notifyItemChanged(selectedItemPosition)
 
-                    Toast.makeText(itemBinding.root.context, "تم إرسال طلبك بنجاح", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        itemBinding.root.context,
+                        "تم إرسال طلبك بنجاح",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
+        }
+    }
+
+    private fun ViewHolder.changingTheBorder() {
+        if (selectedItemPosition == position) {
+            // Change background color and stroke for the selected item
+            itemBinding.MaterialCardIDIC.strokeColor = Color.parseColor("#F99D1C")
+            itemBinding.imageView10.visibility = View.VISIBLE
+            itemBinding.MaterialCardIDIC.setBackgroundColor(Color.parseColor("#FFE5CC"))
+        } else {
+            // Reset background color and stroke for other items
+            itemBinding.MaterialCardIDIC.setBackgroundColor(Color.parseColor("#CCE6FF"))
+            itemBinding.MaterialCardIDIC.strokeColor = Color.parseColor("#E5E7EB")
+            itemBinding.imageView10.visibility = View.INVISIBLE
         }
     }
 }
@@ -64,11 +73,11 @@ class InsuranceCardAdapter() : ListAdapter<InsuranceCardX, InsuranceCardAdapter.
 class InsuranceCardDiffCallBack : DiffUtil.ItemCallback<InsuranceCardX>() {
     override fun areItemsTheSame(oldItem: InsuranceCardX, newItem: InsuranceCardX): Boolean {
         Log.i("cart", oldItem.name + " " + newItem.name)
-        return oldItem.name == newItem.name
+        return oldItem.imageURL == newItem.imageURL
     }
 
     override fun areContentsTheSame(oldItem: InsuranceCardX, newItem: InsuranceCardX): Boolean {
         Log.i("cart", oldItem.number + " " + newItem.number)
-        return oldItem.number == newItem.number
+        return oldItem == newItem
     }
 }

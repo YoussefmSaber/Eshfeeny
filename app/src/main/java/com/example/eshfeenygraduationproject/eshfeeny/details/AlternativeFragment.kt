@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.eshfeenygraduationproject.databinding.FragmentAlternativeBinding
+import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.AlternativeAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductCategoryAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -32,11 +34,12 @@ class AlternativeFragment(
                 productViewModel.getUserCartItems(userId)
                 productViewModel.cartItems.observe(viewLifecycleOwner) { cartResponse ->
                     val adapter =
-                        ProductCategoryAdapter(
+                        AlternativeAdapter(
                             productViewModel,
                             userId,
                             favoriteProducts,
-                            cartResponse
+                            cartResponse,
+                            findNavController()
                         )
                     binding?.alternativeProductsRecyclerView?.adapter = adapter
                     adapter.submitList(alternativeProducts)

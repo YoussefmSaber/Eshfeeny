@@ -57,6 +57,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     ){
         viewModelScope.launch {
             try {
+                Log.d("Insurance Card", card.toString())
                 repository.addInsuranceCard(userId, card)
             }
             catch (e:Exception)

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,27 +13,35 @@ import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.eshfeenygraduationproject.databinding.ProductItemCategoryBinding
-import com.example.eshfeenygraduationproject.eshfeeny.brands.BrandItemsFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.details.DetailsFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
-import com.example.eshfeenygraduationproject.eshfeeny.searchResults.SearchResultsFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.varunest.sparkbutton.SparkEventListener
 
-class SearchResultsAdapter(
+class AlternativeAdapter(
     private val viewModel: ProductViewModel,
     val userId: String,
     val favoriteProducts: ProductResponse,
-    val cartProducts: CartResponse
-) : ListAdapter<ProductResponseItem, SearchResultsAdapter.ViewHolder>(CategoryDiffCallback()) {
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder {
-        val itemBinding = ProductItemCategoryBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent, false
-        )
-        return ViewHolder(itemBinding)
+    val cartProducts: CartResponse,
+    private val navController: NavController
+) : ListAdapter<ProductResponseItem, AlternativeAdapter.ViewHolder>(CategoryDiffCallback()) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val itemBinding =
+            ProductItemCategoryBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent, false
+            )
+        return ViewHolder(itemBinding).apply {
+            itemView.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val product = getItem(position)
+                    val action = DetailsFragmentDirections.actionDetailsFragmentSelf(product._id)
+                    it.findNavController().navigate(action)
+                }
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -41,6 +50,7 @@ class SearchResultsAdapter(
 
     inner class ViewHolder(private val itemBinding: ProductItemCategoryBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
+
         private var itemCount: Int = 0
 
         fun bind(product: ProductResponseItem) {
@@ -48,9 +58,17 @@ class SearchResultsAdapter(
             setData2UI(product)
             addItemToCart(product)
             setFavoriteItem(product)
-            navigate2Details(product)
             incrementProductAmount(product)
             decrementProductAmount(product)
+            navigate2Details(product)
+        }
+
+        private fun navigate2Details(product: ProductResponseItem) {
+            itemBinding.imgVMedicineId.setOnClickListener {
+                val action =
+                    DetailsFragmentDirections.actionDetailsFragmentSelf(product._id)
+                navController.navigate(action) // Use the NavController passed to the constructor
+            }
         }
 
         private fun setData2UI(product: ProductResponseItem) {
@@ -59,15 +77,6 @@ class SearchResultsAdapter(
             itemBinding.imgVMedicineId.loadUrl(product.images[0])
         }
 
-        private fun navigate2Details(product: ProductResponseItem) {
-            itemBinding.imgVMedicineId.setOnClickListener {
-                val action =
-                    SearchResultsFragmentDirections.actionSearchResultsFragmentToDetailsFragment(
-                        product._id
-                    )
-                it.findNavController().navigate(action)
-            }
-        }
 
         private fun setFavoriteItem(category: ProductResponseItem) {
             if (favoriteProducts.contains(category)) {

@@ -1,6 +1,9 @@
 package com.example.eshfeenygraduationproject.eshfeeny.brands
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +15,12 @@ import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.cart.CartResponse
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentBrandsBinding
+import com.example.eshfeenygraduationproject.eshfeeny.cameraBottomSheet.ImageBottomSheetFragment
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.BrandItemsAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelFactory.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.search.SearchAdapter
 
 class BrandItemsFragment : Fragment() {
 
@@ -39,6 +44,20 @@ class BrandItemsFragment : Fragment() {
         val userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
         binding?.brandsTitle?.text = args.brandName
+        settingSearch()
+        binding?.searchBar?.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.searchUsingCamera -> {
+                    Log.i("image Capture", "Item Clicked")
+                    val bottomSheet =
+                        ImageBottomSheetFragment("brandItems")
+                    bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
+                    true
+                }
+
+                else -> false
+            }
+        }
 
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
             val userId = userData._id
@@ -65,11 +84,40 @@ class BrandItemsFragment : Fragment() {
             }
         }
 
-        binding?.backButtonBrand?.setOnClickListener {
+        binding?.backBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_brandItemsFragment_to_brandsFragment)
         }
 
         return binding?.root
+    }
+
+    private fun settingSearch() {
+        binding?.searchViewText?.editText?.addTextChangedListener(
+            object : TextWatcher {
+
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    // perform search using the new text
+                    val searchText = s.toString()
+
+                    productViewModel.getSearchResults(searchText)
+                    productViewModel.searchResults.observe(viewLifecycleOwner) {
+
+                        val adapter = SearchAdapter("home")
+                        adapter.submitList(it)
+                        binding?.searchResultsRecyclerView?.adapter = adapter
+                    }
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
+            }
+        )
     }
 
     override fun onDestroyView() {

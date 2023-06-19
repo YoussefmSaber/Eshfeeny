@@ -2,6 +2,9 @@ package com.example.eshfeenygraduationproject.eshfeeny.searchForProducts
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +21,12 @@ import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentProductCategoryBinding
+import com.example.eshfeenygraduationproject.eshfeeny.cameraBottomSheet.ImageBottomSheetFragment
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductCategoryAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelFactory.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.search.SearchAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.util.MedicinsCategories
 import com.google.android.material.chip.Chip
 
@@ -44,12 +49,26 @@ class ProductCategoryFragment : Fragment() {
         binding = FragmentProductCategoryBinding.inflate(inflater)
         setCategoryTitle(args.category)
 
+        binding?.searchBar?.setOnMenuItemClickListener{
+            when (it.itemId) {
+                R.id.searchUsingCamera -> {
+                    Log.i("image Capture", "Item Clicked")
+                    val bottomSheet =
+                        ImageBottomSheetFragment("category")
+                    bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
+                    true
+                }
+
+                else -> false
+            }
+        }
+
         binding?.medicineRecyclerView?.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
         setupViewModel()
         navigate2HomeFragment()
-
+        settingSearch()
         var cartProducts: CartResponse
         var favoriteProducts: ProductResponse
 
@@ -409,6 +428,39 @@ class ProductCategoryFragment : Fragment() {
             TypedValue.COMPLEX_UNIT_DIP,
             1f,
             context?.resources?.displayMetrics
+        )
+    }
+
+    private fun settingSearch() {
+        binding?.searchViewText?.editText?.addTextChangedListener(
+            object : TextWatcher {
+
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                    // do nothing
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    // perform search using the new text
+                    val searchText = s.toString()
+
+                    productViewModel.getSearchResults(searchText)
+                    productViewModel.searchResults.observe(viewLifecycleOwner) {
+
+                        val adapter = SearchAdapter("home")
+                        adapter.submitList(it)
+                        binding?.searchResultsRecyclerView?.adapter = adapter
+                    }
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+
+                }
+            }
         )
     }
 
