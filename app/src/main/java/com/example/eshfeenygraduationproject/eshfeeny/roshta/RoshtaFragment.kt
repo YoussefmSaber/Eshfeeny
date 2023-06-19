@@ -25,7 +25,7 @@ class RoshtaFragment : Fragment() {
 
         binding?.addRoshtaPhoto?.setOnClickListener {
             val bottomSheet =
-                ImageBottomSheetFragment()
+                ImageBottomSheetFragment("roshta")
             bottomSheet.onPhotoSelected = { photoUri ->
                 selectedPhotoUri = photoUri
                 // Set the selected photo to your ImageView or perform any other necessary actions

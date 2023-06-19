@@ -1,6 +1,8 @@
 package com.example.eshfeenygraduationproject.eshfeeny.searchResults
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +20,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.SearchResu
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelFactory.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.search.SearchAdapter
 
 class SearchResultsFragment : Fragment() {
 
@@ -38,7 +41,7 @@ class SearchResultsFragment : Fragment() {
                 R.id.searchUsingCamera -> {
                     Log.i("image Capture", "Item Clicked")
                     val bottomSheet =
-                        ImageBottomSheetFragment()
+                        ImageBottomSheetFragment("search")
                     bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
                     true
                 }
@@ -53,7 +56,7 @@ class SearchResultsFragment : Fragment() {
 
             setupViewModel()
             navigate2HomeFragment()
-
+            settingSearch()
             productViewModel.getImageUrl(args.imageUrl)
             Log.i("search Result", args.imageUrl)
             productViewModel.imageSearchResults.observe(viewLifecycleOwner) {
@@ -96,6 +99,39 @@ class SearchResultsFragment : Fragment() {
             Navigation.findNavController(it)
                 .navigate(R.id.action_searchResultsFragment_to_homeFragment2)
         }
+    }
+
+    private fun settingSearch() {
+        binding?.searchViewText?.editText?.addTextChangedListener(
+            object : TextWatcher {
+
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                    // do nothing
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    // perform search using the new text
+                    val searchText = s.toString()
+
+                    productViewModel.getSearchResults(searchText)
+                    productViewModel.searchResults.observe(viewLifecycleOwner) {
+
+                        val adapter = SearchAdapter("home")
+                        adapter.submitList(it)
+                        binding?.searchResultsRecyclerView?.adapter = adapter
+                    }
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+
+                }
+            }
+        )
     }
 
     override fun onDestroyView() {
