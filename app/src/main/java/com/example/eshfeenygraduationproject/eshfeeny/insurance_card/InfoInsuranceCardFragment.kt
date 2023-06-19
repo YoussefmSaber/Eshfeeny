@@ -23,7 +23,6 @@ class InfoInsuranceCardFragment : Fragment() {
         binding?.backBtn22?.setOnClickListener {
             findNavController().navigate(R.id.action_infoInsuranceCardFragment_to_cartExistsFragment)
         }
-        var flag = 0
         binding?.addCartExistsBtn?.setOnClickListener {
             if(binding?.CardNameEditText?.text?.isEmpty()==true || binding?.CardNumEditText?.text?.isEmpty()==true)
             {

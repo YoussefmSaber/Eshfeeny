@@ -64,9 +64,7 @@ class SetAlarmFragment : Fragment() {
         var repetitionNumber = 1
         createNotificationChannel()
 
-
         binding?.confButtonAlarm?.setOnClickListener {
-
             setAlarm()
         }
 
@@ -290,7 +288,7 @@ class SetAlarmFragment : Fragment() {
         // creating a chip variable and setting the text of the chip to the time
         val chip = Chip(context)
         chip.text = time
-        chip.chipCornerRadius = 50f
+        chip.chipCornerRadius = 50F
         // making the chip direction in Left to right mode
         chip.layoutDirection = View.LAYOUT_DIRECTION_LTR
         // setting the chip stroke width to 1dp

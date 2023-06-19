@@ -99,7 +99,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
         viewModelScope.launch {
             val response = repository.checkEmail(email)
             Log.i("Error", response.body().toString())
-            response?.let {
+            response.let {
                 _emailFound.value = it
                 Log.i("code", it.body()?._id.toString())
             }

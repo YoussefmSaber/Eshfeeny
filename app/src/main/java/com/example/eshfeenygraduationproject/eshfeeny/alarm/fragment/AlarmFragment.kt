@@ -19,6 +19,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.alarm.viewModel.AlarmViewM
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.util.Days
 import com.example.eshfeenygraduationproject.eshfeeny.util.DaysList
+import java.lang.Long
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -40,7 +41,7 @@ class AlarmFragment : Fragment() {
         initializeViewModels()
         // initializing the adapter variable and changing the value of the month and year
         // if it's value changed in the calendar
-        var selectedDayInMilli: Long = 0
+        var selectedDayInMilli = Long.valueOf(0)
 
 
         val adapter = DaysAdapter(DaysList.daysList, { month, year ->
