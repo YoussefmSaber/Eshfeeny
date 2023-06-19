@@ -252,25 +252,25 @@ class SetAlarmFragment : Fragment() {
         )
     }
 
-    private fun showDurationSetter() {
-        val bottomSheet = AlarmDurationFragment()
-        bottomSheet.show(childFragmentManager, "AlarmDurationFragment")
-    }
-
-    private fun showSelectRepetition() {
-        val bottomSheet = SelectDaysFragment()
-        bottomSheet.show(childFragmentManager, "SelectDaysFragment")
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         // setting the binding variable to null to ensure there is no memory leak
         binding = null
     }
 
+    private fun showDurationSetter() {
+        val bottomSheet = AlarmDurationFragment("set")
+        bottomSheet.show(childFragmentManager, "AlarmDurationFragment")
+    }
+
+    private fun showSelectRepetition() {
+        val bottomSheet = SelectDaysFragment("set")
+        bottomSheet.show(childFragmentManager, "SelectDaysFragment")
+    }
+
     // a function to show the timePicker bottom sheet
     private fun showTimePicker() {
-        val timePickerFragment = TimePickerFragment()
+        val timePickerFragment = TimePickerFragment("set")
         timePickerFragment.show(childFragmentManager, "TimePickerFragment")
     }
 

@@ -12,26 +12,25 @@ import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.product.ProductResponse
 import com.example.domain.entity.product.ProductResponseItem
 import com.example.eshfeenygraduationproject.databinding.ProductItemCategoryBinding
-import com.example.eshfeenygraduationproject.eshfeeny.brands.BrandItemsFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.details.AlternativeFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
-import com.example.eshfeenygraduationproject.eshfeeny.searchResults.SearchResultsFragmentDirections
+import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.ProductCategoryFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 import com.varunest.sparkbutton.SparkEventListener
 
-class SearchResultsAdapter(
+class AlternativeAdapter(
     private val viewModel: ProductViewModel,
     val userId: String,
     val favoriteProducts: ProductResponse,
     val cartProducts: CartResponse
-) : ListAdapter<ProductResponseItem, SearchResultsAdapter.ViewHolder>(CategoryDiffCallback()) {
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder {
-        val itemBinding = ProductItemCategoryBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent, false
-        )
+) : ListAdapter<ProductResponseItem, AlternativeAdapter.ViewHolder>(CategoryDiffCallback()) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val itemBinding =
+            ProductItemCategoryBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent, false
+            )
         return ViewHolder(itemBinding)
     }
 
@@ -41,6 +40,8 @@ class SearchResultsAdapter(
 
     inner class ViewHolder(private val itemBinding: ProductItemCategoryBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
+
+        private var isFavorite = false
         private var itemCount: Int = 0
 
         fun bind(product: ProductResponseItem) {
@@ -55,14 +56,14 @@ class SearchResultsAdapter(
 
         private fun setData2UI(product: ProductResponseItem) {
             itemBinding.medicineNameIdTv.text = product.nameAr
-            itemBinding.priceMedicineIdTv.text = "${product.price.toInt()} جنيه  "
+            itemBinding.priceMedicineIdTv.text = "${product.price.toInt().toString()} جنيه  "
             itemBinding.imgVMedicineId.loadUrl(product.images[0])
         }
 
         private fun navigate2Details(product: ProductResponseItem) {
             itemBinding.imgVMedicineId.setOnClickListener {
                 val action =
-                    SearchResultsFragmentDirections.actionSearchResultsFragmentToDetailsFragment(
+                    AlternativeFragmentDirections.actionAlternativeFragmentToDetailsFragment(
                         product._id
                     )
                 it.findNavController().navigate(action)

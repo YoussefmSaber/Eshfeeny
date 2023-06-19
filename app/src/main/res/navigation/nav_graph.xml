@@ -577,4 +577,13 @@
             android:name="alarm"
             app:argType="com.example.domain.entity.alarm.Alarm" />
     </fragment>
+    <dialog
+        android:id="@+id/alternativeFragment"
+        android:name="com.example.eshfeenygraduationproject.eshfeeny.details.AlternativeFragment"
+        android:label="fragment_alternative"
+        tools:layout="@layout/fragment_alternative" >
+        <action
+            android:id="@+id/action_alternativeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </dialog>
 </navigation>

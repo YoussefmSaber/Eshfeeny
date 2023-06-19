@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import com.example.eshfeenygraduationproject.databinding.FragmentTimePickerBinding
+import com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment.EditAlarmFragment
 import com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment.SetAlarmFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
-class TimePickerFragment : BottomSheetDialogFragment() {
+class TimePickerFragment(private val alarmState: String) : BottomSheetDialogFragment() {
 
     // creating the binding variable and giving it' initial value to null
     private var binding: FragmentTimePickerBinding? = null
@@ -46,10 +47,19 @@ class TimePickerFragment : BottomSheetDialogFragment() {
             val timeFormat = SimpleDateFormat("h:mm a")
             val formattedTime = timeFormat.format(selectedTime.time)
 
+            when(alarmState) {
+                "set" -> {
+                    val parentFragment = parentFragment as SetAlarmFragment
+                    parentFragment.onTimeSelected(formattedTime, selectedTime.timeInMillis)
+                    dismiss()
+                }
+                "edit" -> {
+                    val parentFragment = parentFragment as EditAlarmFragment
+                    parentFragment.onTimeSelected(formattedTime, selectedTime.timeInMillis)
+                    dismiss()
+                }
+            }
 
-            val parentFragment = parentFragment as SetAlarmFragment
-            parentFragment.onTimeSelected(formattedTime, selectedTime.timeInMillis)
-            dismiss()
         }
         return binding?.root
     }
