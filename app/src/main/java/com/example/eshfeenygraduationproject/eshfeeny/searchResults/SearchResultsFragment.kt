@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.data.repository.ProductRepoImpl
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentSearchResultsBinding
+import com.example.eshfeenygraduationproject.eshfeeny.cameraBottomSheet.ImageBottomSheetFragment
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.SearchResultsAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
@@ -31,6 +32,20 @@ class SearchResultsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSearchResultsBinding.inflate(inflater)
+
+        binding?.searchBar?.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.searchUsingCamera -> {
+                    Log.i("image Capture", "Item Clicked")
+                    val bottomSheet =
+                        ImageBottomSheetFragment()
+                    bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
+                    true
+                }
+
+                else -> false
+            }
+        }
         binding?.apply {
 
             this.searchResultsImageRecyclerView.layoutManager =

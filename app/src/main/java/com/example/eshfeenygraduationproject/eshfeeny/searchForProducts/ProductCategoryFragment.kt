@@ -2,6 +2,7 @@ package com.example.eshfeenygraduationproject.eshfeeny.searchForProducts
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentProductCategoryBinding
+import com.example.eshfeenygraduationproject.eshfeeny.cameraBottomSheet.ImageBottomSheetFragment
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.ProductCategoryAdapter
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
@@ -43,6 +45,20 @@ class ProductCategoryFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentProductCategoryBinding.inflate(inflater)
         setCategoryTitle(args.category)
+
+        binding?.searchBar?.setOnMenuItemClickListener{
+            when (it.itemId) {
+                R.id.searchUsingCamera -> {
+                    Log.i("image Capture", "Item Clicked")
+                    val bottomSheet =
+                        ImageBottomSheetFragment()
+                    bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
+                    true
+                }
+
+                else -> false
+            }
+        }
 
         binding?.medicineRecyclerView?.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
