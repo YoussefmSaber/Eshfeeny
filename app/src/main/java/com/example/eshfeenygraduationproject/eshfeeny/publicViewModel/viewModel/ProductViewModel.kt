@@ -145,7 +145,9 @@ class ProductViewModel(
     ) {
         viewModelScope.launch {
             try {
-                _favoriteProducts.value = repo.getFavoriteProducts(userId)
+                val favorite = repo.getFavoriteProducts(userId)
+                if (favorite != null)
+                    _favoriteProducts.value = favorite
             } catch (e: Exception) {
                 Log.e("error", "Error fetching Favorite Products")
             }
@@ -169,7 +171,9 @@ class ProductViewModel(
     fun getUserCartItems(userId: String) {
         viewModelScope.launch {
             try {
-                _cartItems.value = repo.getUserCartItems(userId)
+                val cart = repo.getUserCartItems(userId)
+                if (cart != null)
+                    _cartItems.value = cart
             } catch (e: Exception) {
                 Log.e("cart", "Error fetching the cart items")
             }
@@ -236,7 +240,9 @@ class ProductViewModel(
     ) {
         viewModelScope.launch {
             try {
-                _productNumber.value = repo.getNumberOfItemInCart(userId, productId)
+                val number = repo.getNumberOfItemInCart(userId, productId)
+                if (number != null)
+                    _productNumber.value = number
                 Log.i("details", _productNumber.value.toString())
             } catch (e: Exception) {
                 Log.e("cart", "Error getting the product number")
@@ -247,7 +253,9 @@ class ProductViewModel(
     fun getAlternativeProducts(productId: String) {
         viewModelScope.launch {
             try {
-                _alternativeProducts.value = repo.getAlternativeProducts(productId)
+                val alt = repo.getAlternativeProducts(productId)
+                if (alt != null)
+                    _alternativeProducts.value = alt
             } catch (e: Exception) {
                 Log.i("Details Fragment", "Error fetching alternatives: $e")
             }
@@ -257,7 +265,9 @@ class ProductViewModel(
     fun getBrandItems(brandName: String) {
         viewModelScope.launch {
             try {
-                _brandItems.value = repo.getBrandItems(brandName)
+                val items = repo.getBrandItems(brandName)
+                if (items != null)
+                    _brandItems.value = items
             } catch (e: java.lang.Exception) {
                 Log.i("Brand Fragment", "Error fetching Items: $e")
             }
@@ -267,7 +277,9 @@ class ProductViewModel(
     fun getSearchResults(productName: String) {
         viewModelScope.launch {
             try {
-                _searchResults.value = repo.getSearchResults(productName)
+                val res = repo.getSearchResults(productName)
+                if (res != null)
+                    _searchResults.value = res
             } catch (e: Exception) {
                 Log.i("Search Result", "Error fetching the results $e")
             }
@@ -280,7 +292,9 @@ class ProductViewModel(
     ) {
         viewModelScope.launch {
             try {
-                _imageResponseResult.value = repo.uploadImage(key, image)
+                val res = repo.uploadImage(key, image)
+                if (res != null)
+                _imageResponseResult.value = res
                 Log.i("image Response", "${_imageResponseResult.value}")
             } catch (e: Exception) {
                 Log.i("Upload Image", "Error Sending The Image $e")
@@ -293,7 +307,9 @@ class ProductViewModel(
     ) {
         viewModelScope.launch {
             try {
-                _imageSearchResults.value = repo.getImageData(imageUrl)
+                val res = repo.getImageData(imageUrl)
+                if (res != null)
+                _imageSearchResults.value = res
             } catch (e: Exception) {
                 Log.i("Upload Image", "Error Sending The Image $e")
             }

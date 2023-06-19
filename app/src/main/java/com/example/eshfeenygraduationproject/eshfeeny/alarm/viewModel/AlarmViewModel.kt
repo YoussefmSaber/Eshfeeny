@@ -17,7 +17,10 @@ class AlarmViewModel(private val repo: AlarmRepoImpl) : ViewModel() {
         get() = _alarms
     fun getAlarm(userId: String) {
         viewModelScope.launch {
-            _alarms.value = repo.getAlarms(userId)
+            val alarms = repo.getAlarms(userId)
+            if (alarms != null) {
+                _alarms.value = alarms
+            }
         }
     }
 
