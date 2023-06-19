@@ -27,6 +27,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.home.HomeFragmentDirection
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.ProductViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModelFactory.ProductViewModelFactory
+import com.example.eshfeenygraduationproject.eshfeeny.roshta.RoshtaFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.searchForProducts.ProductCategoryFragmentDirections
 import com.example.eshfeenygraduationproject.eshfeeny.searchResults.SearchResultsFragmentDirections
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -41,7 +42,7 @@ class ImageBottomSheetFragment(private val imageFrom: String) : BottomSheetDialo
     private val REQUEST_IMAGE_CAPTURE = 100
     private val REQUEST_IMAGE_PICKER = 101
     private var binding: FragmentImageBottomSheetBinding? = null
-    var onPhotoSelected: ((Uri) -> Unit)? = null
+    var onPhotoSelected: ((Uri, String) -> Unit)? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,7 +59,6 @@ class ImageBottomSheetFragment(private val imageFrom: String) : BottomSheetDialo
                 pickImage()
             }
         }
-
 
         return binding?.root
     }
@@ -145,9 +145,7 @@ class ImageBottomSheetFragment(private val imageFrom: String) : BottomSheetDialo
             val inputStream = imageUri?.let { requireContext().contentResolver.openInputStream(it) }
             val file = File(context?.cacheDir, "selected_image.png")
             val outputStream = FileOutputStream(file)
-            if (imageUri != null) {
-                onPhotoSelected?.invoke(imageUri)
-            }
+
             inputStream?.use { input ->
                 outputStream.use { output ->
                     input.copyTo(output)
@@ -156,6 +154,9 @@ class ImageBottomSheetFragment(private val imageFrom: String) : BottomSheetDialo
 
             productViewModel.uploadImage(Constants.IMAGE_UPLOAD_KEY, file)
             productViewModel.imageResponseResult.observe(viewLifecycleOwner) {
+                if (imageUri != null) {
+                    onPhotoSelected?.invoke(imageUri, it.data.url)
+                }
                 val searchResultAction = when (imageFrom) {
                     "home" -> HomeFragmentDirections.actionHomeFragment2ToSearchResultsFragment(it.data.url)
                     "category" -> ProductCategoryFragmentDirections.actionMedicineCategoryFragmentToSearchResultsFragment(it.data.url)

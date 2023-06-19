@@ -372,6 +372,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_roshtaFragment_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment" />
     </fragment>
     <fragment
         android:id="@+id/insuranceCardFragment"
@@ -480,6 +483,9 @@
                 android:name="cardNumber"
                 app:argType="string" />
         </action>
+        <argument
+            android:name="insuranceCardName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/brandsFragment"
@@ -626,6 +632,9 @@
             app:argType="string" />
         <argument
             android:name="cardNumber"
+            app:argType="string" />
+        <argument
+            android:name="InsuranceCardName"
             app:argType="string" />
     </fragment>
     <fragment

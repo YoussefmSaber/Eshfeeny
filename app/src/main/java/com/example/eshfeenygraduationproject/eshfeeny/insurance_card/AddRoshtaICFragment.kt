@@ -17,7 +17,6 @@ import com.example.eshfeenygraduationproject.eshfeeny.cameraBottomSheet.ImageBot
 
 class AddRoshtaICFragment : Fragment() {
     private var binding: FragmentAddRoshtaICBinding? = null
-    private var selectedPhotoUri: Uri? = null
     private val args:AddRoshtaICFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,8 +33,7 @@ class AddRoshtaICFragment : Fragment() {
         binding?.addRoshtaPhoto?.setOnClickListener {
             val bottomSheet =
                 ImageBottomSheetFragment("addRoshta")
-            bottomSheet.onPhotoSelected = { photoUri ->
-                selectedPhotoUri = photoUri
+            bottomSheet.onPhotoSelected = { photoUri, imageUrl ->
                 // Set the selected photo to your ImageView or perform any other necessary actions
                 binding?.addRoshtaPhoto?.setImageURI(photoUri)
                 binding?.saveButton?.setTextColor(Color.parseColor("#F5F5F5"))

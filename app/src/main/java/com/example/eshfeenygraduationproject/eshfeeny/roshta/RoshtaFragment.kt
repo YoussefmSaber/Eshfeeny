@@ -22,17 +22,33 @@ class RoshtaFragment : Fragment() {
     ): View? {
         super.onCreate(savedInstanceState)
         binding = FragmentRoshtaBinding.inflate(layoutInflater)
-
+        binding?.btnNext?.isEnabled = false
+        var imgUrl = ""
         binding?.addRoshtaPhoto?.setOnClickListener {
             val bottomSheet =
                 ImageBottomSheetFragment("roshta")
-            bottomSheet.onPhotoSelected = { photoUri ->
+            bottomSheet.onPhotoSelected = { photoUri, imageUrl ->
                 selectedPhotoUri = photoUri
                 // Set the selected photo to your ImageView or perform any other necessary actions
-                 binding?.addRoshtaPhoto?.setImageURI(photoUri)
+                binding?.addRoshtaPhoto?.setImageURI(photoUri)
+                binding?.clearBtnId?.visibility = View.VISIBLE
+                imgUrl = imageUrl
+                binding?.btnNext?.isEnabled = true
             }
             bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
+        }
 
+        binding?.clearBtnId?.setOnClickListener {
+            binding?.addRoshtaPhoto?.setImageResource(R.drawable.add3)
+            imgUrl = ""
+            binding?.btnNext?.isEnabled = false
+            it.visibility = View.GONE
+        }
+
+        binding?.btnNext?.setOnClickListener {
+            val action =
+                RoshtaFragmentDirections.actionRoshtaFragmentToSearchResultsFragment(imgUrl)
+            findNavController().navigate(action)
         }
 
         binding?.exitBtnId?.setOnClickListener {
@@ -41,9 +57,6 @@ class RoshtaFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding?.root
     }
-
-    //for camera
-    private lateinit var imageUri: Uri
 
 
     override fun onDestroyView() {

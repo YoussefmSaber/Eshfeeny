@@ -106,7 +106,12 @@ class UserRepoImpl(private val userDAO: UserDAO) {
         userId: String,
         card: InsuranceCardX
     ) {
-        EshfeenyApiInstance.userApi.addInsuranceCard(userId, card)
+        try {
+            Log.d("Insurance Card", card.toString())
+            EshfeenyApiInstance.userApi.addInsuranceCard(userId, card)
+        } catch (e: Exception) {
+            Log.e("error insurance", e.toString())
+        }
     }
 
     suspend fun updateUserData(

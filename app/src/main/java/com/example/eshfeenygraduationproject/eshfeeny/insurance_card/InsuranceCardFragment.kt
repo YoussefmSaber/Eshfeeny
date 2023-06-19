@@ -12,7 +12,6 @@ import com.example.eshfeenygraduationproject.databinding.FragmentInsuranceCardBi
 
 class InsuranceCardFragment : Fragment() {
     private var binding: FragmentInsuranceCardBinding? = null
-    private var insuranceCardName = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -20,16 +19,14 @@ class InsuranceCardFragment : Fragment() {
         binding = FragmentInsuranceCardBinding.inflate(layoutInflater)
 
         binding?.EgyCareBtnId?.setOnClickListener {
-            insuranceCardName = "EgyCare"
-            onInsuranceCardButtonClick(insuranceCardName)
+            onInsuranceCardButtonClick("EgyCare")
         }
         binding?.MetLifeBtnId?.setOnClickListener {
-            insuranceCardName = "MetLife"
-            onInsuranceCardButtonClick(insuranceCardName)
+
+            onInsuranceCardButtonClick("MetLife")
         }
         binding?.MisrBtnId?.setOnClickListener {
-            insuranceCardName = "Misr"
-            onInsuranceCardButtonClick(insuranceCardName)
+            onInsuranceCardButtonClick("Misr")
         }
 
         binding?.backBtn22?.setOnClickListener {
