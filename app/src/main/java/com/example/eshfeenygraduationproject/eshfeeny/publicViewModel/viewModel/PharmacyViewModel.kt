@@ -21,7 +21,9 @@ class PharmacyViewModel(private val repo: PharmacyRepoImpl) : ViewModel() {
     ) {
         viewModelScope.launch {
             try {
-                _allPharmacies.value = repo.availablePharmacies(listProducts)
+                val pharmacies = repo.availablePharmacies(listProducts)
+                if (pharmacies != null)
+                    _allPharmacies.value = pharmacies
             } catch (e: Exception) {
                 Log.d("Getting Pharmacies", "Failed to get Pharmacies $e")
             }

@@ -31,7 +31,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         repository = UserRepoImpl(userDao)
 
         viewModelScope.launch {
-            _userData.value = repository.getUserData()
+            val res = repository.getUserData()
+            if (res != null)
+                _userData.value = res
         }
     }
 
@@ -44,7 +46,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun getInsuranceCards(userId: String) {
         viewModelScope.launch {
             try {
-                _insuranceCardItems.value = repository.getInsuranceCards(userId)
+                val res = repository.getInsuranceCards(userId)
+                if (res != null)
+                    _insuranceCardItems.value = res
             } catch (e: Exception) {
                 Log.e("card", "Error fetching the insurance card items $e")
             }
@@ -54,14 +58,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun addInsuranceCard(
         userId: String,
         card: InsuranceCardX
-    ){
+    ) {
         viewModelScope.launch {
             try {
                 Log.d("Insurance Card", card.toString())
                 repository.addInsuranceCard(userId, card)
-            }
-            catch (e:Exception)
-            {
+            } catch (e: Exception) {
                 Log.e("InsuranceCard", "Error adding InsuranceCard" + e)
             }
         }
