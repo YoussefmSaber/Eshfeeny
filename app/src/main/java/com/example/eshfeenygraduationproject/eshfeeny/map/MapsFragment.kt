@@ -84,7 +84,7 @@ class MapsFragment : Fragment() {
 
         if (args.dataFrom == "nav") {
             userViewModel.userData.observe(viewLifecycleOwner) { userData ->
-                productViewModel.getUserCartItems(userData._id)
+                userData._id?.let { productViewModel.getUserCartItems(it) }
                 productViewModel.cartItems.observe(viewLifecycleOwner) { cartResponse ->
                     cartResponse.cart.forEach {
                         listItems.add(it.product._id)

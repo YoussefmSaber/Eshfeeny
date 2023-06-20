@@ -13,6 +13,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.data.repository.ProductRepoImpl
+import com.example.domain.entity.cart.CartResponse
+import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentSearchResultsBinding
 import com.example.eshfeenygraduationproject.eshfeeny.cameraBottomSheet.ImageBottomSheetFragment
@@ -28,6 +30,8 @@ class SearchResultsFragment : Fragment() {
     private val args: SearchResultsFragmentArgs by navArgs()
     private lateinit var productViewModel: ProductViewModel
     private lateinit var userViewModel: UserViewModel
+    private var cartItems: CartResponse? = null
+    private var favoriteItem: ProductResponse? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,23 +65,26 @@ class SearchResultsFragment : Fragment() {
             Log.i("search Result", args.imageUrl)
             productViewModel.imageSearchResults.observe(viewLifecycleOwner) {
                 userViewModel.userData.observe(viewLifecycleOwner) { userData ->
-                    productViewModel.getUserCartItems(userData._id)
-                    productViewModel.cartItems.observe(viewLifecycleOwner) { cartProductsResponse ->
-
-                        productViewModel.getFavoriteProducts(userData._id)
-                        productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProductsResponse ->
-
-                            val adapter = SearchResultsAdapter(
-                                productViewModel,
-                                userData._id,
-                                favoriteProductsResponse,
-                                cartProductsResponse
-                            )
-
-                            this.searchResultsImageRecyclerView.adapter = adapter
-                            adapter.submitList(it)
+                    if (userData.state != "guest") {
+                        userData._id?.let { it1 -> productViewModel.getUserCartItems(it1) }
+                        productViewModel.cartItems.observe(viewLifecycleOwner) { cartProductsResponse ->
+                            cartItems = cartProductsResponse
+                            userData._id?.let { it1 -> productViewModel.getFavoriteProducts(it1) }
+                            productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProductsResponse ->
+                                favoriteItem = favoriteProductsResponse
+                            }
                         }
                     }
+                    val adapter = SearchResultsAdapter(
+                        productViewModel,
+                        userData._id,
+                        favoriteItem,
+                        cartItems,
+                        userData.state
+                    )
+                    stopShimmerLoading()
+                    this.searchResultsImageRecyclerView.adapter = adapter
+                    adapter.submitList(it)
                 }
             }
         }
@@ -85,6 +92,11 @@ class SearchResultsFragment : Fragment() {
         return binding?.root
     }
 
+    private fun stopShimmerLoading() {
+        binding?.shimmerLayout?.stopShimmer()
+        binding?.shimmerLayout?.visibility = View.GONE
+        binding?.searchResultsImageRecyclerView?.visibility = View.VISIBLE
+    }
 
     private fun setupViewModel() {
         val repo = ProductRepoImpl()

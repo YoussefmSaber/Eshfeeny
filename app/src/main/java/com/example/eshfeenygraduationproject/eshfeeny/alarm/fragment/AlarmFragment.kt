@@ -114,7 +114,7 @@ class AlarmFragment : Fragment() {
 
     private fun getUserId(userViewModel: UserViewModel) {
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
-            userId = userData._id
+            userId = userData._id.toString()
         }
     }
 

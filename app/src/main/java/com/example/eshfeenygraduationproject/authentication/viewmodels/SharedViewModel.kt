@@ -30,8 +30,8 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
     val userData: LiveData<UserInfo>
         get() = _userData
 
-    private val _verifyUserLogin: MutableLiveData<Response<UserInfo>> = MutableLiveData()
-    val verifyUserLogin: LiveData<Response<UserInfo>>
+    private val _verifyUserLogin: MutableLiveData<Response<UserInfo>?> = MutableLiveData()
+    val verifyUserLogin: LiveData<Response<UserInfo>?>
         get() = _verifyUserLogin
 
     private val _loadingToLogin: MutableLiveData<Boolean> = MutableLiveData(false)
@@ -46,26 +46,24 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
         viewModelScope.launch {
             Log.i("test viewModel", _loadingToLogin.value.toString())
             val userData = repository.getUserData()
-            if (userData != null) {
+            if (userData != null && userData.email != null) {
                 _userData.value = userData
-                _userData.value.let {
-                    if (it == null) {
-                        _loadingToLogin.value = true
-                    } else {
-                        val userCredentials = VerifyLoginResponse(it.email, it.password)
-                        val res = repository.verifyLogin(userCredentials)
-                        if (res != null) {
-                            _verifyUserLogin.value = res
-                            _loadingToLogin.value = true
-                            Log.i("test", _loadingToLogin.value.toString())
-                            val intent = Intent(getApplication(), MainActivity::class.java)
-                            intent.flags =
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                            getApplication<Application>().startActivity(intent)
-                        }
-                    }
+                val userCredentials = VerifyLoginResponse(
+                    _userData.value?.email!!,
+                    _userData.value?.password!!
+                )
+                val res = repository.verifyLogin(userCredentials)
+                if (res != null) {
+                    _verifyUserLogin.value = res
+                    _loadingToLogin.value = true
+                    Log.i("test", _loadingToLogin.value.toString())
+                    val intent = Intent(getApplication(), MainActivity::class.java)
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    getApplication<Application>().startActivity(intent)
                 }
             }
+            _loadingToLogin.value = true
         }
     }
 

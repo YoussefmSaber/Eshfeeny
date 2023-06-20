@@ -20,9 +20,10 @@ import com.varunest.sparkbutton.SparkEventListener
 
 class SearchResultsAdapter(
     private val viewModel: ProductViewModel,
-    val userId: String,
-    val favoriteProducts: ProductResponse,
-    val cartProducts: CartResponse
+    val userId: String?,
+    val favoriteProducts: ProductResponse?,
+    val cartProducts: CartResponse?,
+    val state: String
 ) : ListAdapter<ProductResponseItem, SearchResultsAdapter.ViewHolder>(CategoryDiffCallback()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -46,11 +47,13 @@ class SearchResultsAdapter(
         fun bind(product: ProductResponseItem) {
 
             setData2UI(product)
-            addItemToCart(product)
-            setFavoriteItem(product)
             navigate2Details(product)
-            incrementProductAmount(product)
-            decrementProductAmount(product)
+            if (state != "guest") {
+                addItemToCart(product)
+                setFavoriteItem(product)
+                incrementProductAmount(product)
+                decrementProductAmount(product)
+            }
         }
 
         private fun setData2UI(product: ProductResponseItem) {
@@ -70,7 +73,7 @@ class SearchResultsAdapter(
         }
 
         private fun setFavoriteItem(category: ProductResponseItem) {
-            if (favoriteProducts.contains(category)) {
+            if (favoriteProducts?.contains(category) == true) {
                 itemBinding.heartIconId.isChecked = true
             }
 
@@ -79,12 +82,12 @@ class SearchResultsAdapter(
                     if (buttonState) {
                         // Button is
                         viewModel.addMedicineToFavorites(
-                            userId,
+                            userId!!,
                             PatchString(category._id)
                         )
                     } else {
                         // Button is inactive
-                        viewModel.deleteFavoriteProduct(userId, category._id)
+                        viewModel.deleteFavoriteProduct(userId!!, category._id)
                     }
                 }
 
@@ -102,7 +105,7 @@ class SearchResultsAdapter(
 
             itemBinding.add2CartBtn.setOnClickListener {
 
-                itemCount = getQuantityInCart(cartProducts, product._id)
+                itemCount = getQuantityInCart(cartProducts!!, product._id)
 
                 itemBinding.add2CartBtn.visibility = View.GONE
                 itemBinding.cardFunctionalityLayout.visibility = View.VISIBLE
@@ -111,7 +114,7 @@ class SearchResultsAdapter(
                     itemBinding.productAmount.text = itemCount.toString()
                 } else {
                     itemCount++
-                    viewModel.addProductToCart(userId, PatchString(product._id))
+                    viewModel.addProductToCart(userId!!, PatchString(product._id))
                     itemBinding.productAmount.text = itemCount.toString()
                 }
             }
@@ -131,7 +134,7 @@ class SearchResultsAdapter(
 
                 itemCount++
                 itemBinding.productAmount.text = itemCount.toString()
-                viewModel.incrementProductNumberInCart(userId, product._id)
+                viewModel.incrementProductNumberInCart(userId!!, product._id)
             }
         }
 
@@ -139,13 +142,13 @@ class SearchResultsAdapter(
             itemBinding.decreaseBtnId.setOnClickListener {
                 if (itemCount == 1) {
 
-                    viewModel.removeProductFromCart(userId, product._id)
+                    viewModel.removeProductFromCart(userId!!, product._id)
                     itemCount--
 
                     itemBinding.add2CartBtn.visibility = View.VISIBLE
                     itemBinding.cardFunctionalityLayout.visibility = View.GONE
                 } else {
-                    viewModel.decrementProductNumberInCart(userId, product._id)
+                    viewModel.decrementProductNumberInCart(userId!!, product._id)
                     itemCount--
                     itemBinding.productAmount.text = itemCount.toString()
                 }

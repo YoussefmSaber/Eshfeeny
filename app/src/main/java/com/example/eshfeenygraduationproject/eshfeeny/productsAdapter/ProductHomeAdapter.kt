@@ -20,10 +20,11 @@ import com.varunest.sparkbutton.SparkEventListener
 
 
 class ProductHomeAdapter(
-    private val viewModel: ProductViewModel,
-    val userId: String,
-    val favoriteProducts: ProductResponse,
-    val cartProducts: CartResponse
+    private val viewModel: ProductViewModel?,
+    val userId: String?,
+    val favoriteProducts: ProductResponse?,
+    val cartProducts: CartResponse?,
+    val state: String
 ) :
     ListAdapter<ProductResponseItem, ProductHomeAdapter.ViewHolder>(CategoryDiffCallback()) {
 
@@ -44,16 +45,19 @@ class ProductHomeAdapter(
     inner class ViewHolder(private val itemBinding: MedicineItemHomeBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-        private var isFavorite = false
         private var itemCount: Int = 0
 
         fun bind(product: ProductResponseItem) {
             setData2UI(product)
-            addItemToCart(product)
-            setFavoriteItem(product)
             navigate2Details(product)
-            incrementProductAmount(product)
-            decrementProductAmount(product)
+            if (state != "guest") {
+                addItemToCart(product)
+                setFavoriteItem(product)
+                incrementProductAmount(product)
+                decrementProductAmount(product)
+            } else {
+                itemBinding.heartIconId.isEnabled = false
+            }
         }
 
         private fun setData2UI(category: ProductResponseItem) {
@@ -66,7 +70,7 @@ class ProductHomeAdapter(
 
             itemBinding.add2CartBtn.setOnClickListener {
 
-                itemCount = getQuantityInCart(cartProducts, category._id)
+                itemCount = cartProducts?.let { it1 -> getQuantityInCart(it1, category._id) }!!
 
                 itemBinding.add2CartBtn.visibility = View.GONE
                 itemBinding.cardFunctionalityLayout.visibility = View.VISIBLE
@@ -75,14 +79,16 @@ class ProductHomeAdapter(
                     itemBinding.productAmount.text = itemCount.toString()
                 } else {
                     itemCount++
-                    viewModel.addProductToCart(userId, PatchString(category._id))
+                    if (userId != null) {
+                        viewModel?.addProductToCart(userId, PatchString(category._id))
+                    }
                     itemBinding.productAmount.text = itemCount.toString()
                 }
             }
         }
 
         private fun setFavoriteItem(category: ProductResponseItem) {
-            if (favoriteProducts.contains(category)) {
+            if (favoriteProducts?.contains(category) == true) {
                 itemBinding.heartIconId.isChecked = true
             }
 
@@ -90,13 +96,17 @@ class ProductHomeAdapter(
                 override fun onEvent(button: ImageView, buttonState: Boolean) {
                     if (buttonState) {
                         // Button is
-                        viewModel.addMedicineToFavorites(
-                            userId,
-                            PatchString(category._id)
-                        )
+                        if (userId != null) {
+                            viewModel?.addMedicineToFavorites(
+                                userId,
+                                PatchString(category._id)
+                            )
+                        }
                     } else {
                         // Button is inactive
-                        viewModel.deleteFavoriteProduct(userId, category._id)
+                        if (userId != null) {
+                            viewModel?.deleteFavoriteProduct(userId, category._id)
+                        }
                     }
                 }
 
@@ -122,7 +132,9 @@ class ProductHomeAdapter(
             itemBinding.increaseBtnId.setOnClickListener {
                 itemCount++
                 itemBinding.productAmount.text = itemCount.toString()
-                viewModel.incrementProductNumberInCart(userId, product._id)
+                if (userId != null) {
+                    viewModel?.incrementProductNumberInCart(userId, product._id)
+                }
             }
         }
 
@@ -130,13 +142,17 @@ class ProductHomeAdapter(
             itemBinding.decreaseBtnId.setOnClickListener {
                 if (itemCount == 1) {
 
-                    viewModel.removeProductFromCart(userId, product._id)
+                    if (userId != null) {
+                        viewModel?.removeProductFromCart(userId, product._id)
+                    }
                     itemCount--
 
                     itemBinding.add2CartBtn.visibility = View.VISIBLE
                     itemBinding.cardFunctionalityLayout.visibility = View.GONE
                 } else {
-                    viewModel.decrementProductNumberInCart(userId, product._id)
+                    if (userId != null) {
+                        viewModel?.decrementProductNumberInCart(userId, product._id)
+                    }
                     itemCount--
                     itemBinding.productAmount.text = itemCount.toString()
                 }

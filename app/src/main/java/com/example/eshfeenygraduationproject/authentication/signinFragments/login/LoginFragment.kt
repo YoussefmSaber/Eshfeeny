@@ -44,31 +44,36 @@ class LoginFragment : Fragment() {
             viewModel.verifyLogin(userData)
             viewModel.verifyUserLogin.observe(viewLifecycleOwner) {
 
-                Log.i("login", "${it.body()} + ${it.code()}")
-                if (it.body() != null) {
-                    hideLoadingDialog()
-                    Log.i("login", it.body().toString())
-                    Toast.makeText(
-                        requireContext(),
-                        "You have been logged in successfully",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    it.body()?.let { userInfo ->
-                        Log.i("login", userInfo.toString())
-                        viewModel.addUserToDatabase(userInfo)
-                        Log.i("DB", userInfo.toString())
-                        val intent = Intent(
-                            activity,
-                            MainActivity::class.java
-                        )
-                        Log.i("Login", intent.toString())
-                        intent.flags =
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                        startActivity(intent)
+                if (it != null) {
+                    Log.i("login", "${it.body()} + ${it.code()}")
+                }
+                if (it != null) {
+                    if (it.body() != null) {
+                        hideLoadingDialog()
+                        Log.i("login", it.body().toString())
+                        Toast.makeText(
+                            requireContext(),
+                            "You have been logged in successfully",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        it.body()?.let { userInfo ->
+                            Log.i("login", userInfo.toString())
+                            userInfo.state = "user"
+                            viewModel.addUserToDatabase(userInfo)
+                            Log.i("DB", userInfo.toString())
+                            val intent = Intent(
+                                activity,
+                                MainActivity::class.java
+                            )
+                            Log.i("Login", intent.toString())
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                        }
+                    } else {
+                        hideLoadingDialog()
+                        Toast.makeText(requireContext(), "Check your data", Toast.LENGTH_SHORT).show()
                     }
-                } else {
-                    hideLoadingDialog()
-                    Toast.makeText(requireContext(), "Check your data", Toast.LENGTH_SHORT).show()
                 }
             }
         }

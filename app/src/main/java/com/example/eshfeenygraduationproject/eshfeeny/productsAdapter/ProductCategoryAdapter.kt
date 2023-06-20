@@ -20,9 +20,10 @@ import com.varunest.sparkbutton.SparkEventListener
 
 class ProductCategoryAdapter(
     private val viewModel: ProductViewModel,
-    val userId: String,
-    val favoriteProducts: ProductResponse,
-    val cartProducts: CartResponse
+    val userId: String?,
+    val favoriteProducts: ProductResponse?,
+    val cartProducts: CartResponse?,
+    val state: String
 ) : ListAdapter<ProductResponseItem, ProductCategoryAdapter.ViewHolder>(CategoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,22 +42,23 @@ class ProductCategoryAdapter(
     inner class ViewHolder(private val itemBinding: ProductItemCategoryBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-        private var isFavorite = false
         private var itemCount: Int = 0
 
         fun bind(product: ProductResponseItem) {
 
             setData2UI(product)
-            addItemToCart(product)
-            setFavoriteItem(product)
             navigate2Details(product)
-            incrementProductAmount(product)
-            decrementProductAmount(product)
+            if (state != "guest") {
+                addItemToCart(product)
+                setFavoriteItem(product)
+                incrementProductAmount(product)
+                decrementProductAmount(product)
+            }
         }
 
         private fun setData2UI(product: ProductResponseItem) {
             itemBinding.medicineNameIdTv.text = product.nameAr
-            itemBinding.priceMedicineIdTv.text = "${product.price.toInt().toString()} جنيه  "
+            itemBinding.priceMedicineIdTv.text = "${product.price.toInt()} جنيه  "
             itemBinding.imgVMedicineId.loadUrl(product.images[0])
         }
 
@@ -71,39 +73,40 @@ class ProductCategoryAdapter(
         }
 
         private fun setFavoriteItem(category: ProductResponseItem) {
-            if (favoriteProducts.contains(category)) {
-                itemBinding.heartIconId.isChecked = true
-            }
-
-            itemBinding.heartIconId.setEventListener(object : SparkEventListener {
-                override fun onEvent(button: ImageView, buttonState: Boolean) {
-                    if (buttonState) {
-                        // Button is
-                        viewModel.addMedicineToFavorites(
-                            userId,
-                            PatchString(category._id)
-                        )
-                    } else {
-                        // Button is inactive
-                        viewModel.deleteFavoriteProduct(userId, category._id)
+            if (state == "guest") {
+                itemBinding.heartIconId.isEnabled = false
+            } else {
+                if (favoriteProducts?.contains(category) == true) {
+                    itemBinding.heartIconId.isChecked = true
+                }
+                itemBinding.heartIconId.setEventListener(object : SparkEventListener {
+                    override fun onEvent(button: ImageView, buttonState: Boolean) {
+                        if (buttonState) {
+                            // Button is
+                            if (userId != null) {
+                                viewModel.addMedicineToFavorites(
+                                    userId,
+                                    PatchString(category._id)
+                                )
+                            }
+                        } else {
+                            // Button is inactive
+                            if (userId != null) {
+                                viewModel.deleteFavoriteProduct(userId, category._id)
+                            }
+                        }
                     }
-                }
-
-                override fun onEventAnimationEnd(button: ImageView?, buttonState: Boolean) {
-
-                }
-
-                override fun onEventAnimationStart(button: ImageView?, buttonState: Boolean) {
-
-                }
-            })
+                    override fun onEventAnimationEnd(button: ImageView?, buttonState: Boolean) {}
+                    override fun onEventAnimationStart(button: ImageView?, buttonState: Boolean) {}
+                })
+            }
         }
 
         private fun addItemToCart(product: ProductResponseItem) {
 
             itemBinding.add2CartBtn.setOnClickListener {
 
-                itemCount = getQuantityInCart(cartProducts, product._id)
+                itemCount = cartProducts?.let { it1 -> getQuantityInCart(it1, product._id) }!!
 
                 itemBinding.add2CartBtn.visibility = View.GONE
                 itemBinding.cardFunctionalityLayout.visibility = View.VISIBLE
@@ -112,7 +115,9 @@ class ProductCategoryAdapter(
                     itemBinding.productAmount.text = itemCount.toString()
                 } else {
                     itemCount++
-                    viewModel.addProductToCart(userId, PatchString(product._id))
+                    if (userId != null) {
+                        viewModel.addProductToCart(userId, PatchString(product._id))
+                    }
                     itemBinding.productAmount.text = itemCount.toString()
                 }
             }
@@ -132,7 +137,9 @@ class ProductCategoryAdapter(
 
                 itemCount++
                 itemBinding.productAmount.text = itemCount.toString()
-                viewModel.incrementProductNumberInCart(userId, product._id)
+                if (userId != null) {
+                    viewModel.incrementProductNumberInCart(userId, product._id)
+                }
             }
         }
 
@@ -140,13 +147,17 @@ class ProductCategoryAdapter(
             itemBinding.decreaseBtnId.setOnClickListener {
                 if (itemCount == 1) {
 
-                    viewModel.removeProductFromCart(userId, product._id)
+                    if (userId != null) {
+                        viewModel.removeProductFromCart(userId, product._id)
+                    }
                     itemCount--
 
                     itemBinding.add2CartBtn.visibility = View.VISIBLE
                     itemBinding.cardFunctionalityLayout.visibility = View.GONE
                 } else {
-                    viewModel.decrementProductNumberInCart(userId, product._id)
+                    if (userId != null) {
+                        viewModel.decrementProductNumberInCart(userId, product._id)
+                    }
                     itemCount--
                     itemBinding.productAmount.text = itemCount.toString()
                 }

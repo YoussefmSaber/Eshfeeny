@@ -13,7 +13,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.cart.CartResponse
+import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
+import com.example.eshfeenygraduationproject.databinding.FragmentBrandItemsBinding
 import com.example.eshfeenygraduationproject.databinding.FragmentBrandsBinding
 import com.example.eshfeenygraduationproject.eshfeeny.cameraBottomSheet.ImageBottomSheetFragment
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.BrandItemsAdapter
@@ -25,17 +27,17 @@ import com.example.eshfeenygraduationproject.eshfeeny.search.SearchAdapter
 class BrandItemsFragment : Fragment() {
 
     private val args: BrandItemsFragmentArgs by navArgs()
-    private var binding: FragmentBrandsBinding? = null
-
+    private var binding: FragmentBrandItemsBinding? = null
     private lateinit var productViewModel: ProductViewModel
+    private var cartProducts: CartResponse? = null
+    private var favoriteProduct: ProductResponse? = null
 
-    private lateinit var cartProducts: CartResponse
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentBrandsBinding.inflate(inflater)
+        binding = FragmentBrandItemsBinding.inflate(inflater)
 
         val repo = ProductRepoImpl()
         val viewModelFactory = ProductViewModelFactory(repo)
@@ -43,7 +45,7 @@ class BrandItemsFragment : Fragment() {
         productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
         val userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
-        binding?.brandsTitle?.text = args.brandName
+        binding?.categoryTitle?.text = args.brandName
         settingSearch()
         binding?.searchBar?.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -62,25 +64,33 @@ class BrandItemsFragment : Fragment() {
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
             val userId = userData._id
 
-            productViewModel.getUserCartItems(userId)
-            productViewModel.cartItems.observe(viewLifecycleOwner) { cartProductsResponse ->
-                cartProductsResponse?.let {
-                    cartProducts = it
+            if (userId != null) {
+                productViewModel.getUserCartItems(userId)
+                productViewModel.cartItems.observe(viewLifecycleOwner) { cartProductsResponse ->
+                    cartProductsResponse?.let {
+                        cartProducts = it
+                    }
                 }
             }
 
-            productViewModel.getFavoriteProducts(userId)
-
-            productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
-
-                productViewModel.getBrandItems(args.brandName)
-                productViewModel.brandItems.observe(viewLifecycleOwner) {
-                    val adapter =
-                        BrandItemsAdapter(productViewModel, userId, favoriteProducts, cartProducts)
-                    binding?.brandsRecyclerView?.adapter = adapter
-
-                    adapter.submitList(it)
+            if (userId != null) {
+                productViewModel.getFavoriteProducts(userId)
+                productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
+                    favoriteProduct = favoriteProducts
                 }
+            }
+
+            productViewModel.getBrandItems(args.brandName)
+            productViewModel.brandItems.observe(viewLifecycleOwner) {
+                val adapter =
+                        BrandItemsAdapter(
+                            productViewModel,
+                            userId, favoriteProduct, cartProducts, userData.state
+                        )
+                stopShimmerLoading()
+                binding?.brandItemsRecyclerView?.adapter = adapter
+
+                adapter.submitList(it)
             }
         }
 
@@ -89,6 +99,12 @@ class BrandItemsFragment : Fragment() {
         }
 
         return binding?.root
+    }
+
+    private fun stopShimmerLoading() {
+        binding?.shimmerLayout?.stopShimmer()
+        binding?.shimmerLayout?.visibility = View.GONE
+        binding?.brandItemsRecyclerView?.visibility = View.VISIBLE
     }
 
     private fun settingSearch() {
@@ -100,7 +116,8 @@ class BrandItemsFragment : Fragment() {
                     start: Int,
                     count: Int,
                     after: Int
-                ) {}
+                ) {
+                }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     // perform search using the new text

@@ -11,7 +11,7 @@
         android:id="@+id/shimmerLayoutFavorite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         app:shimmer_direction="top_to_bottom"
         app:shimmer_highlight_alpha="1"
         app:shimmer_tilt="45">
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/app_background"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/moreTextview"

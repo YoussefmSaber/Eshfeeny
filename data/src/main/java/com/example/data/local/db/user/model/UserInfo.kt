@@ -11,18 +11,19 @@ import com.example.domain.entity.OrderHistory
 data class UserInfo(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val _id: String,
+    val _id: String?= null,
     val address: String? = null,
     val age: String? = null,
     val alarms: List<Alarm>? = null,
     val cart: List<Cart>? = null,
-    val email: String,
+    val email: String?= null,
     val favorites: List<String>? = null,
     val gender: String? = null,
     val insuranceCards: List<InsuranceCardX>? = null,
-    val name: String,
+    val name: String?= null,
     val orderHistory: List<OrderHistory>? = null,
-    var password: String,
+    var password: String?= null,
     val phoneNumber: String? = null,
-    val searchHistory: List<String>? = null
+    val searchHistory: List<String>? = null,
+    var state: String = "guest"
 )

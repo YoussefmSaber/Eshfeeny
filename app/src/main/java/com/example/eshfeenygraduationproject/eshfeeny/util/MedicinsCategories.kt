@@ -49,7 +49,6 @@ object MedicinsCategories {
         R.string.makeupRemoval,
         R.string.sunProtection,
         R.string.handAndFeetProtection,
-        R.string.topicalPainRelievers,
     )
 
     val allMedicines = listOf(
@@ -57,13 +56,13 @@ object MedicinsCategories {
         R.string.coldAndFlu,
         R.string.painkillers,
         R.string.minorBurns,
-        R.string.virusProtection,
         R.string.acidityAndPoorDigestion,
         R.string.cough,
         R.string.colic,
         R.string.constipation,
+        R.string.womenHealth,
+        R.string.mouthCare,
         R.string.topicalPainRelievers,
-        R.string.immunityBooster,
         R.string.topicalAntibiotics,
         R.string.vitaminsAndNutritionalSupplements,
         R.string.sugarAlternitave

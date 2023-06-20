@@ -65,6 +65,7 @@ class VerifyFragment : Fragment() {
                         response.body()?.let { userData ->
                             Log.i("DB Singup", userData.toString())
                             userData.password = args.newUserPassword
+                            userData.state = "user"
                             viewModel.addUserToDatabase(userData)
                             val intent = Intent(
                                 activity,

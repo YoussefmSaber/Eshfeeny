@@ -61,7 +61,7 @@ class AddPhotoICFragment : Fragment() {
         }
         binding?.addCartExistsBtn?.setOnClickListener {
             userViewModel.userData.observe(viewLifecycleOwner) { userData ->
-                userId = userData._id
+                userId = userData._id.toString()
                 val userCard =
                     InsuranceCardX(imageUrl, args.InsuranceCardName, args.cardName, args.cardNumber)
                 Log.d("Insurance Card", userCard.toString())

@@ -1,5 +1,8 @@
 package com.example.eshfeenygraduationproject.eshfeeny.more
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +17,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.
 class MoreFragment : Fragment() {
 
     private var binding: FragmentMoreBinding? = null
-
+    private var loadingDialog: Dialog? = null
     private lateinit var viewModel: UserViewModel
 
     override fun onCreateView(
@@ -24,17 +27,30 @@ class MoreFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentMoreBinding.inflate(inflater)
         viewModel = ViewModelProvider(this)[UserViewModel::class.java]
-
-        binding?.myAccount?.setOnClickListener {
-            findNavController().navigate(R.id.action_moreFragment2_to_myAccountFragment)
+        viewModel.userData.observe(viewLifecycleOwner) {
+            if (it.state != "guest") {
+                binding?.myAccount?.setOnClickListener {
+                    findNavController().navigate(R.id.action_moreFragment2_to_myAccountFragment)
+                }
+                binding?.Alarm?.setOnClickListener {
+                    findNavController().navigate(R.id.action_moreFragment2_to_alarmFragment)
+                }
+                binding?.BmiBmr?.setOnClickListener {
+                    findNavController().navigate(R.id.action_moreFragment2_to_bmiAndBmrFragment)
+                }
+            } else {
+                binding?.myAccount?.setOnClickListener {
+                    showLoadingDialog()
+                }
+                binding?.Alarm?.setOnClickListener {
+                    showLoadingDialog()
+                }
+                binding?.BmiBmr?.setOnClickListener {
+                    showLoadingDialog()
+                }
+            }
         }
 
-        binding?.Alarm?.setOnClickListener {
-            findNavController().navigate(R.id.action_moreFragment2_to_alarmFragment)
-        }
-        binding?.BmiBmr?.setOnClickListener {
-            findNavController().navigate(R.id.action_moreFragment2_to_bmiAndBmrFragment)
-        }
         binding?.logoutButton?.setOnClickListener {
             val bottomSheet =
                 LogoutBottomSheetFragment(viewModel)
@@ -43,8 +59,15 @@ class MoreFragment : Fragment() {
 
         return binding?.root
     }
-
-
+    private fun showLoadingDialog() {
+        if (loadingDialog == null) {
+            loadingDialog = Dialog(requireContext())
+            loadingDialog!!.setContentView(R.layout.guest_warning)
+            loadingDialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            loadingDialog!!.setCancelable(true)
+        }
+        loadingDialog!!.show()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

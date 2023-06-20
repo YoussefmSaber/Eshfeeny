@@ -38,8 +38,8 @@ class MyAccountFragment : Fragment() {
                 phoneInputEditText.setText(userData.phoneNumber)
 
 
-                isFieldChanged(nameInputEditText, userData.name)
-                isFieldChanged(emailInputEditText, userData.email)
+                userData.name?.let { isFieldChanged(nameInputEditText, it) }
+                userData.email?.let { isFieldChanged(emailInputEditText, it) }
                 userData.gender?.let { it1 -> isFieldChanged(genderInputEditText, it1) }
                 userData.phoneNumber?.let { it1 -> isFieldChanged(phoneInputEditText, it1) }
 
@@ -61,12 +61,14 @@ class MyAccountFragment : Fragment() {
 
                     Log.i("update gender fragment", "${genderInputEditText.text}")
 
-                    viewModel.updateUserData(
-                        userData.id,
-                        userData._id,
-                        updatedUserData,
-                        genderInputEditText.text.toString()
-                    )
+                    userData._id?.let { it1 ->
+                        viewModel.updateUserData(
+                            userData.id,
+                            it1,
+                            updatedUserData,
+                            genderInputEditText.text.toString()
+                        )
+                    }
                 }
             }
         }

@@ -27,9 +27,7 @@ class DetailsFragment : Fragment() {
 
     private var binding: FragmentDetailsBinding? = null
     private lateinit var productViewModel: ProductViewModel
-
     private lateinit var _favoriteProducts: ProductResponse
-
     private val args: DetailsFragmentArgs by navArgs()
     private lateinit var userViewModel: UserViewModel
     private var itemCount = 1
@@ -45,42 +43,44 @@ class DetailsFragment : Fragment() {
 
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
 
-            userId = userData._id
+            userId = userData._id.toString()
+            if (userData.state != "guest") {
+                userData._id?.let { productViewModel.getFavoriteProducts(it) }
+                productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
 
-            productViewModel.getFavoriteProducts(userData._id)
-            productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
+                    _favoriteProducts = favoriteProducts
 
-                _favoriteProducts = favoriteProducts
+                    productViewModel.getProductFromRemote(args.Id)
+                    productViewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
 
+                        stopShimmer()
+
+                        setFavoriteItem(productDetails, favoriteProducts, userData)
+
+                        setDataToViews(productDetails)
+
+                        checkItemInCart(userData)
+
+                        decreaseItemFromCart(userData, productDetails)
+
+                        increaseItemInCart(userData, productDetails)
+
+                        binding?.productAmount?.text = itemCount.toString()
+
+                        shareProduct(productDetails)
+
+                        productDetails?.let { productResponse ->
+                            setAdapters(productResponse)
+                        }
+                    }
+                }
+            } else {
                 productViewModel.getProductFromRemote(args.Id)
                 productViewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
-
+                    shareProduct(productDetails)
                     stopShimmer()
-
-                    setFavoriteItem(productDetails, favoriteProducts, userData)
-
+                    binding?.favoriteImgView?.isEnabled = false
                     setDataToViews(productDetails)
-
-                    checkItemInCart(userData)
-
-                    decreaseItemFromCart(userData, productDetails)
-
-                    increaseItemInCart(userData, productDetails)
-
-                    binding?.productAmount?.text = itemCount.toString()
-
-                    binding?.shareProductCard?.setOnClickListener {
-                        val intent = Intent(Intent.ACTION_SEND)
-                        intent.setType("text/plain")
-                        intent.putExtra(Intent.EXTRA_SUBJECT, "Check out this product")
-                        intent.putExtra(
-                            Intent.EXTRA_TEXT,
-                            "أسم المنتج: ${productDetails.nameAr}\nوصف المنتج: ${productDetails.description}\nسعر المنتج: ${productDetails.price} جنية\nلينك المنتج: https://eshfeeny.live/product/${args.Id}"
-                        )
-
-                        startActivity(Intent.createChooser(intent, "Share product via"))
-                    }
-
                     productDetails?.let { productResponse ->
                         setAdapters(productResponse)
                     }
@@ -107,6 +107,18 @@ class DetailsFragment : Fragment() {
         return binding?.root
     }
 
+    private fun shareProduct(productDetails: ProductResponseItem) {
+        binding?.shareProductCard?.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.setType("text/plain")
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Check out this product")
+            intent.putExtra(
+                Intent.EXTRA_TEXT,
+                "أسم المنتج: ${productDetails.nameAr}\nوصف المنتج: ${productDetails.description}\nسعر المنتج: ${productDetails.price} جنية\nلينك المنتج: https://eshfeeny.live/product/${args.Id}"
+            )
+        }
+    }
+
     private fun stopShimmer() {
         binding?.shimmerLayout?.stopShimmer()
         binding?.shimmerLayout?.visibility = View.GONE
@@ -128,7 +140,12 @@ class DetailsFragment : Fragment() {
     ) {
         binding?.productIncrementBtn?.setOnClickListener {
             itemCount++
-            productViewModel.incrementProductNumberInCart(userData._id, productDetails._id)
+            userData._id?.let { it1 ->
+                productViewModel.incrementProductNumberInCart(
+                    it1,
+                    productDetails._id
+                )
+            }
             binding?.productAmount?.text = itemCount.toString()
         }
     }
@@ -140,14 +157,18 @@ class DetailsFragment : Fragment() {
             if (itemCount == 1) {
                 binding?.itemFunctionsLayout?.visibility = View.GONE
                 binding?.add2CartBtn?.visibility = View.VISIBLE
-                productViewModel.removeProductFromCart(
-                    userData._id, productDetails._id
-                )
+                userData._id?.let { it1 ->
+                    productViewModel.removeProductFromCart(
+                        it1, productDetails._id
+                    )
+                }
             } else {
                 itemCount--
-                productViewModel.decrementProductNumberInCart(
-                    userData._id, productDetails._id
-                )
+                userData._id?.let { it1 ->
+                    productViewModel.decrementProductNumberInCart(
+                        it1, productDetails._id
+                    )
+                }
                 binding?.productAmount?.text = itemCount.toString()
             }
         }
@@ -155,12 +176,14 @@ class DetailsFragment : Fragment() {
 
     private fun checkItemInCart(userData: UserInfo) {
         binding?.add2CartBtn?.setOnClickListener { btn ->
-            productViewModel.getNumberOfItemInCart(userData._id, args.Id)
+            userData._id?.let { productViewModel.getNumberOfItemInCart(it, args.Id) }
             productViewModel.productNumber.observe(viewLifecycleOwner) { productItemCount ->
                 if (productItemCount == 0) {
-                    productViewModel.addProductToCart(
-                        userData._id, PatchString(args.Id)
-                    )
+                    userData._id?.let {
+                        productViewModel.addProductToCart(
+                            it, PatchString(args.Id)
+                        )
+                    }
                 } else {
                     itemCount = productItemCount
                     binding?.productAmount?.text = itemCount.toString()
@@ -184,20 +207,26 @@ class DetailsFragment : Fragment() {
     }
 
     private fun setFavoriteItem(
-        productDetails: ProductResponseItem, favoriteProducts: ProductResponse, userData: UserInfo
+        productDetails: ProductResponseItem,
+        favoriteProducts: ProductResponse,
+        userData: UserInfo
     ) {
         if (productDetails in favoriteProducts) binding?.favoriteImgView?.isChecked = true
 
         binding?.favoriteImgView?.setEventListener(object : SparkEventListener {
             override fun onEvent(button: ImageView?, buttonState: Boolean) {
                 if (buttonState) {
-                    productViewModel.addMedicineToFavorites(
-                        userData._id, PatchString(args.Id)
-                    )
+                    userData._id?.let {
+                        productViewModel.addMedicineToFavorites(
+                            it, PatchString(args.Id)
+                        )
+                    }
                 } else {
-                    productViewModel.deleteFavoriteProduct(
-                        userData._id, args.Id
-                    )
+                    userData._id?.let {
+                        productViewModel.deleteFavoriteProduct(
+                            it, args.Id
+                        )
+                    }
                 }
             }
 
@@ -219,7 +248,8 @@ class DetailsFragment : Fragment() {
 
     private fun setupExitButton() {
         binding?.exit1BtnId?.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_detailsFragment_to_homeFragment2)
+            Navigation.findNavController(it)
+                .navigate(R.id.action_detailsFragment_to_homeFragment2)
         }
     }
 

@@ -9,9 +9,23 @@
     android:orientation="vertical"
     tools:context=".eshfeeny.searchResults.SearchResultsFragment">
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="145sp"
+        app:shimmer_direction="top_to_bottom"
+        android:visibility="visible"
+        app:shimmer_highlight_alpha="1"
+        app:shimmer_tilt="45">
+
+        <include layout="@layout/shimmer_effect_item" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchResultsImageRecyclerView"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="match_parent"
         android:layout_marginTop="145sp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

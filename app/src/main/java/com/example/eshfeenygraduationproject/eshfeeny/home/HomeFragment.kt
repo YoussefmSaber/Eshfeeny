@@ -86,37 +86,61 @@ class HomeFragment : Fragment() {
     private fun getUserId() {
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
             val userID = userData._id
-            getFavoriteProducts(userID)
+            getFavoriteProducts(userID, userData.state)
         }
     }
 
-    private fun getFavoriteProducts(userID: String) {
-        productViewModel.getFavoriteProducts(userID)
-        productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
+    private fun getFavoriteProducts(userID: String?, state: String) {
+        if (state != "guest") {
+            Log.d("HomeFragment", userID.toString())
+            if (userID != null) {
+                productViewModel.getFavoriteProducts(userID)
+                productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProducts ->
+                    getCartItems(userID, favoriteProducts, state)
+                }
+            }
 
-            getCartItems(userID, favoriteProducts)
+        } else {
+            Log.d("HomeFragment", userID.toString())
+            getCartItems(null, null, state)
         }
+
     }
 
     private fun getCartItems(
-        userID: String,
-        favoriteProducts: ProductResponse
+        userID: String?,
+        favoriteProducts: ProductResponse?,
+        state: String
     ) {
-        productViewModel.getUserCartItems(userID)
-        productViewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
+        if (state != "guest") {
+            Log.d("HomeFragment", userID.toString())
+            if (userID != null) {
+                productViewModel.getUserCartItems(userID)
+            }
+            productViewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
 
-            setSummerNeedsRecyclerView(userID, favoriteProducts, cartItems)
-
-            setForBetterHealthRecyclerView(userID, favoriteProducts, cartItems)
-
-            setSugarAlternativeRecyclerView(userID, favoriteProducts, cartItems)
+                if (favoriteProducts != null) {
+                    if (userID != null) {
+                        setSummerNeedsRecyclerView(userID, favoriteProducts, cartItems, state)
+                        setForBetterHealthRecyclerView(userID, favoriteProducts, cartItems, state)
+                        setSugarAlternativeRecyclerView(userID, favoriteProducts, cartItems, state)
+                    }
+                }
+            }
+        } else {
+            Log.d("HomeFragment", userID.toString())
+            setSummerNeedsRecyclerView(null, null, null, state)
+            setForBetterHealthRecyclerView(null, null, null, state)
+            setSugarAlternativeRecyclerView(null, null, null, state)
         }
+
     }
 
     private fun setSugarAlternativeRecyclerView(
-        userID: String,
-        favoriteProducts: ProductResponse,
-        cartItems: CartResponse
+        userID: String?,
+        favoriteProducts: ProductResponse?,
+        cartItems: CartResponse?,
+        state: String
     ) {
         productViewModel.getProductsFromRemoteAlt(getString(R.string.sugarAlternitave))
         productViewModel.remoteProductsAlt.observe(viewLifecycleOwner) {
@@ -125,7 +149,8 @@ class HomeFragment : Fragment() {
                 productViewModel,
                 userID,
                 favoriteProducts,
-                cartItems
+                cartItems,
+                state
             )
             binding?.sugarAlternativeRecyclerView?.adapter = adapter2
             adapter2.submitList(it.body())
@@ -133,9 +158,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun setForBetterHealthRecyclerView(
-        userID: String,
-        favoriteProducts: ProductResponse,
-        cartItems: CartResponse
+        userID: String?,
+        favoriteProducts: ProductResponse?,
+        cartItems: CartResponse?,
+        state: String
     ) {
         productViewModel.getProductsFromRemote(getString(R.string.vitaminsAndNutritionalSupplements))
         productViewModel.remoteProducts.observe(viewLifecycleOwner) {
@@ -144,7 +170,8 @@ class HomeFragment : Fragment() {
                 productViewModel,
                 userID,
                 favoriteProducts,
-                cartItems
+                cartItems,
+                state
             )
             binding?.forBetterHealthRecyclerView?.adapter = adapter1
 
@@ -153,19 +180,22 @@ class HomeFragment : Fragment() {
     }
 
     private fun setSummerNeedsRecyclerView(
-        userID: String,
-        favoriteProducts: ProductResponse,
-        cartItems: CartResponse
+        userID: String?,
+        favoriteProducts: ProductResponse?,
+        cartItems: CartResponse?,
+        state: String
     ) {
+        Log.d("HomeFragment", userID.toString())
         productViewModel.getProductType("العناية بالبشرة و الشعر")
         productViewModel.allTypeProducts.observe(viewLifecycleOwner) {
-
+            Log.d("HomeFragment", it.toString())
             stopShimmerLayout()
             val adapter = ProductHomeAdapter(
                 productViewModel,
                 userID,
                 favoriteProducts,
-                cartItems
+                cartItems,
+                state
             )
             binding?.summerNeedsRecyclerView?.adapter = adapter
 
@@ -244,7 +274,8 @@ class HomeFragment : Fragment() {
         for ((imageView, brand) in brands) {
             imageView?.apply {
                 setOnClickListener {
-                    val action = HomeFragmentDirections.actionHomeFragment2ToBrandItemsFragment(brand)
+                    val action =
+                        HomeFragmentDirections.actionHomeFragment2ToBrandItemsFragment(brand)
                     findNavController().navigate(action)
                 }
             }
