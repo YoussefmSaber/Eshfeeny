@@ -73,36 +73,33 @@ class ProductCategoryAdapter(
         }
 
         private fun setFavoriteItem(category: ProductResponseItem) {
-            if (favoriteProducts?.contains(category) == true) {
-                itemBinding.heartIconId.isChecked = true
-            }
-
-            itemBinding.heartIconId.setEventListener(object : SparkEventListener {
-                override fun onEvent(button: ImageView, buttonState: Boolean) {
-                    if (buttonState) {
-                        // Button is
-                        if (userId != null) {
-                            viewModel.addMedicineToFavorites(
-                                userId,
-                                PatchString(category._id)
-                            )
-                        }
-                    } else {
-                        // Button is inactive
-                        if (userId != null) {
-                            viewModel.deleteFavoriteProduct(userId, category._id)
+            if (state == "guest") {
+                itemBinding.heartIconId.isEnabled = false
+            } else {
+                if (favoriteProducts?.contains(category) == true) {
+                    itemBinding.heartIconId.isChecked = true
+                }
+                itemBinding.heartIconId.setEventListener(object : SparkEventListener {
+                    override fun onEvent(button: ImageView, buttonState: Boolean) {
+                        if (buttonState) {
+                            // Button is
+                            if (userId != null) {
+                                viewModel.addMedicineToFavorites(
+                                    userId,
+                                    PatchString(category._id)
+                                )
+                            }
+                        } else {
+                            // Button is inactive
+                            if (userId != null) {
+                                viewModel.deleteFavoriteProduct(userId, category._id)
+                            }
                         }
                     }
-                }
-
-                override fun onEventAnimationEnd(button: ImageView?, buttonState: Boolean) {
-
-                }
-
-                override fun onEventAnimationStart(button: ImageView?, buttonState: Boolean) {
-
-                }
-            })
+                    override fun onEventAnimationEnd(button: ImageView?, buttonState: Boolean) {}
+                    override fun onEventAnimationStart(button: ImageView?, buttonState: Boolean) {}
+                })
+            }
         }
 
         private fun addItemToCart(product: ProductResponseItem) {
