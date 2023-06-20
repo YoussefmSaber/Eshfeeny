@@ -49,7 +49,7 @@ class ProductCategoryFragment : Fragment() {
         binding = FragmentProductCategoryBinding.inflate(inflater)
         setCategoryTitle(args.category)
 
-        binding?.searchBar?.setOnMenuItemClickListener{
+        binding?.searchBar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.searchUsingCamera -> {
                     Log.i("image Capture", "Item Clicked")
@@ -73,23 +73,31 @@ class ProductCategoryFragment : Fragment() {
         var favoriteProducts: ProductResponse
 
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
-            userData._id?.let { productViewModel.getUserCartItems(it) }
-            productViewModel.cartItems.observe(viewLifecycleOwner) { cartProductsResponse ->
-                cartProductsResponse?.let { notNullCartProducts ->
-                    cartProducts = notNullCartProducts
+            if (userData.state != "guest") {
+                productViewModel.getUserCartItems(userData._id!!)
+                productViewModel.cartItems.observe(viewLifecycleOwner) { cartProductsResponse ->
+                    cartProductsResponse?.let { notNullCartProducts ->
+                        cartProducts = notNullCartProducts
 
-                    userData._id?.let { productViewModel.getFavoriteProducts(it) }
-                    productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProductsResponse ->
-                        favoriteProductsResponse?.let { notNullFavoriteProducts ->
-                            favoriteProducts = notNullFavoriteProducts
+                        productViewModel.getFavoriteProducts(userData._id!!)
+                        productViewModel.favoriteProducts.observe(viewLifecycleOwner) { favoriteProductsResponse ->
+                            favoriteProductsResponse?.let { notNullFavoriteProducts ->
+                                favoriteProducts = notNullFavoriteProducts
 
-                            setCategory(userData, favoriteProducts, cartProducts)
+                                setCategory(userData, favoriteProducts, cartProducts)
+                            }
                         }
                     }
                 }
+            } else {
+                setCategory(
+                    userData,
+                    null,
+                    null
+                )
             }
-        }
 
+        }
         return binding?.root
     }
 
@@ -120,122 +128,106 @@ class ProductCategoryFragment : Fragment() {
 
     private fun setCategory(
         userData: UserInfo,
-        favoriteProducts: ProductResponse,
-        cartProducts: CartResponse
+        favoriteProducts: ProductResponse?,
+        cartProducts: CartResponse?
     ) {
         when (args.category) {
             "allMeds" -> {
                 when (args.chipName) {
-                    "default" -> userData._id?.let {
+                    "default" ->
                         setChipSearch(
-                            it,
+                            userData._id,
                             favoriteProducts,
                             cartProducts,
                             MedicinsCategories.allMedicines,
                             "الأدوية",
-                            "default"
+                            "default",
+                            userData.state
                         )
-                    }
-                    "sugar" -> userData._id?.let {
+
+                    "sugar" ->
                         setChipSearch(
-                            it,
+                            userData._id,
                             favoriteProducts,
                             cartProducts,
                             MedicinsCategories.allMedicines,
                             "الأدوية",
-                            "sugar"
+                            "sugar",
+                            userData.state
                         )
-                    }
-                    "vitamins" -> userData._id?.let {
+
+                    "vitamins" ->
                         setChipSearch(
-                            it,
+                            userData._id,
                             favoriteProducts,
                             cartProducts,
                             MedicinsCategories.allMedicines,
                             "الأدوية",
-                            "vitamins"
+                            "vitamins",
+                            userData.state
                         )
-                    }
                 }
             }
 
-            "dentalCare" -> {
-                userData._id?.let {
-                    setChipSearch(
-                        it,
-                        favoriteProducts,
-                        cartProducts,
-                        MedicinsCategories.dentalCare,
-                        "العناية بالاسنان",
-                        "default"
-                    )
-                }
-            }
+            "dentalCare" -> setChipSearch(
+                    userData._id,
+                    favoriteProducts,
+                    cartProducts,
+                    MedicinsCategories.dentalCare,
+                    "العناية بالاسنان",
+                    "default",
+                    userData.state
+                )
 
-            "menProducts" -> {
-                userData._id?.let {
-                    setChipSearch(
-                        it,
-                        favoriteProducts,
-                        cartProducts,
-                        MedicinsCategories.menProducts,
-                        "منتجات الرجال",
-                        "default"
-                    )
-                }
-            }
+            "menProducts" -> setChipSearch(
+                    userData._id,
+                    favoriteProducts,
+                    cartProducts,
+                    MedicinsCategories.menProducts,
+                    "منتجات الرجال",
+                    "default",
+                    userData.state
+                )
 
-            "womenProducts" -> {
-                userData._id?.let {
-                    setChipSearch(
-                        it,
-                        favoriteProducts,
-                        cartProducts,
-                        MedicinsCategories.womenProducts,
-                        "منتجات المرأة",
-                        "default"
-                    )
-                }
-            }
+            "womenProducts" -> setChipSearch(
+                    userData._id,
+                    favoriteProducts,
+                    cartProducts,
+                    MedicinsCategories.womenProducts,
+                    "منتجات المرأة",
+                    "default",
+                    userData.state
+                )
 
-            "motherAndChild" -> {
-                userData._id?.let {
-                    setChipSearch(
-                        it,
-                        favoriteProducts,
-                        cartProducts,
-                        MedicinsCategories.motherAndChild,
-                        "الأم و الطفل",
-                        "default"
-                    )
-                }
-            }
+            "motherAndChild" -> setChipSearch(
+                    userData._id,
+                    favoriteProducts,
+                    cartProducts,
+                    MedicinsCategories.motherAndChild,
+                    "الأم و الطفل",
+                    "default",
+                    userData.state
+                )
 
-            "virusProtection" -> {
-                userData._id?.let {
-                    setChipSearch(
-                        it,
-                        favoriteProducts,
-                        cartProducts,
-                        MedicinsCategories.virusProtection,
-                        "الحمايه من الفيروسات",
-                        "default"
-                    )
-                }
-            }
+            "virusProtection" -> setChipSearch(
+                    userData._id,
+                    favoriteProducts,
+                    cartProducts,
+                    MedicinsCategories.virusProtection,
+                    "الحمايه من الفيروسات",
+                    "default",
+                    userData.state
+                )
 
-            "skinAndHairCare" -> {
-                userData._id?.let {
-                    setChipSearch(
-                        it,
-                        favoriteProducts,
-                        cartProducts,
-                        MedicinsCategories.skinAndHair,
-                        "العناية بالبشرة و الشعر",
-                        "default"
-                    )
-                }
-            }
+            "skinAndHairCare" -> setChipSearch(
+                    userData._id,
+                    favoriteProducts,
+                    cartProducts,
+                    MedicinsCategories.skinAndHair,
+                    "العناية بالبشرة و الشعر",
+                    "default",
+                    userData.state
+                )
         }
     }
 
@@ -255,15 +247,17 @@ class ProductCategoryFragment : Fragment() {
     }
 
     private fun setChipSearch(
-        userId: String,
-        favoriteProducts: ProductResponse,
-        cartProducts: CartResponse,
+        userId: String?,
+        favoriteProducts: ProductResponse?,
+        cartProducts: CartResponse?,
         productCategories: List<Int>,
         productType: String,
-        chipName: String
+        chipName: String,
+        state: String
     ) {
+        Log.d("Product Category", state)
         for (med in productCategories) {
-            val newChip = createChip(getString(med), userId, favoriteProducts, cartProducts)
+            val newChip = createChip(getString(med), userId, favoriteProducts, cartProducts, state)
             binding?.medicineChipGroup?.addView(newChip)
 
             when (chipName) {
@@ -281,13 +275,15 @@ class ProductCategoryFragment : Fragment() {
                                 productViewModel,
                                 userId,
                                 favoriteProducts,
-                                cartProducts
+                                cartProducts,
+                                state
                             )
                             adapter.submitList(response)
                             binding?.medicineRecyclerView?.adapter = adapter
                         }
                     }
                 }
+
                 "sugar" -> {
                     if (getString(med) == getString(R.string.sugarAlternitave)) {
                         newChip.isSelected = true
@@ -299,7 +295,8 @@ class ProductCategoryFragment : Fragment() {
                             productViewModel,
                             userId,
                             favoriteProducts,
-                            cartProducts
+                            cartProducts,
+                            state
                         )
 
                         productViewModel.getProductsFromRemote(getString(med))
@@ -310,6 +307,7 @@ class ProductCategoryFragment : Fragment() {
                         }
                     }
                 }
+
                 "vitamins" -> {
                     if (getString(med) == getString(R.string.vitaminsAndNutritionalSupplements)) {
                         newChip.isSelected = true
@@ -321,7 +319,8 @@ class ProductCategoryFragment : Fragment() {
                             productViewModel,
                             userId,
                             favoriteProducts,
-                            cartProducts
+                            cartProducts,
+                            state
                         )
 
                         productViewModel.getProductsFromRemote(getString(med))
@@ -339,9 +338,10 @@ class ProductCategoryFragment : Fragment() {
 
     private fun createChip(
         name: String,
-        userId: String,
-        favoriteProducts: ProductResponse,
-        cartProducts: CartResponse
+        userId: String?,
+        favoriteProducts: ProductResponse?,
+        cartProducts: CartResponse?,
+        state: String
     ): Chip {
         val chip = Chip(context)
         chip.text = name
@@ -368,7 +368,8 @@ class ProductCategoryFragment : Fragment() {
                     productViewModel,
                     userId,
                     favoriteProducts,
-                    cartProducts
+                    cartProducts,
+                    state
                 )
 
                 val chipTypes = setOf(
