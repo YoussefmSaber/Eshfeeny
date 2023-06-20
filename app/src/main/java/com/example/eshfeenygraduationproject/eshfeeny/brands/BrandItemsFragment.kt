@@ -15,6 +15,7 @@ import com.example.data.repository.ProductRepoImpl
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.product.ProductResponse
 import com.example.eshfeenygraduationproject.R
+import com.example.eshfeenygraduationproject.databinding.FragmentBrandItemsBinding
 import com.example.eshfeenygraduationproject.databinding.FragmentBrandsBinding
 import com.example.eshfeenygraduationproject.eshfeeny.cameraBottomSheet.ImageBottomSheetFragment
 import com.example.eshfeenygraduationproject.eshfeeny.productsAdapter.BrandItemsAdapter
@@ -26,7 +27,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.search.SearchAdapter
 class BrandItemsFragment : Fragment() {
 
     private val args: BrandItemsFragmentArgs by navArgs()
-    private var binding: FragmentBrandsBinding? = null
+    private var binding: FragmentBrandItemsBinding? = null
     private lateinit var productViewModel: ProductViewModel
     private var cartProducts: CartResponse? = null
     private var favoriteProduct: ProductResponse? = null
@@ -36,7 +37,7 @@ class BrandItemsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentBrandsBinding.inflate(inflater)
+        binding = FragmentBrandItemsBinding.inflate(inflater)
 
         val repo = ProductRepoImpl()
         val viewModelFactory = ProductViewModelFactory(repo)
@@ -44,7 +45,7 @@ class BrandItemsFragment : Fragment() {
         productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
         val userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
-        binding?.brandsTitle?.text = args.brandName
+        binding?.categoryTitle?.text = args.brandName
         settingSearch()
         binding?.searchBar?.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -86,8 +87,8 @@ class BrandItemsFragment : Fragment() {
                             productViewModel,
                             userId, favoriteProduct, cartProducts, userData.state
                         )
-
-                binding?.brandsRecyclerView?.adapter = adapter
+                stopShimmerLoading()
+                binding?.brandItemsRecyclerView?.adapter = adapter
 
                 adapter.submitList(it)
             }
@@ -98,6 +99,12 @@ class BrandItemsFragment : Fragment() {
         }
 
         return binding?.root
+    }
+
+    private fun stopShimmerLoading() {
+        binding?.shimmerLayout?.stopShimmer()
+        binding?.shimmerLayout?.visibility = View.GONE
+        binding?.brandItemsRecyclerView?.visibility = View.VISIBLE
     }
 
     private fun settingSearch() {

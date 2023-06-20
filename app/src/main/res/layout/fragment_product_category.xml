@@ -13,7 +13,8 @@
         android:id="@+id/shimmerProductCategoryChip"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:layoutDirection="ltr"
+        android:visibility="visible"
         app:shimmer_direction="top_to_bottom"
         app:shimmer_highlight_alpha="1"
         app:shimmer_tilt="45">
@@ -27,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/medicineRecyclerView"

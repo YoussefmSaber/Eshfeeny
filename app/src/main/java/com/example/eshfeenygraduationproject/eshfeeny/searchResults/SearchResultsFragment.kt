@@ -82,7 +82,7 @@ class SearchResultsFragment : Fragment() {
                         cartItems,
                         userData.state
                     )
-
+                    stopShimmerLoading()
                     this.searchResultsImageRecyclerView.adapter = adapter
                     adapter.submitList(it)
                 }
@@ -92,6 +92,11 @@ class SearchResultsFragment : Fragment() {
         return binding?.root
     }
 
+    private fun stopShimmerLoading() {
+        binding?.shimmerLayout?.stopShimmer()
+        binding?.shimmerLayout?.visibility = View.GONE
+        binding?.searchResultsImageRecyclerView?.visibility = View.VISIBLE
+    }
 
     private fun setupViewModel() {
         val repo = ProductRepoImpl()
