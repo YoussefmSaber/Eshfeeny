@@ -72,7 +72,7 @@ class BrandItemsAdapter(
         }
 
         private fun setFavoriteItem(category: ProductResponseItem) {
-            if (favoriteProducts?.contains(category)!!) {
+            if (favoriteProducts?.contains(category) == true) {
                 itemBinding.heartIconId.isChecked = true
             }
 
