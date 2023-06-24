@@ -51,7 +51,6 @@ class ProductFavoriteAdapter(
             setData2UI(product)
             setFavoriteIcon(product)
             addProduct2Cart(product)
-            navigate2Details(product)
             increaseProductAmount(product)
             decreaseProductAmount(product)
         }
@@ -87,16 +86,6 @@ class ProductFavoriteAdapter(
                     viewModel.addProductToCart(userId, PatchString(product._id))
                     itemBinding.productAmount.text = productCount.toString()
                 }
-            }
-        }
-
-        private fun navigate2Details(product: ProductResponseItem) {
-            itemBinding.imgVMedicineId.setOnClickListener {
-                val action =
-                    FavoriteFragmentDirections.actionFavoriteFragment2ToDetailsFragment(
-                        product._id
-                    )
-                it.findNavController().navigate(action)
             }
         }
 

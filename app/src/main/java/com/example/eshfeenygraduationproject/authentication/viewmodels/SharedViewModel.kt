@@ -18,6 +18,7 @@ import com.example.domain.entity.VerifyLoginResponse
 import com.example.domain.entity.patchRequestVar.ChangePassword
 import com.example.domain.entity.patchresponse.PatchRequestResponse
 import com.example.eshfeenygraduationproject.eshfeeny.MainActivity
+import com.example.eshfeenygraduationproject.eshfeeny.util.notificationId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -46,17 +47,24 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
         viewModelScope.launch {
             Log.i("test viewModel", _loadingToLogin.value.toString())
             val userData = repository.getUserData()
-            if (userData != null && userData.email != null) {
-                _userData.value = userData
-                val userCredentials = VerifyLoginResponse(
-                    _userData.value?.email!!,
-                    _userData.value?.password!!
-                )
-                val res = repository.verifyLogin(userCredentials)
-                if (res != null) {
-                    _verifyUserLogin.value = res
-                    _loadingToLogin.value = true
-                    Log.i("test", _loadingToLogin.value.toString())
+            if (userData != null && (userData.state == "guest" || userData.state == "user")) {
+                if (userData.state != "guest") {
+                    _userData.value = userData
+                    val userCredentials = VerifyLoginResponse(
+                        _userData.value?.email!!,
+                        _userData.value?.password!!
+                    )
+                    val res = repository.verifyLogin(userCredentials)
+                    if (res != null) {
+                        _verifyUserLogin.value = res
+                        _loadingToLogin.value = true
+                        Log.i("test", _loadingToLogin.value.toString())
+                        val intent = Intent(getApplication(), MainActivity::class.java)
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        getApplication<Application>().startActivity(intent)
+                    }
+                } else {
                     val intent = Intent(getApplication(), MainActivity::class.java)
                     intent.flags =
                         Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

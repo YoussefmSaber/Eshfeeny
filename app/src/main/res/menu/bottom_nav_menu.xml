@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/homeFragment2"
+        android:id="@+id/toHomeFragment"
         android:icon="@drawable/home_icon"
         android:title="الرئيسية" />
     <item
-        android:id="@+id/cartFragment2"
+        android:id="@+id/toCartFragment"
         android:icon="@drawable/cart_icon"
         android:title="العربة" />
     <item
@@ -13,11 +13,11 @@
         android:icon="@drawable/__icon__location_pin_"
         android:title="اقرب صيدلية" />
     <item
-        android:id="@+id/favoriteFragment2"
+        android:id="@+id/toFavoriteFragment"
         android:icon="@drawable/favorite_icon"
         android:title="المفضلة" />
     <item
-        android:id="@+id/moreFragment2"
+        android:id="@+id/toMoreFragment"
         android:icon="@drawable/more_icon"
         android:title="المزيد" />
 </menu>
