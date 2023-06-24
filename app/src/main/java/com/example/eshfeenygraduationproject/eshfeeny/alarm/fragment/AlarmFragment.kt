@@ -1,5 +1,6 @@
 package com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,11 +20,9 @@ import com.example.eshfeenygraduationproject.eshfeeny.alarm.viewModel.AlarmViewM
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
 import com.example.eshfeenygraduationproject.eshfeeny.util.Days
 import com.example.eshfeenygraduationproject.eshfeeny.util.DaysList
-import java.lang.Long
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-import java.util.TimeZone
 
 class AlarmFragment : Fragment() {
 
@@ -32,6 +31,7 @@ class AlarmFragment : Fragment() {
     private lateinit var userId: String
     private lateinit var viewModel: AlarmViewModel
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,7 +41,7 @@ class AlarmFragment : Fragment() {
         initializeViewModels()
         // initializing the adapter variable and changing the value of the month and year
         // if it's value changed in the calendar
-        var selectedDayInMilli = Long.valueOf(0)
+        var selectedDayInMilli: kotlin.Long
         binding?.backBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_alarmFragment_to_moreFragment2)
         }
@@ -54,9 +54,9 @@ class AlarmFragment : Fragment() {
                 val monthDateFormat = SimpleDateFormat("MMMM", Locale.getDefault())
                 val monthName = monthDateFormat.format(calendar.time)
                 val yearNumber = calendar.get(Calendar.YEAR)
-                binding?.MonthTextView?.text = "${monthName} ,${yearNumber}"
+                binding?.MonthTextView?.text = "$monthName ,${yearNumber}"
             }
-            binding?.MonthTextView?.text = "${month} ,${year}"
+            binding?.MonthTextView?.text = "$month ,${year}"
         }, { selectedDay ->
             selectedDayInMilli = selectedDay.dayInMilli
             Log.d("Alarm", selectedDayInMilli.toString())

@@ -8,8 +8,13 @@ class AlarmRepoImpl {
 
     suspend fun getAlarms(
         userId: String
-    ): List<Alarm> =
-        EshfeenyApiInstance.alarmApi.getUserAlarms(userId)
+    ): List<Alarm> {
+        return try {
+            EshfeenyApiInstance.alarmApi.getUserAlarms(userId)
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
 
 
     suspend fun sendAlarm(
