@@ -58,18 +58,19 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     fun addInsuranceCard(
         userId: String,
-        card: InsuranceCardX
+        insuranceCard: InsuranceCardX
     ) {
         viewModelScope.launch {
             try {
-                Log.d("Insurance Card", card.toString())
+                Log.d("Insurance Card id", userId)
+                Log.d("Insurance Card", insuranceCard.toString())
                 repository.addInsuranceCard(
                     userId,
                     InsuranceCardPatchItem(
-                        imageURL = card.imageURL,
-                        name = card.name,
-                        nameOnCard = card.nameOnCard,
-                        number = card.number
+                        imageURL = insuranceCard.imageURL,
+                        name = insuranceCard.name,
+                        nameOnCard = insuranceCard.nameOnCard,
+                        number = insuranceCard.number
                     )
                 )
             } catch (e: Exception) {

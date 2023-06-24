@@ -5,6 +5,7 @@ import com.example.domain.entity.*
 import com.example.domain.entity.insuranceCard.InsuranceCardResponse
 import com.example.domain.entity.cart.CartResponse
 import com.example.domain.entity.insuranceCard.InsuranceCardPatchItem
+import com.example.domain.entity.insuranceCard.InsuranceCardSendRequest
 import com.example.domain.entity.insuranceCard.InsuranceCardX
 import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.patchRequestVar.ChangePassword
@@ -112,7 +113,7 @@ interface UserDataApiService {
         @Path("userId")
         userId: String,
         @Body
-        insuranceCard: InsuranceCardPatchItem
+        insuranceCard: InsuranceCardSendRequest
     ): PatchRequestResponse
 
     @PATCH("users/{userId}/profile")

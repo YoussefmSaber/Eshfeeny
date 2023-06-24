@@ -9,6 +9,7 @@ import com.example.data.utils.Constants
 import com.example.domain.entity.*
 import com.example.domain.entity.insuranceCard.InsuranceCardPatchItem
 import com.example.domain.entity.insuranceCard.InsuranceCardResponse
+import com.example.domain.entity.insuranceCard.InsuranceCardSendRequest
 import com.example.domain.entity.insuranceCard.InsuranceCardX
 import com.example.domain.entity.patchRequestVar.*
 import com.example.domain.entity.patchresponse.PatchRequestResponse
@@ -111,10 +112,14 @@ class UserRepoImpl(private val userDAO: UserDAO) {
 
     suspend fun addInsuranceCard(
         userId: String,
-        card: InsuranceCardPatchItem
+        insuranceCard: InsuranceCardPatchItem
     ) {
-        Log.d("Insurance Card", card.toString())
-        EshfeenyApiInstance.userApi.addInsuranceCard(userId, card)
+        Log.d("Insurance Card id", userId)
+        Log.d("Insurance Card", insuranceCard.toString())
+        EshfeenyApiInstance.userApi.addInsuranceCard(
+            userId,
+            InsuranceCardSendRequest(insuranceCard)
+        )
     }
 
     suspend fun updateUserData(
