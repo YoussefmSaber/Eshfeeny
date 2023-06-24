@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.data.local.db.user.UserDatabase
 import com.example.data.local.db.user.model.UserInfo
 import com.example.data.repository.UserRepoImpl
+import com.example.domain.entity.insuranceCard.InsuranceCardPatchItem
 import com.example.domain.entity.insuranceCard.InsuranceCardResponse
 import com.example.domain.entity.insuranceCard.InsuranceCardX
 import com.example.domain.entity.patchRequestVar.UpdateUserData
@@ -62,7 +63,15 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             try {
                 Log.d("Insurance Card", card.toString())
-                repository.addInsuranceCard(userId, card)
+                repository.addInsuranceCard(
+                    userId,
+                    InsuranceCardPatchItem(
+                        imageURL = card.imageURL,
+                        name = card.name,
+                        nameOnCard = card.nameOnCard,
+                        number = card.number
+                    )
+                )
             } catch (e: Exception) {
                 Log.e("InsuranceCard", "Error adding InsuranceCard" + e)
             }

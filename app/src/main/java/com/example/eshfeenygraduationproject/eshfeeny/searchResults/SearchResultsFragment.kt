@@ -62,7 +62,6 @@ class SearchResultsFragment : Fragment() {
             navigate2HomeFragment()
             settingSearch()
             productViewModel.getImageUrl(args.imageUrl)
-            Log.i("search Result", args.imageUrl)
             productViewModel.imageSearchResults.observe(viewLifecycleOwner) {
                 userViewModel.userData.observe(viewLifecycleOwner) { userData ->
                     if (userData.state != "guest") {

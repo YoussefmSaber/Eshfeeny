@@ -4,6 +4,7 @@ import com.example.data.local.db.user.model.UserInfo
 import com.example.domain.entity.*
 import com.example.domain.entity.insuranceCard.InsuranceCardResponse
 import com.example.domain.entity.cart.CartResponse
+import com.example.domain.entity.insuranceCard.InsuranceCardPatchItem
 import com.example.domain.entity.insuranceCard.InsuranceCardX
 import com.example.domain.entity.patchRequestVar.PatchString
 import com.example.domain.entity.patchRequestVar.ChangePassword
@@ -11,12 +12,15 @@ import com.example.domain.entity.patchRequestVar.UpdateUserData
 import com.example.domain.entity.patchRequestVar.UpdateUserGender
 import com.example.domain.entity.patchRequestVar.UpdateUserPassword
 import com.example.domain.entity.patchresponse.PatchRequestResponse
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.PATCH
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
 
 interface UserDataApiService {
@@ -108,7 +112,7 @@ interface UserDataApiService {
         @Path("userId")
         userId: String,
         @Body
-        card: InsuranceCardX
+        insuranceCard: InsuranceCardPatchItem
     ): PatchRequestResponse
 
     @PATCH("users/{userId}/profile")

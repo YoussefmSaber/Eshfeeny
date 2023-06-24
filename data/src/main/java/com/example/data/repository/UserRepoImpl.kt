@@ -5,12 +5,19 @@ import android.util.Log
 import com.example.data.local.db.user.UserDAO
 import com.example.data.local.db.user.model.UserInfo
 import com.example.data.remote.apis.EshfeenyApiInstance
+import com.example.data.utils.Constants
 import com.example.domain.entity.*
+import com.example.domain.entity.insuranceCard.InsuranceCardPatchItem
 import com.example.domain.entity.insuranceCard.InsuranceCardResponse
 import com.example.domain.entity.insuranceCard.InsuranceCardX
 import com.example.domain.entity.patchRequestVar.*
 import com.example.domain.entity.patchresponse.PatchRequestResponse
+import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Response
 
@@ -104,14 +111,10 @@ class UserRepoImpl(private val userDAO: UserDAO) {
 
     suspend fun addInsuranceCard(
         userId: String,
-        card: InsuranceCardX
+        card: InsuranceCardPatchItem
     ) {
-        try {
-            Log.d("Insurance Card", card.toString())
-            EshfeenyApiInstance.userApi.addInsuranceCard(userId, card)
-        } catch (e: Exception) {
-            Log.e("error insurance", e.toString())
-        }
+        Log.d("Insurance Card", card.toString())
+        EshfeenyApiInstance.userApi.addInsuranceCard(userId, card)
     }
 
     suspend fun updateUserData(

@@ -293,8 +293,9 @@ class ProductViewModel(
         viewModelScope.launch {
             try {
                 val res = repo.uploadImage(key, image)
-                if (res != null)
-                _imageResponseResult.value = res
+                if (res != null) {
+                    _imageResponseResult.value = res
+                }
                 Log.i("image Response", "${_imageResponseResult.value}")
             } catch (e: Exception) {
                 Log.i("Upload Image", "Error Sending The Image $e")
@@ -308,8 +309,9 @@ class ProductViewModel(
         viewModelScope.launch {
             try {
                 val res = repo.getImageData(imageUrl)
-                if (res != null)
-                _imageSearchResults.value = res
+                if (res != null) {
+                    _imageSearchResults.value = res
+                }
             } catch (e: Exception) {
                 Log.i("Upload Image", "Error Sending The Image $e")
             }

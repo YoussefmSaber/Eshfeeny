@@ -1,8 +1,8 @@
 package com.example.domain.entity.insuranceCard
 
-data class InsuranceCardX(
+data class InsuranceCardPatchItem(
+    val imageURL: String,
     val name: String,
-    val number: String,
     val nameOnCard: String,
-    val imageURL: String
+    val number: String
 )

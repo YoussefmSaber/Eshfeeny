@@ -14,6 +14,7 @@ import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentAddPhotoICBinding
 import com.example.eshfeenygraduationproject.databinding.FragmentAddRoshtaICBinding
 import com.example.eshfeenygraduationproject.eshfeeny.cameraBottomSheet.ImageBottomSheetFragment
+import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 
 class AddRoshtaICFragment : Fragment() {
     private var binding: FragmentAddRoshtaICBinding? = null
@@ -33,9 +34,9 @@ class AddRoshtaICFragment : Fragment() {
         binding?.addRoshtaPhoto?.setOnClickListener {
             val bottomSheet =
                 ImageBottomSheetFragment("addRoshta")
-            bottomSheet.onPhotoSelected = { photoUri, imageUrl ->
+            bottomSheet.onPhotoSelected = { imageUrl ->
                 // Set the selected photo to your ImageView or perform any other necessary actions
-                binding?.addRoshtaPhoto?.setImageURI(photoUri)
+                binding?.addRoshtaPhoto?.loadUrl(imageUrl)
                 binding?.saveButton?.setTextColor(Color.parseColor("#F5F5F5"))
                 binding?.saveButton?.setBackgroundColor(Color.parseColor("#0583F2"))
             }

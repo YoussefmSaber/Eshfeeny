@@ -42,7 +42,8 @@ class ImageBottomSheetFragment(private val imageFrom: String) : BottomSheetDialo
     private val REQUEST_IMAGE_CAPTURE = 100
     private val REQUEST_IMAGE_PICKER = 101
     private var binding: FragmentImageBottomSheetBinding? = null
-    var onPhotoSelected: ((Uri, String) -> Unit)? = null
+    var onPhotoSelected: ((String) -> Unit)? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -124,52 +125,81 @@ class ImageBottomSheetFragment(private val imageFrom: String) : BottomSheetDialo
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            val captureImageBitMap = data?.extras?.get("data") as Bitmap
-            val imgFile = saveBitmapToFile(captureImageBitMap)
-
+            val imgBitMap = data?.extras?.get("data") as Bitmap
+            val imgFile = saveBitmapToFile(imgBitMap)
             productViewModel.uploadImage(Constants.IMAGE_UPLOAD_KEY, imgFile)
-
             productViewModel.imageResponseResult.observe(viewLifecycleOwner) {
+                onPhotoSelected?.invoke(it.data.url)
                 val searchResultAction = when (imageFrom) {
-                    "home" -> HomeFragmentDirections.actionHomeFragment2ToSearchResultsFragment(it.data.url)
-                    "category" -> ProductCategoryFragmentDirections.actionMedicineCategoryFragmentToSearchResultsFragment(it.data.url)
-                    "brandItems" -> BrandItemsFragmentDirections.actionBrandItemsFragmentToSearchResultsFragment(it.data.url)
-                    "brands"-> BrandsFragmentDirections.actionBrandsFragmentToSearchResultsFragment(it.data.url)
+                    "home" -> HomeFragmentDirections.actionHomeFragment2ToSearchResultsFragment(
+                            it.data.url
+                        )
+
+                    "category" -> ProductCategoryFragmentDirections.actionMedicineCategoryFragmentToSearchResultsFragment(
+                            it.data.url
+                        )
+
+                    "brandItems" -> BrandItemsFragmentDirections.actionBrandItemsFragmentToSearchResultsFragment(
+                            it.data.url
+                        )
+
+                    "brands" -> BrandsFragmentDirections.actionBrandsFragmentToSearchResultsFragment(
+                            it.data.url
+                        )
+
+                    "search" -> SearchResultsFragmentDirections.actionSearchResultsFragmentSelf(it.data.url)
+
                     else -> SearchResultsFragmentDirections.actionSearchResultsFragmentSelf(it.data.url)
                 }
                 findNavController().navigate(searchResultAction)
             }
-            Log.i("Image Capture", "Image Taken Successfully")
         } else if (requestCode == REQUEST_IMAGE_PICKER && resultCode == Activity.RESULT_OK) {
             val imageUri = data?.data
-            val inputStream = imageUri?.let { requireContext().contentResolver.openInputStream(it) }
-            val file = File(context?.cacheDir, "selected_image.png")
-            val outputStream = FileOutputStream(file)
 
-            inputStream?.use { input ->
-                outputStream.use { output ->
-                    input.copyTo(output)
-                }
-            }
+            if (imageUri != null) {
+                val file = saveImageToFile(imageUri)
+                productViewModel.uploadImage(Constants.IMAGE_UPLOAD_KEY, file)
+                productViewModel.imageResponseResult.observe(viewLifecycleOwner) {
+                    onPhotoSelected?.invoke(it.data.url)
+                    val searchResultAction = when (imageFrom) {
+                        "home" -> HomeFragmentDirections.actionHomeFragment2ToSearchResultsFragment(
+                            it.data.url
+                        )
 
-            productViewModel.uploadImage(Constants.IMAGE_UPLOAD_KEY, file)
-            productViewModel.imageResponseResult.observe(viewLifecycleOwner) {
-                if (imageUri != null) {
-                    onPhotoSelected?.invoke(imageUri, it.data.url)
+                        "category" -> ProductCategoryFragmentDirections.actionMedicineCategoryFragmentToSearchResultsFragment(
+                            it.data.url
+                        )
+
+                        "brandItems" -> BrandItemsFragmentDirections.actionBrandItemsFragmentToSearchResultsFragment(
+                            it.data.url
+                        )
+
+                        "brands" -> BrandsFragmentDirections.actionBrandsFragmentToSearchResultsFragment(
+                            it.data.url
+                        )
+
+                        else -> SearchResultsFragmentDirections.actionSearchResultsFragmentSelf(it.data.url)
+                    }
+                    findNavController().navigate(searchResultAction)
                 }
-                val searchResultAction = when (imageFrom) {
-                    "home" -> HomeFragmentDirections.actionHomeFragment2ToSearchResultsFragment(it.data.url)
-                    "category" -> ProductCategoryFragmentDirections.actionMedicineCategoryFragmentToSearchResultsFragment(it.data.url)
-                    "brandItems" -> BrandItemsFragmentDirections.actionBrandItemsFragmentToSearchResultsFragment(it.data.url)
-                    "brands"-> BrandsFragmentDirections.actionBrandsFragmentToSearchResultsFragment(it.data.url)
-                    else -> SearchResultsFragmentDirections.actionSearchResultsFragmentSelf(it.data.url)
-                }
-                findNavController().navigate(searchResultAction)
             }
 
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
+    }
+
+    private fun saveImageToFile(image: Uri): File {
+        val inputStream = image.let { requireContext().contentResolver.openInputStream(it) }
+        val file = File(context?.cacheDir, "selected_image.png")
+        val outputStream = FileOutputStream(file)
+
+        inputStream?.use { input ->
+            outputStream.use { output ->
+                input.copyTo(output)
+            }
+        }
+        return file
     }
 
     private fun saveBitmapToFile(bitmap: Bitmap): File {

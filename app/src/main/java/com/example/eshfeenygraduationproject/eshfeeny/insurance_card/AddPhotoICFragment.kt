@@ -1,12 +1,6 @@
 package com.example.eshfeenygraduationproject.eshfeeny.insurance_card
 
-import android.app.Activity
-import android.content.ContentValues
-import android.content.Intent
-import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +14,7 @@ import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentAddPhotoICBinding
 import com.example.eshfeenygraduationproject.eshfeeny.cameraBottomSheet.ImageBottomSheetFragment
 import com.example.eshfeenygraduationproject.eshfeeny.publicViewModel.viewModel.UserViewModel
+import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 
 
 class AddPhotoICFragment : Fragment() {
@@ -42,30 +37,41 @@ class AddPhotoICFragment : Fragment() {
 
         binding?.addPhotoICid?.setOnClickListener {
             val bottomSheet = ImageBottomSheetFragment("insuranceCard")
-            bottomSheet.onPhotoSelected = { imgUri, imgUrl ->
-                binding?.addPhotoICid?.setImageURI(imgUri)
+            bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
+            bottomSheet.onPhotoSelected = { imgUrl ->
+                binding?.addPhotoICid?.loadUrl(imgUrl)
                 binding?.ReUploadCardId?.visibility = View.VISIBLE
                 imageUrl = imgUrl
             }
-            bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
         }
 
         binding?.ReUploadCardId?.setOnClickListener {
             val bottomSheet = ImageBottomSheetFragment("insuranceCard")
-            bottomSheet.onPhotoSelected = { imgUri, imgUrl ->
-                binding?.addPhotoICid?.setImageURI(imgUri)
+            bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
+            bottomSheet.onPhotoSelected = { imgUrl ->
+                binding?.addPhotoICid?.loadUrl(imgUrl)
                 binding?.ReUploadCardId?.visibility = View.VISIBLE
                 imageUrl = imgUrl
             }
-            bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
         }
+
         binding?.addCartExistsBtn?.setOnClickListener {
             userViewModel.userData.observe(viewLifecycleOwner) { userData ->
                 userId = userData._id.toString()
                 val userCard =
-                    InsuranceCardX(imageUrl, args.InsuranceCardName, args.cardName, args.cardNumber)
+                    InsuranceCardX(
+                        name = args.InsuranceCardName,
+                        number = args.cardNumber,
+                        nameOnCard = args.cardName,
+                        imageURL = imageUrl
+                    )
                 Log.d("Insurance Card", userCard.toString())
                 userViewModel.addInsuranceCard(userId, userCard)
+                val action =
+                    AddPhotoICFragmentDirections.actionAddPhotoICFragmentToCartExistsFragment(
+                        args.InsuranceCardName
+                    )
+                findNavController().navigate(action)
             }
         }
         return binding?.root

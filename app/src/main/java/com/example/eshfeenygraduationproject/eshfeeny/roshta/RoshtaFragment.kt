@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.databinding.FragmentRoshtaBinding
 import com.example.eshfeenygraduationproject.eshfeeny.cameraBottomSheet.ImageBottomSheetFragment
+import com.example.eshfeenygraduationproject.eshfeeny.util.loadUrl
 
 
 class RoshtaFragment : Fragment() {
@@ -27,10 +28,9 @@ class RoshtaFragment : Fragment() {
         binding?.addRoshtaPhoto?.setOnClickListener {
             val bottomSheet =
                 ImageBottomSheetFragment("roshta")
-            bottomSheet.onPhotoSelected = { photoUri, imageUrl ->
-                selectedPhotoUri = photoUri
+            bottomSheet.onPhotoSelected = { imageUrl ->
                 // Set the selected photo to your ImageView or perform any other necessary actions
-                binding?.addRoshtaPhoto?.setImageURI(photoUri)
+                binding?.addRoshtaPhoto?.loadUrl(imageUrl)
                 binding?.clearBtnId?.visibility = View.VISIBLE
                 imgUrl = imageUrl
                 binding?.btnNext?.isEnabled = true

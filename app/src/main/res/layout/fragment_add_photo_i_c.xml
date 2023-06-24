@@ -10,10 +10,14 @@
 
     <ImageView
         android:id="@+id/addPhotoICid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="150sp"
+        android:layout_marginHorizontal="16sp"
         android:layout_marginTop="16dp"
         android:clickable="true"
+        android:maxHeight="250sp"
+        android:minWidth="200sp"
+        android:minHeight="200sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -58,8 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tVaddInfoCard"
-         />
+        app:layout_constraintTop_toBottomOf="@+id/tVaddInfoCard" />
 
     <Button
         android:id="@+id/add_CartExists_Btn"
@@ -96,7 +99,7 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="16dp"
         android:text="إعادة رفع صورة الكارت "
         android:textColor="#0583F2"
         android:textSize="18sp"
@@ -105,19 +108,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uploadPhotoId"
+        app:layout_constraintTop_toBottomOf="@+id/addPhotoICid"
         app:rippleColor="#0583F2"
         app:strokeColor="#0583F2" />
-
-    <ImageView
-        android:id="@+id/uploadPhotoId"
-        android:layout_width="381dp"
-        android:layout_height="199dp"
-        android:layout_marginTop="16dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
-         />
 </androidx.constraintlayout.widget.ConstraintLayout>
