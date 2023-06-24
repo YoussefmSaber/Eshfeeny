@@ -38,6 +38,16 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
+                R.id.mapsFragment -> {
+                    navController.navigate(R.id.mapsFragment)
+                    true
+                }
+
+                R.id.toFavoriteFragment -> {
+                    navController.navigate(R.id.toFavoriteFragment)
+                    true
+                }
+
                 else -> false
             }
         }
