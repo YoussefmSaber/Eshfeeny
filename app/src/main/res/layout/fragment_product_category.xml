@@ -34,7 +34,7 @@
             android:id="@+id/medicineRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="180sp"
+            android:layout_marginTop="190sp"
             android:layoutDirection="rtl"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
