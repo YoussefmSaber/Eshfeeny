@@ -63,19 +63,15 @@ class AlarmFragment : Fragment() {
             viewModel.getAlarm(userId)
             viewModel.alarms.observe(viewLifecycleOwner) { listAlarm ->
                 val availableAlarms: MutableList<Alarm> = mutableListOf()
-                if (listAlarm.isEmpty()) {
-                    Log.d("Alarm", listAlarm.toString())
-                } else {
-                    Log.d("Alarm Test", listAlarm.toString())
-                    listAlarm.forEach { alarm ->
-                        val start = alarm.startDate.toLong()
-                        val end = alarm.endDate.toLong()
+                if (listAlarm.isNotEmpty()) {
+                    listAlarm.forEach { dayAlarms ->
+                        val start = dayAlarms.startDate.toLong()
+                        val end = dayAlarms.endDate.toLong()
 
                         if (selectedDayInMilli in start..end) {
-                            Log.d("Alarm", "$alarm $selectedDayInMilli")
                             binding?.alarmRecyclerView?.visibility = View.VISIBLE
                             binding?.noAlarms?.visibility = View.GONE
-                            availableAlarms.add(alarm)
+                            availableAlarms.add(dayAlarms)
                         } else {
                             binding?.alarmRecyclerView?.visibility = View.GONE
                             binding?.noAlarms?.visibility = View.VISIBLE

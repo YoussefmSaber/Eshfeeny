@@ -31,16 +31,18 @@ class AlarmAdapter : ListAdapter<Alarm, AlarmAdapter.ViewHolder>(AlarmDiffCallba
 
         fun bind(alarm: Alarm) {
             // Bind alarm data to the view
-            val pattern = "hh:mm a" // Desired time format
-            val sdf = SimpleDateFormat(pattern, Locale.getDefault())
-            val formattedTime = sdf.format(Date(alarm.alarmTime[0]))
-            itemBinding.timeTextView.text = formattedTime
-            itemBinding.MedicineNameTextView.text = alarm.name
-            itemBinding.MedicineDescTextView.text = alarm.notes
+            if (alarm.alarmTime.isNotEmpty()) {
+                val pattern = "hh:mm a" // Desired time format
+                val sdf = SimpleDateFormat(pattern, Locale.getDefault())
+                val formattedTime = sdf.format(Date(alarm.alarmTime[0]))
+                itemBinding.timeTextView.text = formattedTime
+                itemBinding.MedicineNameTextView.text = alarm.name
+                itemBinding.MedicineDescTextView.text = alarm.notes
 
-            itemBinding.cardVew.setOnClickListener {
-                val action = AlarmFragmentDirections.actionAlarmFragmentToEditAlarmFragment(alarm)
-                it.findNavController().navigate(action)
+                itemBinding.cardVew.setOnClickListener {
+                    val action = AlarmFragmentDirections.actionAlarmFragmentToEditAlarmFragment(alarm)
+                    it.findNavController().navigate(action)
+                }
             }
         }
     }
