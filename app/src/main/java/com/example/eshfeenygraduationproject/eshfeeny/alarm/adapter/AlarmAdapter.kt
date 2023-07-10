@@ -32,10 +32,20 @@ class AlarmAdapter : ListAdapter<Alarm, AlarmAdapter.ViewHolder>(AlarmDiffCallba
         fun bind(alarm: Alarm) {
             // Bind alarm data to the view
             if (alarm.alarmTime.isNotEmpty()) {
+                val currentTime = System.currentTimeMillis()
+
                 val pattern = "hh:mm a" // Desired time format
                 val sdf = SimpleDateFormat(pattern, Locale.getDefault())
-                val formattedTime = sdf.format(Date(alarm.alarmTime[0]))
-                itemBinding.timeTextView.text = formattedTime
+                // Find the next alarm time that hasn't passed
+                val nextAlarmTime = alarm.alarmTime.firstOrNull { it > currentTime }
+
+                if (nextAlarmTime != null) {
+                    val formattedTime = sdf.format(Date(nextAlarmTime))
+                    itemBinding.timeTextView.text = formattedTime
+                } else {
+                    val formattedTime = sdf.format(Date(alarm.alarmTime[alarm.alarmTime.lastIndex]))
+                    itemBinding.timeTextView.text = formattedTime
+                }
                 itemBinding.MedicineNameTextView.text = alarm.name
                 itemBinding.MedicineDescTextView.text = alarm.notes
 

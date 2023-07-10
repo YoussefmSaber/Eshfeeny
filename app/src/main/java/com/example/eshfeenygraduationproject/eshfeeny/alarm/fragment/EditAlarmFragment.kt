@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -313,13 +312,12 @@ class EditAlarmFragment : Fragment() {
 
     fun onTimeSelected(timeString: String, timeMillis: Long) {
         alarmTime.add(timeMillis)
-        Log.d("alarm", alarmTime.toString())
-        val newChip = createChip(timeString)
+        val newChip = createChip(timeString, alarmTime, timeMillis)
         // adding the chip to the chipGroup
         binding?.alarmChipsGroup?.addView(newChip)
     }
 
-    private fun createChip(time: String): Chip {
+    private fun createChip(time: String, alarmTime: MutableList<Long>, timeMillis: Long): Chip {
         // creating a chip variable and setting the text of the chip to the time
         val chip = Chip(context)
         chip.text = time
@@ -358,6 +356,7 @@ class EditAlarmFragment : Fragment() {
         // setting a click listener on the close icon to remove the chip from the group
         chip.setOnCloseIconClickListener {
             binding?.alarmChipsGroup?.removeView(it)
+            alarmTime.remove(timeMillis)
         }
         return chip
     }
