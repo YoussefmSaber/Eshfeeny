@@ -28,21 +28,25 @@ class RoshtaFragment : Fragment() {
         binding?.addRoshtaPhoto?.setOnClickListener {
             val bottomSheet =
                 ImageBottomSheetFragment("roshta")
+            bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
             bottomSheet.onPhotoSelected = { imageUrl ->
                 // Set the selected photo to your ImageView or perform any other necessary actions
-                binding?.addRoshtaPhoto?.loadUrl(imageUrl)
+                binding?.roshitaImageView?.loadUrl(imageUrl)
+                bottomSheet.dismiss()
+                binding?.roshitaImageView?.visibility = View.VISIBLE
                 binding?.clearBtnId?.visibility = View.VISIBLE
+                binding?.AddRoshetaLayout?.visibility = View.GONE
                 imgUrl = imageUrl
                 binding?.btnNext?.isEnabled = true
             }
-            bottomSheet.show(childFragmentManager, "ImageBottomSheetFragment")
         }
 
         binding?.clearBtnId?.setOnClickListener {
-            binding?.addRoshtaPhoto?.setImageResource(R.drawable.add3)
             imgUrl = ""
             binding?.btnNext?.isEnabled = false
-            it.visibility = View.GONE
+            binding?.roshitaImageView?.visibility = View.GONE
+            binding?.clearBtnId?.visibility = View.GONE
+            binding?.AddRoshetaLayout?.visibility = View.VISIBLE
         }
 
         binding?.btnNext?.setOnClickListener {

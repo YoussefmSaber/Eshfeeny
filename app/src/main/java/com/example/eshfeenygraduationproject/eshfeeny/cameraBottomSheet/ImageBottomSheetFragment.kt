@@ -161,6 +161,7 @@ class ImageBottomSheetFragment(private val imageFrom: String) : BottomSheetDialo
                 productViewModel.uploadImage(Constants.IMAGE_UPLOAD_KEY, file)
                 productViewModel.imageResponseResult.observe(viewLifecycleOwner) {
                     onPhotoSelected?.invoke(it.data.url)
+                    Log.d("Image", it.data.url)
                     val searchResultAction = when (imageFrom) {
                         "home" -> HomeFragmentDirections.actionHomeFragment2ToSearchResultsFragment(
                             it.data.url
