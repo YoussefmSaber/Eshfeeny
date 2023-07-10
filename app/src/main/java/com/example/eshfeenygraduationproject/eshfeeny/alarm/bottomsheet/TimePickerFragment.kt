@@ -35,10 +35,10 @@ class TimePickerFragment(private val alarmState: String) : BottomSheetDialogFrag
             // getting an instance of the calender to get the hour and minute
             val selectedTime = Calendar.getInstance()
             hour?.let {
-                selectedTime.set(Calendar.HOUR_OF_DAY, hour)
+                selectedTime.set(Calendar.HOUR_OF_DAY, it)
             }
             minute?.let {
-                selectedTime.set(Calendar.MINUTE, minute)
+                selectedTime.set(Calendar.MINUTE, it)
             }
             selectedTime.set(Calendar.SECOND, 0)
             selectedTime.set(Calendar.MILLISECOND, 0)

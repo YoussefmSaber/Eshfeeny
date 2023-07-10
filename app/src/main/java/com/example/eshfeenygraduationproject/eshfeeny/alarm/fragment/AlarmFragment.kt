@@ -67,7 +67,6 @@ class AlarmFragment : Fragment() {
                     listAlarm.forEach { dayAlarms ->
                         val start = dayAlarms.startDate.toLong()
                         val end = dayAlarms.endDate.toLong()
-
                         if (selectedDayInMilli in start..end) {
                             binding?.alarmRecyclerView?.visibility = View.VISIBLE
                             binding?.noAlarms?.visibility = View.GONE

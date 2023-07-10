@@ -135,7 +135,13 @@ class SetAlarmFragment : Fragment() {
             putExtra(titleExtra, alarmName)
             putExtra(descExtra, alarmNote)
         }
-        val startDate = System.currentTimeMillis()
+
+        val _calendar = Calendar.getInstance()
+        _calendar.set(Calendar.HOUR_OF_DAY, 0)
+        _calendar.set(Calendar.MINUTE, 0)
+        _calendar.set(Calendar.SECOND, 0)
+        _calendar.set(Calendar.MILLISECOND, 0)
+        val startDate = _calendar.timeInMillis
         var endDate = ""
 
         val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager

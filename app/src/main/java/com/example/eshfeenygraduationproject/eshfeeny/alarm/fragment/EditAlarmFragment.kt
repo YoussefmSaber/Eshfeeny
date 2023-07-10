@@ -56,13 +56,22 @@ class EditAlarmFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentEditAlarmBinding.inflate(inflater)
+
         initializeViewModels()
         settingAlarmValues()
         createNotificationChannel()
         buttonsClickListeners()
         setDataToUI()
+        deleteAlarm()
 
         return binding?.root
+    }
+
+    private fun deleteAlarm() {
+        binding?.deleteAlarmButton?.setOnClickListener {
+            viewModel.deleteAlarm(userId, args.alarm._id)
+            findNavController().navigate(R.id.action_editAlarmFragment_to_alarmFragment)
+        }
     }
 
     private fun setDataToUI() {
@@ -121,7 +130,13 @@ class EditAlarmFragment : Fragment() {
             putExtra(titleExtra, alarmName)
             putExtra(descExtra, alarmNote)
         }
-        val startDate = System.currentTimeMillis()
+
+        val _calendar = Calendar.getInstance()
+        _calendar.set(Calendar.HOUR_OF_DAY, 0)
+        _calendar.set(Calendar.MINUTE, 0)
+        _calendar.set(Calendar.SECOND, 0)
+        _calendar.set(Calendar.MILLISECOND, 0)
+        val startDate = _calendar.timeInMillis
         var endDate = ""
 
         val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -216,7 +231,7 @@ class EditAlarmFragment : Fragment() {
             alarmTime,
             binding?.repetitionNumber?.text.toString()
         )
-        findNavController().navigate(R.id.action_setAlarmFragment_to_alarmFragment)
+        findNavController().navigate(R.id.action_editAlarmFragment_to_alarmFragment)
     }
 
     private fun updateAlarmToServer(
