@@ -123,6 +123,10 @@ class EditAlarmFragment : Fragment() {
 
     private fun setAlarm() {
         val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
         val alarmName = binding?.medcienNameInput?.text.toString()
         val alarmNote = binding?.DescriptionInput?.text.toString()
         val intent = Intent(requireContext().applicationContext, AlarmReceiver::class.java).apply {
@@ -130,12 +134,7 @@ class EditAlarmFragment : Fragment() {
             putExtra(descExtra, alarmNote)
         }
 
-        val _calendar = Calendar.getInstance()
-        _calendar.set(Calendar.HOUR_OF_DAY, 0)
-        _calendar.set(Calendar.MINUTE, 0)
-        _calendar.set(Calendar.SECOND, 0)
-        _calendar.set(Calendar.MILLISECOND, 0)
-        val startDate = _calendar.timeInMillis
+        val startDate = calendar.timeInMillis
         var endDate = ""
 
         val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -173,7 +172,7 @@ class EditAlarmFragment : Fragment() {
 
                 calendar.add(Calendar.DAY_OF_MONTH, 1)
                 val endData =
-                    System.currentTimeMillis() + TimeUnit.DAYS.toMillis(alarmDuration.toLong())
+                    System.currentTimeMillis() + TimeUnit.DAYS.toMillis((alarmDuration - 1).toLong())
                 endDate = endData.toString()
                 alarmTime.forEach {
 
@@ -218,12 +217,14 @@ class EditAlarmFragment : Fragment() {
 
             getString(R.string.repetition_day_and_day) -> {
                 val intervalDays = 2
+                val alarmDateList = mutableListOf<String>()
+                alarmDateList.add(calendar.timeInMillis.toString())
                 calendar.add(Calendar.DAY_OF_MONTH, intervalDays)
 
-                val endData = System.currentTimeMillis() + TimeUnit.DAYS.toMillis((alarmDuration * 2).toLong())
+                val endData =
+                    System.currentTimeMillis() + TimeUnit.DAYS.toMillis(((alarmDuration - 1) * 2).toLong())
                 endDate = endData.toString()
 
-                val alarmDateList = mutableListOf<String>()
                 val alarmTimeList = mutableListOf<Long>()
 
                 // Generate alarm dates
