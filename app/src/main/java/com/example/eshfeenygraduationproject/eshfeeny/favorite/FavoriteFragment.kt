@@ -79,7 +79,6 @@ class FavoriteFragment : Fragment() {
             } else {
                 showLoadingDialog()
             }
-
         }
         return binding?.root
     }

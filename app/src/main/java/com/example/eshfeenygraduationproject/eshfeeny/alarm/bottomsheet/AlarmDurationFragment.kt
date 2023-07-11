@@ -26,14 +26,27 @@ class AlarmDurationFragment(private val alarmState: String) : BottomSheetDialogF
             this.durationConfButton.setOnClickListener {
                 when (alarmState) {
                     "set" -> {
-                        val parentFragment = parentFragment as SetAlarmFragment
-                        parentFragment.alarmDuration(this.durationInputText.text.toString().toInt())
-                        dismiss()
+                        if (this.durationInputText.length() == 0) {
+                            this.durationInputText.error = "الرجاء ادخال مدة"
+                        } else {
+                            val parentFragment = parentFragment as SetAlarmFragment
+                            parentFragment.alarmDuration(
+                                this.durationInputText.text.toString().toInt()
+                            )
+                            dismiss()
+                        }
                     }
+
                     "edit" -> {
-                        val parentFragment = parentFragment as EditAlarmFragment
-                        parentFragment.alarmDuration(this.durationInputText.text.toString().toInt())
-                        dismiss()
+                        if (this.durationInputText.length() == 0) {
+                            this.durationInputText.error = "الرجاء ادخال مدة"
+                        } else {
+                            val parentFragment = parentFragment as EditAlarmFragment
+                            parentFragment.alarmDuration(
+                                this.durationInputText.text.toString().toInt()
+                            )
+                            dismiss()
+                        }
                     }
                 }
 

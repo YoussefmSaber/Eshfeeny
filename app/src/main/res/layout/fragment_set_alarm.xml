@@ -50,6 +50,7 @@
         app:boxStrokeColor="@color/input_layout_stroke_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:errorEnabled="true"
         app:layout_constraintTop_toBottomOf="@+id/BackArrow">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -68,12 +69,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16sp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:hint="ملحوظات"
         android:layoutDirection="rtl"
         android:textColorHint="@color/grey_font"
         android:textDirection="rtl"
         android:theme="@style/EditTextTheme"
+        app:errorEnabled="true"
         app:boxStrokeColor="@color/input_layout_stroke_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +96,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="1dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"

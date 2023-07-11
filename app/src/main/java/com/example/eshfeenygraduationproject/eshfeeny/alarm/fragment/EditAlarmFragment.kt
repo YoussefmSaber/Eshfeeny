@@ -1,12 +1,15 @@
 package com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment
 
 import android.app.AlarmManager
+import android.app.Dialog
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.TypedValue
 import androidx.fragment.app.Fragment
@@ -43,6 +46,7 @@ class EditAlarmFragment : Fragment() {
     private var alarmTime: MutableList<Long> = mutableListOf()
     private var alarmDuration = 0
     private var dose = 1
+    private var loadingDialog: Dialog? = null
     private lateinit var repetitionState: String
     private lateinit var userId: String
     private lateinit var viewModel: AlarmViewModel
@@ -87,9 +91,23 @@ class EditAlarmFragment : Fragment() {
         }
     }
 
+    private fun showLoadingDialog() {
+        if (loadingDialog == null) {
+            loadingDialog = Dialog(requireContext())
+            loadingDialog!!.setContentView(R.layout.alarm_warning)
+            loadingDialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            loadingDialog!!.setCancelable(true)
+        }
+        loadingDialog!!.show()
+    }
+
     private fun buttonsClickListeners() {
         binding?.confButtonAlarm?.setOnClickListener {
-            setAlarm()
+            if (elementNotFilled()){
+                showLoadingDialog()
+            } else {
+                setAlarm()
+            }
         }
 
         binding?.BackArrow?.setOnClickListener {
@@ -119,6 +137,19 @@ class EditAlarmFragment : Fragment() {
                 binding?.repetitionNumber?.text = dose.toString()
             }
         }
+    }
+
+    private fun elementNotFilled(): Boolean {
+        val nameState = binding?.medcienNameInput?.text?.length == 0
+        val noteState = binding?.DescriptionInput?.text?.length == 0
+        val alarmState = binding?.alarmChipsGroup?.childCount == 1
+
+        if (repetitionState != getString(R.string.repetition_only_today)) {
+            val durationState = alarmDuration == 0
+            return nameState || noteState || alarmState || durationState
+        }
+
+        return nameState || noteState || alarmState
     }
 
     private fun setAlarm() {

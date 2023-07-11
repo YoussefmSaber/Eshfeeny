@@ -1,6 +1,7 @@
 package com.example.eshfeenygraduationproject.eshfeeny.alarm.fragment
 
 import android.app.AlarmManager
+import android.app.Dialog
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -8,6 +9,8 @@ import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
@@ -47,6 +50,7 @@ class SetAlarmFragment : Fragment() {
     private var alarmDuration: Int = 0
     private lateinit var userId: String
     private lateinit var viewModel: AlarmViewModel
+    private var loadingDialog: Dialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +69,11 @@ class SetAlarmFragment : Fragment() {
         createNotificationChannel()
 
         binding?.confButtonAlarm?.setOnClickListener {
-            setAlarm()
+            if (dataNotFilled()) {
+                showLoadingDialog()
+            } else {
+                setAlarm()
+            }
         }
 
         binding?.BackArrow?.setOnClickListener {
@@ -101,6 +109,29 @@ class SetAlarmFragment : Fragment() {
         return binding?.root
     }
 
+    private fun dataNotFilled(): Boolean {
+        val nameState = binding?.medcienNameInput?.text?.length == 0
+        val noteState = binding?.DescriptionInput?.text?.length == 0
+        val alarmState = binding?.alarmChipsGroup?.childCount == 1
+
+        if (repetitionState != getString(R.string.repetition_only_today)) {
+            val durationState = alarmDuration == 0
+            return nameState || noteState || alarmState || durationState
+        }
+
+        return nameState || noteState || alarmState
+    }
+
+    private fun showLoadingDialog() {
+        if (loadingDialog == null) {
+            loadingDialog = Dialog(requireContext())
+            loadingDialog!!.setContentView(R.layout.alarm_warning)
+            loadingDialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            loadingDialog!!.setCancelable(true)
+        }
+        loadingDialog!!.show()
+    }
+
     private fun initializeViewModels() {
         val userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         val alarmRepo = AlarmRepoImpl()
@@ -108,7 +139,6 @@ class SetAlarmFragment : Fragment() {
         viewModel = ViewModelProvider(this, alarmViewModelFactory)[AlarmViewModel::class.java]
         getUserId(userViewModel)
     }
-
 
     private fun getUserId(userViewModel: UserViewModel) {
         userViewModel.userData.observe(viewLifecycleOwner) { userData ->
