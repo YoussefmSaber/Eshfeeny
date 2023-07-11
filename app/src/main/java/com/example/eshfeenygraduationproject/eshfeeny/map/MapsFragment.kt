@@ -94,7 +94,6 @@ class MapsFragment : Fragment() {
             }
         } else {
             if (args.listProducts != null) {
-                Log.d("Map", args.dataFrom + " " + args.listProducts.toString())
                 viewModel.availablePharmacies(args.listProducts!!)
             }
         }
@@ -103,7 +102,6 @@ class MapsFragment : Fragment() {
             // Clear all the markers from the map
 
             pharmacyResponse.forEach { pharmacy ->
-                Log.d("pharmacy data", pharmacy.name)
                 val marker = googleMap.addMarker(
                     MarkerOptions()
                         .position(LatLng(pharmacy.geoLocation.lat, pharmacy.geoLocation.lng))

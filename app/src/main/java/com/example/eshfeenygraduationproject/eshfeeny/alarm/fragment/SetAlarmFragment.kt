@@ -129,6 +129,10 @@ class SetAlarmFragment : Fragment() {
 
     private fun setAlarm() {
         val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
         val alarmName = binding?.medcienNameInput?.text.toString()
         val alarmNote = binding?.DescriptionInput?.text.toString()
         val intent = Intent(requireContext().applicationContext, AlarmReceiver::class.java).apply {
@@ -136,12 +140,7 @@ class SetAlarmFragment : Fragment() {
             putExtra(descExtra, alarmNote)
         }
 
-        val _calendar = Calendar.getInstance()
-        _calendar.set(Calendar.HOUR_OF_DAY, 0)
-        _calendar.set(Calendar.MINUTE, 0)
-        _calendar.set(Calendar.SECOND, 0)
-        _calendar.set(Calendar.MILLISECOND, 0)
-        val startDate = _calendar.timeInMillis
+        val startDate = calendar.timeInMillis
         var endDate = ""
 
         val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -160,13 +159,24 @@ class SetAlarmFragment : Fragment() {
                         )
                     )
                 }
+                viewModel.sendAlarm(
+                    userId, AlarmPatchRequest(
+                        alarmName,
+                        alarmNote,
+                        binding?.repetitionNumber?.text.toString().toInt(),
+                        repetitionState,
+                        alarmTime,
+                        startDate.toString(),
+                        endDate
+                    )
+                )
             }
 
             getString(R.string.repetition_every_day) -> {
 
                 calendar.add(Calendar.DAY_OF_MONTH, 1)
                 val endData =
-                    System.currentTimeMillis() + TimeUnit.DAYS.toMillis(alarmDuration.toLong())
+                    System.currentTimeMillis() + TimeUnit.DAYS.toMillis((alarmDuration - 1).toLong())
                 endDate = endData.toString()
                 alarmTime.forEach {
 
@@ -193,18 +203,54 @@ class SetAlarmFragment : Fragment() {
                         )
                     )
                 }
+
+                viewModel.sendAlarm(
+                    userId, AlarmPatchRequest(
+                        alarmName,
+                        alarmNote,
+                        binding?.repetitionNumber?.text.toString().toInt(),
+                        repetitionState,
+                        alarmTime,
+                        startDate.toString(),
+                        endDate
+                    )
+                )
             }
 
             getString(R.string.repetition_day_and_day) -> {
-                calendar.add(Calendar.DAY_OF_MONTH, 2)
+                val intervalDays = 2
+                val alarmDateList = mutableListOf<String>()
+                alarmDateList.add(calendar.timeInMillis.toString())
+                calendar.add(Calendar.DAY_OF_MONTH, intervalDays)
+
                 val endData =
-                    System.currentTimeMillis() + TimeUnit.DAYS.toMillis(alarmDuration.toLong())
+                    System.currentTimeMillis() + TimeUnit.DAYS.toMillis(((alarmDuration - 1) * 2).toLong())
                 endDate = endData.toString()
-                alarmTime.forEach {
+
+                val alarmTimeList = mutableListOf<Long>()
+
+                // Generate alarm dates
+                val currentDateTime = calendar.timeInMillis
+
+                var alarmDateTime = currentDateTime
+                while (alarmDateTime <= endData) {
+                    alarmDateList.add(alarmDateTime.toString())
+                    alarmDateTime += TimeUnit.DAYS.toMillis(intervalDays.toLong())
+                }
+
+                // Generate alarm times
+                alarmDateList.forEach { date ->
+                    alarmTime.forEach { time ->
+                        val dateTime = date.toLong() + time
+                        alarmTimeList.add(dateTime)
+                    }
+                }
+
+                alarmTimeList.forEach {
                     alarmManager.setRepeating(
                         AlarmManager.RTC_WAKEUP,
                         it,
-                        calendar.timeInMillis,
+                        TimeUnit.DAYS.toMillis(intervalDays.toLong()),
                         PendingIntent.getBroadcast(
                             requireContext(),
                             it.hashCode(),
@@ -224,41 +270,23 @@ class SetAlarmFragment : Fragment() {
                         )
                     )
                 }
+
+                viewModel.sendAlarm(
+                    userId, AlarmPatchRequest(
+                        alarmName,
+                        alarmNote,
+                        binding?.repetitionNumber?.text.toString().toInt(),
+                        repetitionState,
+                        alarmTime,
+                        startDate.toString(),
+                        endDate,
+                        alarmDateList
+                    )
+                )
             }
         }
 
-        sendAlarmToServer(
-            repetitionState,
-            alarmName,
-            alarmNote,
-            startDate.toString(),
-            endDate,
-            alarmTime,
-            binding?.repetitionNumber?.text.toString()
-        )
         findNavController().navigate(R.id.action_setAlarmFragment_to_alarmFragment)
-    }
-
-    private fun sendAlarmToServer(
-        repetitionState: String,
-        alarmName: String,
-        alarmNote: String,
-        startDate: String,
-        endDate: String,
-        alarmTime: MutableList<Long>,
-        dose: String
-    ) {
-        viewModel.sendAlarm(
-            userId, AlarmPatchRequest(
-                alarmName,
-                alarmNote,
-                dose.toInt(),
-                repetitionState,
-                alarmTime,
-                startDate,
-                endDate
-            )
-        )
     }
 
     override fun onDestroy() {

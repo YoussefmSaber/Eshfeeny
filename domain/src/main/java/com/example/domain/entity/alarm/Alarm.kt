@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class Alarm(
     val _id: String,
     val alarmTime: List<Long>,
-    val days: String?,
+    val days: List<String>?,
     val dose: Int,
     val startDate: String,
     val endDate: String,

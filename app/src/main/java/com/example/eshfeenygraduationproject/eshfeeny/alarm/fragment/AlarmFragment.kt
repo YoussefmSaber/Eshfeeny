@@ -23,6 +23,7 @@ import com.example.eshfeenygraduationproject.eshfeeny.util.DaysList
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 class AlarmFragment : Fragment() {
 
@@ -41,11 +42,10 @@ class AlarmFragment : Fragment() {
         initializeViewModels()
         // initializing the adapter variable and changing the value of the month and year
         // if it's value changed in the calendar
-        var selectedDayInMilli: kotlin.Long
+        var selectedDayInMilli: Long
         binding?.backBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_alarmFragment_to_moreFragment2)
         }
-
 
         val adapter = DaysAdapter(DaysList.daysList, { month, year ->
             if (month.isEmpty()) {
@@ -59,26 +59,53 @@ class AlarmFragment : Fragment() {
             binding?.MonthTextView?.text = "$month ,${year}"
         }, { selectedDay ->
             selectedDayInMilli = selectedDay.dayInMilli
-            Log.d("Alarm", selectedDayInMilli.toString())
+
             viewModel.getAlarm(userId)
             viewModel.alarms.observe(viewLifecycleOwner) { listAlarm ->
+
                 val availableAlarms: MutableList<Alarm> = mutableListOf()
                 if (listAlarm.isNotEmpty()) {
                     listAlarm.forEach { dayAlarms ->
-                        val start = dayAlarms.startDate.toLong()
-                        val end = dayAlarms.endDate.toLong()
-                        if (selectedDayInMilli in start..end) {
-                            binding?.alarmRecyclerView?.visibility = View.VISIBLE
-                            binding?.noAlarms?.visibility = View.GONE
-                            availableAlarms.add(dayAlarms)
-                        } else {
-                            binding?.alarmRecyclerView?.visibility = View.GONE
-                            binding?.noAlarms?.visibility = View.VISIBLE
+                        when (dayAlarms.repetition) {
+                            getString(R.string.repetition_day_and_day) -> {
+                                dayAlarms.days?.forEach {
+                                    val start = it.toLong()
+                                    val endTime = start + TimeUnit.DAYS.toMillis(1)
+                                    Log.d(
+                                        "Alarms Test",
+                                        "start: $start || Selected: $selectedDayInMilli"
+                                    )
+                                    if (selectedDayInMilli == start) {
+
+                                        availableAlarms.add(dayAlarms)
+                                    }
+                                }
+                            }
+
+                            else -> {
+                                val start = dayAlarms.startDate.toLong()
+                                val end = dayAlarms.endDate.toLong()
+                                Log.d(
+                                    "Alarms Test",
+                                    "start: ${dayAlarms.startDate} || selected: $selectedDayInMilli ||end: ${dayAlarms.endDate}"
+                                )
+                                if (selectedDayInMilli in start until end) {
+                                    availableAlarms.add(dayAlarms)
+                                }
+                            }
                         }
                     }
-                    val alarmAdapter = AlarmAdapter()
-                    binding?.alarmRecyclerView?.adapter = alarmAdapter
-                    alarmAdapter.submitList(availableAlarms)
+                    if (availableAlarms.isNotEmpty()) {
+                        Log.d("Alarms Test Adapter", "$availableAlarms")
+                        val alarmAdapter = AlarmAdapter()
+                        binding?.alarmRecyclerView?.visibility = View.VISIBLE
+                        binding?.noAlarms?.visibility = View.GONE
+                        binding?.alarmRecyclerView?.adapter = alarmAdapter
+                        alarmAdapter.submitList(availableAlarms)
+                    } else {
+                        binding?.alarmRecyclerView?.visibility = View.GONE
+                        binding?.noAlarms?.visibility = View.VISIBLE
+                    }
                 }
             }
         })
@@ -118,6 +145,10 @@ class AlarmFragment : Fragment() {
         fun getNextDays(days: Int): List<Days> {
             // getting an instance of the calender
             val calendar = Calendar.getInstance()
+            calendar.set(Calendar.HOUR_OF_DAY, 0)
+            calendar.set(Calendar.MINUTE, 0)
+            calendar.set(Calendar.SECOND, 0)
+            calendar.set(Calendar.MILLISECOND, 0)
             // creating a format for the dayID cause every day is different from the other
             val formatDayID = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             // getting the day number

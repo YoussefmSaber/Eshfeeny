@@ -7,5 +7,6 @@ data class AlarmPatchRequest(
     val repetition: String,
     val alarmTime: List<Long>,
     val startDate: String,
-    val endDate: String
+    val endDate: String,
+    val days: List<String>? = null
 )

@@ -77,7 +77,7 @@ class EditAlarmFragment : Fragment() {
         binding?.apply {
             this.medcienNameInput.setText(args.alarm.name)
             this.DescriptionInput.setText(args.alarm.notes)
-            this.durationTextView.text = alarmDuration.toString()
+            this.durationTextView.text = args.alarm.dose.toString()
             args.alarm.alarmTime.forEach {
                 val pattern = "hh:mm a" // Desired time format
                 val sdf = SimpleDateFormat(pattern, Locale.getDefault())
@@ -109,14 +109,14 @@ class EditAlarmFragment : Fragment() {
         }
 
         binding?.plusIcon?.setOnClickListener {
-            alarmDuration += 1
-            binding?.repetitionNumber?.text = alarmDuration.toString()
+            dose += 1
+            binding?.repetitionNumber?.text = dose.toString()
         }
 
         binding?.minusIcon?.setOnClickListener {
-            if (alarmDuration > 1) {
-                alarmDuration -= 1
-                binding?.repetitionNumber?.text = alarmDuration.toString()
+            if (dose > 1) {
+                dose -= 1
+                binding?.repetitionNumber?.text = dose.toString()
             }
         }
     }
@@ -154,6 +154,19 @@ class EditAlarmFragment : Fragment() {
                         )
                     )
                 }
+                viewModel.editAlarm(
+                    userId,
+                    args.alarm._id,
+                    AlarmPatchRequest(
+                        alarmName,
+                        alarmNote,
+                        binding?.repetitionNumber?.text.toString().toInt(),
+                        repetitionState,
+                        alarmTime,
+                        startDate.toString(),
+                        endDate
+                    )
+                )
             }
 
             getString(R.string.repetition_every_day) -> {
@@ -187,18 +200,54 @@ class EditAlarmFragment : Fragment() {
                         )
                     )
                 }
+
+                viewModel.editAlarm(
+                    userId,
+                    args.alarm._id,
+                    AlarmPatchRequest(
+                        alarmName,
+                        alarmNote,
+                        binding?.repetitionNumber?.text.toString().toInt(),
+                        repetitionState,
+                        alarmTime,
+                        startDate.toString(),
+                        endDate
+                    )
+                )
             }
 
             getString(R.string.repetition_day_and_day) -> {
-                calendar.add(Calendar.DAY_OF_MONTH, 2)
-                val endData =
-                    System.currentTimeMillis() + TimeUnit.DAYS.toMillis(alarmDuration.toLong())
+                val intervalDays = 2
+                calendar.add(Calendar.DAY_OF_MONTH, intervalDays)
+
+                val endData = System.currentTimeMillis() + TimeUnit.DAYS.toMillis((alarmDuration * 2).toLong())
                 endDate = endData.toString()
-                alarmTime.forEach {
+
+                val alarmDateList = mutableListOf<String>()
+                val alarmTimeList = mutableListOf<Long>()
+
+                // Generate alarm dates
+                val currentDateTime = calendar.timeInMillis
+
+                var alarmDateTime = currentDateTime
+                while (alarmDateTime <= endData) {
+                    alarmDateList.add(alarmDateTime.toString())
+                    alarmDateTime += TimeUnit.DAYS.toMillis(intervalDays.toLong())
+                }
+
+                // Generate alarm times
+                alarmDateList.forEach { date ->
+                    alarmTime.forEach { time ->
+                        val dateTime = date.toLong() + time
+                        alarmTimeList.add(dateTime)
+                    }
+                }
+
+                alarmTimeList.forEach {
                     alarmManager.setRepeating(
                         AlarmManager.RTC_WAKEUP,
                         it,
-                        calendar.timeInMillis,
+                        TimeUnit.DAYS.toMillis(intervalDays.toLong()),
                         PendingIntent.getBroadcast(
                             requireContext(),
                             it.hashCode(),
@@ -218,43 +267,24 @@ class EditAlarmFragment : Fragment() {
                         )
                     )
                 }
+
+                viewModel.editAlarm(
+                    userId,
+                    args.alarm._id,
+                    AlarmPatchRequest(
+                        alarmName,
+                        alarmNote,
+                        binding?.repetitionNumber?.text.toString().toInt(),
+                        repetitionState,
+                        alarmTime,
+                        startDate.toString(),
+                        endDate,
+                        alarmDateList
+                    )
+                )
             }
         }
-
-        updateAlarmToServer(
-            repetitionState,
-            alarmName,
-            alarmNote,
-            startDate.toString(),
-            endDate,
-            alarmTime,
-            binding?.repetitionNumber?.text.toString()
-        )
         findNavController().navigate(R.id.action_editAlarmFragment_to_alarmFragment)
-    }
-
-    private fun updateAlarmToServer(
-        repetitionState: String,
-        alarmName: String,
-        alarmNote: String,
-        startDate: String,
-        endDate: String,
-        alarmTime: MutableList<Long>,
-        dose: String
-    ) {
-        viewModel.editAlarm(
-            userId,
-            args.alarm._id,
-            AlarmPatchRequest(
-                alarmName,
-                alarmNote,
-                dose.toInt(),
-                repetitionState,
-                alarmTime,
-                startDate,
-                endDate
-            )
-        )
     }
 
     override fun onDestroyView() {
@@ -274,7 +304,6 @@ class EditAlarmFragment : Fragment() {
     }
 
     private fun settingAlarmValues() {
-        alarmDuration = args.alarm.days?.toInt() ?: 0
         repetitionState = args.alarm.repetition
         name = args.alarm.name
         desc = args.alarm.notes.toString()
