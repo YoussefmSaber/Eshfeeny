@@ -11,9 +11,11 @@
         android:id="@+id/viewPagerOnboarding"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/springDotsIndicator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
@@ -29,7 +31,7 @@
         app:dotsStrokeColor="@color/blue_main"
         app:dotsStrokeWidth="1.5sp"
         app:dotsWidthFactor="2.5"
-        app:layout_constraintBottom_toTopOf="@id/button2"
+        app:layout_constraintBottom_toTopOf="@id/buttonsHolder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewPagerOnboarding"
@@ -37,39 +39,58 @@
         app:progressMode="true"
         app:selectedDotColor="@color/blue_main" />
 
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:id="@+id/buttonsHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/springDotsIndicator">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="#B9B9B9"
+            app:cornerRadius="10dp">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="52dp"
+                android:padding="6dp"
+                android:src="@drawable/arrow_left"
+                app:tint="@color/white" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/blue_main"
+            android:fontFamily="@font/cairo_regular"
+            android:padding="10dp"
+            android:text="@string/next"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:cornerRadius="10dp"
+            app:layout_constraintVertical_chainStyle="packed" />
+    </LinearLayout>
     <TextView
         android:id="@+id/textView"
+        android:layout_marginTop="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/cairo_regular"
         android:text="@string/skip"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/blue_main"
-        android:fontFamily="@font/cairo_regular"
-        android:padding="10dp"
-        android:shadowColor="@color/black"
-        android:shadowDy="20.0"
-        android:text="@string/next"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:cornerRadius="10dp"
-        app:layout_constraintBottom_toTopOf="@id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/springDotsIndicator"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonsHolder" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

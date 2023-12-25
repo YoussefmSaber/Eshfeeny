@@ -34,6 +34,7 @@ class AlternativeAdapter(
             )
         return ViewHolder(itemBinding).apply {
             itemView.setOnClickListener {
+
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val product = getItem(position)

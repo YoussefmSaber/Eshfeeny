@@ -1,6 +1,11 @@
 package com.example.eshfeenygraduationproject.authentication.onBoarding.fragment
 
+import android.animation.Animator
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +17,7 @@ import com.example.eshfeenygraduationproject.R
 import com.example.eshfeenygraduationproject.authentication.onBoarding.viewPagerAdapter.ViewPagerAdapter
 import com.example.eshfeenygraduationproject.authentication.util.BoardingList
 import com.example.eshfeenygraduationproject.databinding.FragmentOnBoardingBinding
+import com.google.android.material.card.MaterialCardView
 
 
 class OnBoardingFragment : Fragment() {
@@ -28,6 +34,15 @@ class OnBoardingFragment : Fragment() {
         //  function that called when a page is visible
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
+
+            if (position != 0) {
+                binding?.back?.visibility = View.VISIBLE
+                animateButtonAndCardView(binding, true)
+            }
+            else {
+                binding?.back?.visibility = View.GONE
+                animateButtonAndCardView(binding, false)
+            }
 
             //  if the viewpager at the last item to the following
             if (position == BoardingList.onBoardingList.size - 1) {
@@ -99,6 +114,37 @@ class OnBoardingFragment : Fragment() {
         //  connecting the dotsIndicator to the viewpager
         binding.springDotsIndicator.attachTo(viewPager2!!)
     }
+    private fun animateButtonAndCardView(button: FragmentOnBoardingBinding?, isVisible: Boolean) {
+
+
+        val translationAnimator = ObjectAnimator.ofFloat(button?.button2, View.TRANSLATION_X, (60f), (10f))
+
+        // Calculate the target width based on visibility
+        val targetWidth = if (isVisible) 750 else 1000
+        Log.i("button width", button?.buttonsHolder?.width?.toFloat().toString() )
+
+        // Animate the change in width using ValueAnimator
+        val widthAnimator = targetWidth.toFloat()
+            .let { ValueAnimator.ofFloat(button?.button2?.width?.toFloat() ?: 0f, it) }
+        widthAnimator?.addUpdateListener { valueAnimator ->
+            val value = valueAnimator.animatedValue as Float
+            val params = button?.button2?.layoutParams
+            params?.width = value.toInt()
+            button?.button2?.layoutParams = params
+        }
+
+        val cardViewAlpha = if (isVisible) 1.0f else 0.0f
+
+        val cardViewAnimator = ObjectAnimator.ofFloat(button?.back, View.ALPHA, cardViewAlpha)
+
+        val animatorSet = AnimatorSet()
+        animatorSet.playTogether(widthAnimator, translationAnimator, cardViewAnimator)
+        animatorSet.duration = 300
+        animatorSet.start()
+    }
+
+
+
 
     //  To prevent any memory leak
     override fun onDestroy() {
